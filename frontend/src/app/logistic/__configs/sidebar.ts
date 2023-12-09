@@ -19,7 +19,7 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 				children: [],
 			},
 			{
-				name: 'Tạo lệnh điều xe',
+				name: 'Tạo lệnh điều vận',
 				icon: '',
 				url: '/logistic/transaction/new',
 				isActive: false,
@@ -39,7 +39,7 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 		children: [],
 	},
 	{
-		name: 'Danh mục xe',
+		name: 'Danh mục phương tiện',
 		icon: 'car',
 		url: '/admin/employees',
 		isActive: false,
