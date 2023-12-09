@@ -15,6 +15,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { TransactionComponent } from './transaction/transaction.component';
 import { DriverComponent } from './driver/driver.component';
 import { CustomerComponent } from './customer/customer.component';
+import { AddCustomerComponent } from './customer/add-customer/add-customer.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { AddTransactionComponent } from './transaction/add-transaction/add-transaction.component';
 import { TransactionCustomerSelectComponent } from './transaction/add-transaction/transaction-customer-select/transaction-customer-select.component';
@@ -29,11 +30,12 @@ import { TransactionVehicleSelectComponent } from './transaction/add-transaction
 		TransactionComponent,
 		DriverComponent,
 		CustomerComponent,
+		AddCustomerComponent,
 		VehicleComponent,
 		AddTransactionComponent,
-  TransactionCustomerSelectComponent,
-  TransactionDriverSelectComponent,
-  TransactionVehicleSelectComponent
+	TransactionCustomerSelectComponent,
+	TransactionDriverSelectComponent,
+	TransactionVehicleSelectComponent
 	],
 	imports: [
 		CommonModule,
