@@ -35,5 +35,9 @@ public class AutoMapperProfiles : Profile
         CreateMap<AdmCodeValue, CodeValueDto>();
 
         CreateMap<AuditLog, AuditForHomeDto>();
+
+        CreateMap<Customer, CustomerDto>();
+
+        CreateMap<CustomerDto, Customer>();
     }
 }

@@ -38,7 +38,7 @@ public class UnitOfWork : IUnitOfWork
     public IAuditRepository AuditRepository => new AuditRepository(_context, _mapper);
     public ITransactionRepository TransactionRepository => new TransactionRepository(_context);
     public IDriverRepository DriverRepository => new DriverRepository(_context);
-    public ICustomerRepository CustomerRepository => new CustomerRepository(_context);
+    public ICustomerRepository CustomerRepository => new CustomerRepository(_context, _mapper);
     public IVehicleRepository VehicleRepository => new VehicleRepository(_context);
 
     public async Task<bool> Complete()
