@@ -1,0 +1,106 @@
+.search {
+  margin: 0 8px;
+  &.search-active {
+    form {
+      background-color: #fff;
+      border-color: #63a6e9;
+      box-shadow: none;
+      .search-input-container .search-input {
+        color: #303030;
+        transition: color ease-in-out 0.15s;
+      }
+    }
+  }
+  form {
+    border: 0;
+    border-radius: 4px;
+    display: block;
+    height: 32px;
+    margin: 0;
+    padding: 4px;
+    width: 200px;
+    background-clip: padding-box;
+    background-color: rgba(209, 209, 240, 0.2);
+    color: #303030;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 24px;
+
+    transition: border-color ease-in-out 0.15s,
+      background-color ease-in-out 0.15s, box-shadow 0.15s ease-in-out;
+
+    .search-input-container {
+      display: flex;
+      position: relative;
+
+      .search-input {
+        position: relative;
+        justify-content: flex-start;
+        margin-left: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background: none;
+        border: 0;
+        width: 98%;
+        color: #fff;
+        font-size: 14px;
+        padding: 0 20px 0 0;
+        line-height: 25px;
+        transition: color ease-in-out 0.15s;
+
+        &::placeholder {
+          color: #9c9c9c;
+        }
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+          outline-offset: -2px;
+          -webkit-appearance: none;
+        }
+      }
+      .search-input-wrap {
+        width: 100%;
+
+        .dropdown {
+          position: static;
+
+          .search-icon,
+          .clear-icon {
+            position: absolute;
+            right: 5px;
+            top: 4px;
+            color: rgba(209, 209, 240, 0.8);
+            transition: color 0.15s;
+          }
+          .clear-icon {
+            display: none;
+          }
+          .dropdown-menu {
+            left: -4px !important;
+            max-height: 400px;
+            overflow: auto;
+            margin-top: 11px;
+          }
+          &.show .dropdown-menu {
+            transform: translateY(0);
+            display: block;
+            min-height: 40px;
+            max-height: 312px;
+            overflow-y: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .search form {
+    width: 320px;
+
+    .dropdown-menu {
+      width: 320px;
+    }
+  }
+}

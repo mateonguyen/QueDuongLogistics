@@ -1,0 +1,48 @@
+<aside class="nav-sidebar h-100" [ngClass]="{'sidebar-collapsed-desktop' : (layoutQuery.expanded$ | async) === false}"
+	[style.width.px]="sidebarWidth">
+	<div class="sidebar-content d-flex flex-row overflow-hidden h-100">
+		<tui-scrollbar class="nav-sidebar-inner-scroll">
+			<div class="context-header" *ngIf="(accountQuery.currentUser$ | async) as account">
+				<a title="Nguyễn Vũ Toàn" [routerLink]="'account'">
+					<span class="avatar-container s32 settings-avatar">
+						<img class="avatar s32"
+							[src]="account.photo ? 'data:image/png;base64,' + account.photo : 'assets/images/user.png'"
+							loading="lazy">
+					</span>
+					<span class="sidebar-context-title">{{account.fullName}}</span>
+				</a>
+			</div>
+			<ul class="sidebar-top-level-items">
+				<li *ngFor="let item of navItems" #rla="routerLinkActive" [routerLinkActive]="'active'"
+					[ngClass]="{'is-over is-showing-fly-out': item.isOver && (!rla.isActive || (layoutQuery.expanded$ | async) === false)}"
+					(click)="onClick(item)" (mouseenter)="onTopMouseEnter(item, $event)"
+					(mouseleave)="onTopMouseLeave(item)">
+					<a [routerLink]=" item.url" [ngClass]="{'has-sub-items': item.children.length > 0}">
+						<div class="nav-icon-container">
+							<svg-icon [name]="item.icon" [size]="16"></svg-icon>
+						</div>
+						<span class="nav-item-name">{{item.name}}</span>
+					</a>
+					<ul class="sidebar-sub-level-items" (mouseleave)="onSubMouseLeave(item)"
+						[style.display]="item.isOver ? 'block' : null"
+						[style.transform]="item.isOver ? transform : null" [ngClass]="{'is-fly-out-only' : (layoutQuery.expanded$ | async) === false &&  item.children.length === 0,
+									'fly-out-list': item.isOver && (!rla.isActive || (layoutQuery.expanded$ | async) === false)}">
+						<li class="fly-out-top-item">
+							<span class="fly-out-top-item-container">
+								<strong class="fly-out-top-item-name">
+									{{item.name}}
+								</strong>
+							</span>
+						</li>
+						<app-nav-item [navItems]="item.children"></app-nav-item>
+					</ul>
+				</li>
+			</ul>
+		</tui-scrollbar>
+	</div>
+
+	<!-- <a class="toggle-sidebar-button" role="button" type="button" (click)="toggle()">
+		<svg-icon [name]="icon" [size]="16"></svg-icon>
+	</a> -->
+	<app-resizer (click)="toggle()" [expanded]="layoutQuery.expanded"></app-resizer>
+</aside>

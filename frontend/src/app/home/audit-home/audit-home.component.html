@@ -1,0 +1,58 @@
+<!-- streamline -->
+<div class="mt-4 mb-3 text-bold">Hoạt động gần đây</div>
+<div id="action_log">
+	<div class="streamline b-l b-success mb-2">
+
+		<div *ngFor="let item of list" class="sl-item b-success">
+			<div class="ml-3">
+				<div class="text-muted tex-xs italic">{{ item.auditTime | timeago }}</div>
+				<div class="text-bold">{{ item.userName }}</div>
+				<div>{{ auditType[item.auditType] + ' ' + (item.auditType != 'Login' ? entityName[item.entityName] : '')
+					}}
+				</div><br>
+				<!-- <div>{{ auditType[item.auditType] + ' ' + entityName[item.entityName] }}
+				</div><br> -->
+			</div>
+		</div>
+
+		<!-- <div class="sl-item b-success">
+			<div class="ml-3">
+				<div class="text-muted text-xs italic">27 phút trước</div>
+				<div class="text-bold">Kỹ Thuật Viên</div>
+				<div class="">Đăng nhập</div><br>
+			</div>
+		</div>
+		<div class="sl-item b-success">
+			<div class="ml-3">
+				<div class="text-muted text-xs italic">56 phút trước</div>
+				<div class="text-bold">Kỹ Thuật Viên</div>
+				<div class="">Đăng nhập bằng token</div><br>
+			</div>
+		</div>
+		<div class="sl-item b-success">
+			<div class="ml-3">
+				<div class="text-muted text-xs italic">56 phút trước</div>
+				<div class="text-bold">Kỹ Thuật Viên</div>
+				<div class="">Đăng nhập</div><br>
+			</div>
+		</div>
+		<div class="sl-item b-success">
+			<div class="ml-3">
+				<div class="text-muted text-xs italic">3 giờ trước</div>
+				<div class="text-bold">Kỹ Thuật Viên</div>
+				<div class="">Đăng nhập bằng token</div><br>
+			</div>
+		</div>
+		<div class="sl-item b-success">
+			<div class="ml-3">
+				<div class="text-muted text-xs italic">3 giờ trước</div>
+				<div class="text-bold">Kỹ Thuật Viên</div>
+				<div class="">Đăng nhập bằng token</div><br>
+			</div>
+		</div> -->
+	</div>
+</div>
+<!-- <div class="text-center">
+	<a href="https://traskincare.myspa.vn/Dashboard/show_action?from_date=18-07-2023&amp;to_date=18-07-2023"
+		class="btn btn-sm btn-primary btn-rounded m-b">Xem thêm</a>
+</div> -->

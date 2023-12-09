@@ -1,0 +1,6 @@
+<div id="app-frame">
+	<nz-spin class="global-spinner h-full" [nzSpinning]="appQuery.isLoading$ | async" nzSize="large">
+		<router-outlet></router-outlet>
+	</nz-spin>
+</div>
+<svg-definitions></svg-definitions>

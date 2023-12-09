@@ -1,0 +1,30 @@
+// .page-with-contextual-sidebar {
+// 	transition: padding-left 0.3s;
+// }
+
+// @media (min-width: 1200px) {
+// 	.page-with-contextual-sidebar {
+// 		padding-left: 220px;
+// 	}
+// }
+
+// @media (min-width: 768px) {
+// 	.page-with-icon-sidebar {
+// 		padding-left: 50px;
+// 	}
+// }
+
+.content-wrapper {
+	margin-top: 40px;
+	padding-bottom: 100px;
+	width: 100%;
+}
+
+.layout-page {
+	flex: 1;
+	min-width: 0;
+	z-index: 0;
+	// overflow: auto;
+	will-change: padding-left;
+	transition: padding-left 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+}

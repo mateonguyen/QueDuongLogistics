@@ -1,0 +1,10 @@
+<li class="divider fly-out-top-item"></li>
+<li *ngFor="let item of navItems" [routerLinkActive]="'active'">
+	<a [routerLink]="item.url">
+		<span>{{ item.name }}</span>
+	</a>
+	{{item.children}}
+	<ul *ngIf="item.children.length > 0" class="sidebar-sub-level-items is-fly-out-only fly-out-list">
+		<nav-item [navItems]="item.children"></nav-item>
+	</ul>
+</li>

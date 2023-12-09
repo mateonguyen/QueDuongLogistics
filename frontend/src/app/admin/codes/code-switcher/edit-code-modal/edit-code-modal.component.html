@@ -1,0 +1,32 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{ title }}</h4>
+	<button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+		<span aria-hidden="true" class="visually-hidden">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" autocomplete="off">
+		<div class="form-group mb-3">
+			<label for="name" class="label-bold mb-1">Mã danh mục</label>
+			<input type="text" id="name" class="form-control" [formControl]='editForm.controls["name"]'
+				[class.is-invalid]='editForm.get("name").errors && editForm.get("name").touched'>
+			<div class="invalid-feedback" *ngIf='editForm.controls["name"].errors?.required'>Vui lòng
+				nhập Mã danh mục</div>
+		</div>
+		<div class="form-group">
+			<label for="description" class="label-bold mb-1">Tên danh mục</label>
+			<input type="text" id="description" class="form-control" [formControl]='editForm.controls["description"]'
+				[class.is-invalid]='editForm.get("description").errors && editForm.get("description").touched'>
+			<div class="invalid-feedback" *ngIf='editForm.controls["description"].errors?.required'>Vui lòng
+				nhập Tên danh mục</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+		HỦY
+	</button>
+	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'>
+		CẬP NHẬT
+	</button>
+</div>

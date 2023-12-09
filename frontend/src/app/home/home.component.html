@@ -1,0 +1,342 @@
+<div class="layout_page px-0 h-100">
+	<div class="layout-page h-100">
+		<div class="container-fluid d-flex flex-column h-100 pb-5">
+			<tui-scrollbar>
+				<main class="content md:px-6">
+					<h4 class="mt-4 pb-3 px-2 border-b">Xin chào {{ currentUser.fullName }}</h4>
+					<!-- <nz-alert nzMessage="Bạn vừa sửa thông tin. Thay đổi sẽ bị mất nếu không lưu lại." nzType="info"
+							nzShowIcon class="mb-2"></nz-alert> -->
+					<div class="grid grid-cols-12 gap-6">
+						<div class="col-span-12 2xl:col-span-10 mt-4">
+							<!-- <div class="col-span-12 grid grid-cols-12 gap-6 mb-4">
+								<div class="col-span-12 sm:col-span-6 2xl:col-span-3">
+									<div class="box zoom-in p-4">
+										<div class="flex items-start">
+											<div class="w-2/4 flex-none">
+												<div class="truncate text-3xl font-medium leading-8">4.710</div>
+												<div class="mt-1 text-base text-slate-500">Hôm nay</div>
+											</div>
+											<div
+												class="relative ml-auto flex items-center rounded-full cursor-pointer text-white bg-danger font-medium py-[3px] pl-2 pr-1 text-xs">
+												20%
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													icon-name="chevron-down" data-lucide="chevron-down"
+													class="lucide lucide-chevron-down stroke-1.5 ml-0.5 h-4 w-4">
+													<polyline points="6 9 12 15 18 9"></polyline>
+												</svg>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-span-12 sm:col-span-6 2xl:col-span-3">
+									<div class="box zoom-in p-4">
+										<div class="flex items-start">
+											<div class="w-2/4 flex-none">
+												<div class="truncate text-3xl font-medium leading-8">3.721</div>
+												<div class="mt-1 text-base text-slate-500">Tháng này</div>
+											</div>
+											<div
+												class="relative ml-auto flex items-center rounded-full cursor-pointer text-white bg-success font-medium py-[3px] pl-2 pr-1 text-xs">
+												33%
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													icon-name="chevron-up" data-lucide="chevron-up"
+													class="lucide lucide-chevron-up stroke-1.5 ml-0.5 h-4 w-4">
+													<polyline points="18 15 12 9 6 15"></polyline>
+												</svg>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-span-12 sm:col-span-6 2xl:col-span-3">
+									<div class="box zoom-in p-4">
+										<div class="flex items-start">
+											<div class="w-2/4 flex-none">
+												<div class="truncate text-3xl font-medium leading-8">2.149</div>
+												<div class="mt-1 text-base text-slate-500">Năm nay</div>
+											</div>
+											<div
+												class="relative ml-auto flex items-center rounded-full cursor-pointer text-white bg-success font-medium py-[3px] pl-2 pr-1 text-xs">
+												33%
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													icon-name="chevron-up" data-lucide="chevron-up"
+													class="lucide lucide-chevron-up stroke-1.5 ml-0.5 h-4 w-4">
+													<polyline points="18 15 12 9 6 15"></polyline>
+												</svg>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-span-12 sm:col-span-6 2xl:col-span-3">
+									<div class="box zoom-in p-4">
+										<div class="flex items-start">
+											<div class="w-2/4 flex-none">
+												<div class="truncate text-3xl font-medium leading-8">152.040</div>
+												<div class="mt-1 text-base text-slate-500">Người truy cập</div>
+											</div>
+											<div
+												class="relative ml-auto flex items-center rounded-full cursor-pointer text-white bg-success font-medium py-[3px] pl-2 pr-1 text-xs">
+												33%
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+													viewBox="0 0 24 24" fill="none" stroke="currentColor"
+													stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+													icon-name="chevron-up" data-lucide="chevron-up"
+													class="lucide lucide-chevron-up stroke-1.5 ml-0.5 h-4 w-4">
+													<polyline points="18 15 12 9 6 15"></polyline>
+												</svg>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> -->
+							<!-- <div class="col-span-12 grid grid-cols-12 gap-6 mb-4">
+								<div class="col-span-12 sm:col-span-4 2xl:col-span-4">
+									<div class="text-center">
+										<div class="box p-3 mb-2">
+											<h2 class="text-lg mb-1">Lịch trình ngày hôm nay</h2>
+											<div>(Thứ Tư, 19/07/2023)</div>
+											<div class="grid grid-cols-3 gap-4">
+												<div style="color:#7266BA;">
+													<h2 class="mt-3 mb-2 text-2xl" style="color:#7266BA;">1</h2>
+													<span>Chưa xác nhận</span>
+												</div>
+												<div style="color:#9ACC51;">
+													<h2 class="mt-3 mb-2 text-2xl" style="color:#9ACC51;">3</h2>
+													<span>Xác nhận</span>
+												</div>
+												<div style="color:#F26C4F;">
+													<h2 class="mt-3 mb-2 text-2xl" style="color:#F26C4F;">0</h2>
+													<span>Hủy</span>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="box zoom-in mb-2 flex items-center p-3">
+												<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+													<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+														alt="Midone Tailwind HTML Admin Template">
+												</div>
+												<div class="ml-4 mr-auto text-left">
+													<div class="font-medium">Đại úy Nguyễn Vũ Toàn</div>
+													<div class="mt-0 5 text-xs text-slate-500">Phòng 2, Cục H05</div>
+												</div>
+											</div>
+											<div class="box zoom-in mb-2 flex items-center p-3">
+												<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+													<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+														alt="Midone Tailwind HTML Admin Template">
+												</div>
+												<div class="ml-4 mr-auto text-left">
+													<div class="font-medium">Đại úy Đào Thanh Tùng</div>
+													<div class="mt-0 5 text-xs text-slate-500">Phòng 2, Cục H05</div>
+												</div>
+											</div>
+											<div class="box zoom-in mb-2 flex items-center p-3">
+												<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+													<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+														alt="Midone Tailwind HTML Admin Template">
+												</div>
+												<div class="ml-4 mr-auto text-left">
+													<div class="font-medium">Thượng tá Nguyễn Việt Hà</div>
+													<div class="mt-0 5 text-xs text-slate-500">Phòng 7, Cục H05</div>
+												</div>
+											</div>
+											<a class="block w-full py-3 text-center border border-dotted rounded-md intro-y border-slate-400 text-slate-500 dark:border-darkmode-300"
+												href="">
+												Xem thêm
+											</a>
+											<div _ngcontent-jtx-c126="" class="text-right"><a _ngcontent-jtx-c126=""
+														href="#" class="btn btn-sm btn-primary btn-rounded m-b">Xem thêm</a>
+												</div>
+						</div>
+					</div>
+		</div>
+		<div class="col-span-12 sm:col-span-4 2xl:col-span-4">
+			<div class="text-center">
+				<div class="box p-3 mb-2">
+					<h2 class="text-lg mb-1">Lịch trình ngày mai</h2>
+					<div>(Thứ Năm, 20/07/2023)</div>
+					<div class="grid grid-cols-3 gap-4">
+						<div style="color:#7266BA;">
+							<h2 class="mt-3 mb-2 text-2xl" style="color:#7266BA;">1</h2>
+							<span>Chưa xác nhận</span>
+						</div>
+						<div style="color:#9ACC51;">
+							<h2 class="mt-3 mb-2 text-2xl" style="color:#9ACC51;">1</h2>
+							<span>Xác nhận</span>
+						</div>
+						<div style="color:#F26C4F;">
+							<h2 class="mt-3 mb-2 text-2xl" style="color:#F26C4F;">0</h2>
+							<span>Hủy</span>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="box zoom-in mb-2 flex items-center p-3">
+						<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+							<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+								alt="Midone Tailwind HTML Admin Template">
+						</div>
+						<div class="ml-4 mr-auto">
+							<div class="font-medium">Nguyễn Vũ Toàn</div>
+							<div class="mt-0 5 text-xs text-slate-500">12 June 2020</div>
+						</div>
+					</div>
+					<div class="box zoom-in mb-2 flex items-center p-3">
+						<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+							<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+								alt="Midone Tailwind HTML Admin Template">
+						</div>
+						<div class="ml-4 mr-auto">
+							<div class="font-medium">Nguyễn Vũ Toàn</div>
+							<div class="mt-0 5 text-xs text-slate-500">12 June 2020</div>
+						</div>
+					</div>
+					<a class="block w-full py-3 text-center border border-dotted rounded-md intro-y border-slate-400 text-slate-500 dark:border-darkmode-300"
+						href="">
+						Thêm mới lịch trình
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-span-12 sm:col-span-4 2xl:col-span-4">
+			<div class="text-center">
+				<div class="box p-3 mb-2">
+					<h2 class="text-lg mb-1">Lịch trình ngày mốt</h2>
+					<div>(Thứ Sáu, 21/07/2023)</div>
+					<div class="grid grid-cols-3 gap-4">
+						<div style="color:#7266BA;">
+							<h2 class="mt-3 mb-2 text-2xl" style="color:#7266BA;">0</h2>
+							<span>Chưa xác nhận</span>
+						</div>
+						<div style="color:#9ACC51;">
+							<h2 class="mt-3 mb-2 text-2xl" style="color:#9ACC51;">3</h2>
+							<span>Xác nhận</span>
+						</div>
+						<div style="color:#F26C4F;">
+							<h2 class="mt-3 mb-2 text-2xl" style="color:#F26C4F;">0</h2>
+							<span>Hủy</span>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="box zoom-in mb-2 flex items-center p-3">
+						<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+							<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+								alt="Midone Tailwind HTML Admin Template">
+						</div>
+						<div class="ml-4 mr-auto">
+							<div class="font-medium">Nguyễn Vũ Toàn</div>
+							<div class="mt-0 5 text-xs text-slate-500">12 June 2020</div>
+						</div>
+					</div>
+					<div class="box zoom-in mb-2 flex items-center p-3">
+						<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+							<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+								alt="Midone Tailwind HTML Admin Template">
+						</div>
+						<div class="ml-4 mr-auto">
+							<div class="font-medium">Nguyễn Vũ Toàn</div>
+							<div class="mt-0 5 text-xs text-slate-500">12 June 2020</div>
+						</div>
+					</div>
+					<div class="box zoom-in mb-2 flex items-center p-3">
+						<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+							<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+								alt="Midone Tailwind HTML Admin Template">
+						</div>
+						<div class="ml-4 mr-auto">
+							<div class="font-medium">Nguyễn Vũ Toàn</div>
+							<div class="mt-0 5 text-xs text-slate-500">12 June 2020</div>
+						</div>
+					</div>
+					<a class="block w-full py-3 text-center border border-dotted rounded-md intro-y border-slate-400 text-slate-500 dark:border-darkmode-300"
+						href="">
+						Xem thêm
+					</a>
+				</div>
+			</div>
+		</div>
+	</div> -->
+							<!-- <div class="col-span-12 grid grid-cols-12 gap-6 mb-4">
+								<div class="col-span-12 sm:col-span-9 2xl:col-span-9">
+									<div class="box mb-2 flex items-center p-3">
+										<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+											<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+												alt="Midone Tailwind HTML Admin Template">
+										</div>
+										<div class="ml-4 mr-auto text-left">
+											<div class="font-medium">Đại úy Nguyễn Vũ Toàn</div>
+											<div class="mt-0 5 text-xs text-slate-500">Phòng 2, Cục H05</div>
+										</div>
+									</div>
+									<div class="box mb-2 flex items-center p-3">
+										<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+											<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+												alt="Midone Tailwind HTML Admin Template">
+										</div>
+										<div class="ml-4 mr-auto text-left">
+											<div class="font-medium">Đại úy Đào Thanh Tùng</div>
+											<div class="mt-0 5 text-xs text-slate-500">Phòng 2, Cục H05</div>
+										</div>
+									</div>
+									<div class="box mb-2 flex items-center p-3">
+										<div class="image-fit h-10 w-10 flex-none overflow-hidden rounded-md">
+											<img src="https://tinker-laravel.left4code.com/build/assets/profile-4-eb6bc8ad.jpg"
+												alt="Midone Tailwind HTML Admin Template">
+										</div>
+										<div class="ml-4 mr-auto text-left">
+											<div class="font-medium">Thượng tá Nguyễn Việt Hà</div>
+											<div class="mt-0 5 text-xs text-slate-500">Phòng 7, Cục H05</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-span-12 sm:col-span-3 2xl:col-span-3">
+									<div class="box">
+										abc
+									</div>
+								</div>
+							</div> -->
+						</div>
+						<div class="col-span-12 2xl:col-span-2 2xl:border-l">
+							<div class="-mb-10 pb-10">
+								<div class="2xl:pl-6 m-b-sm">
+									<app-audit-home></app-audit-home>
+								</div>
+								<div class="2xl:pl-6 m-b-sm mt-4">
+									<div class="p-3 mt-12 intro-y box sm:mt-5">
+										<app-visitor-counter></app-visitor-counter>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</main>
+			</tui-scrollbar>
+		</div>
+		<footer class="d-flex w-100">
+			<div class="ads d-flex flex-row">
+				<div>Phiên bản 1.1.1</div>
+			</div>
+			<div class="wrapper d-flex flex-row">
+				<div class=" footer-hotline">
+					<a href="#" target="_blank">Hotline: 0986685648</a>
+				</div>
+				<div class="">
+					<a href="#" target="_blank">
+						Hướng dẫn sử dụng </a>
+				</div>
+				<div class="">
+					<a href="#" target="_blank">
+						Công cụ hỗ trợ từ xa </a>
+				</div>
+			</div>
+		</footer>
+	</div>
+</div>

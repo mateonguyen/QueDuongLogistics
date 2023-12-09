@@ -1,0 +1,376 @@
+<div>
+	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited">
+		<div class="breadcrumbs-container">
+			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+					<li>
+						<a [routerLink]="'/-/profile/account'">Quế Dương</a>
+						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+					</li>
+					<li>
+						<h2 class="breadcrumbs-sub-title">
+							<a [routerLink]="'/-/profile/password'">Tạo lệnh điều xe</a>
+						</h2>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+<div class="container-fluid container-limited">
+	<main class="content" id="content-body">
+		<div class="flash-container flash-container-page" *ngIf="this.globalError">
+			<div class="flash-alert mb-2">
+				<svg-icon [name]="'error'" [size]="16" [className]="'mr-1 align-middle d-inline'"></svg-icon>
+				<span class="align-text-top">{{ this.globalError }}</span>
+				<div class="close-icon-wrapper js-close-icon">
+					<svg-icon [name]="'close'" [size]="16" class="align-baseline"></svg-icon>
+				</div>
+			</div>
+		</div>
+		<form [formGroup]="transactionForm" (ngSubmit)="transactionForm.valid && save()">
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Khách hàng
+					</h4>
+					<p>
+
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="form-group">
+						<app-transaction-customer-select></app-transaction-customer-select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Khách hàng
+					</h4>
+					<p>
+						Sau khi cập nhật mật khẩu thành công, bạn sẽ được chuyển đến trang đăng nhập, nơi bạn có thể đăng
+						nhập bằng mật khẩu mới của mình.
+					</p>
+				</div>
+				<div class="col-lg-9">
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0"> Thông tin xe </h4>
+					<p> </p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-6">
+							<app-transaction-vehicle-select></app-transaction-vehicle-select>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Loại xe</label>
+								<input id="" type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Biển kiểm soát</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="">Kích thước thùng xe</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="">Trọng tải xe</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Thông tin lái xe
+					</h4>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-6">
+							<app-transaction-driver-select></app-transaction-driver-select>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Số điện thoại</label>
+								<input id="" type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Ngày sinh</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Số căn cước</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Ngày cấp</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Nơi cấp</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Điểm xuất phát
+					</h4>
+					<p>
+
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Địa điểm</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Km xuất phát</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Thời gian vào</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Thời gian ra</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Điểm đến
+					</h4>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Địa điểm</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Km điểm đến</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Thời gian vào</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Thời gian ra</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Số lượng hàng
+					</h4>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Số lượng hàng nhận</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Số lượng hàng giao</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">S/R</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Đơn vị vận tải
+					</h4>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="text" class="form-input">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Chi phí phát sinh
+					</h4>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Phí lưu ca</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Phí ghép điểm</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Phí hàng về</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Phí hải quan</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Phí bốc xếp</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Vé</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Phát sinh khác</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Biên bản giao hàng
+					</h4>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Lái xe nộp đủ về VP</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Trả người quản lý giáy tờ</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Trả khách hàng</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label for="">Ghi chú khác</label>
+								<input type="text" class="form-input">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Ghi chú
+					</h4>
+					<p>
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<textarea name="" id="" cols="30" rows="10" class="form-input"></textarea>
+				</div>
+			</div>
+		</form>
+	</main>
+</div>

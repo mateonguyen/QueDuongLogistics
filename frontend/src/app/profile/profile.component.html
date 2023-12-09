@@ -1,0 +1,17 @@
+<div class="container-fluid d-flex px-0 h-100">
+	<app-sidebar [navItems]="sideBarLinks"></app-sidebar>
+	<!-- <div class="layout-page page-with-contextual-sidebar"
+		[ngClass]="{'page-with-icon-sidebar' : (layoutQuery.expanded$ | async) === false}">
+		<div class="content-wrapper">
+			<router-outlet></router-outlet>
+		</div>
+	</div> -->
+
+	<div class="layout-page">
+		<div class="d-flex flex-column w-100 h-100">
+			<tui-scrollbar>
+				<router-outlet></router-outlet>
+			</tui-scrollbar>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">Phân quyền nhóm {{ group.groupName }}</h4>
+	<wk-button icon="times" [iconSize]="24" (click)="closeModal()" [className]="'btn-empty'">
+	</wk-button>
+</div>
+<div class="modal-body">
+	<form id="role_form" #roleForm="ngForm" (ngSubmit)="roleForm.valid && save()">
+		<div class="form-check" *ngFor="let role of roles">
+			<input type="checkbox" class="form-check-input" [checked]="role.checked" value="role.value"
+				(change)="role.checked = !role.checked">
+			<label>{{role.name}}</label>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<wk-button [className]="'btn btn-default mr-2'" (click)="cancel()">Đóng</wk-button>
+	<!-- <button type="submit" class="btn btn-success" form="role_form" [disabled]='!roleForm.valid'>Cập nhật</button> -->
+	<button type="submit" class="btn btn-success" form="role_form" [disabled]='!roleForm.valid'>Cập nhật</button>
+</div>

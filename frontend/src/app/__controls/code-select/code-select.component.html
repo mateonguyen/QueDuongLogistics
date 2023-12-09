@@ -1,0 +1,6 @@
+<nz-select class="w-full" [(ngModel)]="value" #control="ngModel" [class.is-invalid]='control.errors && control.touched'
+	[required]="required">
+	<nz-option *ngFor="let codeValue of values" [nzLabel]="codeValue.value" [nzValue]="codeValue.value"></nz-option>
+</nz-select>
+<div class="invalid-feedback" *ngIf='control.errors?.required'>
+	Vui lòng nhập {{label}}</div>

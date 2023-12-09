@@ -1,0 +1,54 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{ title }}</h4>
+	<wk-button icon="times" [iconSize]="24" (click)="closeModal()" [className]="'btn-empty'">
+	</wk-button>
+</div>
+<div class="modal-body">
+	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" autocomplete="off">
+		<div class="form-group mb-3">
+			<label for="user_name" class="label-bold">Tên đăng nhập</label>
+			<input type="text" id="user_name" class="form-input" [formControl]='editForm.controls["userName"]'
+				[class.is-invalid]='editForm.get("userName").errors && editForm.get("userName").touched'
+				[attr.disabled]="model?.userName !== null ? '' : null">
+			<div class="invalid-feedback" *ngIf='editForm.controls["userName"].errors?.required'>Vui lòng
+				nhập Tên đăng nhập</div>
+		</div>
+		<div class="form-group mb-3">
+			<label for="full_name" class="label-bold">Họ và tên</label>
+			<input type="text" id="full_name" class="form-input" [formControl]='editForm.controls["fullName"]'
+				[class.is-invalid]='editForm.get("fullName").errors && editForm.get("fullName").touched'>
+			<div class="invalid-feedback" *ngIf='editForm.controls["fullName"].errors?.required'>Vui lòng
+				nhập Họ và tên</div>
+		</div>
+		<div class="form-group mb-3">
+			<label for="group_id" class="label-bold">Nhóm người dùng</label>
+			<nz-select class="w-full" [formControl]='editForm.controls["groupId"]'
+				[class.is-invalid]='editForm.get("groupId").errors && editForm.get("groupId").touched' required>
+				<nz-option *ngFor="let group of groups" [nzLabel]="group.groupName" [nzValue]="group.id"></nz-option>
+			</nz-select>
+			<div class="invalid-feedback" *ngIf='editForm.get("groupId").errors?.required'>
+				Vui lòng chọn Nhóm người dùng</div>
+		</div>
+		<div class="form-group mb-2">
+			<label for="status" class="label-bold"> Trạng thái </label>
+			<nz-select class="w-full" id="status" [formControl]='editForm.controls["isActived"]'>
+				<nz-option nzCustomContent [nzLabel]="'Hoạt động'" [nzValue]="true">
+					<div class="d-flex">
+						<svg-icon [name]="'status-success'" [className]="'text-success'" [size]="20"></svg-icon>
+						<span class="ms-2">Hoạt động</span>
+					</div>
+				</nz-option>
+				<nz-option nzCustomContent [nzLabel]="'Khóa'" [nzValue]="false">
+					<div class="d-flex">
+						<svg-icon [name]="'status-failed'" [className]="'text-danger'" [size]="20"></svg-icon>
+						<span class="ms-2">Khóa</span>
+					</div>
+				</nz-option>
+			</nz-select>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<wk-button [className]="'btn btn-default mr-2'" (click)="cancel()">Đóng</wk-button>
+	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'> Lưu </button>
+</div>

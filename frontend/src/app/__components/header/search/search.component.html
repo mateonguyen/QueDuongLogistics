@@ -1,0 +1,25 @@
+<div class="search search-form" #searchWrap>
+	<form action="/search" class="form-inline">
+		<div class="search-input-container">
+			<div class="search-input-wrap">
+				<div dropdown class="dropdown">
+					<input type="search" name="search" id="search" dropdownToggle placeholder="Search or jump to..."
+						class="search-input no-outline" spellcheck="false" autocomplete="off"
+						(focus)="searchWrap.classList.add('search-active')"
+						(blur)="searchWrap.classList.remove('search-active')" />
+					<div *dropdownMenu class="dropdown-menu">
+						<ul>
+							<!-- <li>
+                <a href="#">Thêm lịch hẹn</a>
+              </li>
+              <li>
+                <a href="#">Thêm lượt giao dịch</a>
+              </li> -->
+						</ul>
+					</div>
+					<svg-icon [name]="'search_'" [size]="16" class="search-icon"></svg-icon>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

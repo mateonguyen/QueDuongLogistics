@@ -1,0 +1,5 @@
+[
+  { "name": "Tài khoản", "icon": "account", "url": "account", "isActive": false, "children": [] },
+  { "name": "Mật khẩu", "icon": "lock", "url": "password", "isActive": false, "children": [] },
+  { "name": "Cài đặt", "icon": "preferences", "url": "preferences", "isActive": false, "children": [] }
+]

@@ -1,0 +1,76 @@
+<div class="alert-wrapper gl-force-block-formatting-context">
+	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited limit-container-width">
+		<div class="breadcrumbs-container">
+			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+					<li>
+						<a [routerLink]="'/-/admin'">Quản trị</a>
+						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+					</li>
+					<li>
+						<h2 class="breadcrumbs-sub-title">
+							<a [routerLink]="'/-/admin/roles'">Quyền sử dụng</a>
+						</h2>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+<div class="container-fluid container-limited limit-container-width">
+	<main class="content">
+		<div class="row mt-2">
+			<div class="col-lg-12">
+				<h4 class="mt-2 px-2 text-uppercase">Danh sách Quyền sử dụng</h4>
+				<div>
+					<div class="d-md-flex flex-column order border-start-0 border-end-0"
+						style="background-color: #f6f6f6;">
+						<div class="d-flex flex-row">
+							<div class="search-box-by-click d-md-flex p-2 flex-grow-1">
+								<nz-input-group [nzSuffix]="suffixIconSearch">
+									<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()"
+										placeholder="input search text" />
+								</nz-input-group>
+								<ng-template #suffixIconSearch>
+									<span nz-icon nzType="search"></span>
+								</ng-template>
+							</div>
+							<div class="p-2 d-md-flex">
+								<wk-button icon="plus" [iconSize]="13" [className]="'btn-primary flex'"
+									(click)="openEditModal()"></wk-button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<nz-table #roleTable [nzData]="list" nzSize="small">
+								<thead>
+									<tr role="row">
+										<th nzColumnKey="id" [nzSortFn]="true" style="width: 10%">Id</th>
+										<th nzColumnKey="name" [nzSortFn]="true" style="width: 35%">Mã quyền</th>
+										<th nzColumnKey="description" [nzSortFn]="true">Tên quyền</th>
+										<th class="text-end" style="width: 8rem;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of roleTable.data" [ngClass]="odd ? 'odd' : 'even'">
+										<td>{{item.id}}</td>
+										<td>{{item.name}}</td>
+										<td>{{item.description}}</td>
+										<td class="text-end actions">
+											<wk-button icon="pencil" [iconSize]="13" (click)="openEditModal(item)"
+												[className]="'btn-default btn-empty mr-2'"></wk-button>
+											<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
+												(click)="confirmDelete(item)"></wk-button>
+										</td>
+									</tr>
+								</tbody>
+							</nz-table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

@@ -1,0 +1,55 @@
+<div class="navbar-collapse collapse">
+	<ul class="nav navbar-nav">
+		<!-- <li class="dropdown" dropdown>
+			<a (click)="(false)" class="" dropdownToggle href="" title="New...">
+				<svg-icon [name]="'plus-square'" [size]="16"></svg-icon>
+				<svg-icon [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+				<ul>
+					<li>
+						<a href="#">Thêm lịch hẹn</a>
+					</li>
+					<li>
+						<a href="#">Thêm lượt giao dịch</a>
+					</li>
+				</ul>
+			</div>
+		</li> -->
+		<!-- <li class="nav-item d-none d-lg-block m-auto">
+			<app-search></app-search>
+		</li> -->
+		<li class="dropdown header-user" dropdown *ngIf="(accountQuery.currentUser$ | async) as account">
+			<a (click)="(false)" class="header-user-dropdown-toggle" dropdownToggle>
+				<img alt="Nguyen Vu Toan" class="header-user-avatar" height="23" loading="lazy"
+					[src]="account.photo ? 'data:image/png;base64,' + account.photo : 'assets/images/user.png'"
+					width="23" />
+				<svg-icon [name]="'chevron-down'" [size]="16" class="ms-1"></svg-icon>
+			</a>
+			<div *dropdownMenu class="dropdown-menu dropdown-menu-right">
+				<ul>
+					<li class="current-user">
+						<a href="#">
+							<div class="font-weight-bold">{{account.fullName}}</div>
+							@{{account.userName}}
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a [routerLink]="['/profile']" data-qa-selector="edit_profile_link">Tài khoản</a>
+					</li>
+					<li>
+						<a [routerLink]="['/profile/password']">Mật khẩu</a>
+					</li>
+					<li>
+						<a [routerLink]="['/profile/preferences']">Cài đặt</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a (click)="logout()" class="sign-out-link">Đăng xuất</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>

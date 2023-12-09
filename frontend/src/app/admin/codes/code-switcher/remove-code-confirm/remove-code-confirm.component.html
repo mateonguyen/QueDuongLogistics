@@ -1,0 +1,5 @@
+<div class="modal-body text-center">
+	<p>Bạn có chắc chắn muốn xóa Bảng mã: <strong>{{ model.description }}</strong>?</p>
+	<button type="button" class="btn btn-default me-1" (click)="bsModalRef.hide()">Hủy</button>
+	<button type="button" class="btn btn-danger ms-1" (click)="confirm()">Xóa</button>
+</div>

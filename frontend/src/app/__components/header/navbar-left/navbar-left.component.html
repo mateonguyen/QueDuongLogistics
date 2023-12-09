@@ -1,0 +1,267 @@
+<div class="title-container">
+	<h1 class="title"></h1>
+	<ul class="list-unstyled navbar-sub-nav">
+		<!-- <li dropdown class="dropdown" #dropdown="bs-dropdown">
+			<a title="Projects" dropdownToggle class="dashboard-shortcuts-projects" href="/explore" (click)="(false)">
+				Components
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<div *dropdownMenu class="dropdown-menu frequent-items-dropdown-menu">
+				<div class="frequent-items-dropdown-container">
+					<div class="frequent-items-dropdown-sidebar qa-projects-dropdown-sidebar">
+						<ul>
+							<li class="">
+								<a class="qa-your-projects-link" data-track-label="projects_dropdown_your_projects"
+									data-track-event="click_link" href="/dashboard/projects">Your projects
+								</a>
+							</li>
+							<li class="">
+								<a data-track-label="projects_dropdown_starred_projects" data-track-event="click_link"
+									href="/dashboard/projects/starred">Starred projects
+								</a>
+							</li>
+							<li class="">
+								<a data-track-label="projects_dropdown_explore_projects" data-track-event="click_link"
+									href="/explore">Explore projects
+								</a>
+							</li>
+							<li class="gl-border-0 gl-border-t-1 gl-border-solid gl-border-gray-100">
+								<a data-track-label="projects_dropdown_blank_project" data-track-event="click_link"
+									data-track-experiment="new_repo" href="/projects/new#blank_project">Create blank
+									project/repository
+								</a>
+							</li>
+							<li class="">
+								<a data-track-label="projects_dropdown_import_project" data-track-event="click_link"
+									data-track-experiment="new_repo" href="/projects/new#import_project">Import
+									project/repository
+								</a>
+							</li>
+							<li class="">
+								<a data-track-label="projects_dropdown_create_from_template"
+									data-track-event="click_link" href="/projects/new#create_from_template">Create from
+									template
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="frequent-items-dropdown-content">
+						<div class="gl-display-flex gl-flex-direction-column gl-flex-align-items-stretch gl-h-full">
+							<div class="search-input-container d-none d-sm-block"
+								data-testid="frequent-items-search-input">
+								<div class="gl-search-box-by-type">
+									<svg-icon [name]="'search_'" [size]="16"
+										class="gl-search-box-by-type-search-icon gl-icon"></svg-icon>
+									<input type="text" placeholder="Search your projects"
+										class="gl-form-input gl-search-box-by-type-input form-control"
+										aria-label="Search your projects" (focus)="focus()" (blur)="blur()" />
+									<div class="gl-search-box-by-type-right-icons">
+
+									</div>
+								</div>
+							</div>
+
+							<div data-testid="header" class="section-header">
+								Frequently visited
+							</div>
+							<div class="frequent-items-list-container">
+								<ul class="list-unstyled">
+									<li class="frequent-items-list-item-container">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li> -->
+		<li class="dropdown" routerLinkActive="active">
+			<a [routerLink]="['/home']" title="Trang chủ">
+				<svg-icon class="me-1" [name]="'home'" [size]="16"></svg-icon>
+				Trang chủ
+			</a>
+		</li>
+		<li dropdown class="dropdown" routerLinkActive="active"
+			*appHasRole='["ADM_ROLE", "ADM_GROUP", "ADM_USER", "ADM_CODE"]'>
+			<a dropdownToggle title="Quản trị" class="dashboard-shortcuts-groups">
+				Quản trị
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<a [routerLink]="['/admin']" class="d-none">
+			</a>
+			<div *dropdownMenu class="dropdown-menu" routerLinkActive="active">
+				<ul>
+					<!-- <li routerLinkActive>
+						<a [routerLink]="'/-/admin/roles'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'cloud-gear'" [size]="16" class="pe-2"></svg-icon>Cấu hình hệ thống
+						</a>
+					</li> -->
+					<li routerLinkActive *appHasRole='["ADM_ROLE"]'>
+						<a [routerLink]="'/admin/roles'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Quyền sử dụng
+						</a>
+					</li>
+					<li routerLinkActive *appHasRole='["ADM_GROUP"]'>
+						<a [routerLink]="'/admin/groups'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'users'" [size]="16" class="pe-2"></svg-icon>Nhóm người dùng
+						</a>
+					</li>
+					<li routerLinkActive *appHasRole='["ADM_USER"]'>
+						<a [routerLink]="'/admin/users'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'user'" [size]="16" class="pe-2"></svg-icon>Người dùng
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li routerLinkActive *appHasRole='["ADM_EMPLOYEE"]'>
+						<a [routerLink]="'/admin/employees'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'list-outdent'" [size]="16" class="pe-2"></svg-icon>Danh mục Cán bộ
+						</a>
+					</li>
+					<li routerLinkActive *appHasRole='["ADM_CODE"]'>
+						<a [routerLink]="'/admin/codes'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'list-outdent'" [size]="16" class="pe-2"></svg-icon>Danh mục
+						</a>
+					</li>
+					<!-- <li>
+						<a [routerLink]="'/-/admin/backup'" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'user'" [size]="16" class="pe-2"></svg-icon>Sao lưu, phục hồi dữ liệu
+						</a>
+					</li> -->
+				</ul>
+			</div>
+		</li>
+		<li dropdown class="dropdown" routerLinkActive="active">
+			<a dropdownToggle title="Quế Dương Logistics" class="dashboard-shortcuts-groups">
+				Quế Dương Logistics
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<a [routerLink]="['/transaction']" class="d-none"></a>
+			<div *dropdownMenu class="dropdown-menu" routerLinkActive="active">
+				<ul>
+					<li routerLinkActive>
+						<a [routerLink]="['/logistic/transaction/new']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'plus-square'" [size]="16" class="pe-2"></svg-icon>Tạo lệnh điều xe
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li routerLinkActive>
+						<a [routerLink]="['/logistic/transaction/list']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Danh sách điều xe
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/logistic/driver']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'user'" [size]="16" class="pe-2"></svg-icon>Danh sách lái xe
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/logistic/customer']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'users'" [size]="16" class="pe-2"></svg-icon>Danh sách khách hàng
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/logistic/vehicle']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'car'" [size]="16" class="pe-2"></svg-icon>Danh sách xe
+						</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<!-- <li dropdown class="dropdown" routerLinkActive="active">
+			<a dropdownToggle title="Groups" class="dashboard-shortcuts-groups">
+				Quizz
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<a [routerLink]="['/-/exam']" class="d-none"></a>
+			<div *dropdownMenu class="dropdown-menu" routerLinkActive="active">
+				<ul>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/exam/quiz']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Thi trắc nghiệm
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/exam/quiz']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Đề thi
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/exam/quiz']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Danh mục
+						</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li dropdown class="dropdown" routerLinkActive="active">
+			<a dropdownToggle title="Groups" class="dashboard-shortcuts-groups">
+				Điều lệnh
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<a [routerLink]="['/-/exam']" class="d-none"></a>
+			<div *dropdownMenu class="dropdown-menu" routerLinkActive="active">
+				<ul>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/exam/quiz']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Kế hoạch kiểm tra
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/exam/quiz']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Quân số
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/exam/quiz']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Kết quả xử lý
+						</a>
+					</li>
+				</ul>
+			</div>
+		</li>-->
+		<!-- <li dropdown class="dropdown" routerLinkActive="active">
+			<a dropdownToggle title="Groups" class="dashboard-shortcuts-groups">
+				Samples
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<a [routerLink]="['/-/samples']" class="d-none"></a>
+			<div *dropdownMenu class="dropdown-menu" routerLinkActive="active">
+				<ul>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/samples/buttons']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'project'" [size]="16" class="pe-2"></svg-icon>Commons
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/samples/tables']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'table'" [size]="16" class="pe-2"></svg-icon>Tables
+						</a>
+					</li>
+					<li routerLinkActive>
+						<a [routerLink]="['/-/samples/forms']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'terraform'" [size]="16" class="pe-2"></svg-icon>Forms
+						</a>
+					</li>
+				</ul>
+			</div>
+		</li> -->
+		<!--
+		<li dropdown class="dropdown">
+			<a dropdownToggle title="Groups" class="dashboard-shortcuts-groups" href="/explore/groups"
+				(click)="(false)">
+				More
+				<svg-icon class="ms-1" [name]="'chevron-down'" [size]="16"></svg-icon>
+			</a>
+			<div *dropdownMenu class="dropdown-menu">
+				<ul>
+					<li>
+						<a href="#">Thêm lịch hẹn</a>
+					</li>
+					<li>
+						<a href="#">Thêm lượt giao dịch</a>
+					</li>
+				</ul>
+			</div>
+		</li> -->
+	</ul>
+</div>

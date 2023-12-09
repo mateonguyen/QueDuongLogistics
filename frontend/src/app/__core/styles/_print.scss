@@ -1,0 +1,47 @@
+.text-bold {
+	font-weight: bold;
+}
+
+#print_section {
+	position: relative;
+	padding: 5px 10px;
+	background-color: white;
+	font-family: "Times New Roman", Times, serif !important;
+	font-size: 14pt;
+	box-shadow: 0 0 10px black;
+	border-radius: 2px;
+}
+
+#print_section table td {
+	vertical-align: text-top;
+}
+
+#print_section .content-header {
+	font-size: 13pt;
+}
+
+.w-full {
+	clear: both;
+	width: 100%;
+}
+
+.left {
+	padding: 1px 0;
+	background: #fff;
+	float: left;
+	clear: both;
+	margin-bottom: 8pt;
+}
+
+.dotted {
+	border-bottom: 2px dotted black;
+	margin-bottom: 8pt;
+}
+
+.text {
+	padding: 1px 0;
+	background: #fff;
+	clear: both;
+	margin-bottom: 8pt;
+	margin-top: 8pt;
+}

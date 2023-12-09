@@ -1,0 +1,63 @@
+<div class="code-switcher p-2">
+	<button type="button" nz-dropdown nzTrigger="click" [nzDropdownMenu]="dropdownMenu" class="btn btn-default">
+		<span class="mr-2">{{this.selectedCode?.description}}</span>
+		<svg-icon [name]="'chevron-down'" [size]="16"></svg-icon>
+	</button>
+	<!-- <wk-button nz-dropdown icon="chevron-down" [nzDropdownMenu]="dropdownMenu" [className]="'btn btn-default'">
+		<span>{{this._codeService.selectedCode?.description}}</span>
+	</wk-button> -->
+	<nz-dropdown-menu #dropdownMenu="nzDropdownMenu">
+		<ul nz-menu>
+			<div class="dropdown-inner">
+				<div class="dropdown-contents">
+					<p class="dropdown-header-top">Bảng mã</p>
+					<div class="search-box-by-type m-2">
+						<!-- <svg-icon [name]="'search_'" [className]="'search-box-by-type-search-icon'" [size]="16">
+						</svg-icon>
+						<input type="search" placeholder="Tìm kiếm"
+							class="form-input search-box-by-type-input form-control">
+						<div class="search-box-by-type-right-icons"> </div> -->
+
+						<nz-input-group [nzSuffix]="suffixIconSearch">
+							<input type="text" nz-input placeholder="Tìm kiếm" />
+						</nz-input-group>
+						<ng-template #suffixIconSearch>
+							<span nz-icon nzType="search"></span>
+						</ng-template>
+					</div>
+
+					<tui-scrollbar>
+						<div style="max-height: 96px;">
+							<li *ngFor="let item of list;index as i" nz-menu-item>
+								<a (click)="onValueChanged(item);" class="dropdown-item">
+									<span> {{item.description}} </span>
+								</a>
+							</li>
+						</div>
+					</tui-scrollbar>
+					<div class="dropdown-content-faded-mask fade-out"></div>
+					<li role="presentation" class="dropdown-divider">
+						<hr role="separator" aria-orientation="horizontal" class="dropdown-divider">
+					</li>
+					<ul>
+						<li nz-menu-item>
+							<a (click)="createCode();" class="d-flex">
+								<svg-icon [name]="'plus'" [size]="16" class="pe-2"></svg-icon>Tạo bảng mã
+							</a>
+						</li>
+						<li nz-menu-item>
+							<a (click)="editCode(this.selectedCode);" class="d-flex">
+								<svg-icon [name]="'pencil'" [size]="16" class="pe-2"></svg-icon>Sửa bảng mã
+							</a>
+						</li>
+						<li nz-menu-item>
+							<a (click)="removeCode(this.selectedCode);" class="d-flex">
+								<svg-icon [name]="'remove'" [size]="16" class="pe-2"></svg-icon>Xóa bảng mã
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</ul>
+	</nz-dropdown-menu>
+</div>

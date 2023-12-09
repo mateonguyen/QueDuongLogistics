@@ -1,0 +1,30 @@
+.gl-search-box-by-type-search-icon {
+  margin: 0.5rem;
+  color: #666;
+  width: 1rem;
+  position: absolute;
+}
+
+.gl-search-box-by-type-input,
+.gl-search-box-by-type-input.gl-form-input {
+  height: 2rem;
+  padding-right: 2rem;
+  padding-left: 1.75rem;
+}
+
+.avatar-image {
+  margin-bottom: 0.5rem;
+}
+
+.avatar-file-name {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+}
+
+@media (min-width: 576px) {
+  .avatar-image {
+    float: left;
+    margin-bottom: 0;
+  }
+}

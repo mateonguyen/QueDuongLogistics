@@ -1,0 +1,119 @@
+<div class="alert-wrapper gl-force-block-formatting-context">
+	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited limit-container-width">
+		<div class="breadcrumbs-container">
+			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+					<li>
+						<a [routerLink]="['/-/profile/account']">Thiết lập</a>
+						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+					</li>
+					<li>
+						<h2 class="breadcrumbs-sub-title">
+							<a [routerLink]="['/-/profile/account']">Tài khoản</a>
+						</h2>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+
+<div class="container-fluid container-limited limit-container-width">
+	<main class="content" id="content-body" *ngIf="this.model">
+		<div class="my-3">
+			<div class="gl-search-box-by-type">
+				<svg-icon [name]="'search_'" [size]="16" class="gl-search-box-by-type-search-icon"></svg-icon>
+				<input type="text" placeholder="Search settings"
+					class="gl-form-input gl-search-box-by-type-input form-control" aria-label="Search settings"
+					id="__BVID__6">
+				<div class="gl-search-box-by-type-right-icons">
+					<!---->
+					<!---->
+				</div>
+			</div>
+		</div>
+		<form [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" accept-charset="UTF-8">
+			<div class="row">
+				<div class="col-lg-4">
+					<h4 class="mt-0">
+						Ảnh đại diện
+					</h4>
+					<p>
+						Bạn có thể tải ảnh đại diện của mình lên đây
+					</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="avatar-image">
+						<a target="_blank" href="javascript:void(0);">
+							<!-- <img alt="{{user.userName}}" class="avatar s96" src="../../../assets/images/user.png"
+								loading="lazy"> -->
+							<img alt="{{model.userName}}" class="avatar s96"
+								[src]="avatar ? avatar : '../../../assets/images/user.png'" loading="lazy">
+						</a>
+					</div>
+					<h5 class="mt-0">Upload new avatar</h5>
+					<div class="my-2">
+						<!-- <button class="btn btn-default js-choose-user-avatar-button" type="button"
+							(click)="fileInput.click()">Choose file...</button> -->
+						<wk-button [className]="'btn btn-default js-choose-user-avatar-button'"
+							(click)="fileInput.click()">Chọn ảnh...</wk-button>
+						<span class="avatar-file-name ms-2 js-avatar-filename">No file chosen.</span>
+						<input #fileInput class="js-user-avatar-input hidden" accept="image/*" type="file"
+							(change)="fileChangeEvent($event)" name="user[avatar]-trigger" id="user_avatar-trigger">
+					</div>
+					<div style="color: #666;">Dung lượng ảnh tối đa tải lên là 200KB.</div>
+				</div>
+				<div class="col-lg-12">
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class=" col-lg-4">
+					<h4 class="gl-mt-0">
+						Thiết lập chính
+					</h4>
+					<p>
+						Thông tin này sẽ xuất hiện trên hồ sơ của bạn
+					</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row">
+						<div class="form-group col-md-9 qa-full-name rspec-full-name">
+							<label for="full_name">Tên đầy đủ</label>
+							<input type="text" id="full_name" class="form-input"
+								[formControl]=' editForm.controls["fullName"]'
+								[class.is-invalid]='editForm.get("fullName").errors && editForm.get("fullName").touched'>
+							<div class="invalid-feedback" *ngIf='editForm.controls["fullName"].errors?.required'>Vui
+								lòng nhập Tên nhóm</div>
+							<small class="form-text text-muted">Nhập tên của bạn để những người bạn biết có thể nhận ra
+								bạn</small>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="user_id">User ID</label>
+							<!-- <input class="form-control" readonly="readonly" type="text" value="{{ user.id }}"
+								id="user_id"> -->
+							<input type="text" id="user_id" class="form-input" readonly="readonly"
+								[formControl]='editForm.controls["id"]'>
+							<!-- <p class="gl-field-error hidden">Trường này là bắt buộc.</p> -->
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="user_bio">Giới thiệu</label>
+						<textarea class="form-control" rows="4" maxlength="250"
+							[formControl]='editForm.controls["biography"]' id="user_bio"></textarea>
+						<small class="form-text text-muted">Hãy cho chúng tôi biết về bản thân bạn dưới 250 ký
+							tự</small>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-3 d-flex justify-content-end">
+				<div class="col-lg-8 d-flex">
+					<!-- <input type="submit" value="Cập nhật tài khoản" class="btn btn-primary"> -->
+					<wk-button [type]="'submit'" [className]="'btn btn-primary mr-2'">Cập nhật tài khoản</wk-button>
+					<!-- <a class="btn btn-default btn-cancel" href="/mateo.nguyen">Hủy</a> -->
+					<!-- <wk-button [className]="'btn btn-default'" [routerLink]="['/']">Đóng</wk-button> -->
+				</div>
+			</div>
+		</form>
+	</main>
+</div>

@@ -1,0 +1,82 @@
+.search-box-by-click {
+	.input-group {
+		.filtered-search-term-input:focus {
+			box-shadow: inset 0 0 0 1px #868686;
+		}
+
+		> .input-group-append {
+			background-color: #fff;
+
+			.search-button {
+				color: #666;
+				padding: 0.5rem;
+				box-shadow: inset 0 0 0 1px #868686;
+
+				&:hover {
+					box-shadow: inset 0 0 0 2px #868686,
+						0 2px 2px 0 rgb(0 0 0 / 8%);
+					background: #f0f0f0;
+				}
+			}
+		}
+	}
+}
+
+.table {
+	thead th {
+		border-bottom-width: 0;
+		border-top-width: 0;
+	}
+
+	tbody td {
+		vertical-align: top;
+
+		&.actions {
+			padding-top: 0.25rem;
+			padding-bottom: 0.25rem;
+		}
+	}
+
+	tbody tr:last-child td {
+		border-bottom: 1px solid #dee2e6;
+	}
+}
+
+/* Pagination */
+.pagination {
+	padding: 0.25rem;
+}
+
+pagination-template .info {
+	padding: 0.65rem;
+}
+
+.page-link {
+	border: none;
+	font-weight: 700;
+	color: #303030;
+	border-radius: 0.25rem;
+	padding-left: 0.65rem;
+	padding-right: 0.65rem;
+}
+
+.page-item.active .page-link {
+	border-radius: 0.25rem;
+	padding-left: 0.65rem;
+	padding-right: 0.65rem;
+	background-color: #1f75cb;
+	box-shadow: inset 0 0 0 1px #1068bf;
+}
+
+.page-item:not(:first-child) .page-link {
+	margin-left: 0;
+}
+
+.page-item .page-prev,
+.page-item .page-next {
+	border: 1px solid #dee2e6;
+	border-radius: 0.25rem;
+	box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.1);
+	padding: 0.188rem 0.75rem;
+	color: #1f75cb;
+}

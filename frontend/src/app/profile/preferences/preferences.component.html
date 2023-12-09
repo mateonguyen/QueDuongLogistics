@@ -1,0 +1,35 @@
+<div class="alert-wrapper gl-force-block-formatting-context">
+  <nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited limit-container-width">
+    <div class="breadcrumbs-container">
+      <div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+        <ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+          <li>
+            <a [routerLink]="'/-/profile/account'">Thiết lập</a>
+            <svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+          </li>
+          <li>
+            <h2 class="breadcrumbs-sub-title">
+              <a [routerLink]="'/-/profile/preferences'">Cài đặt</a>
+            </h2>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="container-fluid container-limited limit-container-width">
+  <main class="content" id="content-body">
+    <div class="my-3">
+      <div class="gl-search-box-by-type">
+        <svg-icon [name]="'search_'" [size]="16" class="gl-search-box-by-type-search-icon"></svg-icon>
+        <input type="text" placeholder="Search settings" class="gl-form-input gl-search-box-by-type-input form-control"
+          aria-label="Search settings" id="__BVID__6">
+        <div class="gl-search-box-by-type-right-icons">
+          <!---->
+          <!---->
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

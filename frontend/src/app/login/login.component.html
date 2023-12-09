@@ -1,0 +1,86 @@
+<div class="page-wrap">
+	<nz-alert nzBanner *ngFor="let alert of accountQuery.alerts$ | async" nzMessage="{{alert.message}}"
+		nzType="{{alert.type}}" nzCloseable></nz-alert>
+	<div class="container navless-container">
+		<div class="content">
+			<!-- <div class="global-alert"> -->
+
+			<!-- <tui-notification *ngFor="let alert of accountQuery.alerts$ | async" status="{{alert.type}}"
+					class="mb-4">
+					{{alert.message}}
+				</tui-notification> -->
+			<!-- </div> -->
+			<div class="flex">
+				<div class="sm:w-full md:w-6/12 lg:w-6/12 brand-holder">
+					<div class="text-center">
+						<img class="mx-auto" src="../../assets/images/bca_logo.png" alt="" style="width: 45%;">
+					</div>
+					<div class="text-center pt-3">
+						<p>
+							<!-- BỘ CÔNG AN <br> -->
+							CỤC CÔNG NGHỆ THÔNG TIN<br>
+							PHẦN MỀM QUẢN LÝ GIẤY ĐI ĐƯỜNG
+						</p>
+					</div>
+				</div>
+				<div class="sm:w-full md:w-6/12 lg:w-6/12">
+					<div id="signin-container">
+						<div class="tab-content">
+							<div class="login-box tab-pane active" id="login-pane" role="tabpanel">
+								<div class="login-body">
+									<h4 class="mb-3">ĐĂNG NHẬP HỆ THỐNG</h4>
+									<form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && login()"
+										accept-charset="UTF-8">
+										<div class="mb-3">
+											<!-- <label for="user_login" class="form-label label-bold">Tên đăng nhập</label> -->
+											<input class="form-input" autofocus="autofocus" type="text"
+												[formControl]='loginForm.controls["username"]'
+												placeholder="Tên đăng nhập"
+												[class.is-invalid]='loginForm.get("username").errors && loginForm.get("username").touched'>
+											<div class="invalid-feedback-wrap" style="height: 19px; overflow: hidden;">
+												<div class="invalid-feedback"
+													*ngIf='loginForm.controls["username"].errors?.required'>
+													Vui lòng nhập Tên đăng nhập
+												</div>
+											</div>
+										</div>
+										<div class="mb-2">
+											<!-- <label for="user_password" class="form-label label-bold">Mật khẩu</label> -->
+											<input class="form-input" type="password"
+												[formControl]='loginForm.controls["password"]' placeholder="Mật khẩu"
+												[class.is-invalid]='loginForm.get("password").errors && loginForm.get("password").touched'>
+											<div class="invalid-feedback-wrap" style="height: 19px; overflow: hidden;">
+												<div class="invalid-feedback"
+													*ngIf='loginForm.controls["password"].errors?.required'>
+													Vui lòng nhập Mật khẩu
+												</div>
+												&nbsp;
+											</div>
+
+										</div>
+										<!-- <div class="remember-me">
+											<label for="user_remember_me">
+												<input class="remember-me-checkbox" type="checkbox" value="1"
+													name="user[remember_me]">
+												<span class="font-italic font-weight-light"
+													style="vertical-align: text-bottom;">Nhớ đăng
+													nhập</span>
+											</label>
+											<div class="float-right">
+												<a href="/users/password/new">Forgot your password?</a>
+											</div>
+										</div> -->
+										<div class="submit-container move-submit-down">
+											<input type="submit" name="commit" value="Đăng nhập"
+												class="btn btn-success">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+.profile-crop-image-container {
+	height: 300px;
+	margin: 0 auto;
+}
+
+.cropper-container {
+	font-size: 0;
+	line-height: 0;
+	position: relative;
+	-webkit-user-select: none;
+	user-select: none;
+	direction: ltr !important;
+	touch-action: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+}
+
+.cropper-bg {
+	background-image: url(../../../../assets/images/cropper-bg.png);
+}
