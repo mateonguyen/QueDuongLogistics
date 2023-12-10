@@ -1,5 +1,6 @@
 namespace Backend.Controllers;
 
+[Authorize]
 public class CustomerController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -26,11 +27,11 @@ public class CustomerController : BaseApiController
         return Ok(customer);
     }
 
-    [HttpPost("create")]
+    [HttpPost]
     public async Task<ActionResult> CreateCustomer(CustomerDto customerDto)
     {
-        if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
-            return StatusCode(StatusCodes.Status302Found);
+        // if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
+        //     return StatusCode(StatusCodes.Status302Found);
 
         var customer = _mapper.Map<Customer>(customerDto);
 
