@@ -29,8 +29,8 @@ public class CustomerController : BaseApiController
     [HttpPost("create")]
     public async Task<ActionResult> CreateCustomer(CustomerDto customerDto)
     {
-        if (await _unitOfWork.CustomerRepository.IsCustomerCodeExists(customerDto.CustomerCode))
-            return BadRequest("Mã khách hàng đã tồn tại.");
+        if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
+            return StatusCode(StatusCodes.Status302Found);
 
         var customer = _mapper.Map<Customer>(customerDto);
 

@@ -4,5 +4,5 @@ public interface ICustomerRepository : IBaseRepository<Customer>
 {
     Task<IEnumerable<CustomerDto>> ToListAsync();
     Task<Customer> SingleAsync(int id);
-    Task<bool> IsCustomerCodeExists(string customerCode);
+    Task<bool> CodeExists(string customerCode);
 }
