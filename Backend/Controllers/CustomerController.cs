@@ -74,7 +74,7 @@ public class CustomerController : BaseApiController
     }
 
     [HttpDelete("{id}")]    
-    public async Task<ActionResult> DeleteCustomer(int id)
+    public async Task<ActionResult> Delete(int id)
     {
         var customer = await _unitOfWork.CustomerRepository.SingleAsync(id);
         

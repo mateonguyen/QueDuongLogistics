@@ -37,9 +37,9 @@ public class UnitOfWork : IUnitOfWork
     public ICodeValueRepository CodeValueRepository => new CodeValueRepository(_context, _mapper);
     public IAuditRepository AuditRepository => new AuditRepository(_context, _mapper);
     public ITransactionRepository TransactionRepository => new TransactionRepository(_context);
-    public IDriverRepository DriverRepository => new DriverRepository(_context);
+    public IDriverRepository DriverRepository => new DriverRepository(_context, _mapper);
     public ICustomerRepository CustomerRepository => new CustomerRepository(_context, _mapper);
-    public IVehicleRepository VehicleRepository => new VehicleRepository(_context);
+    public IVehicleRepository VehicleRepository => new VehicleRepository(_context, _mapper);
 
     public async Task<bool> Complete()
     {

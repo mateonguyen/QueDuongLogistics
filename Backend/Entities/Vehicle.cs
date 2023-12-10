@@ -24,5 +24,5 @@ public class Vehicle : Auditable
 
     [Column(Order = 6)]
     [MaxLength(20)]
-    public string PayloadCapacityUnit { get; set; }    
+    public string PayloadCapacityUnit { get; set; } 
 }

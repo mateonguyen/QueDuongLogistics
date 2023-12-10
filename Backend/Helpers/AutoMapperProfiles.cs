@@ -39,5 +39,13 @@ public class AutoMapperProfiles : Profile
         CreateMap<Customer, CustomerDto>();
 
         CreateMap<CustomerDto, Customer>();
+
+        CreateMap<Driver, DriverDto>();
+
+        CreateMap<DriverDto, Driver>();
+
+        CreateMap<Vehicle, VehicleDto>();
+
+        CreateMap<VehicleDto, Vehicle>();
     }
 }
