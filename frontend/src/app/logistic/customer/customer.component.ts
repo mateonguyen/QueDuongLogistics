@@ -7,9 +7,8 @@ import { CustomerService } from 'src/app/__services/customer.service';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
-
-  data: any;
-  apiUrl = 'http://localhost:5000/api/customer'; // Set your default API URL here
+  globalError: string;
+  data: any; 
 
   constructor(private dataService: CustomerService) {}
 
@@ -18,9 +17,10 @@ export class CustomerComponent implements OnInit {
   }
 
   loadData(): void {
-    this.dataService.getData(this.apiUrl).subscribe(
+    this.dataService.list().subscribe(
       (response) => {
         this.data = response;
+        console.log(response);
         // Handle the data as needed
       },
       (error) => {
@@ -28,5 +28,29 @@ export class CustomerComponent implements OnInit {
       }
     );
   }
+
+  incrementAndParse(value: string): number {
+    // Parse the string to an integer and increment
+    return parseInt(value, 10) + 1;
+  }
+
+  deleteCustomer(id): boolean {
+    if(id){
+      const userConfirmed = confirm('Bạn có chắc chắn muốn xóa ?');
+
+      if (userConfirmed) {
+        this.dataService.delete(id).subscribe(
+          () => {
+            alert('Bạn vừa xóa thành công khách hàng.')
+            this.loadData();
+          }, (err) => {
+            console.log(err);
+    
+          }
+        );
+      }
+    }
+		return true;
+	}
 
 }

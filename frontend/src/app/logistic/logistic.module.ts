@@ -35,7 +35,7 @@ import { TransactionVehicleSelectComponent } from './transaction/add-transaction
 		AddTransactionComponent,
 	TransactionCustomerSelectComponent,
 	TransactionDriverSelectComponent,
-	TransactionVehicleSelectComponent
+	TransactionVehicleSelectComponent,
 	],
 	imports: [
 		CommonModule,
