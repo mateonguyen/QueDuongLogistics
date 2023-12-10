@@ -12,9 +12,14 @@ public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
         _context = context;
     }
 
-    public async Task<bool> CodeExists(string customerCode)
+    public async Task<bool> Exists(string customerCode)
     {
         return await _context.Customers.AnyAsync(x => x.CustomerCode == customerCode.ToUpper());
+    }
+
+    public async Task<bool> Exists(int id, string customerCode)
+    {
+        return await _context.Customers.AnyAsync(x => x.Id != id && x.CustomerCode == customerCode.ToUpper());
     }
 
     public async Task<Customer> SingleAsync(int id)

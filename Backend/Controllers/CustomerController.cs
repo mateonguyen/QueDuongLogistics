@@ -28,10 +28,12 @@ public class CustomerController : BaseApiController
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateCustomer(CustomerDto customerDto)
+    public async Task<ActionResult> Create(CustomerDto customerDto)
     {
         // if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
         //     return StatusCode(StatusCodes.Status302Found);
+        if (await _unitOfWork.CustomerRepository.Exists(customerDto.CustomerCode))
+            return BadRequest("Mã khách hàng đã tồn tại");
 
         var customer = _mapper.Map<Customer>(customerDto);
 
@@ -48,9 +50,12 @@ public class CustomerController : BaseApiController
         return Ok(customer);
     }
 
-    [HttpPut("update")]
-    public async Task<ActionResult> UpdateCustomer(CustomerDto customerDto)
-    {        
+    [HttpPut]
+    public async Task<ActionResult> Update(CustomerDto customerDto)
+    {
+        if (await _unitOfWork.CustomerRepository.Exists(customerDto.Id, customerDto.CustomerCode))
+            return BadRequest("Mã khách hàng đã tồn tại");
+
         var customer = await _unitOfWork.CustomerRepository.SingleAsync(customerDto.Id);
 
         _mapper.Map(customerDto, customer);
