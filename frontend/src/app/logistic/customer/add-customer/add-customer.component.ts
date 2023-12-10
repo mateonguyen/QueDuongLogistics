@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CanComponentDeactivate } from '../../../__guards/prevent-unsaved-changes.guard';
 
 @Component({
-	selector: 'app-add-transaction',
-	templateUrl: './add-transaction.component.html',
-	styleUrls: ['./add-transaction.component.scss']
+	selector: 'app-add-customer',
+	templateUrl: './add-customer.component.html',
+	styleUrls: ['./add-customer.component.scss']
 })
-export class AddTransactionComponent implements OnInit, CanComponentDeactivate  {
-	transactionForm: FormGroup;
+export class AddCustomerComponent implements OnInit, CanComponentDeactivate {
+	customerForm: FormGroup;
 	globalError: string;
 
 	constructor(
@@ -20,7 +20,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate  
 	}
 
 	initForm() {
-		this.transactionForm = this._fb.group({
+		this.customerForm = this._fb.group({
 
 		});
 	}
@@ -28,7 +28,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate  
 	save() { }
 
 	canDeactivate(): boolean {
-		if (this.transactionForm.dirty) {
+		if (this.customerForm.dirty) {
 			return confirm('Bạn có chắc chắn muốn tiếp tục? Dữ liệu có thể sẽ bị mất nếu không lưu.')
 		}
 		return true;

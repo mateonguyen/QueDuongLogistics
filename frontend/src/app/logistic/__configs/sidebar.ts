@@ -50,10 +50,29 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 	{
 		name: 'Khách hàng',
 		icon: 'users',
-		url: '/admin/roles',
+		url: '/logistic/customer',
 		isActive: false,
 		isOver: false,
 		roles: [],
-		children: [],
+		children: [
+			{
+				name: 'Danh sách khách hàng',
+				icon: 'list-outdent',
+				url: '/logistic/customer/list',
+				isActive: false,
+				isOver: false,
+				roles: [],
+				children: [],
+			},
+			{
+				name: 'Tạo khách hàng',
+				icon: '',
+				url: '/logistic/customer/new',
+				isActive: false,
+				isOver: false,
+				roles: [],
+				children: [],
+			},
+		],
 	},
 ];

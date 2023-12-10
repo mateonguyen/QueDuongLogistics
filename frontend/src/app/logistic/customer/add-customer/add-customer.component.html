@@ -1,0 +1,48 @@
+<div>
+	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited">
+		<div class="breadcrumbs-container">
+			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+					<li>
+						<a [routerLink]="'/-/profile/account'">Quế Dương</a>
+						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+					</li>
+					<li>
+						<h2 class="breadcrumbs-sub-title">
+							<a [routerLink]="'/-/profile/password'">Tạo lệnh điều xe</a>
+						</h2>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+<div class="container-fluid container-limited">
+	<main class="content" id="content-body">
+		<div class="flash-container flash-container-page" *ngIf="this.globalError">
+			<div class="flash-alert mb-2">
+				<svg-icon [name]="'error'" [size]="16" [className]="'mr-1 align-middle d-inline'"></svg-icon>
+				<span class="align-text-top">{{ this.globalError }}</span>
+				<div class="close-icon-wrapper js-close-icon">
+					<svg-icon [name]="'close'" [size]="16" class="align-baseline"></svg-icon>
+				</div>
+			</div>
+		</div>
+		<form [formGroup]="customerForm" (ngSubmit)="customerForm.valid && save()">
+			<div class="row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Khách hàng
+					</h4>
+					<p>
+						Sau khi cập nhật mật khẩu thành công, bạn sẽ được chuyển đến trang đăng nhập, nơi bạn có thể đăng
+						nhập bằng mật khẩu mới của mình.
+					</p>
+				</div>
+				<div class="col-lg-9">
+
+				</div>
+			</div>
+		</form>
+	</main>
+</div>
