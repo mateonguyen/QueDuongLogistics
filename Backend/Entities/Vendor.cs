@@ -1,6 +1,6 @@
 namespace Backend.Entities;
 
-public class Customer : Auditable
+public class Vendor : Auditable
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -9,9 +9,9 @@ public class Customer : Auditable
 
     [Column(Order = 2)]
     [MaxLength(10)]
-    public string CustomerCode { get; set; }
+    public string VendorCode { get; set; }
 
     [Column(Order = 3)]
     [MaxLength(150)]
-    public string CustomerName { get; set; }
+    public string VendorName { get; set; }
 }

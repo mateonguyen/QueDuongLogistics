@@ -44,7 +44,7 @@ public class VehicleController : BaseApiController
 
         if (!result) return BadRequest("Thêm mới phương tiện thất bại.");
 
-        return Ok(vehicle);
+        return Ok(await _unitOfWork.VehicleRepository.ToListAsync());
     }
 
     [HttpPut]
@@ -66,7 +66,7 @@ public class VehicleController : BaseApiController
 
         if (!result) return BadRequest("Sửa thông tin phương tiện thất bại.");        
 
-        return Ok(vehicle);
+        return Ok(await _unitOfWork.VehicleRepository.ToListAsync());
     }
 
     [HttpDelete("{id}")]    
@@ -80,6 +80,6 @@ public class VehicleController : BaseApiController
 
         if (!result) return BadRequest("Xóa phương tiện thất bại.");
         
-        return Ok();
+        return Ok(await _unitOfWork.VehicleRepository.ToListAsync());
     }
 }

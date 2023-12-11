@@ -12,6 +12,7 @@ public interface IUnitOfWork
     IDriverRepository DriverRepository { get; }
     ICustomerRepository CustomerRepository { get; }
     IVehicleRepository VehicleRepository { get; }
+    IVendorRepository VendorRepository { get; }
 
     Task<bool> Complete();
     bool HasChanges();
@@ -40,6 +41,7 @@ public class UnitOfWork : IUnitOfWork
     public IDriverRepository DriverRepository => new DriverRepository(_context, _mapper);
     public ICustomerRepository CustomerRepository => new CustomerRepository(_context, _mapper);
     public IVehicleRepository VehicleRepository => new VehicleRepository(_context, _mapper);
+    public IVendorRepository VendorRepository => new VendorRepository(_context, _mapper);
 
     public async Task<bool> Complete()
     {

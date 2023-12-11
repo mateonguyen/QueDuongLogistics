@@ -47,5 +47,9 @@ public class AutoMapperProfiles : Profile
         CreateMap<Vehicle, VehicleDto>();
 
         CreateMap<VehicleDto, Vehicle>();
+
+        CreateMap<Vendor, VendorDto>();
+
+        CreateMap<VendorDto, Vendor>();
     }
 }

@@ -20,15 +20,6 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 		children: [],
 	},
 	{
-		name: 'Quản lý Cán bộ',
-		icon: 'users',
-		url: '/admin/employees',
-		isActive: false,
-		isOver: false,
-		roles: ['ADM_EMPLOYEE'],
-		children: [],
-	},
-	{
 		name: 'Quản lý Quyền',
 		icon: 'issues',
 		url: '/admin/roles',
