@@ -109,18 +109,25 @@ export class CustomerComponent implements OnInit {
 		return parseInt(value, 10) + 1;
 	}
 
-	deleteCustomer(id): boolean {
-		if (id) {
+	confirmDelete(customer): boolean {
+		if (customer.id > 0) {
 			const userConfirmed = confirm('Bạn có chắc chắn muốn xóa ?');
 
 			if (userConfirmed) {
-				this._dataService.delete(id).subscribe(
+				this._dataService.delete(customer.id).subscribe(
 					() => {
-						alert('Bạn vừa xóa thành công khách hàng.')
+						this._notificationService.success(
+							'Xóa Thành Công!',
+							'Bạn vừa xóa thành công thông tin Khách hàng: ' + customer.customerName,
+							{ nzDuration: 5000, nzAnimate: true }
+						)
 						this.refreshList();
 					}, (err) => {
-						console.log(err);
-
+						this._notificationService.error(
+							'Lỗi!',
+							err.error,
+							{ nzDuration: 5000, nzAnimate: true }
+						);
 					}
 				);
 			}

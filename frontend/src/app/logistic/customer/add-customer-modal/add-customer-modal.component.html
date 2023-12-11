@@ -5,6 +5,7 @@
 </div>
 <div class="modal-body">
 	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" autocomplete="off">
+		<input type="hidden" [formControl]='editForm.controls["id"]'>
 		<div class="form-group mb-3">
 			<label for="customer_code" class="label-bold">Mã khách hàng</label>
 			<input type="text" id="customer_code" class="form-input" [formControl]='editForm.controls["customerCode"]'

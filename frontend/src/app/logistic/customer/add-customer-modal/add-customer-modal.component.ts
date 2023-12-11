@@ -26,6 +26,7 @@ export class AddCustomerModalComponent implements OnInit {
 		this.editForm = this._fb.group({
 			customerCode: [this.model?.customerCode, Validators.required],
 			customerName: [this.model?.customerName, Validators.required],
+			id: [(this.model && this.model.id) ? this.model.id : 0],
 		});
 	}
 
