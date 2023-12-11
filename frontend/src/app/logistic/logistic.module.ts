@@ -21,6 +21,8 @@ import { AddTransactionComponent } from './transaction/add-transaction/add-trans
 import { TransactionCustomerSelectComponent } from './transaction/add-transaction/transaction-customer-select/transaction-customer-select.component';
 import { TransactionDriverSelectComponent } from './transaction/add-transaction/transaction-driver-select/transaction-driver-select.component';
 import { TransactionVehicleSelectComponent } from './transaction/add-transaction/transaction-vehicle-select/transaction-vehicle-select.component';
+import { VendorComponent } from './vendor/vendor.component';
+import { TransactionVendorSelectComponent } from './transaction/add-transaction/transaction-vendor-select/transaction-vendor-select.component';
 
 
 
@@ -36,6 +38,8 @@ import { TransactionVehicleSelectComponent } from './transaction/add-transaction
 		TransactionCustomerSelectComponent,
 		TransactionDriverSelectComponent,
 		TransactionVehicleSelectComponent,
+  VendorComponent,
+  TransactionVendorSelectComponent,
 	],
 	imports: [
 		CommonModule,
