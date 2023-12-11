@@ -47,7 +47,7 @@ public class CustomerController : BaseApiController
 
         if (!result) return BadRequest("Thêm mới khách hàng thất bại.");
 
-        return Ok(customer);
+        return Ok(await _unitOfWork.CustomerRepository.ToListAsync());
     }
 
     [HttpPut]
@@ -70,7 +70,7 @@ public class CustomerController : BaseApiController
 
         if (!result) return BadRequest("Sửa thông tin khách hàng thất bại.");        
 
-        return Ok(customer);
+        return Ok(await _unitOfWork.CustomerRepository.ToListAsync());
     }
 
     [HttpDelete("{id}")]    
@@ -84,7 +84,7 @@ public class CustomerController : BaseApiController
 
         if (!result) return BadRequest("Xóa khách hàng thất bại.");
         
-        return NoContent();
+        return Ok(await _unitOfWork.CustomerRepository.ToListAsync());
     }
 
 }

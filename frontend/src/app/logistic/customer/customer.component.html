@@ -42,7 +42,7 @@
 
 					<div class="row">
 						<div class="col-sm-12">
-							<nz-table #table [(nzData)]="this.data" nzSize="small" [classList]="'border-spacing-y-[10px]'">
+							<nz-table #table [nzData]="this.dataService.list" nzSize="small" [classList]="'border-spacing-y-[10px]'">
 								<thead>
 									<tr role="row">
 										<th class="whitespace-nowrap" style="width: 1%;">#</th>
@@ -60,7 +60,7 @@
 											<wk-button icon="pencil" [iconSize]="13" (click)="openEditModal(item)"
 												[className]="'btn-default mr-2'">Sửa</wk-button>
 											<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
-												(click)="confirmDelete(item)">Xóa</wk-button>
+												(click)="onDelete(item)">Xóa</wk-button>
 										</td>
 									</tr>
 								</tbody>

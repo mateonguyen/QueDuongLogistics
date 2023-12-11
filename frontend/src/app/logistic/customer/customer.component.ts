@@ -5,6 +5,7 @@ import { CustomerService } from 'src/app/__services/customer.service';
 import { removeVI } from 'jsrmvi';
 import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-customer',
@@ -12,34 +13,33 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 	styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
-	data: Customer[];
 	confirmModal?: NzModalRef;
 	term = '';
 
 	constructor(
-		private _dataService: CustomerService,
+		public dataService: CustomerService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
 	) { }
 
 	ngOnInit(): void {
-		this.refreshList();
+		this.dataService.refreshList();
 	}
 
 	refreshList() {
-		this._dataService.list().subscribe((response) => {
-			const result: Customer[] = [];
-			if (this.term !== '') {
-				for (const item of response) {
-					if (removeVI(item['customerName'] + ' ' + item['customerCode'], { replaceSpecialCharacters: false }).includes(removeVI(this.term, { replaceSpecialCharacters: false }))) {
-						result.push(item);
-					}
-				}
-				this.data = result;
-			} else {
-				this.data = response;
-			}
-		});
+		// this._dataService.list().subscribe((response) => {
+		// 	const result: Customer[] = [];
+		// 	if (this.term !== '') {
+		// 		for (const item of response) {
+		// 			if (removeVI(item['customerName'] + ' ' + item['customerCode'], { replaceSpecialCharacters: false }).includes(removeVI(this.term, { replaceSpecialCharacters: false }))) {
+		// 				result.push(item);
+		// 			}
+		// 		}
+		// 		this.data = result;
+		// 	} else {
+		// 		this.data = response;
+		// 	}
+		// });
 	}
 
 	openEditModal(model?: Customer) {
@@ -64,44 +64,6 @@ export class CustomerComponent implements OnInit {
 				model: initialState.model
 			}
 		});
-
-		modal.afterClose.subscribe((result: Customer) => {
-			if (result) {
-				if (!model) {
-					this._dataService.create(result).subscribe({
-						next: (res: Customer) => {
-							//this.data.push(res);
-							this._notificationService.success(
-								'Chúc mừng!',
-								'Bạn vừa thêm mới thành công thông tin Khách hàng.',
-								{ nzDuration: 5000, nzAnimate: true }
-							)
-							this.refreshList();
-						},
-						error: (err) => {
-							this._notificationService.error(
-								'Lỗi!',
-								err.error,
-								{ nzDuration: 5000, nzAnimate: true }
-							);
-						}
-					});
-				} else {
-					this._dataService.update(result).subscribe({
-						next: (res: Customer) => {
-							// const index = this.groups.findIndex(x => x.id === model.id);
-							const index = this.data.indexOf(model);
-							this.data[index] = res;
-							this.refreshList();
-						},
-						error: (err) => {
-
-							console.log(err);
-						}
-					});
-				}
-			}
-		});
 	}
 
 	incrementAndParse(value: string): number {
@@ -109,23 +71,34 @@ export class CustomerComponent implements OnInit {
 		return parseInt(value, 10) + 1;
 	}
 
-	deleteCustomer(id): boolean {
-		if (id) {
-			const userConfirmed = confirm('Bạn có chắc chắn muốn xóa ?');
-
-			if (userConfirmed) {
-				this._dataService.delete(id).subscribe(
-					() => {
-						alert('Bạn vừa xóa thành công khách hàng.')
-						this.refreshList();
-					}, (err) => {
-						console.log(err);
-
+	onDelete(model: Customer) {
+		this.confirmModal = this._modalService.confirm({
+			nzTitle: 'Bạn chắc chắn muốn xóa?',
+			nzContent: 'Sau khi chọn Xóa, Nhóm người dùng <strong>#' + model.customerName + '</strong> sẽ được xóa khỏi danh sách.',
+			nzOkText: 'Xóa',
+			nzOkDanger: true,
+			nzOnOk: () => {
+				this.dataService.delete(model.id).subscribe({
+					next: (res) => {
+						this.dataService.list = res as Customer[];
+						this._notificationService.info(
+							'Thông báo!',
+							'Bạn vừa xóa thành công Khách hàng <strong>' + model.customerName + '</strong>',
+							{ nzDuration: 5000, nzAnimate: true }
+						)
+					},
+					error: (err) => {
+						if (err.status == 400) {
+							this._notificationService.error(
+								'Lỗi!',
+								err.error,
+								{ nzDuration: 5000, nzAnimate: true }
+							);
+						}
 					}
-				);
+				});
 			}
-		}
-		return true;
+		})
 	}
 
 }
