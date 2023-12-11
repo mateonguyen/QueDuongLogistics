@@ -166,14 +166,22 @@ $jira-bg: rgb(222, 235, 255);
 @mixin buttonBackground($btn-variant, $background) {
 	$background-dark: darken($background, 10%);
 	$background-light: lighten($background, 10%);
+	:root {
+		--ant-button-default-border-color-disabled: #d9d9d9;
+		--ant-button-border-color-disabled: #d9d9d9;
+		--ant-color-bg-container-disabled: rgba(0, 0, 0, 0.04);
+	}
 
 	.btn-#{$btn-variant} {
 		color: white;
 		font-weight: 500;
 		background: $background;
 		&:disabled {
-			cursor: not-allowed;
-			background-color: lighten($background, 20%);
+			cursor: not-allowed !important;
+			border-color: var(--ant-button-border-color-disabled);
+			color: var(--ant-color-text-disabled);
+			background: var(--ant-color-bg-container-disabled);
+			box-shadow: none;
 		}
 
 		&:not(:disabled) {

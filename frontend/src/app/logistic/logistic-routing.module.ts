@@ -7,7 +7,6 @@ import { DriverComponent } from "./driver/driver.component";
 import { CustomerComponent } from "./customer/customer.component";
 import { VehicleComponent } from "./vehicle/vehicle.component";
 import { AddTransactionComponent } from "./transaction/add-transaction/add-transaction.component";
-import { AddCustomerComponent } from "./customer/add-customer/add-customer.component";
 import { PreventUnsavedChangesGuard } from "../__guards/prevent-unsaved-changes.guard";
 
 const routes: Routes = [
@@ -25,8 +24,6 @@ const routes: Routes = [
 
 			{ path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
 			{ path: 'customer/list', component: CustomerComponent, canActivate: [AuthGuard] },
-			{ path: 'customer/new', component: AddCustomerComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
-			{ path: 'customer/edit/:id', component: AddCustomerComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
 		],
 	},
 ]

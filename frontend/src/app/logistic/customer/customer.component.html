@@ -1,60 +1,74 @@
+<div class="alert-wrapper gl-force-block-formatting-context">
+	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited limit-container-width">
+		<div class="breadcrumbs-container">
+			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+					<li>
+						<a [routerLink]="['/logistics']">Quế Dương</a>
+						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+					</li>
+					<li>
+						<h2 class="breadcrumbs-sub-title">
+							<a [routerLink]="['/logistics/customer']">Khách hàng</a>
+						</h2>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+<div class="container-fluid container-limited limit-container-width">
+	<main class="content">
+		<div class="row mt-2">
+			<div class="col-lg-12">
+				<h4 class="mt-2 px-2 text-uppercase">Danh sách Khách hàng</h4>
+				<div>
+					<div class="d-md-flex flex-column order border-start-0 border-end-0" style="background-color: #f6f6f6;">
+						<div class="d-flex flex-row">
+							<div class="search-box-by-click d-md-flex p-2 flex-grow-1">
+								<nz-input-group [nzSuffix]="suffixIconSearch">
+									<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()" placeholder="Tìm kiếm" />
+								</nz-input-group>
+								<ng-template #suffixIconSearch>
+									<span nz-icon nzType="search"></span>
+								</ng-template>
+							</div>
+							<div class="p-2 d-md-flex">
+								<wk-button icon="plus" [iconSize]="13" [className]="'btn-primary flex'" (click)="openEditModal()">Tạo
+									mới</wk-button>
+							</div>
+						</div>
+					</div>
 
-
-  <div>
-    <nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited">
-      <div class="breadcrumbs-container">
-        <div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
-          <ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
-            <li>
-              <a [routerLink]="'/-/profile/account'">Quế Dương</a>
-              <svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
-            </li>
-            <li>
-              <h2 class="breadcrumbs-sub-title">
-                <a [routerLink]="'/-/profile/password'">Danh sách khách hàng</a>
-              </h2>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <div class="container-fluid container-limited">
-    <main class="content" id="content-body">
-      <div class="flash-container flash-container-page" *ngIf="this.globalError">
-        <div class="flash-alert mb-2">
-          <svg-icon [name]="'error'" [size]="16" [className]="'mr-1 align-middle d-inline'"></svg-icon>
-          <span class="align-text-top">{{ this.globalError }}</span>
-          <div class="close-icon-wrapper js-close-icon">
-            <svg-icon [name]="'close'" [size]="16" class="align-baseline"></svg-icon>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="data">
-
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Id</th>
-              <th scope="col">Mã khách hàng</th>
-              <th scope="col">Tên khách hàng</th>
-              <th scope="col">Thao tác</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of data | keyvalue">
-              <th scope="row">{{ incrementAndParse(item.key) }}</th>
-              <td>{{ item.value.id}}  </td>
-              <td>{{ item.value.customerCode}}</td>
-              <td>{{ item.value.customerName}}</td>
-              <td>
-                <button class="btn btn-primary mr-3" type="button">Sửa </button> 
-                <button class="btn btn-danger" (click)="deleteCustomer(item.value.id)" type="button">Xóa </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-  </div>
+					<div class="row">
+						<div class="col-sm-12">
+							<nz-table #table [(nzData)]="this.data" nzSize="small" [classList]="'border-spacing-y-[10px]'">
+								<thead>
+									<tr role="row">
+										<th class="whitespace-nowrap" style="width: 1%;">#</th>
+										<th nzColumnKey="customerCode" [nzSortFn]="true" style="width: 25%;">Mã khách hàng</th>
+										<th nzColumnKey="customerName" [nzSortFn]="true">Tên khách hàng</th>
+										<th class="whitespace-nowrap" style="width: 1%">Thao tác</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of table.data">
+										<td></td>
+										<td>{{ item.customerCode }}</td>
+										<td>{{ item.customerName }}</td>
+										<td class="whitespace-nowrap">
+											<wk-button icon="pencil" [iconSize]="13" (click)="openEditModal(item)"
+												[className]="'btn-default mr-2'">Sửa</wk-button>
+											<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
+												(click)="confirmDelete(item)">Xóa</wk-button>
+										</td>
+									</tr>
+								</tbody>
+							</nz-table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
