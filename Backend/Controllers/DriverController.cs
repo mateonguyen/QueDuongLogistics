@@ -41,7 +41,7 @@ public class DriverController : BaseApiController
 
         if (!result) return BadRequest("Thêm mới lái xe thất bại.");
 
-        return Ok(driver);
+        return Ok(await _unitOfWork.DriverRepository.ToListAsync());
     }
 
     [HttpPut]
@@ -60,7 +60,7 @@ public class DriverController : BaseApiController
 
         if (!result) return BadRequest("Sửa thông tin lái xe thất bại.");        
 
-        return Ok(driver);
+        return Ok(await _unitOfWork.DriverRepository.ToListAsync());
     }
 
     [HttpDelete("{id}")]    
@@ -74,6 +74,6 @@ public class DriverController : BaseApiController
 
         if (!result) return BadRequest("Xóa lái xe thất bại.");
         
-        return NoContent();
+        return Ok(await _unitOfWork.DriverRepository.ToListAsync());
     }
 }
