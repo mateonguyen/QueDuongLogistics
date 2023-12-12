@@ -1,1 +1,78 @@
-<p>driver works!</p>
+<div class="alert-wrapper gl-force-block-formatting-context">
+	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid container-limited limit-container-width">
+		<div class="breadcrumbs-container">
+			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
+					<li>
+						<a [routerLink]="['/logistics']">Quế Dương</a>
+						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
+					</li>
+					<li>
+						<h2 class="breadcrumbs-sub-title">
+							<a [routerLink]="['/logistics/driver']">Lái xe</a>
+						</h2>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+<div class="container-fluid container-limited limit-container-width">
+	<main class="content">
+		<div class="row mt-2">
+			<div class="col-lg-12">
+				<h4 class="mt-2 px-2 text-uppercase">Danh sách Lái xe</h4>
+				<div>
+					<div class="d-md-flex flex-column order border-start-0 border-end-0" style="background-color: #f6f6f6;">
+						<div class="d-flex flex-row">
+							<div class="search-box-by-click d-md-flex p-2 flex-grow-1">
+								<nz-input-group [nzSuffix]="suffixIconSearch">
+									<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()" placeholder="Tìm kiếm" />
+								</nz-input-group>
+								<ng-template #suffixIconSearch>
+									<span nz-icon nzType="search"></span>
+								</ng-template>
+							</div>
+							<div class="p-2 d-md-flex">
+								<wk-button icon="plus" [iconSize]="13" [className]="'btn-primary flex'" (click)="openEditModal()">Tạo
+									mới</wk-button>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<nz-table #table [nzData]="this.dataService.list" nzSize="small" [classList]="'border-spacing-y-[10px]'">
+								<thead>
+									<tr role="row">
+										<th class="whitespace-nowrap" style="width: 1%;">#</th>
+										<th nzColumnKey="fullName" [nzSortFn]="true" style="width: 25%;">Tên lái xe</th>
+										<th nzColumnKey="dateOfBirth" [nzSortFn]="true">Ngày sinh</th>
+										<th nzColumnKey="phoneNo" [nzSortFn]="true">Số điện thoại</th>
+										<th nzColumnKey="identityCardNo" [nzSortFn]="true">Số CCCD</th>
+										<th class="whitespace-nowrap" style="width: 1%">Thao tác</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let item of table.data">
+										<td></td>
+										<td>{{ item.fullName }}</td>
+										<td>{{ item.dateOfBirth }}</td>
+										<td>{{ item.phoneNo }}</td>
+										<td>{{ item.identityCardNo }}</td>
+										<td class="whitespace-nowrap">
+											<wk-button icon="pencil" [iconSize]="13" (click)="openEditModal(item)"
+												[className]="'btn-default mr-2'">Sửa</wk-button>
+											<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
+												(click)="onDelete(item)">Xóa</wk-button>
+										</td>
+									</tr>
+								</tbody>
+							</nz-table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
