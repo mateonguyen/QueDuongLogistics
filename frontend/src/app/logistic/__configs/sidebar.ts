@@ -2,7 +2,7 @@ import { SideBarLink } from 'src/app/__models/ui-models/nav-link';
 
 export const SIDEBAR_LINKS: SideBarLink[] = [
 	{
-		name: 'Lệnh điều xe',
+		name: 'Lệnh điều vận',
 		icon: 'issues',
 		url: '/logistic/transaction',
 		isActive: false,
@@ -10,7 +10,7 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 		roles: [],
 		children: [
 			{
-				name: 'Danh sách lệnh',
+				name: 'Danh sách',
 				icon: 'list-outdent',
 				url: '/logistic/transaction/list',
 				isActive: false,
@@ -19,7 +19,7 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 				children: [],
 			},
 			{
-				name: 'Tạo lệnh điều vận',
+				name: 'Tạo mới',
 				icon: '',
 				url: '/logistic/transaction/new',
 				isActive: false,

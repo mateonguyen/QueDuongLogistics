@@ -1,23 +1,10 @@
 <div>
 	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid">
 		<div class="breadcrumbs-container">
-			<h4>LỆNH ĐIỀU VẬN</h4>
+			<h4 class="mr-2">LỆNH ĐIỀU VẬN</h4>
 			<div><a>
-					<svg-icon [name]="'truck-fast'" class="align-baseline"></svg-icon>
+					<svg-icon [name]="'truck-fast'" [width]="20" [height]="16" class="align-baseline"></svg-icon>
 				</a></div>
-			<!-- <div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
-				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
-					<li>
-						<a [routerLink]="'/-/profile/account'">Quế Dương</a>
-						<svg-icon [name]="'angle-right'" [size]="8" class="breadcrumbs-list-angle"></svg-icon>
-					</li>
-					<li>
-						<h2 class="breadcrumbs-sub-title">
-							<a [routerLink]="'/-/profile/password'">Tạo lệnh điều xe</a>
-						</h2>
-					</li>
-				</ul>
-			</div> -->
 		</div>
 	</nav>
 </div>
@@ -33,7 +20,18 @@
 			</div>
 		</div>
 		<form [formGroup]="transactionForm" (ngSubmit)="transactionForm.valid && save()">
-			<div class=" row">
+			<div class="row">
+				<nz-card [nzBordered]="false" nzTitle="Thông tin vận chuyển">
+					<p>Card content</p>
+					<p>Card content</p>
+					<p>Card content</p>
+					<div class="row">
+						<div class="form-group">
+							<label for="">Khách hàng</label>
+							<app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select>
+						</div>
+					</div>
+				</nz-card>
 				<div class="col-lg-3">
 					<h4 class="mt-0">
 						Thông tin phiếu
@@ -54,12 +52,10 @@
 					<h4 class="mt-0">
 						Khách hàng
 					</h4>
-					<p>
-
-					</p>
 				</div>
 				<div class="col-lg-9">
 					<div class="form-group">
+
 						<app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select>
 					</div>
 				</div>

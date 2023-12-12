@@ -8,6 +8,8 @@ import { Component, Input } from '@angular/core';
 export class SvgIconComponent {
 	@Input() name: string;
 	@Input() size = 16;
+	@Input() width = 0;
+	@Input() height = 0;
 	@Input() fill = 'currentColor';
 	@Input() className = '';
 

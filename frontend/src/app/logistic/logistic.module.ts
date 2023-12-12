@@ -12,6 +12,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { TransactionComponent } from './transaction/transaction.component';
 import { DriverComponent } from './driver/driver.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -39,9 +40,9 @@ import { AddDriverModalComponent } from './driver/add-driver-modal/add-driver-mo
 		TransactionCustomerSelectComponent,
 		TransactionDriverSelectComponent,
 		TransactionVehicleSelectComponent,
-  VendorComponent,
-  TransactionVendorSelectComponent,
-  AddDriverModalComponent,
+		VendorComponent,
+		TransactionVendorSelectComponent,
+		AddDriverModalComponent,
 	],
 	imports: [
 		CommonModule,
@@ -57,6 +58,7 @@ import { AddDriverModalComponent } from './driver/add-driver-modal/add-driver-mo
 		NzSelectModule,
 		NzDropDownModule,
 		NzNotificationModule,
+		NzCardModule
 	]
 })
 export class LogisticModule { }
