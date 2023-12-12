@@ -1,7 +1,11 @@
 <div>
 	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid">
 		<div class="breadcrumbs-container">
-			<div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
+			<h4>LỆNH ĐIỀU VẬN</h4>
+			<div><a>
+					<svg-icon [name]="'truck-fast'" class="align-baseline"></svg-icon>
+				</a></div>
+			<!-- <div class="breadcrumbs-links" data-qa-selector="breadcrumb_links_content" data-testid="breadcrumb-links">
 				<ul class="list-unstyled breadcrumbs-list js-breadcrumbs-list">
 					<li>
 						<a [routerLink]="'/-/profile/account'">Quế Dương</a>
@@ -13,7 +17,7 @@
 						</h2>
 					</li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</nav>
 </div>
@@ -29,6 +33,22 @@
 			</div>
 		</div>
 		<form [formGroup]="transactionForm" (ngSubmit)="transactionForm.valid && save()">
+			<div class=" row">
+				<div class="col-lg-3">
+					<h4 class="mt-0">
+						Thông tin phiếu
+					</h4>
+					<p>
+						Sau khi cập nhật mật khẩu thành công, bạn sẽ được chuyển đến trang đăng nhập, nơi bạn có thể đăng
+						nhập bằng mật khẩu mới của mình.
+					</p>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						div.
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-lg-3">
 					<h4 class="mt-0">
@@ -42,20 +62,6 @@
 					<div class="form-group">
 						<app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select>
 					</div>
-				</div>
-			</div>
-			<div class=" row">
-				<div class="col-lg-3">
-					<h4 class="mt-0">
-						Khách hàng
-					</h4>
-					<p>
-						Sau khi cập nhật mật khẩu thành công, bạn sẽ được chuyển đến trang đăng nhập, nơi bạn có thể đăng
-						nhập bằng mật khẩu mới của mình.
-					</p>
-				</div>
-				<div class="col-lg-9">
-
 				</div>
 			</div>
 			<div class="row">
