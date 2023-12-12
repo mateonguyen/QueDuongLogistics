@@ -26,7 +26,6 @@
     "@datorama/akita": "^6.2.4",
     "@datorama/akita-ng-entity-service": "^6.2.0",
     "@datorama/akita-ng-router-store": "^6.0.2",
-    "@fortawesome/angular-fontawesome": "^0.10.2",
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "@ng-select/ng-select": "^8.3.0",
     "@taiga-ui/cdk": "^2.75.0",
