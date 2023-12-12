@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Driver } from 'src/app/__models/driver';
+import { Vehicle } from 'src/app/__models/vehicle';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { DriverService } from 'src/app/__services/driver.service';
+import { VehicleService } from 'src/app/__services/vehicle.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @Component({
-	selector: 'app-add-driver-modal',
-	templateUrl: 'add-driver-modal.component.html',
-	styleUrls: ['add-driver-modal.component.scss']
+	selector: 'app-add-vehicle-modal',
+	templateUrl: 'add-vehicle-modal.component.html',
+	styleUrls: ['add-vehicle-modal.component.scss']
 })
-export class AddDriverModalComponent implements OnInit {
+export class AddVehicleModalComponent implements OnInit {
 	title?: string;
 	editForm: FormGroup;
-	model: Driver;
+	model: Vehicle;
 	selectedDate: Date | null = null;
 
 	constructor(
 		public _modalRef: NzModalRef,
 		private _fb: FormBuilder,
-		private _dataService: DriverService,
+		private _dataService: VehicleService,
 		private _notificationService: NzNotificationService
 	) { }
 
@@ -31,24 +31,23 @@ export class AddDriverModalComponent implements OnInit {
 	initForm() {
 		this.editForm = this._fb.group({
 			id: [this.model?.id ?? 0],
-			fullName: [this.model?.fullName, Validators.required],
-			dateOfBirth: [this.model?.dateOfBirth, Validators.required],
-			phoneNo: [this.model?.phoneNo, Validators.required],
-			identityCardNo: [this.model?.identityCardNo, Validators.required],
-			issueDate: [this.model?.issueDate, Validators.required],
-			issuePlace: [this.model?.issuePlace, Validators.required],
+			typeOfVehicle: [this.model?.typeOfVehicle, Validators.required],
+			vehicleNumber: [this.model?.vehicleNumber, Validators.required],
+			cargoBoxSize: [this.model?.cargoBoxSize, Validators.required],
+			payloadCapacity: [this.model?.payloadCapacity, Validators.required],
+			payloadCapacityUnit: [this.model?.payloadCapacityUnit, Validators.required],
 		});
 	}
 
 	onSubmit() {
 		this._modalRef.close();
 		if (!this.model) {
-			this._dataService.create(this.editForm.value as Driver).subscribe({
+			this._dataService.create(this.editForm.value as Vehicle).subscribe({
 				next: res => {
-					this._dataService.list = res as Driver[];
+					this._dataService.list = res as Vehicle[];
 					this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa thêm mới thành công thông tin Lái xe.',
+						'Bạn vừa thêm mới thành công thông tin Phương tiện.',
 						{ nzDuration: 5000, nzAnimate: true }
 					)
 				},
@@ -63,12 +62,12 @@ export class AddDriverModalComponent implements OnInit {
 				}
 			});
 		} else {
-			this._dataService.update(this.editForm.value as Driver).subscribe({
+			this._dataService.update(this.editForm.value as Vehicle).subscribe({
 				next: res => {
-					this._dataService.list = res as Driver[];
+					this._dataService.list = res as Vehicle[];
 					this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa chỉnh sửa thành công thông tin Lái xe.',
+						'Bạn vừa chỉnh sửa thành công thông tin Phương tiện.',
 						{ nzDuration: 5000, nzAnimate: true }
 					)
 				},

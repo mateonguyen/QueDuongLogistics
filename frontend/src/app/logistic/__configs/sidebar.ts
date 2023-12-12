@@ -41,7 +41,7 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 	{
 		name: 'Danh mục phương tiện',
 		icon: 'car',
-		url: '/admin/employees',
+		url: '/logistic/vehicle',
 		isActive: false,
 		isOver: false,
 		roles: [],

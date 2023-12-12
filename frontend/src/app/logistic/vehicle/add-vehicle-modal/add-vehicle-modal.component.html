@@ -1,0 +1,65 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{ title }}</h4>
+	<wk-button icon="times" [iconSize]="24" (click)="closeModal()" [className]="'btn-empty'">
+	</wk-button>
+</div>
+<div class="modal-body">
+	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && onSubmit()" autocomplete="off">
+		
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="typeOfVehicle" class="label-bold">Loại phương tiện</label>
+                    <input type="text" id="typeOfVehicle" class="form-input" [formControl]='editForm.controls["typeOfVehicle"]'
+                        [class.is-invalid]='editForm.get("typeOfVehicle").errors && editForm.get("typeOfVehicle").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["typeOfVehicle"].errors?.required'>Vui lòng
+                        nhập Loại phương tiện</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="vehicleNumber" class="label-bold">Biển số xe</label>
+                    <input type="text" class="form-input" id="vehicleNumber" [formControl]='editForm.controls["vehicleNumber"]'
+                        [class.is-invalid]='editForm.get("vehicleNumber").errors && editForm.get("vehicleNumber").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["vehicleNumber"].errors?.required'>Vui lòng
+                        nhập Biển số xe</div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-4">
+                <div class="form-group mb-3">
+                    <label for="cargoBoxSize" class="label-bold">Kích thước thùng hàng</label>
+                    <input type="text" class="form-input" id="cargoBoxSize" [formControl]='editForm.controls["cargoBoxSize"]'
+                        [class.is-invalid]='editForm.get("cargoBoxSize").errors && editForm.get("cargoBoxSize").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["cargoBoxSize"].errors?.required'>Vui lòng
+                        nhập Kích thước thùng hàng</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+                <div class="form-group mb-3">
+                    <label for="payloadCapacity" class="label-bold">Tải trọng</label>
+                    <input type="number" class="form-input" id="payloadCapacity" [formControl]='editForm.controls["payloadCapacity"]'
+                        [class.is-invalid]='editForm.get("payloadCapacity").errors && editForm.get("payloadCapacity").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["payloadCapacity"].errors?.required'>Vui lòng
+                        nhập Tải trọng</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+                <div class="form-group mb-3">
+                    <label for="payloadCapacityUnit" class="label-bold">Đơn vị công suất tải trọng</label>
+                    <input type="text" class="form-input" id="payloadCapacityUnit" [formControl]='editForm.controls["payloadCapacityUnit"]'
+                        [class.is-invalid]='editForm.get("payloadCapacityUnit").errors && editForm.get("payloadCapacityUnit").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["payloadCapacityUnit"].errors?.required'>Vui lòng
+                        nhập Đơn vị công suất tải trọng</div>
+                </div>
+            </div>
+        </div>
+	</form>
+</div>
+<div class="modal-footer">
+	<wk-button [className]="'btn btn-danger mr-2'" (click)="cancel()">Đóng</wk-button>
+	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'>Lưu</button>
+</div>
