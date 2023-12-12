@@ -32,7 +32,7 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 	{
 		name: 'Danh mục lái xe',
 		icon: 'user',
-		url: '/admin/users',
+		url: '/logistic/driver',
 		isActive: false,
 		isOver: false,
 		roles: [],

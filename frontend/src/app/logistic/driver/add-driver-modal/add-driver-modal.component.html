@@ -1,0 +1,69 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{ title }}</h4>
+	<wk-button icon="times" [iconSize]="24" (click)="closeModal()" [className]="'btn-empty'">
+	</wk-button>
+</div>
+<div class="modal-body">
+	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && onSubmit()" autocomplete="off">
+		<div class="form-group mb-3">
+			<label for="fullName" class="label-bold">Tên lái xe</label>
+			<input type="text" id="fullName" class="form-input" [formControl]='editForm.controls["fullName"]'
+				[class.is-invalid]='editForm.get("fullName").errors && editForm.get("fullName").touched'>
+			<div class="invalid-feedback" *ngIf='editForm.controls["fullName"].errors?.required'>Vui lòng
+				nhập Tên lái xe</div>
+		</div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="dateOfBirth" class="label-bold">Ngày sinh</label>
+                    <input type="text" class="form-input" id="dateOfBirth" [formControl]='editForm.controls["dateOfBirth"]'
+                        [class.is-invalid]='editForm.get("dateOfBirth").errors && editForm.get("dateOfBirth").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["dateOfBirth"].errors?.required'>Vui lòng
+                        nhập Ngày sinh</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="form-group mb-3">
+                    <label for="phoneNo" class="label-bold">Số điện thoại</label>
+                    <input type="text" class="form-input" id="phoneNo" [formControl]='editForm.controls["phoneNo"]'
+                        [class.is-invalid]='editForm.get("phoneNo").errors && editForm.get("phoneNo").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["phoneNo"].errors?.required'>Vui lòng
+                        nhập Số điện thoại</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-lg-4">
+                <div class="form-group mb-3">
+                    <label for="identityCardNo" class="label-bold">Số CCCD</label>
+                    <input type="text" class="form-input" id="identityCardNo" [formControl]='editForm.controls["identityCardNo"]'
+                        [class.is-invalid]='editForm.get("identityCardNo").errors && editForm.get("identityCardNo").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["identityCardNo"].errors?.required'>Vui lòng
+                        nhập Số CCCD</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+                <div class="form-group mb-3">
+                    <label for="issueDate" class="label-bold">Ngày cấp CCCD</label>
+                    <input type="text" class="form-input" id="issueDate" [formControl]='editForm.controls["issueDate"]'
+                        [class.is-invalid]='editForm.get("issueDate").errors && editForm.get("issueDate").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["issueDate"].errors?.required'>Vui lòng
+                        nhập Ngày cấp CCCD</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+                <div class="form-group mb-3">
+                    <label for="issuePlace" class="label-bold">Nơi cấp CCCD</label>
+                    <input type="text" class="form-input" id="issuePlace" [formControl]='editForm.controls["issuePlace"]'
+                        [class.is-invalid]='editForm.get("issuePlace").errors && editForm.get("issuePlace").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["issuePlace"].errors?.required'>Vui lòng
+                        nhập Nơi cấp CCCD</div>
+                </div>
+            </div>
+        </div>
+	</form>
+</div>
+<div class="modal-footer">
+	<wk-button [className]="'btn btn-danger mr-2'" (click)="cancel()">Đóng</wk-button>
+	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'>Lưu</button>
+</div>
