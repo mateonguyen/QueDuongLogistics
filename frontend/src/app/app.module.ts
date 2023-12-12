@@ -41,6 +41,7 @@ import { HomeComponent } from './home/home.component';
 import { VisitorCounterComponent } from './home/visitor-counter/visitor-counter.component';
 import { AuditHomeComponent } from './home/audit-home/audit-home.component';
 import { TimeagoModule } from 'ngx-timeago';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 registerLocaleData(vi);
 
@@ -81,6 +82,7 @@ registerLocaleData(vi);
 		NzAlertModule,
 		NzDatePickerModule,
 		TimeagoModule.forRoot(),
+		FontAwesomeModule,
 		// TimeagoModule.forRoot({
 		// 	formatter: { provide: TimeagoFormatter, useClass: TimeagoCustomFormatter },
 		// }),

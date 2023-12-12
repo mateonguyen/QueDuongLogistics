@@ -1,5 +1,6 @@
 <div class="w-full d-flex">
-	<nz-select class="flex-1 h-8 mr-1" [formControl]="control" [nzCustomTemplate]="selectedTemplate">
+	<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [formControl]="control"
+		[nzCustomTemplate]="selectedTemplate">
 		<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer.id"
 			[nzLabel]="customer.customerName">
 			{{ customer.customerName }}
