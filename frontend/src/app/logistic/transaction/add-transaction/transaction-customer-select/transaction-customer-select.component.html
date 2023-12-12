@@ -1,1 +1,12 @@
-<p>transaction-customer-select works!</p>
+<div class="w-full d-flex">
+	<nz-select class="flex-1 h-8 mr-1" [formControl]="control" [nzCustomTemplate]="selectedTemplate">
+		<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer.id"
+			[nzLabel]="customer.customerName">
+			{{ customer.customerName }}
+		</nz-option>
+	</nz-select>
+	<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18" (click)="openEditModal()"></wk-button>
+	<ng-template #selectedTemplate let-selected>
+		{{ selected.nzLabel }}
+	</ng-template>
+</div>

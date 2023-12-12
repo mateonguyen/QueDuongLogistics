@@ -10,9 +10,10 @@ namespace Backend.Helpers
 
             if (!resultContext.HttpContext.User.Identity.IsAuthenticated) return;
 
-            var userId = resultContext.HttpContext.User.GetUserId();
+            var username = resultContext.HttpContext.User.GetUsername();
+            
             var unitOfWork = resultContext.HttpContext.RequestServices.GetService<IUnitOfWork>();
-            var user = await unitOfWork.UserRepository.GetUserByIdAsync(userId);
+            var user = await unitOfWork.UserRepository.GetUserByUsername(username);            
 
             user.LastActive = DateTime.Now;
 

@@ -28,26 +28,14 @@ export class AddCustomerModalComponent implements OnInit {
 
 	initForm() {
 		this.editForm = this._fb.group({
-			id: [this.model?.id],
+			id: [this.model?.id ?? 0],
 			customerCode: [this.model?.customerCode, Validators.required],
 			customerName: [this.model?.customerName, Validators.required],
 		});
 	}
 
-	// save() {
-	// 	const formData = this.customerForm.value;
-	// 	this.dataService.create(formData).subscribe(
-	// 		(response) => {
-	// 			alert('Lưu dữ liệu thành công');
-	// 		},
-	// 		(error) => {
-	// 			console.error(error);
-	// 			// Handle errors
-	// 		}
-	// 	);
-	// }
-
 	onSubmit() {
+		this._modalRef.close();
 		if (!this.model) {
 			this._dataService.create(this.editForm.value as Customer).subscribe({
 				next: res => {
@@ -66,8 +54,7 @@ export class AddCustomerModalComponent implements OnInit {
 							{ nzDuration: 5000, nzAnimate: true }
 						);
 					}
-				},
-				complete: () => { this.closeModal(); }
+				}
 			});
 		} else {
 			this._dataService.update(this.editForm.value as Customer).subscribe({
@@ -78,7 +65,6 @@ export class AddCustomerModalComponent implements OnInit {
 						'Bạn vừa chỉnh sửa thành công thông tin Khách hàng.',
 						{ nzDuration: 5000, nzAnimate: true }
 					)
-					this.closeModal();
 				},
 				error: err => {
 					if (err.status == 400) {
@@ -88,8 +74,7 @@ export class AddCustomerModalComponent implements OnInit {
 							{ nzDuration: 5000, nzAnimate: true }
 						);
 					}
-				},
-				complete: () => { this.closeModal(); }
+				}
 			});
 		}
 	}

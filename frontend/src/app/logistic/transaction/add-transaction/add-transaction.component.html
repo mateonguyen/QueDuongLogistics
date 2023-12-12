@@ -17,7 +17,7 @@
 		</div>
 	</nav>
 </div>
-<div class="container-fluid container-limited">
+<div class="container-fluid">
 	<main class="content" id="content-body">
 		<div class="flash-container flash-container-page" *ngIf="this.globalError">
 			<div class="flash-alert mb-2">
@@ -40,11 +40,11 @@
 				</div>
 				<div class="col-lg-9">
 					<div class="form-group">
-						<app-transaction-customer-select></app-transaction-customer-select>
+						<app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select>
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class=" row">
 				<div class="col-lg-3">
 					<h4 class="mt-0">
 						Khách hàng

@@ -22,11 +22,11 @@ public class WakDbContext : IdentityDbContext<AppUser, AppRole, int, IdentityUse
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Vehicle> Vehicles { get; set; }
-    // public DbSet<Vendor> Vendors { get; set; }
+    public DbSet<Vendor> Vendors { get; set; }
     
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {        
-        // ApplyAuditInformation();
+        ApplyAuditInformation();
 
         // OnBeforeSaveChanges();
 

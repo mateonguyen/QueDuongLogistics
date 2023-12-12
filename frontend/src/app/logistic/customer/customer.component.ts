@@ -54,7 +54,7 @@ export class CustomerComponent implements OnInit {
 			initialState.model = model;
 		}
 
-		const modal = this._modalService.create({
+		this._modalService.create({
 			nzContent: AddCustomerModalComponent,
 			nzClosable: false,
 			nzFooter: null,
