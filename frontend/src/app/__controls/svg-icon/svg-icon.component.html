@@ -1,3 +1,5 @@
-<svg version="1.1" [style.width.px]="size" [style.height.px]="size" [style.fill]="fill" [ngClass]="[className]" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <use [attr.xlink:href]="iconUrl"></use>
+<svg version="1.1" [style.width.px]="width == 0 ? size : width" [style.height.px]="height == 0 ? size : height"
+	[style.fill]="fill" [ngClass]="[className]" xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<use [attr.xlink:href]="iconUrl"></use>
 </svg>
