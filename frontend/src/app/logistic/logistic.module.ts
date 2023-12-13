@@ -27,6 +27,7 @@ import { TransactionVendorSelectComponent } from './transaction/add-transaction/
 import { AddDriverModalComponent } from './driver/add-driver-modal/add-driver-modal.component';
 import { AddVehicleModalComponent } from './vehicle/add-vehicle-modal/add-vehicle-modal.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { AddVendorModalComponent } from './vendor/add-vendor-modal/add-vendor-modal.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 		TransactionVendorSelectComponent,
 		AddDriverModalComponent,
 		AddVehicleModalComponent,
+  AddVendorModalComponent,
 	],
 	imports: [
 		CommonModule,
