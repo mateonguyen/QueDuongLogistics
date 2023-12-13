@@ -4,7 +4,7 @@ import { Driver } from 'src/app/__models/driver';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { DriverService } from 'src/app/__services/driver.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-add-driver-modal',
@@ -15,13 +15,13 @@ export class AddDriverModalComponent implements OnInit {
 	title?: string;
 	editForm: FormGroup;
 	model: Driver;
-	selectedDate: Date | null = null;
 
 	constructor(
 		public _modalRef: NzModalRef,
 		private _fb: FormBuilder,
 		private _dataService: DriverService,
-		private _notificationService: NzNotificationService
+		private _notificationService: NzNotificationService,
+		private datePipe: DatePipe
 	) { }
 
 	ngOnInit(): void {
@@ -29,21 +29,28 @@ export class AddDriverModalComponent implements OnInit {
 	}
 
 	initForm() {
+		var pattern = /(\d{4})(\d{2})(\d{2})/;
 		this.editForm = this._fb.group({
 			id: [this.model?.id ?? 0],
 			fullName: [this.model?.fullName, Validators.required],
-			dateOfBirth: [this.model?.dateOfBirth, Validators.required],
+			dateOfBirth: [this.model? new Date(this.model.dateOfBirth.replace(pattern, '$1-$2-$3')) : '', Validators.required],
 			phoneNo: [this.model?.phoneNo, Validators.required],
 			identityCardNo: [this.model?.identityCardNo, Validators.required],
-			issueDate: [this.model?.issueDate, Validators.required],
+			issueDate: [this.model? new Date(this.model.issueDate.replace(pattern, '$1-$2-$3')) : '', Validators.required],
 			issuePlace: [this.model?.issuePlace, Validators.required],
 		});
 	}
 
 	onSubmit() {
 		this._modalRef.close();
+
+		// convert Date to right format
+		let formValue = this.editForm.value;
+		formValue.dateOfBirth = this.datePipe.transform(formValue.dateOfBirth, 'yyyyMMdd');
+		formValue.issueDate = this.datePipe.transform(formValue.issueDate, 'yyyyMMdd');
+
 		if (!this.model) {
-			this._dataService.create(this.editForm.value as Driver).subscribe({
+			this._dataService.create(formValue as Driver).subscribe({
 				next: res => {
 					this._dataService.list = res as Driver[];
 					this._notificationService.success(
@@ -63,7 +70,7 @@ export class AddDriverModalComponent implements OnInit {
 				}
 			});
 		} else {
-			this._dataService.update(this.editForm.value as Driver).subscribe({
+			this._dataService.update(formValue as Driver).subscribe({
 				next: res => {
 					this._dataService.list = res as Driver[];
 					this._notificationService.success(

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LogisticComponent } from './logistic.component';
 import { LogisticRoutingModule } from './logistic-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +27,6 @@ import { TransactionVendorSelectComponent } from './transaction/add-transaction/
 import { AddDriverModalComponent } from './driver/add-driver-modal/add-driver-modal.component';
 import { AddVehicleModalComponent } from './vehicle/add-vehicle-modal/add-vehicle-modal.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-
 
 
 @NgModule({
@@ -63,6 +62,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 		NzNotificationModule,
 		NzCardModule,
 		NzDatePickerModule
-	]
+	],
+	providers: [DatePipe],
 })
 export class LogisticModule { }

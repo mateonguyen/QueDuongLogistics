@@ -16,8 +16,8 @@
             <div class="col-sm-12 col-lg-6">
                 <div class="form-group mb-3">
                     <label for="dateOfBirth" class="label-bold">Ngày sinh</label>
-                    <input type="text" class="form-input" id="dateOfBirth" [formControl]='editForm.controls["dateOfBirth"]'
-                        [class.is-invalid]='editForm.get("dateOfBirth").errors && editForm.get("dateOfBirth").touched'>
+                    <nz-date-picker class="form-input" [formControl]='editForm.controls["dateOfBirth"]' id="dateOfBirth" [nzFormat]="'dd/MM/yyyy'"
+                    [class.is-invalid]='editForm.get("dateOfBirth").errors && editForm.get("dateOfBirth").touched'></nz-date-picker>
                     <div class="invalid-feedback" *ngIf='editForm.controls["dateOfBirth"].errors?.required'>Vui lòng
                         nhập Ngày sinh</div>
                 </div>
@@ -46,8 +46,8 @@
             <div class="col-sm-12 col-lg-4">
                 <div class="form-group mb-3">
                     <label for="issueDate" class="label-bold">Ngày cấp CCCD</label>
-                    <input type="text" class="form-input" id="issueDate" [formControl]='editForm.controls["issueDate"]'
-                        [class.is-invalid]='editForm.get("issueDate").errors && editForm.get("issueDate").touched'>
+                    <nz-date-picker class="form-input" [formControl]='editForm.controls["issueDate"]' id="issueDate" [nzFormat]="'dd/MM/yyyy'"
+                    [class.is-invalid]='editForm.get("issueDate").errors && editForm.get("issueDate").touched'></nz-date-picker>
                     <div class="invalid-feedback" *ngIf='editForm.controls["issueDate"].errors?.required'>Vui lòng
                         nhập Ngày cấp CCCD</div>
                 </div>

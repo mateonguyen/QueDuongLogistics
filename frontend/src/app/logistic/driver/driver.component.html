@@ -57,7 +57,7 @@
 									<tr *ngFor="let item of table.data">
 										<td></td>
 										<td>{{ item.fullName }}</td>
-										<td>{{ item.dateOfBirth }}</td>
+										<td>{{ parseHumanDate(item.dateOfBirth) }}</td>
 										<td>{{ item.phoneNo }}</td>
 										<td>{{ item.identityCardNo }}</td>
 										<td class="whitespace-nowrap">
