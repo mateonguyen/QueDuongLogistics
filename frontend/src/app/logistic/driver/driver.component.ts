@@ -6,6 +6,7 @@ import { removeVI } from 'jsrmvi';
 import { AddDriverModalComponent } from './add-driver-modal/add-driver-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-driver',
@@ -20,6 +21,7 @@ export class DriverComponent implements OnInit {
 		public dataService: DriverService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
+		private datePipe: DatePipe
 	) { }
 
 	ngOnInit(): void {
@@ -56,6 +58,12 @@ export class DriverComponent implements OnInit {
 	incrementAndParse(value: string): number {
 		// Parse the string to an integer and increment
 		return parseInt(value, 10) + 1;
+	}
+
+	parseHumanDate(value: string): string {
+		var pattern = /(\d{4})(\d{2})(\d{2})/;
+		var dateProcess = new Date(value.replace(pattern, '$1-$2-$3'));
+		return this.datePipe.transform(dateProcess, 'dd/MM/yyyy');
 	}
 
 	onDelete(model: Driver) {

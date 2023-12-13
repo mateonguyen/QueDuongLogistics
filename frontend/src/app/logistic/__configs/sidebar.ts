@@ -39,6 +39,15 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 		children: [],
 	},
 	{
+		name: 'Khách hàng',
+		icon: 'users',
+		url: '/logistic/customer',
+		isActive: false,
+		isOver: false,
+		roles: [],
+		children: [],
+	},
+	{
 		name: 'Danh mục phương tiện',
 		icon: 'car',
 		url: '/logistic/vehicle',
@@ -48,9 +57,9 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 		children: [],
 	},
 	{
-		name: 'Khách hàng',
-		icon: 'users',
-		url: '/logistic/customer',
+		name: 'Nhà cung cấp',
+		icon: 'table',
+		url: '/logistic/vendor',
 		isActive: false,
 		isOver: false,
 		roles: [],
