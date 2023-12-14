@@ -9,7 +9,7 @@ public class ShippingRoute : Auditable
 
     [MaxLength(20)]
     [Column(Order = 2)]
-    public string RoadCode { get; set; }
+    public string RouteCode { get; set; }
 
     [MaxLength(100)]
     [Column(Order = 3)]

@@ -13,6 +13,9 @@ public interface IUnitOfWork
     ICustomerRepository CustomerRepository { get; }
     IVehicleRepository VehicleRepository { get; }
     IVendorRepository VendorRepository { get; }
+    ILocationRepository LocationRepository { get; }
+    IShippingRouteRepository ShippingRouteRepository { get; }
+    
 
     Task<bool> Complete();
     bool HasChanges();
@@ -42,6 +45,8 @@ public class UnitOfWork : IUnitOfWork
     public ICustomerRepository CustomerRepository => new CustomerRepository(_context, _mapper);
     public IVehicleRepository VehicleRepository => new VehicleRepository(_context, _mapper);
     public IVendorRepository VendorRepository => new VendorRepository(_context, _mapper);
+    public ILocationRepository LocationRepository => new LocationRepository(_context, _mapper);
+    public IShippingRouteRepository ShippingRouteRepository => new ShippingRouteRepository(_context, _mapper);
 
     public async Task<bool> Complete()
     {

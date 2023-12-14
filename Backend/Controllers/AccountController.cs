@@ -1,6 +1,7 @@
 using System.Net;
 using Backend.Enums;
 using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Processing;
 
@@ -135,7 +136,7 @@ public class AccountController : BaseApiController
 
         using var imageResult = await Image.LoadAsync(image.Content);
 
-        var photo = await SaveImage(imageResult, 300);
+        var photo = await SaveImage(imageResult, imageResult.Width);
 
         var user = await _userManager.FindByIdAsync(profile.Id.ToString());
 
@@ -167,11 +168,9 @@ public class AccountController : BaseApiController
 
         var memoryStream = new MemoryStream();
 
-        await image.SaveAsPngAsync(memoryStream, new PngEncoder()
+        await image.SaveAsJpegAsync(memoryStream, new JpegEncoder
         {
-            BitDepth = PngBitDepth.Bit8,
-            ColorType = PngColorType.RgbWithAlpha,
-            CompressionLevel = PngCompressionLevel.BestCompression
+            Quality = 75
         });
 
         return memoryStream.ToArray();
