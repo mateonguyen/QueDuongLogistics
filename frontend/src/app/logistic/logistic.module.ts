@@ -28,6 +28,10 @@ import { AddDriverModalComponent } from './driver/add-driver-modal/add-driver-mo
 import { AddVehicleModalComponent } from './vehicle/add-vehicle-modal/add-vehicle-modal.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { AddVendorModalComponent } from './vendor/add-vendor-modal/add-vendor-modal.component';
+import { LocationComponent } from './location/location.component';
+import { AddLocationModalComponent } from './location/add-location-modal/add-location-modal.component';
+import { ShippingRouteComponent } from './shipping-route/shipping-route.component';
+import { AddShippingRouteModalComponent } from './shipping-route/add-shipping-route-modal/add-shipping-route-modal.component';
 
 
 @NgModule({
@@ -47,6 +51,10 @@ import { AddVendorModalComponent } from './vendor/add-vendor-modal/add-vendor-mo
 		AddDriverModalComponent,
 		AddVehicleModalComponent,
   AddVendorModalComponent,
+  LocationComponent,
+  AddLocationModalComponent,
+  ShippingRouteComponent,
+  AddShippingRouteModalComponent,
 	],
 	imports: [
 		CommonModule,

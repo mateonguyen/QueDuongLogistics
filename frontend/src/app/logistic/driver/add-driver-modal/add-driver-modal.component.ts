@@ -38,6 +38,7 @@ export class AddDriverModalComponent implements OnInit {
 			identityCardNo: [this.model?.identityCardNo, Validators.required],
 			issueDate: [this.model? new Date(this.model.issueDate.replace(pattern, '$1-$2-$3')) : '', Validators.required],
 			issuePlace: [this.model?.issuePlace, Validators.required],
+			homeTown: [this.model?.homeTown, Validators.required],
 		});
 	}
 

@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { Vendor } from 'src/app/__models/vendor';
-import { VendorService } from 'src/app/__services/vendor.service';
+import { Location } from 'src/app/__models/location';
+import { LocationService } from 'src/app/__services/location.service';
 import { removeVI } from 'jsrmvi';
-import { AddVendorModalComponent } from './add-vendor-modal/add-vendor-modal.component';
+import { AddLocationModalComponent } from './add-location-modal/add-location-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
 
 @Component({
-	selector: 'app-vendor',
-	templateUrl: './vendor.component.html',
-	styleUrls: ['./vendor.component.scss']
+	selector: 'app-location',
+	templateUrl: './location.component.html',
+	styleUrls: ['./location.component.scss']
 })
-export class VendorComponent implements OnInit {
+export class LocationComponent implements OnInit {
 	confirmModal?: NzModalRef;
 	term = '';
 
 	constructor(
-		public dataService: VendorService,
+		public dataService: LocationService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
 	) { }
@@ -29,20 +29,20 @@ export class VendorComponent implements OnInit {
 	refreshList() {
 	}
 
-	openEditModal(model?: Vendor) {
+	openEditModal(model?: Location) {
 		let initialState = {
-			title: 'Thêm mới Nhà cung cấp',
+			title: 'Thêm mới Địa điểm',
 			model: null
 		};
 		if (!model) {
-			initialState.title = 'Thêm mới Nhà cung cấp';
+			initialState.title = 'Thêm mới Địa điểm';
 		} else {
-			initialState.title = 'Sửa thông tin Nhà cung cấp';
+			initialState.title = 'Sửa thông tin Địa điểm';
 			initialState.model = model;
 		}
 
 		this._modalService.create({
-			nzContent: AddVendorModalComponent,
+			nzContent: AddLocationModalComponent,
 			nzClosable: false,
 			nzFooter: null,
 			nzWidth: 700,
@@ -58,19 +58,19 @@ export class VendorComponent implements OnInit {
 		return parseInt(value, 10) + 1;
 	}
 
-	onDelete(model: Vendor) {
+	onDelete(model: Location) {
 		this.confirmModal = this._modalService.confirm({
 			nzTitle: 'Bạn chắc chắn muốn xóa?',
-			nzContent: 'Sau khi chọn Xóa, Nhà cung cấp <strong>#' + model.vendorName + '</strong> sẽ được xóa khỏi danh sách.',
+			nzContent: 'Sau khi chọn Xóa, Địa điểm <strong>#' + model.locationName + '</strong> sẽ được xóa khỏi danh sách.',
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
 				this.dataService.delete(model.id).subscribe({
 					next: (res) => {
-						this.dataService.list = res as Vendor[];
+						this.dataService.list = res as Location[];
 						this._notificationService.info(
 							'Thông báo!',
-							'Bạn vừa xóa thành công Nhà cung cấp <strong>' + model.vendorName + '</strong>',
+							'Bạn vừa xóa thành công Địa điểm <strong>' + model.locationName + '</strong>',
 							{ nzDuration: 5000, nzAnimate: true }
 						)
 					},
