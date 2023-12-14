@@ -5,8 +5,8 @@ public class AutoMapperProfiles : Profile
     public AutoMapperProfiles()
     {
         CreateMap<AppUser, UserDto>()
-            .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.Group.GroupName))
-            .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => Convert.ToBase64String(src.Photo)));
+            .ForMember(dest => dest.GroupName, opt => opt.MapFrom(src => src.Group.GroupName));
+            // .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => Convert.ToBase64String(src.Photo)));
 
         CreateMap<UserCreateDto, AppUser>();
 

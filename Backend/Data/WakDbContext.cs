@@ -16,7 +16,7 @@ public class WakDbContext : IdentityDbContext<AppUser, AppRole, int, IdentityUse
     public DbSet<AppGroup> AppGroups { get; set; }
     public DbSet<AppGroupRole> AppGroupRoles { get; set; }
     public DbSet<AdmCode> AdmCodes { get; set; }
-    public DbSet<AdmCodeValue> AdmCodeValues { get; set; }    
+    public DbSet<AdmCodeValue> AdmCodeValues { get; set; }
     public DbSet<AuditLog> AuditLogs { get;set; }
     public DbSet<Driver> Drivers { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
