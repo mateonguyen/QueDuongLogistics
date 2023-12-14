@@ -23,6 +23,9 @@ public class WakDbContext : IdentityDbContext<AppUser, AppRole, int, IdentityUse
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Vehicle> Vehicles { get; set; }
     public DbSet<Vendor> Vendors { get; set; }
+    public DbSet<Location> Locations { get; set; }
+    public DbSet<ShippingRoute> ShippingRoutes { get; set; }
+    public DbSet<TransactionDetail> TransactionDetails { get; set; }
     
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {        

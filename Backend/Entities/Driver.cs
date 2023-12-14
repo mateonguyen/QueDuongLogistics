@@ -28,5 +28,11 @@ public class Driver : Auditable
     public string IssueDate { get; set; }
 
     [Column(Order = 7)]
+    [MaxLength(100)]
     public string IssuePlace { get; set; }
+
+    [MaxLength(100)]
+    public string HomeTown { get; set; }
+
+    public byte[] Photo { get; set; }
 }

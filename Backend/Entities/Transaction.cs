@@ -22,51 +22,13 @@ public class Transaction : Auditable
     [Column(Order = 5)]
     [ForeignKey("Driver")]
     public int DriverId { get; set; }
-    
-    [MaxLength(100)]
+
     [Column(Order = 6)]
-    public string StartPlace { get; set; }
-
-    [MaxLength(20)]
-    [Column(Order = 7)]
-    public string KmStart { get; set; }
-
-    [Column(Order = 8)]
-    public DateTime TimeStartIn { get; set; }
-
-    [Column(Order = 9)]
-    public DateTime TimeStartOut { get; set; }
-
-    [MaxLength(100)]
-    [Column(Order = 10)]
-    public string EndPlace { get; set; }
-
-    [MaxLength(20)]
-    [Column(Order = 11)]
-    public string KmEnd { get; set; }
-
-    [Column(Order = 12)]
-    public DateTime TimeEndIn { get; set; }
-
-    [Column(Order = 13)]
-    public DateTime TimeEndOut { get; set; }
-
-    [Column(Order = 14)]
-    public int ReceivedQuantity { get; set; }
-
-    [Column(Order = 15)]
-    public int DeliveredQuantity { get; set; }
-
-    [MaxLength(1)]
-    [Column(Order = 16)]
-    public char SoR { get; set; }
-
-    [MaxLength(100)]
-    [Column(Order = 17)]
-    public string TranspotrationEntity { get; set; }
-
+    [ForeignKey("Vendor")] 
+    public int VendorId { get; set; }
+        
     [Column(Order = 18)]
-    [Precision(18, 3)]    
+    [Precision(18, 3)]  
     public decimal DemurrageFee { get; set; }
 
     [Column(Order = 19)]
@@ -111,4 +73,8 @@ public class Transaction : Auditable
     public virtual Driver Driver { get; set; }
 
     public virtual Vehicle Vehicle { get; set; }
+
+    public virtual Vendor Vendor { get; set; }
+
+    public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
 }

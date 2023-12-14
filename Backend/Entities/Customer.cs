@@ -14,4 +14,6 @@ public class Customer : Auditable
     [Column(Order = 3)]
     [MaxLength(150)]
     public string CustomerName { get; set; }
+
+    public byte[] Photo { get; set; }
 }

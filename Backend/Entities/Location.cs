@@ -1,19 +1,17 @@
 namespace Backend.Entities;
 
-public class Vendor : Auditable
+public class Location : Auditable
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column(Order = 1)]
     public int Id { get; set; }
 
+    [MaxLength(20)]
     [Column(Order = 2)]
+    public string LocationCode { get; set; }
+
     [MaxLength(10)]
-    public string VendorCode { get; set; }
-
     [Column(Order = 3)]
-    [MaxLength(150)]
-    public string VendorName { get; set; }
-
-    public byte[] Photo { get; set; }
+    public string LocationName { get; set; }
 }
