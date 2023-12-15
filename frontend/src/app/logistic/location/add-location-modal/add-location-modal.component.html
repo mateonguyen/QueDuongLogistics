@@ -1,0 +1,27 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{ title }}</h4>
+	<wk-button icon="times" [iconSize]="24" (click)="closeModal()" [className]="'btn-empty'">
+	</wk-button>
+</div>
+<div class="modal-body">
+	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && onSubmit()" autocomplete="off">
+		<div class="form-group mb-3">
+			<label for="location_code" class="label-bold">Mã địa điểm</label>
+			<input type="text" id="location_code" class="form-input" [formControl]='editForm.controls["locationCode"]'
+				[class.is-invalid]='editForm.get("locationCode").errors && editForm.get("locationCode").touched'>
+			<div class="invalid-feedback" *ngIf='editForm.controls["locationCode"].errors?.required'>Vui lòng
+				nhập Mã địa điểm</div>
+		</div>
+		<div class="form-group mb-3">
+			<label for="location_name" class="label-bold">Tên địa điểm</label>
+			<input type="text" class="form-input" id="location_name" [formControl]='editForm.controls["locationName"]'
+				[class.is-invalid]='editForm.get("locationName").errors && editForm.get("locationName").touched'>
+			<div class="invalid-feedback" *ngIf='editForm.controls["locationName"].errors?.required'>Vui lòng
+				nhập Tên địa điểm</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<wk-button [className]="'btn btn-danger mr-2'" (click)="cancel()">Đóng</wk-button>
+	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'>Lưu</button>
+</div>

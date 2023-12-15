@@ -61,6 +61,15 @@
                         nhập Nơi cấp CCCD</div>
                 </div>
             </div>
+            <div class="col-sm-12 col-lg-12">
+                <div class="form-group mb-3">
+                    <label for="homeTown" class="label-bold">Quê quán</label>
+                    <input type="text" class="form-input" id="homeTown" [formControl]='editForm.controls["homeTown"]'
+                        [class.is-invalid]='editForm.get("homeTown").errors && editForm.get("homeTown").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["homeTown"].errors?.required'>Vui lòng
+                        nhập Quê quán</div>
+                </div>
+            </div>
         </div>
 	</form>
 </div>

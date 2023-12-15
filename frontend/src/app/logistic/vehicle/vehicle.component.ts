@@ -61,7 +61,7 @@ export class VehicleComponent implements OnInit {
 	onDelete(model: Vehicle) {
 		this.confirmModal = this._modalService.confirm({
 			nzTitle: 'Bạn chắc chắn muốn xóa?',
-			nzContent: 'Sau khi chọn Xóa, Nhóm người dùng <strong>#' + model.typeOfVehicle + '</strong> sẽ được xóa khỏi danh sách.',
+			nzContent: 'Sau khi chọn Xóa, Phương tiện <strong>#' + model.typeOfVehicle + '</strong> sẽ được xóa khỏi danh sách.',
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {

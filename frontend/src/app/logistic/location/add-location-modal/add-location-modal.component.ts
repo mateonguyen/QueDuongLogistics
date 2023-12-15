@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Vendor } from 'src/app/__models/vendor';
+import { Location } from 'src/app/__models/location';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { VendorService } from 'src/app/__services/vendor.service';
+import { LocationService } from 'src/app/__services/location.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
-	selector: 'app-add-vendor-modal',
-	templateUrl: 'add-vendor-modal.component.html',
-	styleUrls: ['add-vendor-modal.component.scss']
+	selector: 'app-add-location-modal',
+	templateUrl: 'add-location-modal.component.html',
+	styleUrls: ['add-location-modal.component.scss']
 })
-export class AddVendorModalComponent implements OnInit {
+export class AddLocationModalComponent implements OnInit {
 	title?: string;
 	editForm: FormGroup;
-	model: Vendor;
+	model: Location;
 
 	constructor(
 		public _modalRef: NzModalRef,
 		private _fb: FormBuilder,
-		private _dataService: VendorService,
+		private _dataService: LocationService,
 		private _notificationService: NzNotificationService,
 	) { }
 
@@ -29,20 +29,20 @@ export class AddVendorModalComponent implements OnInit {
 	initForm() {
 		this.editForm = this._fb.group({
 			id: [this.model?.id ?? 0],
-			vendorCode: [this.model?.vendorCode, Validators.required],
-			vendorName: [this.model?.vendorName, Validators.required],
+			locationCode: [this.model?.locationCode, Validators.required],
+			locationName: [this.model?.locationName, Validators.required],
 		});
 	}
 
 	onSubmit() {
 		this._modalRef.close();
 		if (!this.model) {
-			this._dataService.create(this.editForm.value as Vendor).subscribe({
+			this._dataService.create(this.editForm.value as Location).subscribe({
 				next: res => {
-					this._dataService.list = res as Vendor[];
+					this._dataService.list = res as Location[];
 					this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa thêm mới thành công thông tin Nhà cung cấp.',
+						'Bạn vừa thêm mới thành công thông tin Địa điểm.',
 						{ nzDuration: 5000, nzAnimate: true }
 					)
 				},
@@ -57,12 +57,12 @@ export class AddVendorModalComponent implements OnInit {
 				}
 			});
 		} else {
-			this._dataService.update(this.editForm.value as Vendor).subscribe({
+			this._dataService.update(this.editForm.value as Location).subscribe({
 				next: res => {
-					this._dataService.list = res as Vendor[];
+					this._dataService.list = res as Location[];
 					this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa chỉnh sửa thành công thông tin Nhà cung cấp.',
+						'Bạn vừa chỉnh sửa thành công thông tin Địa điểm.',
 						{ nzDuration: 5000, nzAnimate: true }
 					)
 				},

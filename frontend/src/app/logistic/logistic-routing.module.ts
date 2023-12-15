@@ -7,8 +7,10 @@ import { DriverComponent } from "./driver/driver.component";
 import { CustomerComponent } from "./customer/customer.component";
 import { VendorComponent } from "./vendor/vendor.component";
 import { VehicleComponent } from "./vehicle/vehicle.component";
+import { LocationComponent } from "./location/location.component";
 import { AddTransactionComponent } from "./transaction/add-transaction/add-transaction.component";
 import { PreventUnsavedChangesGuard } from "../__guards/prevent-unsaved-changes.guard";
+import { ShippingRouteComponent } from "./shipping-route/shipping-route.component";
 
 const routes: Routes = [
 	{
@@ -25,6 +27,8 @@ const routes: Routes = [
 
 			{ path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
 			{ path: 'vendor', component: VendorComponent, canActivate: [AuthGuard] },
+			{ path: 'location', component: LocationComponent, canActivate: [AuthGuard] },
+			{ path: 'shipping-route', component: ShippingRouteComponent, canActivate: [AuthGuard] },
 		],
 	},
 ]
