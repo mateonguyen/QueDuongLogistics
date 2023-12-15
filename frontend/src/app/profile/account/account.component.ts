@@ -2,12 +2,14 @@ import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { base64ToFile } from 'ngx-image-cropper';
 import { User } from 'src/app/__models/user';
 import { AccountQuery } from 'src/app/__states/account/account.query';
 import { AccountService } from 'src/app/__states/account/account.service';
 import { AvatarCropperComponent } from './avatar-cropper/avatar-cropper.component';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { ChangeDetectorRef } from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
 	selector: 'app-account',
@@ -19,15 +21,17 @@ export class AccountComponent implements OnInit {
 	model: User;
 	avatar: any = '';
 	editForm: FormGroup;
-	bsModalRef?: BsModalRef;
+	// bsModalRef?: BsModalRef;
 
 	constructor(
 		public accountQuery: AccountQuery,
-		private _modalService: BsModalService,
+		// private _modalService: BsModalService,
+		private _modalService: NzModalService,
 		private _fb: FormBuilder,
 		private _accountService: AccountService,
 		private _sanitizer: DomSanitizer,
-		@Inject(TuiAlertService) private readonly _notificationService: TuiAlertService
+		private _notificationService: NzNotificationService,
+		private cdr: ChangeDetectorRef
 	) { }
 
 	ngOnInit(): void {
@@ -38,7 +42,7 @@ export class AccountComponent implements OnInit {
 
 	initForm() {
 		if (this.model.photo) {
-			this.avatar = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + this.model.photo);
+			this.avatar = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + this.model.photo);;
 
 		}
 
@@ -51,29 +55,35 @@ export class AccountComponent implements OnInit {
 		});
 	}
 
+	openFileInput(): void {
+		this.fileInput.nativeElement.click();
+	}
+
 	fileChangeEvent(event: any): void {
-		let initialState = {};
-
-		if (event) {
-			initialState = {
-				imageChangedEvent: event,
-			};
-		}
-
-		this.bsModalRef = this._modalService.show(AvatarCropperComponent, { initialState });
-
-		this.bsModalRef.content.submit.subscribe((croppedImage) => {
-			this.avatar = croppedImage;
+		const cropperModalRef = this._modalService.create({
+			nzContent: AvatarCropperComponent,
+			nzClosable: false,
+			nzFooter: null,
+			nzWidth: 700,
+			nzComponentParams: {
+				imageChangedEvent: event
+			},
+			// nzOnOk: () => this.handleOk()
 		});
 
-		this._modalService.onHide.subscribe(() => {
+		cropperModalRef.afterClose.subscribe(result => {
+			if (result) {
+				this.avatar = result;
+				this.cdr.detectChanges();
+			}
+		});
+
+		this._modalService.afterAllClose.subscribe(() => {
 			this.fileInput.nativeElement.value = '';
 		});
 	}
 
 	save() {
-		this.editForm.value['photo'] = base64ToFile(this.avatar);
-
 		var formData: any = new FormData();
 		formData.append("id", this.editForm.value['id']);
 		formData.append('fullName', this.editForm.value['fullName']);
@@ -81,20 +91,27 @@ export class AccountComponent implements OnInit {
 		formData.append('biography', this.editForm.value['biography']);
 		formData.append('photoFile', base64ToFile(this.avatar));
 
-		this._accountService.editProfile(formData).subscribe((res) => {
-			this._notificationService.open('Bạn vừa cập nhật thành công thông tin tài khoản.', {
-				label: 'Chúc mừng!',
-				status: TuiNotification.Success,
-				autoClose: 5000
-			}).subscribe();
-		}, (err) => {
-			this._notificationService.open('Không thành công. Có lỗi xảy ra trong quá trình cập nhật thông tin tài khoản.', {
-				label: 'Lỗi!',
-				status: TuiNotification.Error,
-				autoClose: 5000
-			}).subscribe();
-			console.log(err);
+		this._accountService.editProfile(formData).subscribe({
+			next: () => {
+				// this._notificationService.open('Bạn vừa cập nhật thành công thông tin tài khoản.', {
+				// 	label: 'Chúc mừng!',
+				// 	status: TuiNotification.Success,
+				// 	autoClose: 5000
+				// }).subscribe();
+				this._notificationService.success(
+					'Chúc mừng!',
+					'Bạn vừa cập nhật thành công thông tin tài khoản.',
+					{ nzDuration: 5000, nzAnimate: true }
+				)
+			},
+			error: (err) => {
+				this._notificationService.error(
+					'Lỗi!',
+					err.error,
+					{ nzDuration: 5000, nzAnimate: true }
+				);
+				console.log(err);
+			}
 		});
 	}
-
 }

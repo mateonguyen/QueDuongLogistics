@@ -12,6 +12,7 @@ import { TuiAlertModule, TuiScrollbarModule } from '@taiga-ui/core';
 import { AvatarCropperComponent } from './account/avatar-cropper/avatar-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
 	declarations: [
@@ -31,7 +32,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 		TuiScrollbarModule,
 		ModalModule.forRoot(),
 		ImageCropperModule,
-		TuiAlertModule
+		TuiAlertModule,
+		NzModalModule
 	],
 })
 export class ProfileModule { }

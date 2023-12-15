@@ -15,10 +15,12 @@ public class AccountController : BaseApiController
     private readonly IMapper _mapper;    
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IPhotoService _photoService;
 
     public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        ITokenService tokenService, IMapper mapper, IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork)
+        ITokenService tokenService, IMapper mapper, IHttpContextAccessor httpContextAccessor, IUnitOfWork unitOfWork, IPhotoService photoService)
     {
+            _photoService = photoService;
         _mapper = mapper;
         _tokenService = tokenService;
         _signInManager = signInManager;
@@ -134,9 +136,7 @@ public class AccountController : BaseApiController
             Content = file.OpenReadStream()
         };
 
-        using var imageResult = await Image.LoadAsync(image.Content);
-
-        var photo = await SaveImage(imageResult, imageResult.Width);
+        var photo = await _photoService.Process(image);
 
         var user = await _userManager.FindByIdAsync(profile.Id.ToString());
 
@@ -150,44 +150,4 @@ public class AccountController : BaseApiController
 
         return Ok(_mapper.Map<UserDto>(user));
     }
-
-    private async Task<byte[]> SaveImage(Image image, int resizeWidth)
-    {
-        var width = image.Width;
-        var height = image.Height;
-
-        if (width > resizeWidth)
-        {
-            height = (int)((double)resizeWidth / width * height);
-            width = resizeWidth;
-        }
-
-        image.Mutate(i => i.Resize(new Size(width, height)));
-
-        image.Metadata.ExifProfile = null;
-
-        var memoryStream = new MemoryStream();
-
-        await image.SaveAsJpegAsync(memoryStream, new JpegEncoder
-        {
-            Quality = 75
-        });
-
-        return memoryStream.ToArray();
-    }
-
-    // [Authorize]
-    // [HttpPost]
-    // public async Task<ActionResult> Upload(IFormFile image)
-    // {
-
-    //     this._photoService.Process(new ImageInputDto
-    //     {
-    //         Name = image.FileName,
-    //         Type = image.ContentType,
-    //         Content = image.OpenReadStream()
-    //     });
-
-    //     return Ok();
-    // }
 }

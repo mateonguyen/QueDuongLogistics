@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
-// import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 
 @Component({
@@ -9,23 +9,33 @@ import { ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
 	styleUrls: ['./avatar-cropper.component.scss']
 })
 export class AvatarCropperComponent implements OnInit {
-	public submit = new EventEmitter();
+	@Output() submit = new EventEmitter();
 
 	imageChangedEvent: any = '';
 	croppedImage: any = '';
 	scale = 1;
-	transform: ImageTransform = {}
+	transform: ImageTransform = {
+		translateUnit: 'px'
+	}
 
 	constructor(
-		public bsModalRef: BsModalRef
+		public _modalRef: NzModalRef,
+		private _sanitizer: DomSanitizer
 	) { }
 
 	ngOnInit(): void {
 	}
 
-	save() {
-		this.submit.emit(this.croppedImage);
-		this.bsModalRef.hide();
+	onSubmit() {
+		// Pass cropped image to parent
+		// this.submit.emit(this.croppedImage);
+		this._modalRef.destroy(this.croppedImage);
+
+		this.close();
+	}
+
+	close() {
+		this._modalRef.close();
 	}
 
 	zoomOut() {
@@ -46,11 +56,5 @@ export class AvatarCropperComponent implements OnInit {
 
 	imageCropped(event: ImageCroppedEvent) {
 		this.croppedImage = event.base64;
-
-		// let b64Data = event.base64.split(',', 2)[1];
-		// var byteArray = new Buffer(b64Data, 'base64');
-
-		// // this.croppedImage = btoa(event.base64);
-		// console.log(byteArray);
 	}
 }

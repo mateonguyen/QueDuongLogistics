@@ -1,14 +1,14 @@
 <div class="modal-header">
 	<h4 class="modal-title pull-left">Thay đổi ảnh đại diện</h4>
-	<button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+	<button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
 		<span aria-hidden="true" class="visually-hidden">&times;</span>
 	</button>
 </div>
 <div class="modal-body">
-	<div class="profile-crop-image-container">
+	<div class="cropper-wrapper">
 		<image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [cropperMinWidth]="96"
-			[onlyScaleDown]="true" [roundCropper]="false" [transform]="transform" (imageCropped)="imageCropped($event)"
-			[alignImage]="'center'" [allowMoveImage]="true" [classList]="'cropper-container cropper-bg'" format="jpeg">
+			[transform]="transform" [aspectRatio]="1" [alignImage]="'center'" format="jpeg" [style.display]="null"
+			(imageCropped)="imageCropped($event)" [classList]="'cropper-bg'" [containWithinAspectRatio]="false">
 		</image-cropper>
 	</div>
 	<div class="crop-controls text-center">
@@ -23,10 +23,10 @@
 	</div>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+	<button type="button" class="btn btn-default" (click)="close()">
 		Hủy
 	</button>
-	<button type="button" class="btn btn-success" (click)="save()">
+	<button type="button" class="btn btn-success" (click)="onSubmit()">
 		Cập nhật
 	</button>
 </div>

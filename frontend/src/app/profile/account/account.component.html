@@ -23,16 +23,15 @@
 		<div class="my-3">
 			<div class="gl-search-box-by-type">
 				<svg-icon [name]="'search_'" [size]="16" class="gl-search-box-by-type-search-icon"></svg-icon>
-				<input type="text" placeholder="Search settings"
-					class="gl-form-input gl-search-box-by-type-input form-control" aria-label="Search settings"
-					id="__BVID__6">
+				<input type="text" placeholder="Search settings" class="gl-form-input gl-search-box-by-type-input form-control"
+					aria-label="Search settings" id="__BVID__6">
 				<div class="gl-search-box-by-type-right-icons">
 					<!---->
 					<!---->
 				</div>
 			</div>
 		</div>
-		<form [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" accept-charset="UTF-8">
+		<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && save()">
 			<div class="row">
 				<div class="col-lg-4">
 					<h4 class="mt-0">
@@ -44,19 +43,20 @@
 				</div>
 				<div class="col-lg-8">
 					<div class="avatar-image">
-						<a target="_blank" href="javascript:void(0);">
-							<!-- <img alt="{{user.userName}}" class="avatar s96" src="../../../assets/images/user.png"
+						<!-- <a target="_blank" href="javascript:void(0);"> -->
+						<!-- <img alt="{{user.userName}}" class="avatar s96" src="../../../assets/images/user.png"
 								loading="lazy"> -->
-							<img alt="{{model.userName}}" class="avatar s96"
-								[src]="avatar ? avatar : '../../../assets/images/user.png'" loading="lazy">
-						</a>
+						<!-- <img alt="{{model.userName}}" class="avatar s96"
+								[src]="avatar ? avatar : '../../../assets/images/user.png'"> -->
+						<img alt="{{model.userName}}" class="avatar s96" [src]="avatar">
+						<!-- </a> -->
 					</div>
 					<h5 class="mt-0">Upload new avatar</h5>
 					<div class="my-2">
 						<!-- <button class="btn btn-default js-choose-user-avatar-button" type="button"
 							(click)="fileInput.click()">Choose file...</button> -->
-						<wk-button [className]="'btn btn-default js-choose-user-avatar-button'"
-							(click)="fileInput.click()">Chọn ảnh...</wk-button>
+						<wk-button [className]="'btn btn-default js-choose-user-avatar-button'" (click)="openFileInput()">Chọn
+							ảnh...</wk-button>
 						<span class="avatar-file-name ms-2 js-avatar-filename">No file chosen.</span>
 						<input #fileInput class="js-user-avatar-input hidden" accept="image/*" type="file"
 							(change)="fileChangeEvent($event)" name="user[avatar]-trigger" id="user_avatar-trigger">
@@ -80,8 +80,7 @@
 					<div class="row">
 						<div class="form-group col-md-9 qa-full-name rspec-full-name">
 							<label for="full_name">Tên đầy đủ</label>
-							<input type="text" id="full_name" class="form-input"
-								[formControl]=' editForm.controls["fullName"]'
+							<input type="text" id="full_name" class="form-input" [formControl]=' editForm.controls["fullName"]'
 								[class.is-invalid]='editForm.get("fullName").errors && editForm.get("fullName").touched'>
 							<div class="invalid-feedback" *ngIf='editForm.controls["fullName"].errors?.required'>Vui
 								lòng nhập Tên nhóm</div>
@@ -99,8 +98,8 @@
 					</div>
 					<div class="form-group">
 						<label for="user_bio">Giới thiệu</label>
-						<textarea class="form-control" rows="4" maxlength="250"
-							[formControl]='editForm.controls["biography"]' id="user_bio"></textarea>
+						<textarea class="form-control" rows="4" maxlength="250" [formControl]='editForm.controls["biography"]'
+							id="user_bio"></textarea>
 						<small class="form-text text-muted">Hãy cho chúng tôi biết về bản thân bạn dưới 250 ký
 							tự</small>
 					</div>
