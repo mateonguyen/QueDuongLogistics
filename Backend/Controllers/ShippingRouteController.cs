@@ -1,5 +1,6 @@
 namespace Backend.Controllers
 {
+    [Authorize]
     public class ShippingRouteController : BaseApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -33,7 +34,7 @@ namespace Backend.Controllers
             // if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
             //     return StatusCode(StatusCodes.Status302Found);
             if (await _unitOfWork.ShippingRouteRepository.Exists(shippingRouteDto.RouteCode))
-                return BadRequest("Mã địa điểm đã tồn tại");
+                return BadRequest("Mã tuyến đường đã tồn tại");
 
             var route = _mapper.Map<ShippingRoute>(shippingRouteDto);
 

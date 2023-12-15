@@ -56,7 +56,6 @@ export class AccountComponent implements OnInit {
 
 		if (event) {
 			initialState = {
-				title: 'Sửa thông tin nhóm',
 				imageChangedEvent: event,
 			};
 		}

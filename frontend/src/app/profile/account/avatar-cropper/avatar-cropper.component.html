@@ -8,7 +8,7 @@
 	<div class="profile-crop-image-container">
 		<image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [cropperMinWidth]="96"
 			[onlyScaleDown]="true" [roundCropper]="false" [transform]="transform" (imageCropped)="imageCropped($event)"
-			[alignImage]="'center'" [classList]="'cropper-container cropper-bg'" format="png">
+			[alignImage]="'center'" [allowMoveImage]="true" [classList]="'cropper-container cropper-bg'" format="jpeg">
 		</image-cropper>
 	</div>
 	<div class="crop-controls text-center">
