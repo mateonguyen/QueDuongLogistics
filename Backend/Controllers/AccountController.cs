@@ -136,7 +136,7 @@ public class AccountController : BaseApiController
             Content = file.OpenReadStream()
         };
 
-        var photo = await _photoService.Process(image);
+        var photo = await _photoService.Process(image, 96);
 
         var user = await _userManager.FindByIdAsync(profile.Id.ToString());
 

@@ -39,6 +39,8 @@ public class AutoMapperProfiles : Profile
         CreateMap<Customer, CustomerDto>();
 
         CreateMap<CustomerDto, Customer>();
+        
+        CreateMap<CustomerForUpdateDto, Customer>();
 
         CreateMap<Driver, DriverDto>();
 

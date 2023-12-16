@@ -5,8 +5,11 @@ public class CustomerController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    public CustomerController(IUnitOfWork unitOfWork, IMapper mapper)
+    private readonly IPhotoService _photoService;
+
+    public CustomerController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService)
     {
+            _photoService = photoService;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
@@ -28,18 +31,30 @@ public class CustomerController : BaseApiController
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(CustomerDto customerDto)
+    public async Task<ActionResult> Create([FromForm]CustomerForUpdateDto customerDto)
     {
         // if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
         //     return StatusCode(StatusCodes.Status302Found);
         if (await _unitOfWork.CustomerRepository.Exists(customerDto.CustomerCode))
             return BadRequest("Mã khách hàng đã tồn tại");
 
+        var file = customerDto.PhotoFile;
+
+        var image = new ImageInputDto
+        {
+            Name = file.FileName,
+            Type = file.ContentType,
+            Content = file.OpenReadStream()
+        };
+
+        var photo = await _photoService.Process(image, 128);
+        
         var customer = _mapper.Map<Customer>(customerDto);
 
         customer.Creator = User.GetUsername();
         customer.Created = DateTime.Now;
         customer.CustomerCode = customerDto.CustomerCode.ToUpper();
+        customer.Photo = photo;
 
         await _unitOfWork.CustomerRepository.CreateAsync(customer);
 
@@ -51,16 +66,28 @@ public class CustomerController : BaseApiController
     }
 
     [HttpPut]
-    public async Task<ActionResult> Update(CustomerDto customerDto)
+    public async Task<ActionResult> Update([FromForm]CustomerForUpdateDto customerDto)
     {
         if (await _unitOfWork.CustomerRepository.Exists(customerDto.Id, customerDto.CustomerCode))
             return BadRequest("Mã khách hàng đã tồn tại");
+
+        var file = customerDto.PhotoFile;
+
+        var image = new ImageInputDto
+        {
+            Name = file.FileName,
+            Type = file.ContentType,
+            Content = file.OpenReadStream()
+        };
+
+        var photo = await _photoService.Process(image, 128);
 
         var customer = await _unitOfWork.CustomerRepository.SingleAsync(customerDto.Id);
 
         _mapper.Map(customerDto, customer);
 
         customer.CustomerCode = customerDto.CustomerCode.ToUpper();
+        customer.Photo = photo;
         customer.Modified = DateTime.Now;
         customer.Modifier = User.GetUsername();
 

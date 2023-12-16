@@ -1,0 +1,20 @@
+.avatar-image {
+	margin-bottom: 0.5rem;
+}
+
+.avatar-image .cust-logo {
+	width: 128px;
+}
+
+.avatar-file-name {
+	position: relative;
+	top: 2px;
+	display: inline-block;
+}
+
+@media (min-width: 576px) {
+	.avatar-image {
+		float: left;
+		margin-bottom: 0;
+	}
+}

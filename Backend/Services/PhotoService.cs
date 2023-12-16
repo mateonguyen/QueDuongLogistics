@@ -6,21 +6,20 @@ namespace Backend.Services;
 
 public interface IPhotoService
 {
-    Task<byte[]> Process(ImageInputDto image);
+    Task<byte[]> Process(ImageInputDto image, int resizeWidth);
 }
 
 public class PhotoService : IPhotoService
 {
     private const int AvatarSize = 96;
-    public async Task<byte[]> Process(ImageInputDto image)
+    public async Task<byte[]> Process(ImageInputDto image, int resizeWidth)
     {
         using var imageResult = await Image.LoadAsync(image.Content);
 
         // var original = await SaveImage(imageResult, imageResult.Width);
 
         var width = imageResult.Width;
-        var height = imageResult.Height;
-        var resizeWidth = AvatarSize;
+        var height = imageResult.Height;        
 
         if (width > resizeWidth)
         {
@@ -34,15 +33,12 @@ public class PhotoService : IPhotoService
 
         var memoryStream = new MemoryStream();
 
-        await imageResult.SaveAsJpegAsync(memoryStream, new JpegEncoder
-        {
-            Quality = 75
-        });
+        await imageResult.SaveAsJpegAsync(memoryStream);
 
         return memoryStream.ToArray();
     }
 
-    private async Task<byte[]> SaveImage(Image image, int resizeWidth)
+    public async Task<byte[]> SaveImage(Image image, int resizeWidth)
     {
         var width = image.Width;
         var height = image.Height;

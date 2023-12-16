@@ -1,0 +1,32 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">Thay đổi ảnh đại diện</h4>
+	<button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
+		<span aria-hidden="true" class="visually-hidden">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<div class="cropper-wrapper">
+		<image-cropper [imageChangedEvent]="imageChangedEvent" [transform]="transform" [maintainAspectRatio]="false"
+			[alignImage]="'center'" format="jpeg" [style.display]="null" (imageCropped)="imageCropped($event)"
+			[classList]="'cropper-bg'" [containWithinAspectRatio]="false">
+		</image-cropper>
+	</div>
+	<div class="crop-controls text-center">
+		<div class="btn-group">
+			<button class="btn btn-default" (click)="zoomOut()">
+				<svg-icon [name]="'search-minus'" [size]="16"></svg-icon>
+			</button>
+			<button class="btn btn-default" (click)="zoomIn()">
+				<svg-icon [name]="'search-plus'" [size]="16"></svg-icon>
+			</button>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" (click)="close()">
+		Hủy
+	</button>
+	<button type="button" class="btn btn-success" (click)="onSubmit()">
+		Cập nhật
+	</button>
+</div>

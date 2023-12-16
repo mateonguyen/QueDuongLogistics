@@ -32,6 +32,8 @@ import { LocationComponent } from './location/location.component';
 import { AddLocationModalComponent } from './location/add-location-modal/add-location-modal.component';
 import { ShippingRouteComponent } from './shipping-route/shipping-route.component';
 import { AddShippingRouteModalComponent } from './shipping-route/add-shipping-route-modal/add-shipping-route-modal.component';
+import { LogoCropperComponent } from './__components/logo-cropper/logo-cropper.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -50,11 +52,12 @@ import { AddShippingRouteModalComponent } from './shipping-route/add-shipping-ro
 		TransactionVendorSelectComponent,
 		AddDriverModalComponent,
 		AddVehicleModalComponent,
-  AddVendorModalComponent,
-  LocationComponent,
-  AddLocationModalComponent,
-  ShippingRouteComponent,
-  AddShippingRouteModalComponent,
+		AddVendorModalComponent,
+		LocationComponent,
+		AddLocationModalComponent,
+		ShippingRouteComponent,
+		AddShippingRouteModalComponent,
+		LogoCropperComponent
 	],
 	imports: [
 		CommonModule,
@@ -71,7 +74,8 @@ import { AddShippingRouteModalComponent } from './shipping-route/add-shipping-ro
 		NzDropDownModule,
 		NzNotificationModule,
 		NzCardModule,
-		NzDatePickerModule
+		NzDatePickerModule,
+		ImageCropperModule
 	],
 	providers: [DatePipe],
 })

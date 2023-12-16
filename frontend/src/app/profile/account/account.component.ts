@@ -42,7 +42,7 @@ export class AccountComponent implements OnInit {
 
 	initForm() {
 		if (this.model.photo) {
-			this.avatar = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + this.model.photo);;
+			this.avatar = 'data:image/png;base64,' + this.model.photo;
 
 		}
 
