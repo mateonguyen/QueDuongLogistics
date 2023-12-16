@@ -12,6 +12,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	transactionForm: FormGroup;
 	globalError: string;
 	model: Transaction;
+	showNoResult: boolean = false;
 
 	get f() {
 		return this.transactionForm?.controls;
