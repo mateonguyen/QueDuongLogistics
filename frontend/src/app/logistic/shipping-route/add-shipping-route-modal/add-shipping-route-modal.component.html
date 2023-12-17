@@ -15,9 +15,15 @@
 		<div class="form-group mb-3">
 			<label for="origin" class="label-bold">Tên điểm đầu</label>
 			<app-route-location-select [control]="f?.origin" (change)="onOriginChange($event)"></app-route-location-select>
-			<!-- <input type="text" class="form-input" id="origin" [formControl]='editForm.controls["origin"]'
-				[class.is-invalid]='editForm.get("origin").errors && editForm.get("origin").touched'>
-			<div class="invalid-feedback" *ngIf='editForm.controls["origin"].errors?.required'>Vui lòng
+			<!-- <app-route-location-select [control]="f?.origin"></app-route-location-select> -->
+
+			<!-- <nz-select nzAllowClear nzShowSearch class="w-full" [(ngModel)]="model.originId">
+				<nz-option *ngFor="let location of locations" [nzValue]="location" [nzLabel]="location.locationName">
+				</nz-option>
+			</nz-select> -->
+
+
+			<!-- <div class="invalid-feedback" *ngIf='editForm.controls["origin"].errors?.required'>Vui lòng
 				nhập Điểm đầu</div> -->
 
 

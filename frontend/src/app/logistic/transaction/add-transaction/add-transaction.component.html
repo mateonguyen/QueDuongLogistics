@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<form [formGroup]="transactionForm" (ngSubmit)="transactionForm.valid && save()">
-
+			<app-transaction-customer-select></app-transaction-customer-select>
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="customer_logo_div">
@@ -44,7 +44,7 @@
 						<div class="admin_date">13/12/2023</div>
 					</div>
 				</div>
-			
+
 			</div>
 
 			<div class="row mt-5">
@@ -85,10 +85,10 @@
 			</div>
 
 			<div class="row mt-5">
-				<nz-table #table  [classList]="'border-spacing-y-[10px]'">
+				<nz-table #table [classList]="'border-spacing-y-[10px]'">
 					<thead>
 						<tr role="row">
-							<th class="whitespace-nowrap" >Loại cont</th>
+							<th class="whitespace-nowrap">Loại cont</th>
 							<th class="whitespace-nowrap">Số cont</th>
 							<th class="whitespace-nowrap">Số kiện</th>
 							<th class="whitespace-nowrap">ĐVT Kiện</th>
@@ -101,7 +101,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						
+
 					</tbody>
 				</nz-table>
 			</div>
@@ -151,7 +151,7 @@
 								<th class="whitespace-nowrap">0</th>
 							</tr>
 						</tfoot>
-					</table>	
+					</table>
 				</div>
 				<div class="col-lg-6">
 					<table class="table table_price table-bordered">
@@ -185,9 +185,9 @@
 								<th class="whitespace-nowrap">0</th>
 							</tr>
 						</tfoot>
-					</table>	
+					</table>
 				</div>
-			</div>	
+			</div>
 
 
 			<div class="row mt-5">
@@ -205,7 +205,7 @@
 
 
 
-			
+
 		</form>
 	</main>
 </div>

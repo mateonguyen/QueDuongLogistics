@@ -44,12 +44,14 @@ export class AddShippingRouteModalComponent implements OnInit {
 			destinationId: [this.model?.destinationId, Validators.required],
 			destination: [this.model?.destination, Validators.required],
 		});
+
+		this.originCode = this.model?.origin.locationCode;
+		this.destCode = this.model?.destination.locationCode;
 	}
 
 	onOriginChange(event: Location) {
 		this.originCode = event ? event.locationCode : '';
 		this.originId = event ? event.id : null;
-
 		this.setRouteCodeValue();
 	}
 

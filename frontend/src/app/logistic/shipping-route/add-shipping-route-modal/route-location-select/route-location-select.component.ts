@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Location } from 'src/app/__models/location';
 import { LocationService } from 'src/app/__services/location.service';
 
 @Component({
@@ -15,12 +14,14 @@ export class RouteLocationSelectComponent implements OnInit {
 	constructor(
 		public locationService: LocationService
 	) {
-		if (!locationService.list)
-			locationService.refreshList();
+		if (!this.locationService.list)
+			this.locationService.refreshList();
 	}
 
-	ngOnInit(): void {
+	compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1.value === o2.value : o1 === o2);
 
+	ngOnInit(): void {
+		console.log(this.control.value);
 	}
 
 	onChange(event) {
