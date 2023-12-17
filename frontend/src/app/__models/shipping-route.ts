@@ -1,10 +1,10 @@
+import { Location } from './location';
+
 export interface ShippingRoute {
 	id: number;
 	routeCode: string;
-	origin: string;
-	destination: string;
-	created: Date;
-	creator: string;
-	modified: Date;
-	modifier: string;
+	originId: number;
+	destinationId: number;
+	origin: Location;
+	destination: Location;
 }

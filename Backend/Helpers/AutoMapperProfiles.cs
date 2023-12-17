@@ -61,5 +61,7 @@ public class AutoMapperProfiles : Profile
         CreateMap<ShippingRoute, ShippingRouteDto>();
 
         CreateMap<ShippingRouteDto, ShippingRoute>();
+        
+        CreateMap<ShippingRouteForCreationDto, ShippingRoute>();
     }
 }

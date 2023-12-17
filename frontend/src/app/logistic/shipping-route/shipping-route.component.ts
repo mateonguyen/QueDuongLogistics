@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { ShippingRoute } from 'src/app/__models/shipping-route';
 import { ShippingRouteService } from 'src/app/__services/shipping-route.service';
-import { removeVI } from 'jsrmvi';
 import { AddShippingRouteModalComponent } from './add-shipping-route-modal/add-shipping-route-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-shipping-route',

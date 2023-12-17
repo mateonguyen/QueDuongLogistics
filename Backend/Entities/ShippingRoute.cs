@@ -11,11 +11,16 @@ public class ShippingRoute : Auditable
     [Column(Order = 2)]
     public string RouteCode { get; set; }
 
-    [MaxLength(100)]
+    [ForeignKey("Origin")]
     [Column(Order = 3)]
-    public string Origin { get; set; }
+    public int OriginId { get; set; }
 
-    [MaxLength(100)]
+    [ForeignKey("Destination")]
     [Column(Order = 4)]
-    public string Destination { get; set; }
+    public int DestinationId { get; set; }
+
+    public virtual Location Origin { get; set; }
+    public virtual Location Destination { get; set; }
+
+
 }

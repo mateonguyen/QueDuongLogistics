@@ -7,24 +7,29 @@
 	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && onSubmit()" autocomplete="off">
 		<div class="form-group mb-3">
 			<label for="location_code" class="label-bold">Mã tuyến đường</label>
-			<input type="text" id="location_code" class="form-input" [formControl]='editForm.controls["routeCode"]'
-				[class.is-invalid]='editForm.get("routeCode").errors && editForm.get("routeCode").touched'>
-			<div class="invalid-feedback" *ngIf='editForm.controls["routeCode"].errors?.required'>Vui lòng
+			<input type="text" id="location_code" class="form-input" [formControl]='f?.routeCode'
+				[class.is-invalid]='f?.routeCode.errors && f?.routeCode.touched'>
+			<div class="invalid-feedback" *ngIf='f?.routeCode.errors?.required'>Vui lòng
 				nhập Mã tuyến đường</div>
 		</div>
 		<div class="form-group mb-3">
 			<label for="origin" class="label-bold">Tên điểm đầu</label>
-			<input type="text" class="form-input" id="origin" [formControl]='editForm.controls["origin"]'
+			<app-route-location-select [control]="f?.origin" (change)="onOriginChange($event)"></app-route-location-select>
+			<!-- <input type="text" class="form-input" id="origin" [formControl]='editForm.controls["origin"]'
 				[class.is-invalid]='editForm.get("origin").errors && editForm.get("origin").touched'>
 			<div class="invalid-feedback" *ngIf='editForm.controls["origin"].errors?.required'>Vui lòng
-				nhập Điểm đầu</div>
+				nhập Điểm đầu</div> -->
+
+
 		</div>
 		<div class="form-group mb-3">
 			<label for="destination" class="label-bold">Tên điểm cuối</label>
-			<input type="text" class="form-input" id="destination" [formControl]='editForm.controls["destination"]'
+			<app-route-location-select [control]="f?.destination"
+				(change)="onDestinationChange($event)"></app-route-location-select>
+			<!-- <input type=" text" class="form-input" id="destination" [formControl]='editForm.controls["destination"]'
 				[class.is-invalid]='editForm.get("destination").errors && editForm.get("destination").touched'>
 			<div class="invalid-feedback" *ngIf='editForm.controls["destination"].errors?.required'>Vui lòng
-				nhập Điểm cuối</div>
+				nhập Điểm cuối</div> -->
 		</div>
 	</form>
 </div>

@@ -78,7 +78,7 @@ public class WakDbContext : IdentityDbContext<AppUser, AppRole, int, IdentityUse
 
         builder.Entity<AppUser>()
             .HasMany(x => x.UserRoles)
-            .WithOne(x => x.User)
+            .WithOne(x => x.User)            
             .HasForeignKey(x => x.UserId)
             .IsRequired();
 
@@ -98,10 +98,20 @@ public class WakDbContext : IdentityDbContext<AppUser, AppRole, int, IdentityUse
                 .IsRequired();
 
             groupRole.HasOne(x => x.Role)
-                .WithMany(x => x.GroupRoles)
-                .HasForeignKey(x => x.RoleId)
+                .WithMany(x => x.GroupRoles)                
+                .HasForeignKey(x => x.RoleId)                
                 .IsRequired();
         });
+
+        builder.Entity<Location>()
+            .HasMany(x => x.Origins)
+            .WithOne(x => x.Origin)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.Entity<Location>()
+            .HasMany(x => x.Destinations)
+            .WithOne(x => x.Destination)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 
     private void ApplyAuditInformation()

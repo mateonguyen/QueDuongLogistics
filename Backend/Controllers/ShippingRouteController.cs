@@ -29,7 +29,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(ShippingRouteDto shippingRouteDto)
+        public async Task<ActionResult> Create(ShippingRouteForCreationDto shippingRouteDto)
         {
             // if (await _unitOfWork.CustomerRepository.CodeExists(customerDto.CustomerCode))
             //     return StatusCode(StatusCodes.Status302Found);
@@ -52,7 +52,7 @@ namespace Backend.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update(ShippingRouteDto shippingRouteDto)
+        public async Task<ActionResult> Update(ShippingRouteForCreationDto shippingRouteDto)
         {
             if (await _unitOfWork.ShippingRouteRepository.Exists(shippingRouteDto.Id, shippingRouteDto.RouteCode))
                 return BadRequest("Mã tuyến đường đã tồn tại");

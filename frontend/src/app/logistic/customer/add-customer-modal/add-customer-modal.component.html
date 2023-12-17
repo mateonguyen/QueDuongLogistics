@@ -5,19 +5,12 @@
 </div>
 <div class="modal-body">
 	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && onSubmit()" autocomplete="off">
-		<div class="mb-3 mt-2">
+		<div class="mb-4 mt-2">
 			<div class="avatar-image">
-				<!-- <a target="_blank" href="javascript:void(0);"> -->
-				<!-- <img alt="{{user.userName}}" class="avatar s96" src="../../../assets/images/user.png"
-						loading="lazy"> -->
 				<img class="cust-logo" [src]="photo ? photo : '../../../../assets/images/user.png'">
-				<!-- <img alt="{{model.userName}}" class="avatar s96" [src]="avatar"> -->
-				<!-- </a> -->
 			</div>
 			<h5 class="mt-0">Tải lên logo</h5>
 			<div class="my-2">
-				<!-- <button class="btn btn-default js-choose-user-avatar-button" type="button"
-					(click)="fileInput.click()">Choose file...</button> -->
 				<wk-button [className]="'btn btn-default js-choose-user-avatar-button'" (click)="openFileInput()">Chọn
 					ảnh...</wk-button>
 				<span class="avatar-file-name ms-2 js-avatar-filename">No file chosen.</span>
@@ -46,41 +39,3 @@
 	<wk-button [className]="'btn btn-danger mr-2'" (click)="cancel()">Đóng</wk-button>
 	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'>Lưu</button>
 </div>
-
-<!--
-<form [formGroup]="editForm" (ngSubmit)="editForm.valid && save()">
-	<div class="row">
-		<div class="col-lg-12 mt-3">
-			<h4 class="mt-0"> Thông tin khách hàng </h4>
-			<p> </p>
-		</div>
-		<div class="col-lg-12">
-			<div class="row">
-				<div class="col-lg-9">
-					<div class="form-group">
-						<label for="CustomerCode">Mã khách hàng</label>
-						<div class="text-danger"
-							*ngIf="editForm.get('CustomerCode').hasError('required') && editForm.get('CustomerCode').touched">
-							Mã khách hàng không được để trống.
-						</div>
-						<input id="CustomerCode" formControlName="CustomerCode" type="text" class="form-input" required>
-
-					</div>
-				</div>
-				<div class="col-lg-9">
-					<div class="form-group">
-						<label for="CustomerName">Tên khách hàng</label>
-						<div class="text-danger"
-							*ngIf="editForm.get('CustomerName').hasError('required') && editForm.get('CustomerName').touched">
-							Tên khách hàng không được để trống.
-						</div>
-						<input id="CustomerName" formControlName="CustomerName" type="text" class="form-input" required>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-12">
-			<button class="btn btn-primary px-5" type="submit">Lưu </button>
-		</div>
-	</div>
-</form> -->

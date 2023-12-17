@@ -34,6 +34,7 @@ import { ShippingRouteComponent } from './shipping-route/shipping-route.componen
 import { AddShippingRouteModalComponent } from './shipping-route/add-shipping-route-modal/add-shipping-route-modal.component';
 import { LogoCropperComponent } from './__components/logo-cropper/logo-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { RouteLocationSelectComponent } from './shipping-route/add-shipping-route-modal/route-location-select/route-location-select.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 		AddLocationModalComponent,
 		ShippingRouteComponent,
 		AddShippingRouteModalComponent,
-		LogoCropperComponent
+		LogoCropperComponent,
+		RouteLocationSelectComponent
 	],
 	imports: [
 		CommonModule,

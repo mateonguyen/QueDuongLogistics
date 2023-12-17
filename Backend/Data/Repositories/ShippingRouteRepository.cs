@@ -29,7 +29,7 @@ namespace Backend.Data.Repositories
 
         public async Task<IEnumerable<ShippingRouteDto>> ToListAsync()
         {
-            return await _context.ShippingRoutes.ProjectTo<ShippingRouteDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
+            return await _context.ShippingRoutes.Include(x => x.Origin).Include(x => x.Destination).ProjectTo<ShippingRouteDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
         }
     }
 }

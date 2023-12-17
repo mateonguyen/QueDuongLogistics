@@ -47,8 +47,8 @@
 									<tr role="row">
 										<th class="whitespace-nowrap" style="width: 1%;">#</th>
 										<th nzColumnKey="routeCode" [nzSortFn]="true" style="width: 25%;">Mã tuyến đường</th>
-										<th nzColumnKey="origin" [nzSortFn]="true">Điểm đầu</th>
-										<th nzColumnKey="destination" [nzSortFn]="true">Điểm cuối</th>
+										<th nzColumnKey="origin.locationName" [nzSortFn]="true">Điểm đầu</th>
+										<th nzColumnKey="destination.locationName" [nzSortFn]="true">Điểm cuối</th>
 										<th class="whitespace-nowrap" style="width: 1%">Thao tác</th>
 									</tr>
 								</thead>
@@ -56,8 +56,8 @@
 									<tr *ngFor="let item of table.data">
 										<td></td>
 										<td>{{ item.routeCode }}</td>
-										<td>{{ item.origin }}</td>
-										<td>{{ item.destination }}</td>
+										<td>{{ item.origin.locationName }}</td>
+										<td>{{ item.destination.locationName }}</td>
 										<td class="whitespace-nowrap">
 											<wk-button icon="pencil" [iconSize]="13" (click)="openEditModal(item)"
 												[className]="'btn-default mr-2'">Sửa</wk-button>
