@@ -23,43 +23,117 @@
 			
 			<div class="row">
 				<div class="col-lg-4">
-					<app-customer-section></app-customer-section>
+					<app-transaction-customer-select></app-transaction-customer-select>
 				</div>
 
 				<div class="col-lg-4">
 				</div>
 
 				<div class="col-lg-4">
-					<app-admin-section></app-admin-section>
+					<app-transaction-vendor-select></app-transaction-vendor-select>
 				</div>
 
 			</div>
 
 			<div class="row mt-5">
 				<div class="col-lg-4">
-					<app-driver-section></app-driver-section>
+					<app-transaction-driver-select></app-transaction-driver-select>
 				</div>
 
 				<div class="col-lg-4">
-					<app-vehicle-section></app-vehicle-section>
+					<app-transaction-vehicle-select></app-transaction-vehicle-select>
 				</div>
 
 				<div class="col-lg-4">
-					<app-shipping-route-section></app-shipping-route-section>
+					<app-transaction-shipping-route-select></app-transaction-shipping-route-select>
 				</div>
 
 			</div>
 
 			<div class="row mt-5">
-				<app-transaction-detail-section></app-transaction-detail-section>
+				<app-transaction-details></app-transaction-details>
 			</div>
 
 			<div class="row mt-5">
 				<div class="col-lg-6">
-					<app-transaction-price-section></app-transaction-price-section>
+					<table class="table table_price table-bordered">
+						<thead>
+							<tr>
+								<th class="whitespace-nowrap">Chi phí phát sinh</th>
+								<th class="whitespace-nowrap">Giá</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Phí lưu ca</td>
+								<td><input type="number" class="form-input" name="price_phi_luu_ca"></td>
+							</tr>
+							<tr>
+								<td>Phí ghép điểm</td>
+								<td><input type="number" class="form-input" name="price_phi_ghep_diem"></td>
+							</tr>
+							<tr>
+								<td>Phí hàng về</td>
+								<td><input type="number" class="form-input" name="price_phi_hang_ve"></td>
+							</tr>
+							<tr>
+								<td>Phí hải quan</td>
+								<td><input type="number" class="form-input" name="price_phi_hai_quan"></td>
+							</tr>
+							<tr>
+								<td>Phí bốc xếp</td>
+								<td><input type="number" class="form-input" name="price_phi_boc_xep"></td>
+							</tr>
+							<tr>
+								<td>Vé</td>
+								<td><input type="number" class="form-input" name="price_ve"></td>
+							</tr>
+							<tr>
+								<td>Phát sinh khác</td>
+								<td><input type="number" class="form-input" name="price_phat_sinh_khac"></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr role="row">
+								<th class="whitespace-nowrap">Tổng</th>
+								<th class="whitespace-nowrap">0</th>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 				<div class="col-lg-6">
-					<app-transaction-document-section></app-transaction-document-section>
+					<table class="table table_price table-bordered">
+						<thead>
+							<tr>
+								<th class="whitespace-nowrap">Biên bản giao hàng</th>
+								<th class="whitespace-nowrap">Giá</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Lái xe nộp đủ về VP</td>
+								<td><input type="number" class="form-input" name="price_phi_luu_ca"></td>
+							</tr>
+							<tr>
+								<td>Trả người quản lý giấy tờ</td>
+								<td><input type="number" class="form-input" name="price_phi_ghep_diem"></td>
+							</tr>
+							<tr>
+								<td>Trả khách hàng</td>
+								<td><input type="number" class="form-input" name="price_phi_hang_ve"></td>
+							</tr>
+							<tr>
+								<td>Ghi chú khác</td>
+								<td><input type="number" class="form-input" name="price_phi_hai_quan"></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr role="row">
+								<th class="whitespace-nowrap">Tổng</th>
+								<th class="whitespace-nowrap">0</th>
+							</tr>
+						</tfoot>
+					</table>
 				</div>
 			</div>
 
@@ -72,13 +146,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
 
 		</form>
 	</main>
