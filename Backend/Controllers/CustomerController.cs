@@ -9,7 +9,7 @@ public class CustomerController : BaseApiController
 
     public CustomerController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService)
     {
-            _photoService = photoService;
+        _photoService = photoService;
         _mapper = mapper;
         _unitOfWork = unitOfWork;
     }

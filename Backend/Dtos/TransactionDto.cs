@@ -31,7 +31,6 @@ public class TransactionDto
     public int DeliveredQuantity { get; set; }
     public char SoR { get; set; }
     public string TranspotrationEntity { get; set; }
-  
     public decimal DemurrageFee { get; set; }
     public decimal TransshipmentFee { get; set; }
     public decimal ReturnShippingFee { get; set; }
@@ -39,4 +38,5 @@ public class TransactionDto
     public decimal HandlingFee { get; set; }
     public decimal TicketFee { get; set; }
     public decimal OtherFee { get; set; }
+    public ICollection<TransactionDetail> TransactionDetails { get; set; }
 }
