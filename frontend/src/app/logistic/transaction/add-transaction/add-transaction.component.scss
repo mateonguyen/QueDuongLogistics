@@ -9,53 +9,7 @@ p {
     margin: 0;
 }
 
-.customer_logo_div, .customer_information_div, .admin_logo_div{
-    float: left;
-}
-
-.admin_information_div{
-    float : right;
-}
-
-.customer_logo, .admin_logo{
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: auto; 
-}
-
-.admin_logo_div, .customer_logo_div{
-    width: 40%;
-}
-
-.admin_logo_div{
-    text-align: right;
-}
-
-.customer_information_div{
-    margin-left : 20px;
-    .customer_title{
-        font-size: 20px;
-    }
-    .customer_code_generate{
-        font-size : 16px;
-    }
-}
-
-.admin_information_div{
-    margin-left : 20px;
-    border : 2px dotted #FFA629;
-    .admin_title, .admin_date{
-        font-size: 20px;
-        padding : 10px 30px;
-    }
-
-    .admin_title{
-        border-bottom : 2px dotted #FFA629;
-    }
-}
-
-.information_panel{
+::ng-deep .information_panel{
     background-color: #f5fbff;
     border: 1px solid #BDE3FF;
     padding: 20px;
@@ -67,15 +21,11 @@ p {
     text-align: center;
 }
 
-.btn-success{
-    color: white;
-}
-
-.table_price{
+::ng-deep .table_price{
     background-color: white;
 }
 
-.table_price thead > tr > th, .table_price tfoot > tr > th{
+::ng-deep.table_price thead > tr > th, .table_price tfoot > tr > th{
     background-color: #BDE3FF !important;
     font-weight: bolder;
     text-align: center;

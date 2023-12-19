@@ -1,0 +1,33 @@
+.admin_logo_div{
+    float: left;
+}
+.admin_logo{
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: auto; 
+}
+.admin_logo_div{
+    width: 40%;
+}
+
+.admin_information_div{
+    float : right;
+}
+
+.admin_logo_div{
+    text-align: right;
+}
+
+.admin_information_div{
+    margin-left : 20px;
+    border : 2px dotted #FFA629;
+    .admin_title, .admin_date{
+        font-size: 20px;
+        padding : 10px 30px;
+    }
+
+    .admin_title{
+        border-bottom : 2px dotted #FFA629;
+    }
+}

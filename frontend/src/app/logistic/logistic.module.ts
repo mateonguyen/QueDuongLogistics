@@ -35,6 +35,14 @@ import { AddShippingRouteModalComponent } from './shipping-route/add-shipping-ro
 import { LogoCropperComponent } from './__components/logo-cropper/logo-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { RouteLocationSelectComponent } from './shipping-route/add-shipping-route-modal/route-location-select/route-location-select.component';
+import { CustomerSectionComponent } from './transaction/add-transaction/customer-section/customer-section.component';
+import { AdminSectionComponent } from './transaction/add-transaction/admin-section/admin-section.component';
+import { DriverSectionComponent } from './transaction/add-transaction/driver-section/driver-section.component';
+import { VehicleSectionComponent } from './transaction/add-transaction/vehicle-section/vehicle-section.component';
+import { ShippingRouteSectionComponent } from './transaction/add-transaction/shipping-route-section/shipping-route-section.component';
+import { TransactionDetailSectionComponent } from './transaction/add-transaction/transaction-detail-section/transaction-detail-section.component';
+import { TransactionPriceSectionComponent } from './transaction/add-transaction/transaction-price-section/transaction-price-section.component';
+import { TransactionDocumentSectionComponent } from './transaction/add-transaction/transaction-document-section/transaction-document-section.component';
 
 
 @NgModule({
@@ -59,7 +67,15 @@ import { RouteLocationSelectComponent } from './shipping-route/add-shipping-rout
 		ShippingRouteComponent,
 		AddShippingRouteModalComponent,
 		LogoCropperComponent,
-		RouteLocationSelectComponent
+		RouteLocationSelectComponent,
+  CustomerSectionComponent,
+  AdminSectionComponent,
+  DriverSectionComponent,
+  VehicleSectionComponent,
+  ShippingRouteSectionComponent,
+  TransactionDetailSectionComponent,
+  TransactionPriceSectionComponent,
+  TransactionDocumentSectionComponent
 	],
 	imports: [
 		CommonModule,

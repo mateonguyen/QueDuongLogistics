@@ -20,172 +20,46 @@
 			</div>
 		</div>
 		<form [formGroup]="transactionForm" (ngSubmit)="transactionForm.valid && save()">
-			<app-transaction-customer-select></app-transaction-customer-select>
+			
 			<div class="row">
 				<div class="col-lg-4">
-					<div class="customer_logo_div">
-						<img src="../../assets/images/lenh_dieu_van_logo.png" class="customer_logo">
-					</div>
-					<div class="customer_information_div">
-						<div class="customer_title">CHUNIL <span nz-icon nzType="edit"></span></div>
-						<div class="customer_code_generate">13.12.23.CN.071</div>
-					</div>
+					<app-customer-section></app-customer-section>
 				</div>
 
 				<div class="col-lg-4">
 				</div>
 
 				<div class="col-lg-4">
-					<div class="admin_logo_div">
-						<img src="../../assets/images/logistic_logo.jpg" class="admin_logo">
-					</div>
-					<div class="admin_information_div">
-						<div class="admin_title">Quế Dương</div>
-						<div class="admin_date">13/12/2023</div>
-					</div>
+					<app-admin-section></app-admin-section>
 				</div>
 
 			</div>
 
 			<div class="row mt-5">
 				<div class="col-lg-4">
-					<div class="information_panel">
-						<h4>Thông tin lái xe</h4>
-						<app-transaction-driver-select></app-transaction-driver-select>
-						<p><b>Họ và tên </b> : <span class="information_driver_name">Phùng Văn Huân</span></p>
-						<p><b>Ngày Sinh </b> : <span class="information_driver_birthday">01.12.1997</span></p>
-						<p><b>Số CCCD </b> : <span class="information_driver_identity">004097005598</span></p>
-						<p><b>Số điện thoại </b> : <span class="information_driver_phone">0326 136 244</span></p>
-						<p><b>Quê Quán </b> : <span class="information_driver_home">Mỹ Hưng, Quảng Hòa, Cao Bằng</span></p>
-					</div>
+					<app-driver-section></app-driver-section>
 				</div>
 
 				<div class="col-lg-4">
-					<div class="information_panel">
-						<h4>Thông tin phương tiện</h4>
-						<app-transaction-vehicle-select></app-transaction-vehicle-select>
-						<p><b>Loại xe </b> : <span class="information_vehicle_name"> Xe rơ-mooc</span></p>
-						<p><b>Biển số </b> : <span class="information_vehicle_number"> 29R1 - 000.01</span></p>
-						<p><b>Số đăng kiểm </b> : <span class="information_vehicle_number"> XX-AACC</span></p>
-					</div>
+					<app-vehicle-section></app-vehicle-section>
 				</div>
 
 				<div class="col-lg-4">
-					<div class="information_panel">
-						<h4>Thông tin vận chuyển</h4>
-						<app-transaction-vehicle-select></app-transaction-vehicle-select>
-						<p><b>Điểm nhận hàng </b> : <span class="information_location_name"> Bắc Ninh</span></p>
-						<p><b>Ngày nhận hàng </b> : <span class="information_location_date"> 13/12/2023</span></p>
-						<p><b>Người nhận hàng </b> : <span class="information_location_person"> Nguyễn Văn A</span></p>
-						<p><b>Điểm giao hàng </b> : <span class="information_location_receiver_name"> Hà Nội</span></p>
-						<p><b>Ngày giao hàng </b> : <span class="information_location_receiver_date"> 14/12/2023</span></p>
-					</div>
+					<app-shipping-route-section></app-shipping-route-section>
 				</div>
 
 			</div>
 
 			<div class="row mt-5">
-				<nz-table #table [classList]="'border-spacing-y-[10px]'">
-					<thead>
-						<tr role="row">
-							<th class="whitespace-nowrap">Loại cont</th>
-							<th class="whitespace-nowrap">Số cont</th>
-							<th class="whitespace-nowrap">Số kiện</th>
-							<th class="whitespace-nowrap">ĐVT Kiện</th>
-							<th class="whitespace-nowrap">Số lượng</th>
-							<th class="whitespace-nowrap">ĐVT</th>
-							<th class="whitespace-nowrap">Mô tả hàng hóa</th>
-							<th class="whitespace-nowrap">Nơi giao</th>
-							<th class="whitespace-nowrap">Thời gian giao</th>
-							<th class="whitespace-nowrap"><button type="button" class="btn btn-success">Thêm mới</button></th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</nz-table>
+				<app-transaction-detail-section></app-transaction-detail-section>
 			</div>
 
 			<div class="row mt-5">
 				<div class="col-lg-6">
-					<table class="table table_price table-bordered">
-						<thead>
-							<tr>
-								<th class="whitespace-nowrap">Chi phí phát sinh</th>
-								<th class="whitespace-nowrap">Giá</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Phí lưu ca</td>
-								<td><input type="number" class="form-input" name="price_phi_luu_ca"></td>
-							</tr>
-							<tr>
-								<td>Phí ghép điểm</td>
-								<td><input type="number" class="form-input" name="price_phi_ghep_diem"></td>
-							</tr>
-							<tr>
-								<td>Phí hàng về</td>
-								<td><input type="number" class="form-input" name="price_phi_hang_ve"></td>
-							</tr>
-							<tr>
-								<td>Phí hải quan</td>
-								<td><input type="number" class="form-input" name="price_phi_hai_quan"></td>
-							</tr>
-							<tr>
-								<td>Phí bốc xếp</td>
-								<td><input type="number" class="form-input" name="price_phi_boc_xep"></td>
-							</tr>
-							<tr>
-								<td>Vé</td>
-								<td><input type="number" class="form-input" name="price_ve"></td>
-							</tr>
-							<tr>
-								<td>Phát sinh khác</td>
-								<td><input type="number" class="form-input" name="price_phat_sinh_khac"></td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr role="row">
-								<th class="whitespace-nowrap">Tổng</th>
-								<th class="whitespace-nowrap">0</th>
-							</tr>
-						</tfoot>
-					</table>
+					<app-transaction-price-section></app-transaction-price-section>
 				</div>
 				<div class="col-lg-6">
-					<table class="table table_price table-bordered">
-						<thead>
-							<tr>
-								<th class="whitespace-nowrap">Biên bản giao hàng</th>
-								<th class="whitespace-nowrap">Giá</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Lái xe nộp đủ về VP</td>
-								<td><input type="number" class="form-input" name="price_phi_luu_ca"></td>
-							</tr>
-							<tr>
-								<td>Trả người quản lý giấy tờ</td>
-								<td><input type="number" class="form-input" name="price_phi_ghep_diem"></td>
-							</tr>
-							<tr>
-								<td>Trả khách hàng</td>
-								<td><input type="number" class="form-input" name="price_phi_hang_ve"></td>
-							</tr>
-							<tr>
-								<td>Ghi chú khác</td>
-								<td><input type="number" class="form-input" name="price_phi_hai_quan"></td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr role="row">
-								<th class="whitespace-nowrap">Tổng</th>
-								<th class="whitespace-nowrap">0</th>
-							</tr>
-						</tfoot>
-					</table>
+					<app-transaction-document-section></app-transaction-document-section>
 				</div>
 			</div>
 

@@ -1,0 +1,25 @@
+.customer_logo_div, .customer_information_div{
+    float: left;
+}
+
+.customer_logo{
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: auto; 
+}
+
+.customer_logo_div{
+    width: 40%;
+}
+
+
+.customer_information_div{
+    margin-left : 20px;
+    .customer_title{
+        font-size: 20px;
+    }
+    .customer_code_generate{
+        font-size : 16px;
+    }
+}
