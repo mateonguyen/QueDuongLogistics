@@ -40,7 +40,7 @@ public class UnitOfWork : IUnitOfWork
     public ICodeRepository CodeRepository => new CodeRepository(_context, _mapper);
     public ICodeValueRepository CodeValueRepository => new CodeValueRepository(_context, _mapper);
     public IAuditRepository AuditRepository => new AuditRepository(_context, _mapper);
-    public ITransactionRepository TransactionRepository => new TransactionRepository(_context);
+    public ITransactionRepository TransactionRepository => new TransactionRepository(_context, _mapper);
     public IDriverRepository DriverRepository => new DriverRepository(_context, _mapper);
     public ICustomerRepository CustomerRepository => new CustomerRepository(_context, _mapper);
     public IVehicleRepository VehicleRepository => new VehicleRepository(_context, _mapper);

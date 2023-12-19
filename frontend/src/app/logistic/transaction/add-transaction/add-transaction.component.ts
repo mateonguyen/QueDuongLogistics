@@ -9,13 +9,13 @@ import { Transaction } from 'src/app/__models/transaction';
 	styleUrls: ['./add-transaction.component.scss']
 })
 export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
-	transactionForm: FormGroup;
+	editForm: FormGroup;
 	globalError: string;
 	model: Transaction;
 	showNoResult: boolean = false;
 
 	get f() {
-		return this.transactionForm?.controls;
+		return this.editForm?.controls;
 	}
 
 	constructor(
@@ -27,7 +27,8 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 
 	initForm() {
-		this.transactionForm = this._fb.group({
+		this.editForm = this._fb.group({
+			customerId: this.model?.customerId,
 			customer: [this.model?.customer],
 		});
 	}
@@ -35,7 +36,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	save() { }
 
 	canDeactivate(): boolean {
-		if (this.transactionForm.dirty) {
+		if (this.editForm.dirty) {
 			return confirm('Bạn có chắc chắn muốn tiếp tục? Dữ liệu có thể sẽ bị mất nếu không lưu.')
 		}
 		return true;

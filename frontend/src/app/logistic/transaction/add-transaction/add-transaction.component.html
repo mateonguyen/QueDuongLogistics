@@ -19,11 +19,11 @@
 				</div>
 			</div>
 		</div>
-		<form [formGroup]="transactionForm" (ngSubmit)="transactionForm.valid && save()">
-			
+		<form [formGroup]="editForm" (ngSubmit)="editForm.valid && save()">
+
 			<div class="row">
 				<div class="col-lg-4">
-					<app-transaction-customer-select></app-transaction-customer-select>
+					<app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select>
 				</div>
 
 				<div class="col-lg-4">

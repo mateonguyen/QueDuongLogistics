@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Customer } from 'src/app/__models/customer';
@@ -12,6 +12,7 @@ import { AddCustomerModalComponent } from 'src/app/logistic/customer/add-custome
 })
 export class TransactionCustomerSelectComponent implements OnInit {
 	@Input() control: FormControl;
+	@Output() change = new EventEmitter();
 	customers: Customer[];
 
 	constructor(
@@ -23,6 +24,12 @@ export class TransactionCustomerSelectComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+
+	}
+
+	compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1.value === o2.value : o1 === o2);
+
+	onChange() {
 
 	}
 
