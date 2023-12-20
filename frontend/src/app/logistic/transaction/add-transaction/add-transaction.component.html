@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<form #editForm="ngForm" (ngSubmit)="editForm.valid && save()">
-
+			<button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Tạo điều vận</button>
 			<div class="row">
 				<div class="col-lg-4">
 					<!-- <app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select> -->
@@ -37,7 +37,7 @@
 
 			<div class="row mt-5">
 				<div class="col-lg-4">
-					<app-transaction-driver-select [(model)]="transaction.driver"></app-transaction-driver-select>
+					<app-transaction-driver-select [(model)]="transaction.driver" (change)="onDriverChange($event)"></app-transaction-driver-select>
 				</div>
 
 				<div class=" col-lg-4">

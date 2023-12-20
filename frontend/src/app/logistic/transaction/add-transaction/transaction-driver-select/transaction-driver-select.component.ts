@@ -3,6 +3,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { Driver } from 'src/app/__models/driver';
 import { DriverService } from 'src/app/__services/driver.service';
 import { AddDriverModalComponent } from 'src/app/logistic/driver/add-driver-modal/add-driver-modal.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-transaction-driver-select',
@@ -18,13 +19,22 @@ export class TransactionDriverSelectComponent implements OnInit {
 	constructor(
 		public driverService: DriverService,
 		private _modalService: NzModalService,
-		// private datePipe: DatePipe
+		private datePipe: DatePipe
 	) {
 		if (!driverService.list)
 			driverService.refreshList();
 	}
 
 	ngOnInit(): void {
+	}
+
+	onDriverChange() {
+		this.change.emit(this.model);
+	}
+
+	formatHumanDate(dateString) : string {
+		var pattern = /(\d{4})(\d{2})(\d{2})/;
+		return this.datePipe.transform(new Date(dateString.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
 	}
 
 	compareFn = (o1: Driver, o2: Driver): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);

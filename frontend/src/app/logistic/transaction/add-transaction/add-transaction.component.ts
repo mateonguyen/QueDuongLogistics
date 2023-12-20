@@ -34,8 +34,14 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		// 	driver: [this.model?.driver]
 		// });
 	}
+	
+	onDriverChange(selectedDriver) {
+		this.transaction.driver = selectedDriver;
+	}
 
-	save() { }
+	save() {
+		console.log(this.transaction);
+	}
 
 	canDeactivate(): boolean {
 		if (this.editForm.dirty) {
