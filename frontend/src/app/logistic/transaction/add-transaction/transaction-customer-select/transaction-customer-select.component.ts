@@ -14,6 +14,7 @@ export class TransactionCustomerSelectComponent implements OnInit {
 	@Input() control: FormControl;
 	@Output() change = new EventEmitter();
 	customers: Customer[];
+	customer: Customer;
 
 	constructor(
 		public customerService: CustomerService,
