@@ -15,12 +15,7 @@ export class TransactionDriverSelectComponent implements OnInit {
 	@Input() control = new FormControl();
 	@Output() change = new EventEmitter();
 	drivers: Driver[];
-	driverBrithdate: string = '';
-	drivername: string = '';
-	phoneNo: string = '';
-	identityCardNo: string = '';
-	homeTown: string = '';
-	driverId: number;
+	driverSelected: Driver;
 
 	constructor(
 		public driverService: DriverService,
