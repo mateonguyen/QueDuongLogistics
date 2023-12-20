@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Customer } from 'src/app/__models/customer';
+import { Driver } from 'src/app/__models/driver';
 import { CustomerService } from 'src/app/__services/customer.service';
 import { AddCustomerModalComponent } from 'src/app/logistic/customer/add-customer-modal/add-customer-modal.component';
 
@@ -28,7 +29,7 @@ export class TransactionCustomerSelectComponent implements OnInit {
 
 	}
 
-	compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1.value === o2.value : o1 === o2);
+	compareFn = (o1: Driver, o2: Driver): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 	onChange() {
 

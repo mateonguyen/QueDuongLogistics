@@ -19,39 +19,39 @@
 				</div>
 			</div>
 		</div>
-		<form [formGroup]="editForm" (ngSubmit)="editForm.valid && save()">
+		<form #editForm="ngForm" (ngSubmit)="editForm.valid && save()">
 
 			<div class="row">
 				<div class="col-lg-4">
-					<app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select>
+					<!-- <app-transaction-customer-select [control]="f?.customer"></app-transaction-customer-select> -->
 				</div>
 
 				<div class="col-lg-4">
 				</div>
 
 				<div class="col-lg-4">
-					<app-transaction-vendor-select></app-transaction-vendor-select>
+					<!-- <app-transaction-vendor-select></app-transaction-vendor-select> -->
 				</div>
 
 			</div>
 
 			<div class="row mt-5">
 				<div class="col-lg-4">
-					<app-transaction-driver-select></app-transaction-driver-select>
+					<app-transaction-driver-select [(model)]="transaction.driver"></app-transaction-driver-select>
+				</div>
+
+				<div class=" col-lg-4">
+					<!-- <app-transaction-vehicle-select></app-transaction-vehicle-select> -->
 				</div>
 
 				<div class="col-lg-4">
-					<app-transaction-vehicle-select></app-transaction-vehicle-select>
-				</div>
-
-				<div class="col-lg-4">
-					<app-transaction-shipping-route-select></app-transaction-shipping-route-select>
+					<!-- <app-transaction-shipping-route-select></app-transaction-shipping-route-select> -->
 				</div>
 
 			</div>
 
 			<div class="row mt-5">
-				<app-transaction-details></app-transaction-details>
+				<!-- <app-transaction-details></app-transaction-details> -->
 			</div>
 
 			<div class="row mt-5">

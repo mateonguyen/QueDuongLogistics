@@ -11,7 +11,7 @@ import { Transaction } from 'src/app/__models/transaction';
 export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	editForm: FormGroup;
 	globalError: string;
-	model: Transaction;
+	transaction: Transaction = new Transaction();
 	showNoResult: boolean = false;
 
 	get f() {
@@ -27,10 +27,12 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 
 	initForm() {
-		this.editForm = this._fb.group({
-			customerId: this.model?.customerId,
-			customer: [this.model?.customer],
-		});
+		// this.editForm = this._fb.group({
+		// 	customerId: [this.model?.customerId],
+		// 	customer: [this.model?.customer],
+		// 	driverId: [this.model?.driverId],
+		// 	driver: [this.model?.driver]
+		// });
 	}
 
 	save() { }
