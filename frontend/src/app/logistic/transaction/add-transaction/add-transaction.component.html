@@ -41,7 +41,7 @@
 				</div>
 
 				<div class=" col-lg-4">
-					<!-- <app-transaction-vehicle-select></app-transaction-vehicle-select> -->
+					<app-transaction-vehicle-select [(model)]="transaction.vehicle" (change)="onVehicleChange($event)"></app-transaction-vehicle-select>
 				</div>
 
 				<div class="col-lg-4">

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Vehicle } from 'src/app/__models/vehicle';
 import { VehicleService } from 'src/app/__services/vehicle.service';
@@ -12,10 +11,9 @@ import { DatePipe } from '@angular/common';
 	styleUrls: ['./transaction-vehicle-select.component.scss']
 })
 export class TransactionVehicleSelectComponent implements OnInit {
-	@Input() control = new FormControl();
+	@Input() model: Vehicle;
 	@Output() change = new EventEmitter();
 	vehicles: Vehicle[];
-	vehicleSelected: Vehicle;
 
 	constructor(
 		public vehicleService: VehicleService,
@@ -27,22 +25,14 @@ export class TransactionVehicleSelectComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.control.valueChanges.subscribe(selectedId  => {
-			const selectedVehicle = this.vehicleService.list.find(vehicle => vehicle.id === selectedId);
-			this.onSelectChange(selectedVehicle);
-		});
 	}
 
-  	initForm() {
-
+	onVehicleChange() {
+		console.log(this.model);
+		this.change.emit(this.model);
 	}
 
-	compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1.value === o2.value : o1 === o2);
-
-	onSelectChange(selectedVehicle): void {
-		this.vehicleSelected = selectedVehicle;
-		console.log(this.vehicleSelected);
-	}
+	compareFn = (o1: Vehicle, o2: Vehicle): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 	openEditModal() {
 		this._modalService.create({
