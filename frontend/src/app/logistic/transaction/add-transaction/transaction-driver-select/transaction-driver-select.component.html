@@ -15,7 +15,7 @@
 				</nz-select>
 				<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18" (click)="openEditModal()"></wk-button>
 				<ng-template #selectedTemplate let-selected>
-					{{ drivername ?? selected.nzValue }}
+					{{ driverSelected ? driverSelected.fullName : selected.nzValue }}
 				</ng-template>
 			</div>
 		</div>
@@ -23,25 +23,25 @@
 			<b>Ngày Sinh </b> : 
 		</div>
 		<div class="col-lg-8">
-			<span class="information_driver_birthday">{{ driverBrithdate }}</span>
+			<input type="text" class="form-input" value="{{ driverSelected ? formatHumanDate(driverSelected.dateOfBirth) : '' }}" disabled>
 		</div>
 		<div class="col-lg-4">
 			<b>Số CCCD </b> : 
 		</div>
 		<div class="col-lg-8">
-			<span class="information_driver_identity">{{ phoneNo }}</span>
+			<input type="text" class="form-input" value="{{ driverSelected?.phoneNo }}" disabled>
 		</div>
 		<div class="col-lg-4">
 			<b>Số điện thoại </b> :
 		</div>
 		<div class="col-lg-8">
-			<span class="information_driver_phone">{{ identityCardNo }}</span>
+			<input type="text" class="form-input" value="{{ driverSelected?.identityCardNo }}" disabled>
 		</div>
 		<div class="col-lg-4">
 			<b>Quê Quán </b> :
 		</div>
 		<div class="col-lg-8">
-			<span class="information_driver_home">{{ homeTown }}</span>
+			<input type="text" class="form-input" value="{{ driverSelected?.homeTown }}" disabled>
 		</div>
 	</div>
 </div>
