@@ -40,15 +40,14 @@ export class TransactionDriverSelectComponent implements OnInit {
 
 	compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1.value === o2.value : o1 === o2);
 
-	onSelectChange(drivers): void {
+	onSelectChange(selectedShippingRoute): void {
+		this.driverSelected = selectedShippingRoute;
+		console.log(this.driverSelected);
+	}
+
+	formatHumanDate(dateString) : string {
 		var pattern = /(\d{4})(\d{2})(\d{2})/;
-		this.driverBrithdate = this.datePipe.transform(new Date(drivers.dateOfBirth.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
-		this.phoneNo = drivers.phoneNo;
-		this.identityCardNo = drivers.identityCardNo;
-		this.homeTown = drivers.homeTown;
-		this.driverId = drivers.id;
-		this.drivername = drivers.fullName;
-		// Handle the change as needed
+		return this.datePipe.transform(new Date(dateString.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
 	}
 
 	openEditModal() {
