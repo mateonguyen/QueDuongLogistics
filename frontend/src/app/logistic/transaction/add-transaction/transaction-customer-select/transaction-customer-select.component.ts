@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Customer } from 'src/app/__models/customer';
 import { CustomerService } from 'src/app/__services/customer.service';
@@ -12,6 +12,7 @@ import { AddCustomerModalComponent } from 'src/app/logistic/customer/add-custome
 export class TransactionCustomerSelectComponent implements OnInit {
 	@Input() customer: Customer;
 	@Input() transactionCode: string;
+	@Output() change = new EventEmitter();
 
 	constructor(
 		public customerService: CustomerService,
@@ -28,7 +29,7 @@ export class TransactionCustomerSelectComponent implements OnInit {
 	compareFn = (o1: Customer, o2: Customer): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 	onChange() {
-
+		this.change.emit(this.customer);
 	}
 
 	openEditModal() {

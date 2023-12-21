@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CanComponentDeactivate } from '../../../__guards/prevent-unsaved-changes.guard';
 import { Transaction } from 'src/app/__models/transaction';
+import { Customer } from 'src/app/__models/customer';
+import { Driver } from 'src/app/__models/driver';
+import { Vehicle } from 'src/app/__models/vehicle';
 
 @Component({
 	selector: 'app-add-transaction',
@@ -9,21 +12,22 @@ import { Transaction } from 'src/app/__models/transaction';
 	styleUrls: ['./add-transaction.component.scss']
 })
 export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
-	editForm: FormGroup;
+	@ViewChild("editForm") editForm: NgForm;
+	@HostListener('window:beforeunload', ['event']) unloadNotification($event: any) {
+		if (this.editForm.dirty) {
+			$event.returnValue = true;
+		}
+	}
 	globalError: string;
 	transaction: Transaction = new Transaction();
 	showNoResult: boolean = false;
 
-	get f() {
-		return this.editForm?.controls;
-	}
 
 	constructor(
-		private _fb: FormBuilder
 	) { }
 
 	ngOnInit(): void {
-		this.initForm();
+		// this.initForm();
 	}
 
 	initForm() {
@@ -33,14 +37,19 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		// });
 	}
 
-	onDriverChange(selectedData) {
-		this.transaction.driver = selectedData;
-		this.transaction.driverId = selectedData.id;
+	onCustomerChange(customer: Customer) {
+		this.transaction.customer = customer;
+		this.transaction.customerId = customer.id;
 	}
 
-	onVehicleChange(selectedData) {
-		this.transaction.vehicle = selectedData;
-		this.transaction.vehicleId = selectedData.id;
+	onDriverChange(driver: Driver) {
+		this.transaction.driver = driver;
+		this.transaction.driverId = driver.id;
+	}
+
+	onVehicleChange(vehicle: Vehicle) {
+		this.transaction.vehicle = vehicle;
+		this.transaction.vehicleId = vehicle.id;
 	}
 
 	onShippingRouteChange(selectedData) {

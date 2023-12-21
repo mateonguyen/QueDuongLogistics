@@ -5,7 +5,7 @@
 	<div class="flex-1">
 		<div class="d-flex">
 			<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="customer" [compareWith]="compareFn"
-				[nzCustomTemplate]="selectedTemplate">
+				[nzCustomTemplate]="selectedTemplate" (ngModelChange)="onChange()">
 				<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer"
 					[nzLabel]="customer.customerName" [nzLabel]="customer.customerName">
 					{{ customer.customerName }}
