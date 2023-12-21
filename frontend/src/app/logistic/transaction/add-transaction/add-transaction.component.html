@@ -24,7 +24,8 @@
 			<div class="row">
 				<div class="col-lg-4">
 					<app-transaction-customer-select [(customer)]="transaction.customer"
-						[(transactionCode)]="transaction.transactionCode"></app-transaction-customer-select>
+						[(transactionCode)]="transaction.transactionCode"
+						(change)="onCustomerChange($event)"></app-transaction-customer-select>
 				</div>
 
 				<div class="col-lg-4">
@@ -49,7 +50,7 @@
 
 				<div class="col-lg-4">
 					<app-transaction-shipping-route-select [(model)]="transaction.shippingRoute"
-					(change)="onShippingRouteChange($event)"></app-transaction-shipping-route-select>
+						(change)="onShippingRouteChange($event)"></app-transaction-shipping-route-select>
 				</div>
 
 			</div>
@@ -71,43 +72,45 @@
 							<tr>
 								<td>Phí lưu ca</td>
 								<td>
-									<input type="text" class="form-input" name="demurrageFee" [(ngModel)]="transaction.demurrageFee" >
+									<input type="text" class="form-input" name="demurrageFee" [(ngModel)]="transaction.demurrageFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Phí ghép điểm</td>
 								<td>
-									<input type="text" class="form-input" name="transshipmentFee" [(ngModel)]="transaction.transshipmentFee" >
+									<input type="text" class="form-input" name="transshipmentFee"
+										[(ngModel)]="transaction.transshipmentFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Phí hàng về</td>
 								<td>
-									<input type="text" class="form-input" name="returnShippingFee" [(ngModel)]="transaction.returnShippingFee" >
+									<input type="text" class="form-input" name="returnShippingFee"
+										[(ngModel)]="transaction.returnShippingFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Phí hải quan</td>
 								<td>
-									<input type="text" class="form-input" name="customsFee" [(ngModel)]="transaction.customsFee" >
+									<input type="text" class="form-input" name="customsFee" [(ngModel)]="transaction.customsFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Phí bốc xếp</td>
 								<td>
-									<input type="text" class="form-input" name="handlingFee" [(ngModel)]="transaction.handlingFee" >
+									<input type="text" class="form-input" name="handlingFee" [(ngModel)]="transaction.handlingFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Vé</td>
 								<td>
-									<input type="text" class="form-input" name="ticketFee" [(ngModel)]="transaction.ticketFee" >
+									<input type="text" class="form-input" name="ticketFee" [(ngModel)]="transaction.ticketFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Phát sinh khác</td>
 								<td>
-									<input type="text" class="form-input" name="otherFee" [(ngModel)]="transaction.otherFee" >
+									<input type="text" class="form-input" name="otherFee" [(ngModel)]="transaction.otherFee">
 								</td>
 							</tr>
 						</tbody>
@@ -131,19 +134,20 @@
 							<tr>
 								<td>Lái xe nộp đủ về VP</td>
 								<td>
-									<input type="text" class="form-input" name="docManager" [(ngModel)]="transaction.docManager" >
+									<input type="text" class="form-input" name="docManager" [(ngModel)]="transaction.docManager">
 								</td>
 							</tr>
 							<tr>
 								<td>Trả người quản lý giấy tờ</td>
 								<td>
-									<input type="text" class="form-input" name="isSummitedDoc" [(ngModel)]="transaction.isSummitedDoc" >
+									<input type="text" class="form-input" name="isSummitedDoc" [(ngModel)]="transaction.isSummitedDoc">
 								</td>
 							</tr>
 							<tr>
 								<td>Trả khách hàng</td>
 								<td>
-									<input type="text" class="form-input" name="isCustomerReturn" [(ngModel)]="transaction.isCustomerReturn" >
+									<input type="text" class="form-input" name="isCustomerReturn"
+										[(ngModel)]="transaction.isCustomerReturn">
 								</td>
 							</tr>
 						</tbody>
