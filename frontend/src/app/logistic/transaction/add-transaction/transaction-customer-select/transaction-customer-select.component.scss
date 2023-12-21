@@ -1,25 +1,30 @@
-.customer_logo_div, .customer_information_div{
-    float: left;
+.customer_logo_div,
+.customer_information_div {
+	float: left;
 }
 
-.customer_logo{
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: auto; 
+.customer-logo {
+	float: left;
+}
+.customer-logo img {
+	padding: 5px;
+	width: 128px;
+	border-radius: 4px;
+	border: 1px solid #868686;
+	background-color: #fff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.customer_logo_div{
-    width: 40%;
+.customer_logo_div {
+	width: 40%;
 }
 
-
-.customer_information_div{
-    margin-left : 20px;
-    .customer_title{
-        font-size: 20px;
-    }
-    .customer_code_generate{
-        font-size : 16px;
-    }
+.customer_information_div {
+	margin-left: 20px;
+	.customer_title {
+		font-size: 20px;
+	}
+	.customer_code_generate {
+		font-size: 16px;
+	}
 }

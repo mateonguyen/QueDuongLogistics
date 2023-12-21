@@ -6,7 +6,7 @@
 		</div>
 		<div class="col-lg-8">
 			<div class="w-full d-flex">
-				<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onDriverChange()"
+				<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn"
 					[nzCustomTemplate]="selectedTemplate">
 					<nz-option *ngFor="let driver of driverService.list" [nzValue]="driver" [nzLabel]="driver.fullName">
 					</nz-option>

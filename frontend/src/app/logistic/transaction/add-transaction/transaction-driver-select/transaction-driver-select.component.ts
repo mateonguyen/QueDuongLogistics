@@ -12,9 +12,6 @@ import { DatePipe } from '@angular/common';
 })
 export class TransactionDriverSelectComponent implements OnInit {
 	@Input() model: Driver;
-	@Output() change = new EventEmitter();
-	drivers: Driver[];
-	// model: Driver;
 
 	constructor(
 		public driverService: DriverService,
@@ -28,11 +25,7 @@ export class TransactionDriverSelectComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	onDriverChange() {
-		this.change.emit(this.model);
-	}
-
-	formatHumanDate(dateString) : string {
+	formatHumanDate(dateString): string {
 		var pattern = /(\d{4})(\d{2})(\d{2})/;
 		return this.datePipe.transform(new Date(dateString.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
 	}

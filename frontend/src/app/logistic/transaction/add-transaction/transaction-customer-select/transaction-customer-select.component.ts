@@ -1,8 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Customer } from 'src/app/__models/customer';
-import { Driver } from 'src/app/__models/driver';
 import { CustomerService } from 'src/app/__services/customer.service';
 import { AddCustomerModalComponent } from 'src/app/logistic/customer/add-customer-modal/add-customer-modal.component';
 
@@ -12,10 +10,8 @@ import { AddCustomerModalComponent } from 'src/app/logistic/customer/add-custome
 	styleUrls: ['./transaction-customer-select.component.scss']
 })
 export class TransactionCustomerSelectComponent implements OnInit {
-	@Input() control: FormControl;
-	@Output() change = new EventEmitter();
-	customers: Customer[];
-	customer: Customer;
+	@Input() customer: Customer;
+	@Input() transactionCode: string;
 
 	constructor(
 		public customerService: CustomerService,
@@ -26,10 +22,10 @@ export class TransactionCustomerSelectComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-
+		console.log(this.transactionCode);
 	}
 
-	compareFn = (o1: Driver, o2: Driver): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
+	compareFn = (o1: Customer, o2: Customer): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 	onChange() {
 
