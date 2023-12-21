@@ -70,31 +70,45 @@
 						<tbody>
 							<tr>
 								<td>Phí lưu ca</td>
-								<td><input type="number" class="form-input" name="price_phi_luu_ca"></td>
+								<td>
+									<input type="text" class="form-input" name="demurrageFee" [(ngModel)]="transaction.demurrageFee" >
+								</td>
 							</tr>
 							<tr>
 								<td>Phí ghép điểm</td>
-								<td><input type="number" class="form-input" name="price_phi_ghep_diem"></td>
+								<td>
+									<input type="text" class="form-input" name="transshipmentFee" [(ngModel)]="transaction.transshipmentFee" >
+								</td>
 							</tr>
 							<tr>
 								<td>Phí hàng về</td>
-								<td><input type="number" class="form-input" name="price_phi_hang_ve"></td>
+								<td>
+									<input type="text" class="form-input" name="returnShippingFee" [(ngModel)]="transaction.returnShippingFee" >
+								</td>
 							</tr>
 							<tr>
 								<td>Phí hải quan</td>
-								<td><input type="number" class="form-input" name="price_phi_hai_quan"></td>
+								<td>
+									<input type="text" class="form-input" name="customsFee" [(ngModel)]="transaction.customsFee" >
+								</td>
 							</tr>
 							<tr>
 								<td>Phí bốc xếp</td>
-								<td><input type="number" class="form-input" name="price_phi_boc_xep"></td>
+								<td>
+									<input type="text" class="form-input" name="handlingFee" [(ngModel)]="transaction.handlingFee" >
+								</td>
 							</tr>
 							<tr>
 								<td>Vé</td>
-								<td><input type="number" class="form-input" name="price_ve"></td>
+								<td>
+									<input type="text" class="form-input" name="ticketFee" [(ngModel)]="transaction.ticketFee" >
+								</td>
 							</tr>
 							<tr>
 								<td>Phát sinh khác</td>
-								<td><input type="number" class="form-input" name="price_phat_sinh_khac"></td>
+								<td>
+									<input type="text" class="form-input" name="otherFee" [(ngModel)]="transaction.otherFee" >
+								</td>
 							</tr>
 						</tbody>
 						<tfoot>
@@ -116,19 +130,21 @@
 						<tbody>
 							<tr>
 								<td>Lái xe nộp đủ về VP</td>
-								<td><input type="number" class="form-input" name="price_phi_luu_ca"></td>
+								<td>
+									<input type="text" class="form-input" name="docManager" [(ngModel)]="transaction.docManager" >
+								</td>
 							</tr>
 							<tr>
 								<td>Trả người quản lý giấy tờ</td>
-								<td><input type="number" class="form-input" name="price_phi_ghep_diem"></td>
+								<td>
+									<input type="text" class="form-input" name="isSummitedDoc" [(ngModel)]="transaction.isSummitedDoc" >
+								</td>
 							</tr>
 							<tr>
 								<td>Trả khách hàng</td>
-								<td><input type="number" class="form-input" name="price_phi_hang_ve"></td>
-							</tr>
-							<tr>
-								<td>Ghi chú khác</td>
-								<td><input type="number" class="form-input" name="price_phi_hai_quan"></td>
+								<td>
+									<input type="text" class="form-input" name="isCustomerReturn" [(ngModel)]="transaction.isCustomerReturn" >
+								</td>
 							</tr>
 						</tbody>
 						<tfoot>
@@ -146,7 +162,7 @@
 				<div class="col-lg-12">
 					<div class="information_panel">
 						<h4>Ghi chú</h4>
-						<textarea rows="5" class="note_input"></textarea>
+						<textarea rows="5" class="note_input" name="notes" [(ngModel)]="transaction.notes"></textarea>
 					</div>
 				</div>
 			</div>

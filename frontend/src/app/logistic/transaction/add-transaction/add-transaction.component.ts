@@ -28,19 +28,19 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 
 	initForm() {
 		// this.editForm = this._fb.group({
-		// 	customerId: [this.model?.customerId],
-		// 	customer: [this.model?.customer],
-		// 	driverId: [this.model?.driverId],
-		// 	driver: [this.model?.driver]
+		// 	id: [this.transaction?.id ?? 0],
+		// 	demurrageFee : [this.transaction?.demurrageFee ?? 0],
 		// });
 	}
 
 	onDriverChange(selectedData) {
 		this.transaction.driver = selectedData;
+		this.transaction.driverId = selectedData.id;
 	}
 
 	onVehicleChange(selectedData) {
 		this.transaction.vehicle = selectedData;
+		this.transaction.vehicleId = selectedData.id;
 	}
 
 	onShippingRouteChange(selectedData) {
@@ -48,6 +48,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 
 	save() {
+		console.log(this.editForm);
 		console.log(this.transaction);
 	}
 

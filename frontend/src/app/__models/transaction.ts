@@ -13,4 +13,16 @@ export class Transaction {
 	vehicle: Vehicle;
 	shippingRouteId: number;
 	shippingRoute: ShippingRoute;
+
+	demurrageFee : number | string;
+	transshipmentFee : number | string;
+	returnShippingFee : number | string;
+	customsFee : number | string;
+	handlingFee : number | string;
+	ticketFee : number | string;
+	otherFee : number | string;
+	docManager: string;
+	isCustomerReturn : number;
+	isSummitedDoc : number;
+	notes : string;
 }
