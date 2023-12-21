@@ -1,8 +1,34 @@
 <div class="information_panel">
-    <h4>Thông tin vận chuyển</h4>
-    <p><b>Điểm nhận hàng </b> : <span class="information_location_name"> Bắc Ninh</span></p>
-    <p><b>Ngày nhận hàng </b> : <span class="information_location_date"> 13/12/2023</span></p>
-    <p><b>Người nhận hàng </b> : <span class="information_location_person"> Nguyễn Văn A</span></p>
-    <p><b>Điểm giao hàng </b> : <span class="information_location_receiver_name"> Hà Nội</span></p>
-    <p><b>Ngày giao hàng </b> : <span class="information_location_receiver_date"> 14/12/2023</span></p>
+	<h4 class="mb-3">Thông tin vận chuyển</h4>
+	<div class="row">
+		<div class="col-lg-4">
+			<b>Tuyến đường </b> :
+		</div>
+		<div class="col-lg-8">
+			<div class="w-full d-flex">
+				<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onShippingRouteChange()"
+					[nzCustomTemplate]="selectedTemplate">
+					<nz-option *ngFor="let route of shippingRouteService.list" [nzValue]="route" [nzLabel]="route.routeCode">
+					</nz-option>
+				</nz-select>
+				<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+					(click)="openEditModal()"></wk-button>
+				<ng-template #selectedTemplate let-selected>
+					{{ selected.nzLabel }}
+				</ng-template>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<b>Điểm nhận hàng </b> :
+		</div>
+		<div class="col-lg-8">
+			<input type="text" class="form-input" value="{{ model?.origin.locationName }}" disabled>
+		</div>
+		<div class="col-lg-4">
+			<b>Điểm giao hàng </b> :
+		</div>
+		<div class="col-lg-8">
+			<input type="text" class="form-input" value="{{ model?.destination.locationName }}" disabled>
+		</div>
+	</div>
 </div>

@@ -18,7 +18,7 @@ export class TransactionVehicleSelectComponent implements OnInit {
 	constructor(
 		public vehicleService: VehicleService,
 		private _modalService: NzModalService,
-    private datePipe: DatePipe
+    	private datePipe: DatePipe
 	) {
 		if (!vehicleService.list)
 			vehicleService.refreshList();
@@ -28,7 +28,6 @@ export class TransactionVehicleSelectComponent implements OnInit {
 	}
 
 	onVehicleChange() {
-		console.log(this.model);
 		this.change.emit(this.model);
 	}
 

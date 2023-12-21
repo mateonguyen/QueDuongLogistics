@@ -12,42 +12,31 @@ import { DatePipe } from '@angular/common';
 	styleUrls: ['./transaction-shipping-route-select.component.scss']
 })
 export class TransactionShippingRouteSelectComponent implements OnInit {
-	@Input() control = new FormControl();
+	@Input() model: ShippingRoute;
 	@Output() change = new EventEmitter();
-	shippingRoutes: ShippingRoute[];
-	shippingRouteSelected: ShippingRoute;
 
 	constructor(
 		public shippingRouteService: ShippingRouteService,
 		private _modalService: NzModalService,
-    private datePipe: DatePipe
+    	private datePipe: DatePipe
 	) {
 		if (!shippingRouteService.list)
-    shippingRouteService.refreshList();
+    		shippingRouteService.refreshList();
 	}
 
 	ngOnInit(): void {
-		this.control.valueChanges.subscribe(selectedId  => {
-			const selectedShippingRoute = this.shippingRouteService.list.find(shippingRoute => shippingRoute.id === selectedId);
-			this.onSelectChange(selectedShippingRoute);
-		});
 	}
 
-  	initForm() {
-
+	onShippingRouteChange() {
+		this.change.emit(this.model);
 	}
 
-	compareFn = (o1: any, o2: any): boolean => (o1 && o2 ? o1.value === o2.value : o1 === o2);
-
-	onSelectChange(selectedShippingRoute): void {
-		this.shippingRouteSelected = selectedShippingRoute;
-		console.log(this.shippingRouteSelected);
-	}
-
-	formatHumanDate(dateString) : string {
+	formatHumanDate(dateString): string {
 		var pattern = /(\d{4})(\d{2})(\d{2})/;
 		return this.datePipe.transform(new Date(dateString.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
 	}
+
+	compareFn = (o1: ShippingRoute, o2: ShippingRoute): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 	openEditModal() {
 		this._modalService.create({

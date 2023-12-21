@@ -51,11 +51,6 @@ export class ShippingRouteComponent implements OnInit {
 		});
 	}
 
-	incrementAndParse(value: string): number {
-		// Parse the string to an integer and increment
-		return parseInt(value, 10) + 1;
-	}
-
 	onDelete(model: ShippingRoute) {
 		this.confirmModal = this._modalService.confirm({
 			nzTitle: 'Bạn chắc chắn muốn xóa?',

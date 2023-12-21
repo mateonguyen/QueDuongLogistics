@@ -35,12 +35,16 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		// });
 	}
 
-	onDriverChange(selectedDriver) {
-		this.transaction.driver = selectedDriver;
+	onDriverChange(selectedData) {
+		this.transaction.driver = selectedData;
 	}
 
-	onVehicleChange(selectedVehicle) {
-		this.transaction.vehicle = selectedVehicle;
+	onVehicleChange(selectedData) {
+		this.transaction.vehicle = selectedData;
+	}
+
+	onShippingRouteChange(selectedData) {
+		this.transaction.shippingRoute = selectedData;
 	}
 
 	save() {

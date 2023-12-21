@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<form #editForm="ngForm" (ngSubmit)="editForm.valid && save()">
-			<!-- <button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Tạo điều vận</button> -->
+			<button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Tạo điều vận</button>
 			<div class="row">
 				<div class="col-lg-4">
 					<app-transaction-customer-select [(customer)]="transaction.customer"
@@ -48,7 +48,8 @@
 				</div>
 
 				<div class="col-lg-4">
-					<!-- <app-transaction-shipping-route-select></app-transaction-shipping-route-select> -->
+					<app-transaction-shipping-route-select [(model)]="transaction.shippingRoute"
+					(change)="onShippingRouteChange($event)"></app-transaction-shipping-route-select>
 				</div>
 
 			</div>

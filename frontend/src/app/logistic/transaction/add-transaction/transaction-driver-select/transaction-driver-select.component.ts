@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TransactionDriverSelectComponent implements OnInit {
 	@Input() model: Driver;
+	@Output() change = new EventEmitter();
 
 	constructor(
 		public driverService: DriverService,
@@ -23,6 +24,11 @@ export class TransactionDriverSelectComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+	}
+
+	
+	onDriverChange() {
+		this.change.emit(this.model);
 	}
 
 	formatHumanDate(dateString): string {

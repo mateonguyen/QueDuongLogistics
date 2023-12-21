@@ -14,7 +14,7 @@ export class ShippingRouteService {
 	}
 
 	refreshList() {
-		return this.http.get<ShippingRoute[]>(this.baseUrl + 'shippingRoute').subscribe({
+		return this.http.get<ShippingRoute[]>(this.baseUrl + 'ShippingRoute').subscribe({
 			next: res => {
 				this.list = res as ShippingRoute[];
 			},
@@ -23,14 +23,14 @@ export class ShippingRouteService {
 	}
 
 	create(model: ShippingRoute) {
-		return this.http.post(this.baseUrl + 'shippingRoute', model);
+		return this.http.post(this.baseUrl + 'ShippingRoute', model);
 	}
 
 	update(model: ShippingRoute) {
-		return this.http.put(this.baseUrl + 'shippingRoute', model);
+		return this.http.put(this.baseUrl + 'ShippingRoute', model);
 	}
 
 	delete(id: number) {
-		return this.http.delete(this.baseUrl + 'shippingRoute/' + id);
+		return this.http.delete(this.baseUrl + 'ShippingRoute/' + id);
 	}
 }
