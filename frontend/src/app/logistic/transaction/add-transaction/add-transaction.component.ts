@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CanComponentDeactivate } from '../../../__guards/prevent-unsaved-changes.guard';
 import { Transaction } from 'src/app/__models/transaction';
+import { TransactionDetails } from 'src/app/__models/transactionDetails';
 
 @Component({
 	selector: 'app-add-transaction',
@@ -12,6 +13,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	editForm: FormGroup;
 	globalError: string;
 	transaction: Transaction = new Transaction();
+	transactionDetails: TransactionDetails[] = [];
 	showNoResult: boolean = false;
 
 	get f() {
@@ -47,8 +49,11 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		this.transaction.shippingRoute = selectedData;
 	}
 
+	handleModelChange(updatedModel: TransactionDetails[]) {
+		this.transaction.transactionDetails = updatedModel;
+	}
+
 	save() {
-		console.log(this.editForm);
 		console.log(this.transaction);
 	}
 

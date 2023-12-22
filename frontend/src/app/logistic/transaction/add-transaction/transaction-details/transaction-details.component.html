@@ -1,19 +1,32 @@
-<nz-table #table [classList]="'border-spacing-y-[10px]'">
+<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzData]="model" nzTableResponsive>
     <thead>
         <tr role="row">
-            <th class="whitespace-nowrap">Loại cont</th>
-            <th class="whitespace-nowrap">Số cont</th>
-            <th class="whitespace-nowrap">Số kiện</th>
-            <th class="whitespace-nowrap">ĐVT Kiện</th>
-            <th class="whitespace-nowrap">Số lượng</th>
-            <th class="whitespace-nowrap">ĐVT</th>
-            <th class="whitespace-nowrap">Mô tả hàng hóa</th>
-            <th class="whitespace-nowrap">Nơi giao</th>
-            <th class="whitespace-nowrap">Thời gian giao</th>
-            <th class="whitespace-nowrap"><button type="button" class="btn btn-success">Thêm mới</button></th>
+            <th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 1%;">Loại cont</th>
+            <th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
+            <th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện</th>
+            <th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 1%;">ĐVT Kiện</th>
+            <th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
+            <th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 1%;">ĐVT</th>
+            <th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả hàng hóa</th>
+            <th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao</th>
+            <th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian giao</th>
+            <th class="whitespace-nowrap" style="width: 8%;"><button type="button" class="btn btn-success" (click)="addNewRow()">Thêm mới</button></th>
         </tr>
     </thead>
     <tbody>
-
+        <tr *ngFor="let row of model">
+            <td><input type="text" class="form-input" [(ngModel)]="row.contType" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.contCount" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.packageCount" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.packageUnit" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.quantity" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.unit" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.goodsDescription" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.deliveredPlace" /></td>
+            <td><input type="text" class="form-input" [(ngModel)]="row.deliveredTime" /></td>
+            <td>
+                <button (click)="deleteRow(row)" class="btn btn-danger">Xóa</button>
+              </td>
+          </tr>
     </tbody>
 </nz-table>

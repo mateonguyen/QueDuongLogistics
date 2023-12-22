@@ -1,0 +1,10 @@
+nz-table {
+    width: 100%;
+    overflow-x: auto;
+
+    tbody{
+        max-width: 0;
+        text-align: center;
+    }
+}
+

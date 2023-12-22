@@ -2,6 +2,7 @@ import { Customer } from "./customer";
 import { Driver } from "./driver";
 import { Vehicle } from "./vehicle";
 import { ShippingRoute } from "./shipping-route";
+import { TransactionDetails } from "./transactionDetails";
 
 export class Transaction {
 	transactionCode: string;
@@ -13,6 +14,7 @@ export class Transaction {
 	vehicle: Vehicle;
 	shippingRouteId: number;
 	shippingRoute: ShippingRoute;
+	transactionDetails: TransactionDetails[];
 
 	demurrageFee : number | string;
 	transshipmentFee : number | string;
