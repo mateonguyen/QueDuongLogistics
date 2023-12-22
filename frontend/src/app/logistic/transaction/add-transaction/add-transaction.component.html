@@ -56,7 +56,7 @@
 			</div>
 
 			<div class="row mt-5">
-				<!-- <app-transaction-details></app-transaction-details> -->
+				<app-transaction-details [(model)]="transaction.transactionDetails" (modelChange)="handleModelChange($event)"></app-transaction-details>
 			</div>
 
 			<div class="row mt-5">
