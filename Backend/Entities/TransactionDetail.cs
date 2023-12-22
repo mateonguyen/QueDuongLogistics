@@ -26,9 +26,11 @@ public class TransactionDetail
     public string GoodsDescription { get; set; }
 
     [MaxLength(150)]
-    public string DeliveredPlace { get; set; }
+    [ForeignKey("DeliveredPlace")]
+    public int DeliveredPlaceId { get; set; }
 
     public DateTime? DeliveredTime { get; set; }
 
     public virtual Transaction Transaction { get; set; }
+    public virtual Location DeliveredPlace { get; set; }
 }

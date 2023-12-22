@@ -26,6 +26,10 @@ public class Transaction : Auditable
     [Column(Order = 6)]
     [ForeignKey("Vendor")] 
     public int VendorId { get; set; }
+
+    [Column(Order = 7)]
+    [ForeignKey("ShippingRoute")] 
+    public int ShippingRouteId { get; set; }
         
     [Column(Order = 18)]
     [Precision(18, 3)]  
@@ -69,12 +73,9 @@ public class Transaction : Auditable
     public string Notes { get; set; }
 
     public virtual Customer Customer { get;set; }
-
     public virtual Driver Driver { get; set; }
-
     public virtual Vehicle Vehicle { get; set; }
-
     public virtual Vendor Vendor { get; set; }
-
+    public virtual ShippingRoute ShippingRoute { get; set; }
     public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
 }

@@ -12,7 +12,7 @@ namespace Backend.Dtos
         public int Quantity { get; set; }
         public string Unit { get; set; }
         public string GoodsDescription { get; set; }
-        public string DeliveredPlace { get; set; }
+        public int DeliveredPlaceId { get; set; }
         public DateTime? DeliveredTime { get; set; }
 
         public virtual TransactionDto Transaction { get; set; }

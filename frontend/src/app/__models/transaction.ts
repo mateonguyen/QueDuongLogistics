@@ -4,7 +4,8 @@ import { Vehicle } from "./vehicle";
 import { ShippingRoute } from "./shipping-route";
 
 export class Transaction {
-	transactionCode: string;
+	id: number;
+	transactionNo: string;
 	customerId: number;
 	customer: Customer;
 	driverId: number;
@@ -14,15 +15,15 @@ export class Transaction {
 	shippingRouteId: number;
 	shippingRoute: ShippingRoute;
 
-	demurrageFee : number | string;
-	transshipmentFee : number | string;
-	returnShippingFee : number | string;
-	customsFee : number | string;
-	handlingFee : number | string;
-	ticketFee : number | string;
-	otherFee : number | string;
+	demurrageFee: number | string;
+	transshipmentFee: number | string;
+	returnShippingFee: number | string;
+	customsFee: number | string;
+	handlingFee: number | string;
+	ticketFee: number | string;
+	otherFee: number | string;
 	docManager: string;
-	isCustomerReturn : number;
-	isSummitedDoc : number;
-	notes : string;
+	isCustomerReturn: number;
+	isSummitedDoc: number;
+	notes: string;
 }
