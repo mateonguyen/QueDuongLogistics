@@ -1,4 +1,6 @@
 
+using Backend.Helpers.Params;
+
 namespace Backend.Data.Repositories;
 
 public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
@@ -12,9 +14,36 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
         _context = context;
     }
 
-    public async Task<IEnumerable<TransactionDto>> ToListAsync()
+    public PagedList<TransactionDto> ToList(TransactionParams transactionParams)
     {
-        return await _context.Transactions.Include(x => x.TransactionDetails).ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
+        var query = _context.Transactions
+                        .Include(x => x.Customer)
+                        .Include(x => x.Driver)
+                        .Include(x => x.Vehicle)
+                        .Include(x => x.ShippingRoute)
+                        .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).AsNoTracking();
+
+        // Filtering
+        // if (!string.IsNullOrEmpty(transactionParams.Term))
+        //     {
+        //         query = query.Where(delegate (TransactionDto x)
+        //         {
+        //             if ((x.TransactionNo + " " + x.CapCho).ToUnSign()
+        //                     .IndexOf(transactionParams.Term.ToUnSign(), StringComparison.CurrentCultureIgnoreCase) >= 0)
+        //                 return true;
+        //             else
+        //                 return false;
+        //         }).AsQueryable();
+            // }
+
+        if (!string.IsNullOrEmpty(transactionParams.SortField))
+        {
+            if (transactionParams.SortOrder == "ascend")
+                query = query.OrderByProperty(transactionParams.SortField);
+            else
+                query = query.OrderByPropertyDescending(transactionParams.SortField);
+        }
+        return PagedList<TransactionDto>.Create(query, transactionParams.PageNumber, transactionParams.PageSize);
     }
 
     public async Task<Transaction> SingleAsync(int id)

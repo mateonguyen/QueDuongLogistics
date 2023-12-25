@@ -9,6 +9,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -62,8 +63,8 @@ import { TransactionDetailsComponent } from './transaction/add-transaction/trans
 		AddShippingRouteModalComponent,
 		LogoCropperComponent,
 		RouteLocationSelectComponent,
-  TransactionShippingRouteSelectComponent,
-  TransactionDetailsComponent,
+		TransactionShippingRouteSelectComponent,
+		TransactionDetailsComponent,
 	],
 	imports: [
 		CommonModule,
@@ -81,7 +82,8 @@ import { TransactionDetailsComponent } from './transaction/add-transaction/trans
 		NzNotificationModule,
 		NzCardModule,
 		NzDatePickerModule,
-		ImageCropperModule
+		ImageCropperModule,
+		NzSpaceModule
 	],
 	providers: [DatePipe],
 })

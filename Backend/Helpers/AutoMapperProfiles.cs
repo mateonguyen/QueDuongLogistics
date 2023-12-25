@@ -63,5 +63,13 @@ public class AutoMapperProfiles : Profile
         CreateMap<ShippingRouteDto, ShippingRoute>();
         
         CreateMap<ShippingRouteForCreationDto, ShippingRoute>();
+        
+        CreateMap<TransactionDetail, TransactionDetailDto>();
+
+        CreateMap<Transaction, TransactionDto>();
+
+        CreateMap<TransactionForCreationDto, Transaction>();
+
+        CreateMap<TransactionDetailDto, TransactionDetail>();
     }
 }

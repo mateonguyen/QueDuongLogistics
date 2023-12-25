@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetails } from 'src/app/__models/transactionDetails';
-import { TransactionDetailsService } from 'src/app/__services/transactionDetails.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -11,21 +10,18 @@ import { DatePipe } from '@angular/common';
 })
 export class TransactionDetailsComponent implements OnInit {
 	@Input() model: TransactionDetails[] = [];
-	@Output() modelChange  = new EventEmitter<TransactionDetails[]>();
+	@Output() modelChange = new EventEmitter<TransactionDetails[]>();
 
 	constructor(
-		public transactionDetailsService: TransactionDetailsService,
 		private _modalService: NzModalService,
 		private datePipe: DatePipe
 	) {
-		if (!transactionDetailsService.list)
-			transactionDetailsService.refreshList();
 	}
 
 	ngOnInit(): void {
-    if (!this.model) {
-      this.model = [];
-    }
+		if (!this.model) {
+			this.model = [];
+		}
 	}
 
 	formatHumanDate(dateString): string {
@@ -33,26 +29,26 @@ export class TransactionDetailsComponent implements OnInit {
 		return this.datePipe.transform(new Date(dateString.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
 	}
 
-  addNewRow() {
-    const newRow : TransactionDetails  =  {
-                      id : null,
-                      contType : null,
-                      contCount : null,
-                      packageCount : null,
-                      packageUnit : '',
-                      quantity : null,
-                      unit : '',
-                      goodsDescription : '',
-                      deliveredPlace : '',
-                      deliveredTime : '' 
-                    };
-    this.model.push(newRow);
-    this.modelChange.emit([...this.model]);
-  }
+	addNewRow() {
+		const newRow: TransactionDetails = {
+			id: null,
+			contType: null,
+			contCount: null,
+			packageCount: null,
+			packageUnit: '',
+			quantity: null,
+			unit: '',
+			goodsDescription: '',
+			deliveredPlace: '',
+			deliveredTime: ''
+		};
+		this.model.push(newRow);
+		this.modelChange.emit([...this.model]);
+	}
 
-  deleteRow(row: TransactionDetails) {
-    this.model = this.model.filter(item => item !== row);
-    this.modelChange.emit([...this.model]);
-  }
+	deleteRow(row: TransactionDetails) {
+		this.model = this.model.filter(item => item !== row);
+		this.modelChange.emit([...this.model]);
+	}
 
 }

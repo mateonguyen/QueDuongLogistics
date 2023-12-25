@@ -1,3 +1,5 @@
+using Backend.Helpers.Params;
+
 namespace Backend.Controllers;
 
 [Authorize]
@@ -12,9 +14,9 @@ public class TransactionController : BaseApiController
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TransactionDto>>> Get()
+    public ActionResult<IEnumerable<TransactionDto>> Get(TransactionParams transactionParams)
     {
-        var list = await _unitOfWork.TransactionRepository.ToListAsync();
+        var list = _unitOfWork.TransactionRepository.ToList(transactionParams);
 
         return Ok(list);
     }
@@ -41,7 +43,7 @@ public class TransactionController : BaseApiController
 
         if (!result) return BadRequest("Thêm mới lệnh điều vận thất bại.");
 
-        return Ok(await _unitOfWork.TransactionRepository.ToListAsync());
+        return Ok(transaction);
     }
 
     [HttpPut]
@@ -60,7 +62,7 @@ public class TransactionController : BaseApiController
 
         if (!result) return BadRequest("Sửa thông tin lệnh điều vận thất bại.");        
 
-        return Ok(await _unitOfWork.TransactionRepository.ToListAsync());
+        return Ok(transaction);
     }
 
     [HttpDelete("{id}")]    
@@ -74,6 +76,6 @@ public class TransactionController : BaseApiController
 
         if (!result) return BadRequest("Xóa lệnh thất bại thất bại.");
         
-        return Ok(await _unitOfWork.TransactionRepository.ToListAsync());
+        return Ok();
     }
 }

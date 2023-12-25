@@ -1,1 +1,89 @@
-<p>transaction works!</p>
+<tui-scrollbar>
+	<div class="container-fluid">
+		<main class="content">
+			<div class="row mt-2">
+				<div class="col-lg-12">
+					<h4 class="mt-2 px-2 text-uppercase">Tra cứu Lệnh điều vận</h4>
+					<div>
+						<div class="d-md-flex flex-column order border-start-0 border-end-0 mb-1"
+							style="background-color: #f6f6f6;">
+							<div class="d-flex flex-row">
+								<div class="search-box-by-click d-md-flex p-2 flex-grow-1">
+									<nz-input-group [nzSuffix]="suffixIconSearch">
+										<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()"
+											placeholder="Tìm kiếm" />
+									</nz-input-group>
+									<ng-template #suffixIconSearch>
+										<span nz-icon nzType="search"></span>
+									</ng-template>
+									<nz-space class="ml-2">
+										<nz-date-picker *nzSpaceItem nzFormat="dd/MM/yyyy" nzPlaceHolder="Từ ngày" [(ngModel)]="startDate"
+											style="width: 180px;"></nz-date-picker>
+										<nz-date-picker *nzSpaceItem nzFormat="dd/MM/yyyy" nzPlaceHolder="Đến ngày" [(ngModel)]="endDate"
+											style="width: 180px;"></nz-date-picker>
+									</nz-space>
+								</div>
+								<div class="p-2 d-md-flex">
+									<wk-button icon="search_" [iconSize]="13" (click)="refreshList()" [className]="'btn-primary flex'">Tìm
+										kiếm</wk-button>
+								</div>
+								<div class="p-2 d-md-flex">
+									<wk-button icon="plus" [iconSize]="13" [className]="'btn-success flex'"
+										[routerLink]="['/giay-di-duong/new']">Thêm</wk-button>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<nz-table #basicTable [nzData]="transactionService.list" [nzFrontPagination]="false" [nzTotal]="total"
+									[nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQueryParamsChange($event)">
+									<thead>
+										<tr role="row">
+											<th style="width: 9rem;" nzColumnKey="" [nzSortFn]="true">Ngày </th>
+											<th nzColumnKey="" [nzSortFn]="true">Khách hàng</th>
+											<th nzColumnKey="" [nzSortFn]="true">Khách hàng</th>
+											<th nzColumnKey="tuNgay" style="width: 9%;">Từ ngày</th>
+											<th nzColumnKey="denNgay" style="width: 9%;">Đến ngày</th>
+											<th nzColumnKey="nguoiDuyet" [nzSortFn]="true" style="width: 22%;">Người
+												duyệt</th>
+											<th class="text-end" style="width: 10rem;"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of basicTable.data">
+											<td>
+												<span class="text-bold">#{{item.soHieu}}</span> <br />
+												<span style="font-size: 0.777rem;">{{item.ngayBanHanh |
+													date:'dd/MM/yyyy'}}</span>
+											</td>
+											<td>
+												<span class="text-bold">{{item.capCho}}</span><br />
+												<span style="font-size: 0.777rem;">{{item.chucVu}}</span><br />
+												<span style="font-size: 0.777rem;">{{item.donVi}}</span>
+											</td>
+											<td>{{item.tuNgay | date: 'dd/MM/yyyy'}}</td>
+											<td>{{item.denNgay | date: 'dd/MM/yyyy'}}</td>
+											<td>
+												<span class="text-bold">{{item.nguoiDuyet }}</span><br />
+												<span style="font-size: 0.777rem;">{{item.chucVuDuyet}}</span>
+											</td>
+											<td class="text-end actions">
+												<wk-button icon="export" [iconSize]="13" [className]="'btn-default btn-empty mr-2'"
+													(click)="openPrintModal(item)"></wk-button>
+												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-default btn-empty mr-2'"
+													*ngIf="canEdit(item.nguoiNhapMay)"
+													[routerLink]="['/giay-di-duong/edit/' + item.id]"></wk-button>
+												<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
+													*ngIf="canDelete(item.nguoiNhapMay)" (click)="confirmDelete(item)"></wk-button>
+											</td>
+										</tr>
+									</tbody>
+								</nz-table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</tui-scrollbar>
