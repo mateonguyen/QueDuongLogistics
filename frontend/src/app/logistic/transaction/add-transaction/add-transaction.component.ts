@@ -6,7 +6,8 @@ import { TransactionDetails } from 'src/app/__models/transactionDetails';
 import { Customer } from 'src/app/__models/customer';
 import { Driver } from 'src/app/__models/driver';
 import { Vehicle } from 'src/app/__models/vehicle';
-
+import { TransactionService } from 'src/app/__services/transaction.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -26,6 +27,8 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 
 
 	constructor(
+		private _dataService: TransactionService,
+		private _notificationService: NzNotificationService
 	) { }
 
 	ngOnInit(): void {
@@ -64,6 +67,48 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 
 	save() {
 		console.log(this.transaction);
+
+		if (!this.transaction.id) {
+			this._dataService.create(this.transaction as Transaction).subscribe({
+				next: res => {
+					this._dataService.list = res as Transaction[];
+					this._notificationService.success(
+						'Chúc mừng!',
+						'Bạn vừa thêm mới thành công thông tin Lệnh điều vận.',
+						{ nzDuration: 5000, nzAnimate: true }
+					)
+				},
+				error: err => {
+					if (err.status == 400) {
+						this._notificationService.error(
+							'Lỗi!',
+							err.error,
+							{ nzDuration: 5000, nzAnimate: true }
+						);
+					}
+				}
+			});
+		} else {
+			this._dataService.update(this.transaction as Transaction).subscribe({
+				next: res => {
+					this._dataService.list = res as Transaction[];
+					this._notificationService.success(
+						'Chúc mừng!',
+						'Bạn vừa chỉnh sửa thành công thông tin Lệnh điều vận.',
+						{ nzDuration: 5000, nzAnimate: true }
+					)
+				},
+				error: err => {
+					if (err.status == 400) {
+						this._notificationService.error(
+							'Lỗi!',
+							err.error,
+							{ nzDuration: 5000, nzAnimate: true }
+						);
+					}
+				}
+			});
+		}
 	}
 
 	canDeactivate(): boolean {
