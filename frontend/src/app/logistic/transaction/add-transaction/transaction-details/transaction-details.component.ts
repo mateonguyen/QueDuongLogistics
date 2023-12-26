@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetails } from 'src/app/__models/transactionDetails';
 import { DatePipe } from '@angular/common';
-
+import { LocationService } from 'src/app/__services/location.service';
 @Component({
 	selector: 'app-transaction-details',
 	templateUrl: './transaction-details.component.html',
@@ -11,11 +11,16 @@ import { DatePipe } from '@angular/common';
 export class TransactionDetailsComponent implements OnInit {
 	@Input() model: TransactionDetails[] = [];
 	@Output() modelChange = new EventEmitter<TransactionDetails[]>();
+	optionUnit: string[] = ['Tấn', 'Tạ', 'Cân'];
+	optionPackageUnit: string[] = ['Cuộn', 'Carton', 'Pallet'];
 
 	constructor(
 		private _modalService: NzModalService,
-		private datePipe: DatePipe
+		private datePipe: DatePipe,
+		public locationService: LocationService
 	) {
+		if (!this.locationService.list)
+			this.locationService.refreshList();
 	}
 
 	ngOnInit(): void {
@@ -39,7 +44,7 @@ export class TransactionDetailsComponent implements OnInit {
 			quantity: null,
 			unit: '',
 			goodsDescription: '',
-			deliveredPlace: '',
+			deliveredPlaceId: null,
 			deliveredTime: ''
 		};
 		this.model.push(newRow);

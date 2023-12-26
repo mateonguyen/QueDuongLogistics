@@ -21,7 +21,7 @@
 		</div>
 		<form #editForm="ngForm" (ngSubmit)="editForm.valid && save()">
 			<button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Tạo điều vận</button>
-			<div class="row">
+			<div class="row mt-2">
 				<div class="col-lg-4">
 					<app-transaction-customer-select [(customer)]="transaction.customer"
 						[(transactionCode)]="transaction.transactionNo"
@@ -37,7 +37,7 @@
 
 			</div>
 
-			<div class="row mt-5">
+			<div class="row mt-2">
 				<div class="col-lg-4">
 					<app-transaction-driver-select [(model)]="transaction.driver"
 						(change)="onDriverChange($event)"></app-transaction-driver-select>
@@ -55,11 +55,11 @@
 
 			</div>
 
-			<div class="row mt-5">
+			<div class="row mt-2">
 				<app-transaction-details [(model)]="transaction.transactionDetails" (modelChange)="handleModelChange($event)"></app-transaction-details>
 			</div>
 
-			<div class="row mt-5">
+			<div class="row mt-2">
 				<div class="col-lg-6">
 					<table class="table table_price table-bordered">
 						<thead>
@@ -161,8 +161,7 @@
 				</div>
 			</div>
 
-
-			<div class="row mt-5">
+			<div class="row mt-2">
 				<div class="col-lg-12">
 					<div class="information_panel">
 						<h4>Ghi chú</h4>

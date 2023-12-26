@@ -1,12 +1,12 @@
 <nz-table #table [classList]="'border-spacing-y-[10px]'" [nzData]="model" nzTableResponsive>
     <thead>
         <tr role="row">
-            <th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 1%;">Loại cont</th>
+            <th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
             <th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
             <th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện</th>
-            <th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 1%;">ĐVT Kiện</th>
+            <th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện</th>
             <th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
-            <th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 1%;">ĐVT</th>
+            <th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
             <th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả hàng hóa</th>
             <th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao</th>
             <th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian giao</th>
@@ -18,12 +18,28 @@
             <td><input type="text" class="form-input" [(ngModel)]="row.contType" /></td>
             <td><input type="text" class="form-input" [(ngModel)]="row.contCount" /></td>
             <td><input type="text" class="form-input" [(ngModel)]="row.packageCount" /></td>
-            <td><input type="text" class="form-input" [(ngModel)]="row.packageUnit" /></td>
+            <td>
+                <select [(ngModel)]="row.packageUnit" class="form-input">
+                    <option *ngFor="let option of optionPackageUnit" [value]="option">{{ option }}</option>
+                  </select>
+            </td>
             <td><input type="text" class="form-input" [(ngModel)]="row.quantity" /></td>
-            <td><input type="text" class="form-input" [(ngModel)]="row.unit" /></td>
+            <td>
+                <select [(ngModel)]="row.unit" class="form-input">
+                    <option *ngFor="let option of optionUnit" [value]="option">{{ option }}</option>
+                  </select>
+            </td>
             <td><input type="text" class="form-input" [(ngModel)]="row.goodsDescription" /></td>
-            <td><input type="text" class="form-input" [(ngModel)]="row.deliveredPlace" /></td>
-            <td><input type="text" class="form-input" [(ngModel)]="row.deliveredTime" /></td>
+            <td>
+                <select class="form-input" id="deliveredPlaceId" [(ngModel)]="row.deliveredPlaceId">
+                    <option *ngFor="let location of locationService.list" [value]="location.id">
+                      {{ location.locationName }}
+                    </option>
+                  </select>
+            </td>
+            <td>
+                <nz-date-picker class="form-input" [(ngModel)]="row.deliveredTime" [nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
+            </td>
             <td>
                 <button (click)="deleteRow(row)" class="btn btn-danger">Xóa</button>
               </td>

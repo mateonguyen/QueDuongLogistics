@@ -42,4 +42,25 @@ export class TransactionService {
 
 		return getPaginatedResult<Transaction[]>(this.baseUrl + 'transaction', params, this._http);
 	}
+
+	refreshList() {
+		return this._http.get<Transaction[]>(this.baseUrl + 'transaction').subscribe({
+			next: res => {
+				this.list = res as Transaction[];
+			},
+			error: err => { console.log(err) }
+		});
+	}
+
+	create(model: Transaction) {
+		return this._http.post(this.baseUrl + 'transaction', model);
+	}
+
+	update(model: Transaction) {
+		return this._http.put(this.baseUrl + 'transaction', model);
+	}
+
+	delete(id: number) {
+		return this._http.delete(this.baseUrl + 'transaction/' + id);
+	}
 }
