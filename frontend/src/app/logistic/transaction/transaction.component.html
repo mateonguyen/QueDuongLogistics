@@ -35,46 +35,40 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<nz-table #basicTable [nzData]="transactionService.list" [nzFrontPagination]="false" [nzTotal]="total"
-									[nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQueryParamsChange($event)">
+								<nz-table #basicTable [nzData]="transactionService.list" nzSize="small" [nzFrontPagination]="false"
+									[nzTotal]="total" [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
+									(nzQueryParams)="onQueryParamsChange($event)">
 									<thead>
 										<tr role="row">
-											<th style="width: 9rem;" nzColumnKey="" [nzSortFn]="true">Ngày </th>
+											<th style="width: 9%;" nzColumnKey="" [nzSortFn]="true">Ngày</th>
 											<th nzColumnKey="" [nzSortFn]="true">Khách hàng</th>
-											<th nzColumnKey="" [nzSortFn]="true">Khách hàng</th>
-											<th nzColumnKey="tuNgay" style="width: 9%;">Từ ngày</th>
-											<th nzColumnKey="denNgay" style="width: 9%;">Đến ngày</th>
-											<th nzColumnKey="nguoiDuyet" [nzSortFn]="true" style="width: 22%;">Người
-												duyệt</th>
-											<th class="text-end" style="width: 10rem;"></th>
+											<th nzColumnKey="" [nzSortFn]="true" style="width: 20%;">Tuyến đường</th>
+											<th nzColumnKey="" [nzSortFn]="true" style="width: 15%;">Phương tiện</th>
+											<th nzColumnKey="" style="width: 15%;">Lái xe</th>
+											<th nzColumnKey="" style="width: 15%;">Vận chuyển</th>
+											<th class="whitespace-nowrap" style="width: 8%;">Thao tác</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr *ngFor="let item of basicTable.data">
 											<td>
-												<span class="text-bold">#{{item.soHieu}}</span> <br />
-												<span style="font-size: 0.777rem;">{{item.ngayBanHanh |
-													date:'dd/MM/yyyy'}}</span>
+												<span style="font-size: 0.777rem;">{{item.transactionDate | date:'dd/MM/yyyy'}}</span>
 											</td>
-											<td>
-												<span class="text-bold">{{item.capCho}}</span><br />
-												<span style="font-size: 0.777rem;">{{item.chucVu}}</span><br />
-												<span style="font-size: 0.777rem;">{{item.donVi}}</span>
-											</td>
-											<td>{{item.tuNgay | date: 'dd/MM/yyyy'}}</td>
-											<td>{{item.denNgay | date: 'dd/MM/yyyy'}}</td>
+											<td>{{item.customerName}} </td>
+											<td>{{item.shippingRouteName}}</td>
+											<td>{{item.vehicleName}}</td>
+											<td>{{item.driverName}}</td>
+											<td>{{item.vendorName}}</td>
 											<td>
 												<span class="text-bold">{{item.nguoiDuyet }}</span><br />
 												<span style="font-size: 0.777rem;">{{item.chucVuDuyet}}</span>
 											</td>
-											<td class="text-end actions">
-												<wk-button icon="export" [iconSize]="13" [className]="'btn-default btn-empty mr-2'"
-													(click)="openPrintModal(item)"></wk-button>
-												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-default btn-empty mr-2'"
+											<td class="whitespace-nowrap">
+												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-default mr-2'"
 													*ngIf="canEdit(item.nguoiNhapMay)"
-													[routerLink]="['/giay-di-duong/edit/' + item.id]"></wk-button>
+													[routerLink]="['/giay-di-duong/edit/' + item.id]">Sửa</wk-button>
 												<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
-													*ngIf="canDelete(item.nguoiNhapMay)" (click)="confirmDelete(item)"></wk-button>
+													*ngIf="canDelete(item.nguoiNhapMay)" (click)="confirmDelete(item)">Xóa</wk-button>
 											</td>
 										</tr>
 									</tbody>

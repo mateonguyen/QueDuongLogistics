@@ -23,7 +23,7 @@ export class CustomerComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.dataService.refreshList();
+		// this.dataService.refreshList();
 	}
 
 	refreshList() {

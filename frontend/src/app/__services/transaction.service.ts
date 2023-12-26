@@ -22,8 +22,8 @@ export class TransactionService {
 		pageSize: number,
 		sortField: string | 'SoHieu',
 		sortOrder: string | 'descend',
-		startDate: string | null,
-		endDate: string | null,
+		// startDate: string | null,
+		// endDate: string | null,
 		//filters: Array<{ key: string; value: string[] }>
 		term: string
 	): Observable<PaginatedResult<Transaction[]>> {
