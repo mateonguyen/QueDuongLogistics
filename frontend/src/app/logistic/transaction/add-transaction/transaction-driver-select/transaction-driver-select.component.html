@@ -1,46 +1,51 @@
-<div class="information_panel">
-	<h4 class="mb-3">Thông tin lái xe</h4>
-	<div class="row">
-		<div class="col-lg-4">
-			<b>Họ và tên </b> :
-		</div>
-		<div class="col-lg-8">
-			<div class="w-full d-flex">
-				<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onDriverChange()"
-					[nzCustomTemplate]="selectedTemplate">
-					<nz-option *ngFor="let driver of driverService.list" [nzValue]="driver" [nzLabel]="driver.fullName">
-					</nz-option>
-				</nz-select>
-				<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
-					(click)="openEditModal()"></wk-button>
-				<ng-template #selectedTemplate let-selected>
-					{{ selected.nzLabel }}
-				</ng-template>
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<b>Ngày Sinh </b> :
-		</div>
-		<div class="col-lg-8">
-			<input type="text" class="form-input" value="{{ model? formatHumanDate(model.dateOfBirth) : '' }}" disabled>
-		</div>
-		<div class="col-lg-4">
-			<b>Số CCCD </b> :
-		</div>
-		<div class="col-lg-8">
-			<input type="text" class="form-input" value="{{ model?.phoneNo }}" disabled>
-		</div>
-		<div class="col-lg-4">
-			<b>Số điện thoại </b> :
-		</div>
-		<div class="col-lg-8">
-			<input type="text" class="form-input" value="{{ model?.identityCardNo }}" disabled>
-		</div>
-		<div class="col-lg-4">
-			<b>Quê Quán </b> :
-		</div>
-		<div class="col-lg-8">
-			<input type="text" class="form-input" value="{{ model?.homeTown }}" disabled>
-		</div>
-	</div>
-</div>
+<table class="table table_price table-bordered">
+	<thead>
+		<tr>
+			<th class="whitespace-nowrap" colspan="2">Thông tin lái xe</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>Họ và tên </b></td>
+			<td>
+				<div class="w-full d-flex">
+					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onDriverChange()"
+						[nzCustomTemplate]="selectedTemplate">
+						<nz-option *ngFor="let driver of driverService.list" [nzValue]="driver" [nzLabel]="driver.fullName">
+						</nz-option>
+					</nz-select>
+					<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+						(click)="openEditModal()"></wk-button>
+					<ng-template #selectedTemplate let-selected>
+						{{ selected.nzLabel }}
+					</ng-template>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Ngày Sinh </b></td>
+			<td>
+				<input type="text" class="form-input" value="{{ model? formatHumanDate(model.dateOfBirth) : '' }}" disabled>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Số CCCD</b></td>
+			<td>
+				<input type="text" class="form-input" value="{{ model?.phoneNo }}" disabled>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Số điện thoại </b></td>
+			<td>
+				<input type="text" class="form-input" value="{{ model?.identityCardNo }}" disabled>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Quê Quán </b></td>
+			<td>
+				<input type="text" class="form-input" value="{{ model?.homeTown }}" disabled>
+			</td>
+		</tr>
+	
+	</tbody>
+</table>

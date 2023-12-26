@@ -1,34 +1,41 @@
-<div class="information_panel">
-	<h4 class="mb-3">Thông tin vận chuyển</h4>
-	<div class="row">
-		<div class="col-lg-4">
-			<b>Tuyến đường </b> :
-		</div>
-		<div class="col-lg-8">
-			<div class="w-full d-flex">
-				<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onShippingRouteChange()"
-					[nzCustomTemplate]="selectedTemplate">
-					<nz-option *ngFor="let route of shippingRouteService.list" [nzValue]="route" [nzLabel]="route.routeCode">
-					</nz-option>
-				</nz-select>
-				<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
-					(click)="openEditModal()"></wk-button>
-				<ng-template #selectedTemplate let-selected>
-					{{ selected.nzLabel }}
-				</ng-template>
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<b>Điểm nhận hàng </b> :
-		</div>
-		<div class="col-lg-8">
-			<input type="text" class="form-input" value="{{ model?.origin.locationName }}" disabled>
-		</div>
-		<div class="col-lg-4">
-			<b>Điểm giao hàng </b> :
-		</div>
-		<div class="col-lg-8">
-			<input type="text" class="form-input" value="{{ model?.destination.locationName }}" disabled>
-		</div>
-	</div>
-</div>
+
+
+<table class="table table_price table-bordered">
+	<thead>
+		<tr>
+			<th class="whitespace-nowrap" colspan="2">Thông tin vận chuyển</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>Tuyến đường </b></td>
+			<td>
+				<div class="w-full d-flex">
+					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onShippingRouteChange()"
+						[nzCustomTemplate]="selectedTemplate">
+						<nz-option *ngFor="let route of shippingRouteService.list" [nzValue]="route" [nzLabel]="route.routeCode">
+						</nz-option>
+					</nz-select>
+					<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+						(click)="openEditModal()"></wk-button>
+					<ng-template #selectedTemplate let-selected>
+						{{ selected.nzLabel }}
+					</ng-template>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Điểm nhận hàng </b></td>
+			<td>
+				<input type="text" class="form-input" value="{{ model?.origin.locationName }}" disabled>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Điểm giao hàng</b></td>
+			<td>
+				<input type="text" class="form-input" value="{{ model?.destination.locationName }}" disabled>
+			</td>
+		</tr>
+	
+	</tbody>
+</table>

@@ -9,15 +9,15 @@ p {
 }
 
 ::ng-deep .information_panel{
-    background-color: #f5fbff;
-    border: 1px solid #BDE3FF;
+    border: 1px solid #23538f;
     padding: 20px;
 }
 
 ::ng-deep .ant-table-thead > tr > th, .ant-table-tfoot > tr > th {
-    background-color: #BDE3FF !important;
+    background-color: #23538f !important;
     font-weight: bolder;
     text-align: center;
+    color: #fff;
 }
 
 ::ng-deep .table_price{
@@ -25,10 +25,11 @@ p {
 }
 
 ::ng-deep.table_price thead > tr > th, .table_price tfoot > tr > th{
-    background-color: #BDE3FF !important;
+    background-color: #23538f !important;
     font-weight: bolder;
     text-align: center;
     padding : 10px;
+    color: #fff;
 }
 
 .note_input{
