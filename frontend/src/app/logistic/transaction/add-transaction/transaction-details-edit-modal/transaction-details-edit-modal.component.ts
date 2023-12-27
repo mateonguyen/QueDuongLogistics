@@ -54,7 +54,7 @@ export class TransactionDetailsEditModalComponent implements OnInit {
 			quantity: [this.model?.quantity, Validators.required],
 			unit: [this.model?.unit, Validators.required],
 			goodsDescription: [this.model?.goodsDescription],
-			deliveredPlaceId: [this.model?.deliveredPlaceId, Validators.required],
+			deliveredPlace: [this.model?.deliveredPlace, Validators.required],
 			deliveredTime: [this.model?.deliveredTime ? new Date(this.model?.deliveredTime) : null, Validators.required],
 		});
 	}

@@ -7,6 +7,6 @@ export interface TransactionDetails {
 	quantity: number;
 	unit: string;
 	goodsDescription: string;
-	deliveredPlaceId: number;
+	deliveredPlace: string;
 	deliveredTime: Date;
 }
