@@ -78,9 +78,9 @@
 			<div class="col col-md-6">
 				<div class="form-group">
 					<label for="noi_den" class="label-bold">Nơi giao</label>
-					<nz-select nzAllowClear nzShowSearch class="w-full" [formControl]='editForm.controls["deliveredPlaceId"]'
+					<nz-select nzAllowClear nzShowSearch class="w-full" [formControl]='editForm.controls["deliveredPlace"]'
                         [compareWith]="compareFn">
-                        <nz-option *ngFor="let location of locationService.list" [nzValue]="location.id" [nzLabel]="location.locationName">
+                        <nz-option *ngFor="let location of locationService.list" [nzValue]="location.locationName" [nzLabel]="location.locationName">
                             {{ location.locationName }}
                         </nz-option>
                     </nz-select>
