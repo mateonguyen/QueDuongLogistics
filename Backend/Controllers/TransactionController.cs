@@ -47,7 +47,7 @@ public class TransactionController : BaseApiController
     }
 
     [HttpPut]
-    public async Task<ActionResult> Update(TransactionDto transactionDto)
+    public async Task<ActionResult> Update(TransactionForCreationDto transactionDto)
     {
         var transaction = await _unitOfWork.TransactionRepository.SingleAsync(transactionDto.Id);
 
