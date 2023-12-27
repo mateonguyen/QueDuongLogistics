@@ -7,8 +7,9 @@ public class TransactionDetail
     public int Id { get; set; }
 
     public int TransactionId { get; set; }
-
-    public int ContType { get; set; }
+    
+    [MaxLength(50)]
+    public string ContType { get; set; }
 
     public int ContCount { get; set; }
 
