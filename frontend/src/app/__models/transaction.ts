@@ -26,15 +26,15 @@ export class Transaction {
 	transactionDetails: TransactionDetails[];
 	transactionDate: Date;
 
-	demurrageFee: number | string;
-	transshipmentFee: number | string;
-	returnShippingFee: number | string;
-	customsFee: number | string;
-	handlingFee: number | string;
-	ticketFee: number | string;
-	otherFee: number | string;
+	demurrageFee: number;
+	transshipmentFee: number;
+	returnShippingFee: number;
+	customsFee: number;
+	handlingFee: number;
+	ticketFee: number;
+	otherFee: number;
 	docManager: string;
-	isCustomerReturn: number;
-	isSummitedDoc: number;
+	isCustomerReturn: boolean;
+	isSummitedDoc: boolean;
 	notes: string;
 }
