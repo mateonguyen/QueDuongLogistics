@@ -28,6 +28,10 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	transactionDetails: TransactionDetails[] = [];
 	showNoResult: boolean = false;
 	confirmModal?: NzModalRef;
+	optionRadioBox: { value: boolean; label: string }[] = [
+		{ value: true, label: 'Có' },
+		{ value: false, label: 'Không' },
+	];
 
 	constructor(
 		private _dataService: TransactionService,
