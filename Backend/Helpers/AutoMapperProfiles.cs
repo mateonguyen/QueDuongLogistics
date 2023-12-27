@@ -68,6 +68,8 @@ public class AutoMapperProfiles : Profile
 
         CreateMap<Transaction, TransactionDto>();
 
+        CreateMap<TransactionDto, Transaction>();
+
         CreateMap<TransactionForCreationDto, Transaction>();
 
         CreateMap<TransactionDetailDto, TransactionDetail>();
