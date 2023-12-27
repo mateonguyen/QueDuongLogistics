@@ -177,14 +177,31 @@
 							<tr>
 								<td>Trả người quản lý giấy tờ</td>
 								<td>
-									<input type="text" class="form-input" name="isSummitedDoc" [(ngModel)]="transaction.isSummitedDoc">
+									<span *ngFor="let option of optionRadioBox">
+										<input
+											type="radio"
+											name="isSummitedDoc"
+											[(ngModel)]="transaction.isSummitedDoc"
+											[value]="option.value"
+										>
+										{{ option.label }}
+										&nbsp;&nbsp;&nbsp;
+									</span>
 								</td>
 							</tr>
 							<tr>
 								<td>Trả khách hàng</td>
 								<td>
-									<input type="text" class="form-input" name="isCustomerReturn"
-										[(ngModel)]="transaction.isCustomerReturn">
+									<span *ngFor="let option of optionRadioBox">
+										<input
+											type="radio"
+											name="isCustomerReturn"
+											[(ngModel)]="transaction.isCustomerReturn"
+											[value]="option.value"
+										>
+										{{ option.label }}
+										&nbsp;&nbsp;&nbsp;
+									</span>
 								</td>
 							</tr>
 						</tbody>
