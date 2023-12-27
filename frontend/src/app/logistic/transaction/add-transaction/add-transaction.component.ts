@@ -10,7 +10,7 @@ import { TransactionService } from 'src/app/__services/transaction.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetailsEditModalComponent } from '../add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
-
+import { DatePipe } from '@angular/common';
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -37,7 +37,8 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		private _dataService: TransactionService,
 		private _notificationService: NzNotificationService,
 		private _modalService: NzModalService,
-		private _viewContainerRef: ViewContainerRef
+		private _viewContainerRef: ViewContainerRef,
+		private datePipe: DatePipe
 	) { }
 
 	ngOnInit(): void {
@@ -179,5 +180,9 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			return confirm('Bạn có chắc chắn muốn tiếp tục? Dữ liệu có thể sẽ bị mất nếu không lưu.')
 		}
 		return true;
+	}
+
+	parseHumanDate(value: Date): string {
+		return this.datePipe.transform(value, 'dd/MM/yyyy');
 	}
 }

@@ -81,7 +81,7 @@
 							<td>{{ row.unit }} </td>
 							<td>{{ row.goodsDescription }} </td>
 							<td>{{ row.deliveredPlaceId }} </td>
-							<td>{{ row.deliveredTime }} </td>
+							<td>{{ parseHumanDate(row.deliveredTime) }} </td>
 							<td>
 								<button type="button" class="btn-link" (click)="openEditModal(row)">
 									<svg-icon [name]="'pencil'" [size]="14"></svg-icon>
