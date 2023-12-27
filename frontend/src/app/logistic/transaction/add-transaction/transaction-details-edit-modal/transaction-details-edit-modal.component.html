@@ -1,0 +1,103 @@
+<div class="modal-header">
+	<h4 class="modal-title pull-left">{{ title }}</h4>
+	<wk-button icon="times" [iconSize]="24" (click)="closeModal()" [className]="'btn-empty'">
+	</wk-button>
+</div>
+<div class="modal-body">
+	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && save()" autocomplete="off">
+		<div class="row">
+			<div class="col col-md-6">
+                <label for="contType" class="label-bold">Loại cont</label>
+                <nz-select nzAllowClear nzShowSearch class="w-full" [formControl]='editForm.controls["contType"]'
+                    [compareWith]="compareFn" >
+                    <nz-option *ngFor="let option of optionContType" [nzValue]="option" [nzLabel]="option">
+                        {{ option }}
+                    </nz-option>
+                </nz-select>
+            </div>
+            <div class="col col-md-6">
+                <div class="form-group mb-3">
+                    <label for="packageCount" class="label-bold">Số cont</label>
+                    <input type="text" id="packageCount" class="form-input" [formControl]='editForm.controls["packageCount"]'
+                        [class.is-invalid]='editForm.get("packageCount").errors && editForm.get("packageCount").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["packageCount"].errors?.required'>Vui lòng
+                        nhập Số cont</div>
+                </div>
+            </div>
+		</div>
+
+        <div class="row">
+            <div class="col col-md-6">
+                <div class="form-group mb-3">
+                    <label for="contCount" class="label-bold">Số kiện</label>
+                    <input type="text" id="contCount" class="form-input" [formControl]='editForm.controls["contCount"]'
+                        [class.is-invalid]='editForm.get("contCount").errors && editForm.get("contCount").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["contCount"].errors?.required'>Vui lòng
+                        nhập Số kiện</div>
+                </div>
+            </div>
+			<div class="col col-md-6">
+                <label for="packageUnit" class="label-bold">ĐVT Kiện</label>
+                <nz-select nzAllowClear nzShowSearch class="w-full" [formControl]='editForm.controls["packageUnit"]'
+                    [compareWith]="compareFn" >
+                    <nz-option *ngFor="let option of optionPackageUnit" [nzValue]="option" [nzLabel]="option">
+                        {{ option }}
+                    </nz-option>
+                </nz-select>
+            </div>
+		</div>
+
+        <div class="row">
+            <div class="col col-md-6">
+                <div class="form-group mb-3">
+                    <label for="quantity" class="label-bold">Số lượng</label>
+                    <input type="text" id="quantity" class="form-input" [formControl]='editForm.controls["quantity"]'
+                        [class.is-invalid]='editForm.get("quantity").errors && editForm.get("quantity").touched'>
+                    <div class="invalid-feedback" *ngIf='editForm.controls["quantity"].errors?.required'>Vui lòng
+                        nhập Số lượng</div>
+                </div>
+            </div>
+			<div class="col col-md-6">
+                <label for="unit" class="label-bold">ĐVT </label>
+                <nz-select nzAllowClear nzShowSearch class="w-full" [formControl]='editForm.controls["unit"]'
+                    [compareWith]="compareFn" >
+                    <nz-option *ngFor="let option of optionUnit" [nzValue]="option" [nzLabel]="option">
+                        {{ option }}
+                    </nz-option>
+                </nz-select>
+            </div>
+		</div>
+
+		<div class="row">
+			<div class="col col-md-12">
+                <label for="goodsDescription" class="label-bold">Mô tả hàng hóa </label>
+                <textarea rows="4" id="goodsDescription" class="form-input" [formControl]='editForm.controls["goodsDescription"]'></textarea>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col col-md-6">
+				<div class="form-group">
+					<label for="noi_den" class="label-bold">Nơi giao</label>
+					<nz-select nzAllowClear nzShowSearch class="w-full" [formControl]='editForm.controls["deliveredPlaceId"]'
+                        [compareWith]="compareFn">
+                        <nz-option *ngFor="let location of locationService.list" [nzValue]="location.id" [nzLabel]="location.locationName">
+                            {{ location.locationName }}
+                        </nz-option>
+                    </nz-select>
+				</div>
+			</div>
+			<div class="col col-md-6">
+				<div class="form-group">
+					<label for="deliveredTime" class="label-bold">Ngày giao</label>
+					<nz-date-picker class="form-input" [formControl]='editForm.controls["deliveredTime"]' id="deliveredTime"
+						[nzFormat]="'dd/MM/yyyy'"
+						[class.is-invalid]='editForm.get("deliveredTime").errors && editForm.get("deliveredTime").touched'></nz-date-picker>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<wk-button [className]="'btn btn-default mr-2'" (click)="cancel()">Đóng</wk-button>
+	<button type="submit" class="btn btn-success" form="edit_form" [disabled]='!editForm.valid'>Lưu</button>
+</div>

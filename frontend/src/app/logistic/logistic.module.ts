@@ -38,6 +38,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { RouteLocationSelectComponent } from './shipping-route/add-shipping-route-modal/route-location-select/route-location-select.component';
 import { TransactionShippingRouteSelectComponent } from './transaction/add-transaction/transaction-shipping-route-select/transaction-shipping-route-select.component';
 import { TransactionDetailsComponent } from './transaction/add-transaction/transaction-details/transaction-details.component';
+import { TransactionDetailsEditModalComponent } from './transaction/add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { TransactionDetailsComponent } from './transaction/add-transaction/trans
 		RouteLocationSelectComponent,
 		TransactionShippingRouteSelectComponent,
 		TransactionDetailsComponent,
+  TransactionDetailsEditModalComponent,
 	],
 	imports: [
 		CommonModule,

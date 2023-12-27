@@ -56,7 +56,44 @@
 			</div>
 
 			<div class="row mt-2">
-				<app-transaction-details [(model)]="transaction.transactionDetails" (modelChange)="handleModelChange($event)"></app-transaction-details>
+				<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzSize]="'small'" [nzData]="transaction.transactionDetails" nzTableResponsive >
+					<thead>
+						<tr role="row">
+							<th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
+							<th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
+							<th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện</th>
+							<th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện</th>
+							<th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
+							<th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
+							<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả hàng hóa</th>
+							<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao</th>
+							<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian giao</th>
+							<th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success" (click)="openEditModal()">Thêm mới</button></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let row of transaction.transactionDetails">
+							<td>{{ row.contType }} </td>
+							<td>{{ row.contCount }} </td>
+							<td>{{ row.packageCount }} </td>
+							<td>{{ row.packageUnit }} </td>
+							<td>{{ row.quantity }} </td>
+							<td>{{ row.unit }} </td>
+							<td>{{ row.goodsDescription }} </td>
+							<td>{{ row.deliveredPlaceId }} </td>
+							<td>{{ row.deliveredTime }} </td>
+							<td>
+								<button type="button" class="btn-link" (click)="openEditModal(row)">
+									<svg-icon [name]="'pencil'" [size]="14"></svg-icon>
+								</button>
+								<span class="px-2">&nbsp;</span>
+								<button type="button" class="btn-link text-danger" (click)="confirmDelete(row)">
+									<svg-icon [name]="'remove'" [size]="14"></svg-icon>
+								</button>
+							</td>
+						  </tr>
+					</tbody>
+				</nz-table>
 			</div>
 
 			<div class="row mt-2">
@@ -158,18 +195,21 @@
 							</tr>
 						</tfoot>
 					</table>
+
+					<table class="table table_price table-bordered mt-2">
+						<thead>
+							<tr>
+								<th class="whitespace-nowrap">Ghi chú</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><textarea rows="5" class="form-input" name="notes" [(ngModel)]="transaction.notes"></textarea></td>
+							</tr>
+						</tbody>
+					</table>	
 				</div>
 			</div>
-
-			<div class="row mt-2">
-				<div class="col-lg-12">
-					<div class="information_panel">
-						<h4>Ghi chú</h4>
-						<textarea rows="5" class="note_input" name="notes" [(ngModel)]="transaction.notes"></textarea>
-					</div>
-				</div>
-			</div>
-
 		</form>
 	</main>
 </div>
