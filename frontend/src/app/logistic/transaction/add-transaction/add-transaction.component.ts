@@ -25,7 +25,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	transactionDetails: TransactionDetails[] = [];
 	showNoResult: boolean = false;
 
-
 	constructor(
 		private _dataService: TransactionService,
 		private _notificationService: NzNotificationService
