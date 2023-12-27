@@ -30,7 +30,7 @@ public class TransactionController : BaseApiController
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create(TransactionDto transactionDto)
+    public async Task<ActionResult> Create(TransactionForCreationDto transactionDto)
     {
         var transaction = _mapper.Map<Transaction>(transactionDto);
 
