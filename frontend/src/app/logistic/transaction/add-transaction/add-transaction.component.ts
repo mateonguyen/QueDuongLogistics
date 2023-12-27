@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CanComponentDeactivate } from '../../../__guards/prevent-unsaved-changes.guard';
 import { Transaction } from 'src/app/__models/transaction';
@@ -8,6 +8,9 @@ import { Driver } from 'src/app/__models/driver';
 import { Vehicle } from 'src/app/__models/vehicle';
 import { TransactionService } from 'src/app/__services/transaction.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { TransactionDetailsEditModalComponent } from '../add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
+
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -24,10 +27,13 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	transaction: Transaction = new Transaction();
 	transactionDetails: TransactionDetails[] = [];
 	showNoResult: boolean = false;
+	confirmModal?: NzModalRef;
 
 	constructor(
 		private _dataService: TransactionService,
-		private _notificationService: NzNotificationService
+		private _notificationService: NzNotificationService,
+		private _modalService: NzModalService,
+		private _viewContainerRef: ViewContainerRef
 	) { }
 
 	ngOnInit(): void {
@@ -63,6 +69,60 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	handleModelChange(updatedModel: TransactionDetails[]) {
 		this.transaction.transactionDetails = updatedModel;
 	}
+
+	openEditModal(model?: TransactionDetails) {
+		let initialState = {
+			title: 'Thêm mới Lịch trình vận đơn',
+			model: null
+		};
+
+		if (!model) {
+			initialState.title = 'Thêm mới Lịch trình vận đơn';
+		} else {
+			initialState.title = 'Sửa Lịch trình vận đơn';
+			initialState.model = model;
+		}
+
+		const modal = this._modalService.create({
+			nzContent: TransactionDetailsEditModalComponent,
+			nzClosable: false,
+			nzFooter: null,
+			nzWidth: 700,
+			nzViewContainerRef: this._viewContainerRef,
+			nzComponentParams: {
+				title: initialState.title,
+				model: initialState.model
+			}
+		});
+
+		modal.afterClose.subscribe((result: TransactionDetails) => {
+			if (result) {
+				if (!model) {
+					this.transactionDetails = [
+						...this.transactionDetails,
+						result
+					]
+				} else {
+					const index = this.transactionDetails.findIndex(x => x.id === model.id);
+					Object.assign(this.transactionDetails[index], result);
+				}
+				this.transaction.transactionDetails = this.transactionDetails;
+			}
+		});
+	}
+
+	confirmDelete(model: TransactionDetails) {
+		this.confirmModal = this._modalService.confirm({
+			nzTitle: 'Bạn chắc chắn muốn xóa?',
+			nzContent: 'Sau khi chọn Xóa, lịch trình sẽ được xóa khỏi danh sách.',
+			nzOkText: 'Xóa',
+			nzOkDanger: true,
+			nzOnOk: () => {
+				this.transactionDetails = this.transactionDetails.filter(x => x !== model);
+			}
+		});
+	}
+
 
 	save() {
 		console.log(this.transaction);

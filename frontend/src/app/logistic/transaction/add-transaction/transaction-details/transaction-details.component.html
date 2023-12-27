@@ -1,4 +1,4 @@
-<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzData]="model" nzTableResponsive>
+<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzSize]="'small'" [nzData]="model" nzTableResponsive >
     <thead>
         <tr role="row">
             <th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
@@ -10,12 +10,12 @@
             <th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả hàng hóa</th>
             <th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao</th>
             <th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian giao</th>
-            <th class="whitespace-nowrap" style="width: 8%;"><button type="button" class="btn btn-success" (click)="addNewRow()">Thêm mới</button></th>
+            <th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success" (click)="addNewRow()">Thêm mới</button></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let row of model">
-            <td><input type="text" class="form-input" [(ngModel)]="row.contType" /></td>
+            <td>{{ row.contType }} </td>
             <td><input type="text" class="form-input" [(ngModel)]="row.contCount" /></td>
             <td><input type="text" class="form-input" [(ngModel)]="row.packageCount" /></td>
             <td>
