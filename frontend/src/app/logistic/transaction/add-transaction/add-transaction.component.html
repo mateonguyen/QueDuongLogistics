@@ -56,7 +56,8 @@
 			</div>
 
 			<div class="row mt-2">
-				<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzSize]="'small'" [nzData]="transaction.transactionDetails" nzTableResponsive >
+				<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzSize]="'small'"
+					[nzData]="transaction.transactionDetails" nzTableResponsive>
 					<thead>
 						<tr role="row">
 							<th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
@@ -65,10 +66,14 @@
 							<th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện</th>
 							<th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
 							<th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
-							<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả hàng hóa</th>
-							<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao</th>
-							<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian giao</th>
-							<th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success" (click)="openEditModal()">Thêm mới</button></th>
+							<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả
+								hàng hóa</th>
+							<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao
+							</th>
+							<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian
+								giao</th>
+							<th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success"
+									(click)="openEditModal()">Thêm mới</button></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -91,7 +96,7 @@
 									<svg-icon [name]="'remove'" [size]="14"></svg-icon>
 								</button>
 							</td>
-						  </tr>
+						</tr>
 					</tbody>
 				</nz-table>
 			</div>
@@ -178,12 +183,8 @@
 								<td>Trả người quản lý giấy tờ</td>
 								<td>
 									<span *ngFor="let option of optionRadioBox">
-										<input
-											type="radio"
-											name="isSummitedDoc"
-											[(ngModel)]="transaction.isSummitedDoc"
-											[value]="option.value"
-										>
+										<input type="radio" name="isSummitedDoc" [(ngModel)]="transaction.isSummitedDoc"
+											[value]="option.value">
 										{{ option.label }}
 										&nbsp;&nbsp;&nbsp;
 									</span>
@@ -193,12 +194,8 @@
 								<td>Trả khách hàng</td>
 								<td>
 									<span *ngFor="let option of optionRadioBox">
-										<input
-											type="radio"
-											name="isCustomerReturn"
-											[(ngModel)]="transaction.isCustomerReturn"
-											[value]="option.value"
-										>
+										<input type="radio" name="isCustomerReturn" [(ngModel)]="transaction.isCustomerReturn"
+											[value]="option.value">
 										{{ option.label }}
 										&nbsp;&nbsp;&nbsp;
 									</span>
@@ -224,7 +221,7 @@
 								<td><textarea rows="5" class="form-input" name="notes" [(ngModel)]="transaction.notes"></textarea></td>
 							</tr>
 						</tbody>
-					</table>	
+					</table>
 				</div>
 			</div>
 		</form>

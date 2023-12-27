@@ -128,7 +128,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		});
 	}
 
-
 	save() {
 		console.log(this.transaction);
 
@@ -180,9 +179,5 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			return confirm('Bạn có chắc chắn muốn tiếp tục? Dữ liệu có thể sẽ bị mất nếu không lưu.')
 		}
 		return true;
-	}
-
-	parseHumanDate(value: Date): string {
-		return this.datePipe.transform(value, 'dd/MM/yyyy');
 	}
 }
