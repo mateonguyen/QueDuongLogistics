@@ -71,10 +71,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		this.transaction.shippingRoute = selectedData;
 	}
 
-	handleModelChange(updatedModel: TransactionDetails[]) {
-		this.transaction.transactionDetails = updatedModel;
-	}
-
 	openEditModal(model?: TransactionDetails) {
 		let initialState = {
 			title: 'Thêm mới Lịch trình vận đơn',
@@ -179,5 +175,9 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			return confirm('Bạn có chắc chắn muốn tiếp tục? Dữ liệu có thể sẽ bị mất nếu không lưu.')
 		}
 		return true;
+	}
+
+	parseHumanDate(value: Date): string {
+		return this.datePipe.transform(value, 'dd/MM/yyyy');
 	}
 }
