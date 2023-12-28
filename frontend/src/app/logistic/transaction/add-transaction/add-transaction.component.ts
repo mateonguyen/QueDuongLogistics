@@ -43,14 +43,19 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	) { }
 
 	ngOnInit(): void {
-		// this.initForm();
+		this.initForm();
 	}
 
 	initForm() {
-		// this.editForm = this._fb.group({
-		// 	id: [this.transaction?.id ?? 0],
-		// 	demurrageFee : [this.transaction?.demurrageFee ?? 0],
-		// });
+		if (!this.transaction.id) {
+			this.transaction.demurrageFee = 0;
+			this.transaction.transshipmentFee = 0;
+			this.transaction.returnShippingFee = 0;
+			this.transaction.customsFee = 0;
+			this.transaction.handlingFee = 0;
+			this.transaction.ticketFee = 0;
+			this.transaction.otherFee = 0;
+		}
 	}
 
 	onCustomerChange(customer: Customer) {

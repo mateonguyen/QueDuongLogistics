@@ -121,15 +121,13 @@
 							<tr>
 								<td>Phí ghép điểm</td>
 								<td>
-									<input type="text" class="form-input" name="transshipmentFee"
-										[(ngModel)]="transaction.transshipmentFee">
+									<input type="text" class="form-input" name="transshipmentFee" [(ngModel)]="transaction.transshipmentFee">
 								</td>
 							</tr>
 							<tr>
 								<td>Phí hàng về</td>
 								<td>
-									<input type="text" class="form-input" name="returnShippingFee"
-										[(ngModel)]="transaction.returnShippingFee">
+									<input type="text" class="form-input" name="returnShippingFee" [(ngModel)]="transaction.returnShippingFee">
 								</td>
 							</tr>
 							<tr>
@@ -169,8 +167,7 @@
 					<table class="table table_price table-bordered">
 						<thead>
 							<tr>
-								<th class="whitespace-nowrap">Biên bản giao hàng</th>
-								<th class="whitespace-nowrap">Giá</th>
+								<th class="whitespace-nowrap" colspan="2">Biên bản giao hàng</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -203,12 +200,6 @@
 								</td>
 							</tr>
 						</tbody>
-						<tfoot>
-							<tr role="row">
-								<th class="whitespace-nowrap">Tổng</th>
-								<th class="whitespace-nowrap">0</th>
-							</tr>
-						</tfoot>
 					</table>
 
 					<table class="table table_price table-bordered mt-2">
@@ -219,7 +210,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><textarea rows="5" class="form-input" name="notes" [(ngModel)]="transaction.notes"></textarea></td>
+								<td><textarea rows="5" class="form-input input-multiple" name="notes" [(ngModel)]="transaction.notes"></textarea></td>
 							</tr>
 						</tbody>
 					</table>
