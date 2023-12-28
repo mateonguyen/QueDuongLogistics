@@ -11,6 +11,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetailsEditModalComponent } from '../add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
 import { DatePipe } from '@angular/common';
+import { Vendor } from 'src/app/__models/vendor';
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -69,6 +70,11 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 
 	onShippingRouteChange(selectedData) {
 		this.transaction.shippingRoute = selectedData;
+	}
+
+	onVendorChange(vendor: Vendor) {
+		this.transaction.vendor = vendor;
+		this.transaction.vendorId = vendor.id;
 	}
 
 	openEditModal(model?: TransactionDetails) {

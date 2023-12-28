@@ -32,7 +32,8 @@
 				</div>
 
 				<div class="col-lg-4">
-					<!-- <app-transaction-vendor-select></app-transaction-vendor-select> -->
+					<app-transaction-vendor-select [(model)]="transaction.vendor"
+					(change)="onVendorChange($event)"></app-transaction-vendor-select>
 				</div>
 
 			</div>

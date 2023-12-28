@@ -1,7 +1,19 @@
+<div class="w-full d-flex mb-2">
+    <nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onVendorChange()"
+        [nzCustomTemplate]="selectedTemplate">
+        <nz-option *ngFor="let vendor of vendorService.list" [nzValue]="vendor" [nzLabel]="vendor.vendorName">
+        </nz-option>
+    </nz-select>
+    <wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+        (click)="openEditModal()"></wk-button>
+    <ng-template #selectedTemplate let-selected>
+        {{ selected.nzLabel }}
+    </ng-template>
+</div>
 <div class="vendor_logo_div">
-    <img src="../../assets/images/logistic_logo.jpg" class="vendor_logo">
+    <img [src]="'data:image/png;base64,' + model?.photo" style="width: 128px;" class="vendor_logo">
 </div>
 <div class="vendor_information_div">
-    <div class="vendor_title">Quế Dương</div>
-    <div class="vendor_date">13/12/2023</div>
+    <div class="vendor_title">{{ model?.vendorName }}</div>
+    <div class="vendor_date">{{ currentDate | date:'dd/MM/yyyy' }}</div>
 </div>
