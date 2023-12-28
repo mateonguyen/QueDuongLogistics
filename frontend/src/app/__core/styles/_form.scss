@@ -21,6 +21,9 @@ form {
 		font-size: 15px;
 		height: 34.88px;
 
+		&.input-multiple {
+			height: auto;
+		}
 		// &:hover {
 		// 	background: #ebecf0;
 		// }
