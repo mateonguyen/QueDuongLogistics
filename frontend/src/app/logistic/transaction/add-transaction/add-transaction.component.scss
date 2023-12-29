@@ -45,3 +45,27 @@ p {
         line-height: 40px;
     }
 }
+
+input[type=number]{
+    text-align: right;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group .prefix {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%);
+    color: #ccc;
+}
+
+.breadcrumbs-container{
+    font-size: 22px;
+}
+
+.flex-item-last {
+    margin-left: auto;
+}

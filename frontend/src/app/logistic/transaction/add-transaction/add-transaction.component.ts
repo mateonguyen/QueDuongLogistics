@@ -34,6 +34,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		{ value: true, label: 'Có' },
 		{ value: false, label: 'Không' },
 	];
+	public total_fee: string = '0';
 
 	constructor(
 		private _dataService: TransactionService,
@@ -56,6 +57,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			this.transaction.handlingFee = 0;
 			this.transaction.ticketFee = 0;
 			this.transaction.otherFee = 0;
+			this.transaction.transactionNo = 'CUST' + this.datePipe.transform(new Date(), 'dd.MM.yyyy');
 		}
 	}
 
@@ -193,4 +195,15 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	parseHumanDate(value: Date): string {
 		return this.datePipe.transform(value, 'dd/MM/yyyy');
 	}
+
+	calculateTotal() {
+		this.total_fee = new Intl.NumberFormat('en-US').format(this.transaction.demurrageFee +
+			this.transaction.transshipmentFee +
+			this.transaction.returnShippingFee +
+			this.transaction.customsFee +
+			this.transaction.handlingFee +
+			this.transaction.ticketFee +
+			this.transaction.otherFee);
+	}
+	
 }
