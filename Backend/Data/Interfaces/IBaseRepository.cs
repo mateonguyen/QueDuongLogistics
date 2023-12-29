@@ -6,6 +6,8 @@ namespace Backend.Data.Interfaces
 
         Task CreateAsync(T entity);
 
+        Task CreateRangeAsync(ICollection<T> entity);
+
         void Update(T entity);
 
         void Delete(T entity);

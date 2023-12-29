@@ -2,7 +2,7 @@ namespace Backend.Entities;
 
 public abstract class Auditable : IAuditable
 {
-    public DateTime Created { get; set; }
+    public DateTime Created { get; set; } = DateTime.Now;
 
     [Required]
     public string Creator { get; set; }

@@ -19,6 +19,11 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         await _context.AddAsync(entity);
     }
 
+    public async Task CreateRangeAsync(ICollection<T> entities)
+    {
+        await _context.AddRangeAsync(entities);
+    }
+
     public void Delete(T entity)
     {
         _context.Remove(entity);

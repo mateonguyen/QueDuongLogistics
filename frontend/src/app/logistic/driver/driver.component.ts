@@ -39,67 +39,62 @@ export class DriverComponent implements OnInit {
 	readExcel(file: File) {
 		// Xử lý đọc Excel
 		const reader: FileReader = new FileReader();
-	
-		reader.onload = (e: any) => {
-		  const binaryString: string = e.target.result;
-		  const workbook: XLSX.WorkBook = XLSX.read(binaryString, { type: 'binary' });
-	
-		  // Đọc dữ liệu từ sheet đầu tiên
-		  const sheetName: string = workbook.SheetNames[0];
-		  const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
-	
-		  // Chuyển đổi dữ liệu sang mảng JSON
-		  const data: any[] = XLSX.utils.sheet_to_json(worksheet, { raw: true, dateNF: 'yyyy-MM-dd' });
-	
-		  // Bạn có thể xử lý dữ liệu ở đây, ví dụ: lưu vào cơ sở dữ liệu hoặc hiển thị trên giao diện
-		  if (data) {
-			
-			data.forEach(item => {
-				const dateBirth = XLSX.SSF.parse_date_code(item.DateOfBirth);
-				const dateIssue = XLSX.SSF.parse_date_code(item.IssueDate);
 
-				const driver: Driver = {
-				  id: null,
-				  fullName: item.FullName,
-				  dateOfBirth: `${dateBirth['y']}${dateBirth['m'].toString().padStart(2, '0')}${dateBirth['d'].toString().padStart(2, '0')}`,
-				  phoneNo: item.PhoneNo,
-				  identityCardNo: item.IdentityCardNo,
-				  issueDate:`${dateIssue['y']}${dateIssue['m'].toString().padStart(2, '0')}${dateIssue['d'].toString().padStart(2, '0')}`,
-				  issuePlace: item.IssuePlace,
-				  homeTown: item.HomeTown,
-				  photo: null,
-				  created: null,
-				  creator: null,
-				  modified: null,
-				  modifier: null,
-				};
-			
-				this.modelDriver.push(driver);
-			});
-			console.log(this.modelDriver);
-			
-			this.dataService.import(this.modelDriver as Driver[]).subscribe({
-				next: res => {
-					this.dataService.list = res as Driver[];
-					this._notificationService.success(
-						'Chúc mừng!',
-						'Bạn vừa thêm mới thành công thông tin Lái xe.',
-						{ nzDuration: 5000, nzAnimate: true }
-					)
-				},
-				error: err => {
-					if (err.status == 400) {
-						this._notificationService.error(
-							'Lỗi!',
-							err.error,
+		reader.onload = (e: any) => {
+			const binaryString: string = e.target.result;
+			const workbook: XLSX.WorkBook = XLSX.read(binaryString, { type: 'binary' });
+
+			// Đọc dữ liệu từ sheet đầu tiên
+			const sheetName: string = workbook.SheetNames[0];
+			const worksheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
+
+			// Chuyển đổi dữ liệu sang mảng JSON
+			const data: any[] = XLSX.utils.sheet_to_json(worksheet, { raw: true, dateNF: 'yyyy-MM-dd' });
+
+			// Bạn có thể xử lý dữ liệu ở đây, ví dụ: lưu vào cơ sở dữ liệu hoặc hiển thị trên giao diện
+			if (data) {
+
+				data.forEach(item => {
+					const dateBirth = XLSX.SSF.parse_date_code(item.DateOfBirth);
+					const dateIssue = XLSX.SSF.parse_date_code(item.IssueDate);
+
+					const driver: Driver = {
+						id: 0,
+						fullName: item.FullName,
+						dateOfBirth: `${dateBirth['y']}${dateBirth['m'].toString().padStart(2, '0')}${dateBirth['d'].toString().padStart(2, '0')}`,
+						phoneNo: item.PhoneNo,
+						identityCardNo: item.IdentityCardNo,
+						issueDate: `${dateIssue['y']}${dateIssue['m'].toString().padStart(2, '0')}${dateIssue['d'].toString().padStart(2, '0')}`,
+						issuePlace: item.IssuePlace,
+						homeTown: item.HomeTown,
+					};
+
+					this.modelDriver.push(driver);
+				});
+				console.log(this.modelDriver);
+
+				this.dataService.import(this.modelDriver as Driver[]).subscribe({
+					next: res => {
+						this.dataService.list = res as Driver[];
+						this._notificationService.success(
+							'Chúc mừng!',
+							'Bạn vừa thêm mới thành công thông tin Lái xe.',
 							{ nzDuration: 5000, nzAnimate: true }
-						);
+						)
+					},
+					error: err => {
+						if (err.status == 400) {
+							this._notificationService.error(
+								'Lỗi!',
+								err.error,
+								{ nzDuration: 5000, nzAnimate: true }
+							);
+						}
 					}
-				}
-			});
-		}
+				});
+			}
 		};
-	
+
 		reader.readAsBinaryString(file);
 	}
 

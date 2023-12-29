@@ -76,4 +76,20 @@ public class DriverController : BaseApiController
         
         return Ok(await _unitOfWork.DriverRepository.ToListAsync());
     }
+
+    [HttpPost("import")]
+    public async Task<IActionResult> Import(List<DriverDto> driversDto)
+    {
+        var drivers = _mapper.Map<List<Driver>>(driversDto);
+
+        drivers.ForEach(x => x.Creator = User.GetUsername());
+
+         await _unitOfWork.DriverRepository.CreateRangeAsync(drivers);
+
+         var result = await _unitOfWork.Complete();
+
+         if (!result) return BadRequest("Nhập danh sách lái xe thất bại.");
+
+        return Ok(await _unitOfWork.DriverRepository.ToListAsync());
+    }
 }
