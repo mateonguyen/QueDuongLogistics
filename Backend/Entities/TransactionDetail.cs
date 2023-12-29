@@ -31,5 +31,5 @@ public class TransactionDetail
 
     public DateTime? DeliveredTime { get; set; }
 
-    public virtual Transaction Transaction { get; set; }
+    // public virtual Transaction Transaction { get; set; }
 }

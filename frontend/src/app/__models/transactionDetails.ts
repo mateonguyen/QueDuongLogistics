@@ -1,5 +1,5 @@
 export interface TransactionDetails {
-	id?: number;
+	id: number;
 	contType: string;
 	contCount: number;
 	packageCount: number;

@@ -12,6 +12,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetailsEditModalComponent } from '../add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
 import { DatePipe } from '@angular/common';
 import { Vendor } from 'src/app/__models/vendor';
+import { ShippingRoute } from 'src/app/__models/shipping-route';
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -73,8 +74,9 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		this.transaction.vehicleId = vehicle.id;
 	}
 
-	onShippingRouteChange(selectedData) {
-		this.transaction.shippingRoute = selectedData;
+	onShippingRouteChange(route: ShippingRoute) {
+		this.transaction.shippingRouteId = route.id;
+		this.transaction.shippingRoute = route;
 	}
 
 	onVendorChange(vendor: Vendor) {
