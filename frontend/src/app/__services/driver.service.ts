@@ -33,4 +33,8 @@ export class DriverService {
 	delete(id: number) {
 		return this.http.delete(this.baseUrl + 'driver/' + id);
 	}
+
+	import(model: Driver[]) {
+		return this.http.post(this.baseUrl + 'driver/import', model);
+	}
 }
