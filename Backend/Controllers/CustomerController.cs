@@ -114,4 +114,19 @@ public class CustomerController : BaseApiController
         return Ok(await _unitOfWork.CustomerRepository.ToListAsync());
     }
 
+    [HttpPost("import")]
+    public async Task<IActionResult> Import(List<CustomerDto> customersDto)
+    {
+        var customers = _mapper.Map<List<Customer>>(customersDto);
+
+        customers.ForEach(x => x.Creator = User.GetUsername());
+
+        await _unitOfWork.CustomerRepository.CreateRangeAsync(customers);
+
+         var result = await _unitOfWork.Complete();
+
+         if (!result) return BadRequest("Nhập danh sách khách hàng thất bại.");
+
+        return Ok(await _unitOfWork.CustomerRepository.ToListAsync());
+    }
 }

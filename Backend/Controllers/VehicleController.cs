@@ -82,4 +82,20 @@ public class VehicleController : BaseApiController
         
         return Ok(await _unitOfWork.VehicleRepository.ToListAsync());
     }
+
+    [HttpPost("import")]
+    public async Task<IActionResult> Import(List<VehicleDto> vehicleDtos)
+    {
+        var vehicles = _mapper.Map<List<Vehicle>>(vehicleDtos);
+
+        vehicles.ForEach(x => x.Creator = User.GetUsername());
+
+        await _unitOfWork.VehicleRepository.CreateRangeAsync(vehicles);
+
+         var result = await _unitOfWork.Complete();
+
+         if (!result) return BadRequest("Nhập danh sách phương tiện thất bại.");
+
+        return Ok(await _unitOfWork.VehicleRepository.ToListAsync());
+    }
 }
