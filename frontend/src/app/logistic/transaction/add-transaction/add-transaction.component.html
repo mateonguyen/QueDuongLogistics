@@ -4,7 +4,7 @@
 			<div class="mr-2 ">
 				<p class="align-baseline"><b>LỆNH ĐIỀU VẬN</b></p>
 			</div>
-			
+
 			<div class="mr-2 ">
 				<a>
 					<svg-icon [name]="'truck-fast'" [width]="20" [height]="16" class="align-baseline"></svg-icon>
@@ -28,8 +28,9 @@
 				</div>
 			</div>
 		</div>
-		<form #editForm="ngForm" id="editForm" (ngSubmit)="editForm.valid && save()" ngNativeValidate autocomplete="off">
-			
+		<form #editForm="ngForm" id="editForm" (ngSubmit)="editForm.valid && onSubmit()" ngNativeValidate
+			autocomplete="off">
+
 			<div class="row mt-2">
 				<div class="col-lg-4">
 					<app-transaction-customer-select [(customer)]="transaction.customer"
@@ -42,7 +43,7 @@
 
 				<div class="col-lg-4">
 					<app-transaction-vendor-select [(model)]="transaction.vendor"
-					(change)="onVendorChange($event)"></app-transaction-vendor-select>
+						(change)="onVendorChange($event)"></app-transaction-vendor-select>
 				</div>
 
 			</div>
@@ -126,7 +127,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="demurrageFee" [(ngModel)]="transaction.demurrageFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="demurrageFee" [(ngModel)]="transaction.demurrageFee"
+											(ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -135,7 +137,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="transshipmentFee" [(ngModel)]="transaction.transshipmentFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="transshipmentFee"
+											[(ngModel)]="transaction.transshipmentFee" (ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -144,7 +147,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="returnShippingFee" [(ngModel)]="transaction.returnShippingFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="returnShippingFee"
+											[(ngModel)]="transaction.returnShippingFee" (ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -153,7 +157,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="customsFee" [(ngModel)]="transaction.customsFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="customsFee" [(ngModel)]="transaction.customsFee"
+											(ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -162,7 +167,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="handlingFee" [(ngModel)]="transaction.handlingFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="handlingFee" [(ngModel)]="transaction.handlingFee"
+											(ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -171,7 +177,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="ticketFee" [(ngModel)]="transaction.ticketFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="ticketFee" [(ngModel)]="transaction.ticketFee"
+											(ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -180,7 +187,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="otherFee" [(ngModel)]="transaction.otherFee" (ngModelChange)="calculateTotal()">
+										<input type="number" class="form-input" name="otherFee" [(ngModel)]="transaction.otherFee"
+											(ngModelChange)="calculateTotal()">
 									</div>
 								</td>
 							</tr>
@@ -240,7 +248,8 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><textarea rows="5" class="form-input input-multiple" name="notes" [(ngModel)]="transaction.notes"></textarea></td>
+								<td><textarea rows="5" class="form-input input-multiple" name="notes"
+										[(ngModel)]="transaction.notes"></textarea></td>
 							</tr>
 						</tbody>
 					</table>

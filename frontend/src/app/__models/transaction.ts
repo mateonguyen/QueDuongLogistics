@@ -12,10 +12,8 @@ export class Transaction {
 	customerName: string;
 	customer: Customer;
 	driverId: number;
-	driverName: string;
 	driver: Driver;
 	vehicleId: number;
-	vehicleName: string;
 	vehicle: Vehicle;
 	vendorId: number;
 	vendorName: string;

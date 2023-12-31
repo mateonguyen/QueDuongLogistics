@@ -66,7 +66,12 @@ public class AutoMapperProfiles : Profile
         
         CreateMap<TransactionDetail, TransactionDetailDto>();
 
-        CreateMap<Transaction, TransactionDto>();
+        CreateMap<Transaction, TransactionDto>()
+            .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.CustomerName))
+            // .ForMember(dest => dest.VehicleName, opt => opt.MapFrom(src => src.Vehicle.VehicleNumber))
+            // .ForMember(dest => dest.DriverName, opt => opt.MapFrom(src => src.Driver.FullName))
+            .ForMember(dest => dest.VendorName, opt => opt.MapFrom(src => src.Vendor.VendorName));
+
 
         CreateMap<TransactionDto, Transaction>();
 

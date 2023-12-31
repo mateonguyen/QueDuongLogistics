@@ -13,6 +13,7 @@ import { TransactionDetailsEditModalComponent } from '../add-transaction/transac
 import { DatePipe } from '@angular/common';
 import { Vendor } from 'src/app/__models/vendor';
 import { ShippingRoute } from 'src/app/__models/shipping-route';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -27,6 +28,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 	globalError: string;
 	transaction: Transaction = new Transaction();
+	transactionId: any;
 	transactionDetails: TransactionDetails[] = [];
 	showNoResult: boolean = false;
 	confirmModal?: NzModalRef;
@@ -41,15 +43,19 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		private _notificationService: NzNotificationService,
 		private _modalService: NzModalService,
 		private _viewContainerRef: ViewContainerRef,
-		private datePipe: DatePipe
+		private datePipe: DatePipe,
+		private _router: Router,
+		private _route: ActivatedRoute,
 	) { }
 
 	ngOnInit(): void {
+		this.transactionId = this._route.snapshot.paramMap.get('id');
+
 		this.initForm();
 	}
 
 	initForm() {
-		if (!this.transaction.id) {
+		if (!this.transactionId) {
 			this.transaction.demurrageFee = 0;
 			this.transaction.transshipmentFee = 0;
 			this.transaction.returnShippingFee = 0;
@@ -58,6 +64,11 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			this.transaction.ticketFee = 0;
 			this.transaction.otherFee = 0;
 			this.transaction.transactionNo = 'CUST' + this.datePipe.transform(new Date(), 'dd.MM.yyyy');
+		} else {
+			this._dataService.single(Number(this.transactionId)).subscribe((res: Transaction) => {
+				this.transaction = res;
+				console.log(res);
+			})
 		}
 	}
 
@@ -139,49 +150,51 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		});
 	}
 
-	save() {
-		console.log(this.transaction);
-
-		if (!this.transaction.id) {
-			this._dataService.create(this.transaction as Transaction).subscribe({
-				next: res => {
-					this._dataService.list = res as Transaction[];
-					this._notificationService.success(
+	onSubmit() {
+		if (this.transactionId) {
+			this._dataService.update(this.transaction).subscribe(
+				{
+					next: () => this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa thêm mới thành công thông tin Lệnh điều vận.',
+						'Bạn vừa chỉnh sửa thành công thông tin Tài khoản ngân hàng.',
 						{ nzDuration: 5000, nzAnimate: true }
-					)
-				},
-				error: err => {
-					if (err.status == 400) {
+					),
+					error: (err) => {
 						this._notificationService.error(
 							'Lỗi!',
-							err.error,
+							'Không thành công. Có lỗi xảy ra trong quá trình chỉnh sửa thông tin.',
 							{ nzDuration: 5000, nzAnimate: true }
 						);
+						console.log(err);
+					},
+					complete: () => {
+						this.editForm.reset(this.transaction);
+						this._router.navigate(['/logistic/transaction/list']);
 					}
 				}
-			});
+			)
 		} else {
-			this._dataService.update(this.transaction as Transaction).subscribe({
-				next: res => {
-					this._dataService.list = res as Transaction[];
-					this._notificationService.success(
+			this._dataService.create(this.transaction).subscribe(
+				{
+					next: () => this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa chỉnh sửa thành công thông tin Lệnh điều vận.',
+						'Bạn vừa thêm mới thành công thông tin Tài khoản ngân hàng.',
 						{ nzDuration: 5000, nzAnimate: true }
-					)
-				},
-				error: err => {
-					if (err.status == 400) {
+					),
+					error: (err) => {
 						this._notificationService.error(
 							'Lỗi!',
-							err.error,
+							'Không thành công. Có lỗi xảy ra trong quá trình thêm mới thông tin.',
 							{ nzDuration: 5000, nzAnimate: true }
 						);
+						console.log(err);
+					},
+					complete: () => {
+						this.editForm.reset(this.transaction);
+						this._router.navigate(['/logistic/transaction/list']);
 					}
 				}
-			});
+			)
 		}
 	}
 
@@ -205,5 +218,5 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			this.transaction.ticketFee +
 			this.transaction.otherFee);
 	}
-	
+
 }

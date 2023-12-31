@@ -48,6 +48,13 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
 
     public async Task<Transaction> SingleAsync(int id)
     {
-        return await _context.Transactions.Where(x => x.Id == id).SingleOrDefaultAsync();
+        return await _context.Transactions
+                        .Include(x => x.Customer)
+                        .Include(x => x.Driver)
+                        .Include(x => x.Vehicle)
+                        .Include(x => x.ShippingRoute).ThenInclude(x => x.Origin)
+                        .Include(x => x.ShippingRoute).ThenInclude(x => x.Destination)
+                        .Include(x => x.TransactionDetails)
+                        .Where(x => x.Id == id).SingleOrDefaultAsync();
     }
 }

@@ -11,13 +11,12 @@ import { getPaginatedResult, getPaginationHeader } from '../__helpers/pagination
 })
 export class TransactionService {
 	baseUrl = environment.apiUrl;
-	list: Transaction[];
 
 	constructor(
 		private _http: HttpClient
 	) { }
 
-	toList(
+	list(
 		pageIndex: number,
 		pageSize: number,
 		sortField: string | 'SoHieu',
@@ -43,13 +42,17 @@ export class TransactionService {
 		return getPaginatedResult<Transaction[]>(this.baseUrl + 'transaction', params, this._http);
 	}
 
-	refreshList() {
-		return this._http.get<Transaction[]>(this.baseUrl + 'transaction').subscribe({
-			next: res => {
-				this.list = res as Transaction[];
-			},
-			error: err => { console.log(err) }
-		});
+	// refreshList() {
+	// 	return this._http.get<Transaction[]>(this.baseUrl + 'transaction').subscribe({
+	// 		next: res => {
+	// 			this.list = res as Transaction[];
+	// 		},
+	// 		error: err => { console.log(err) }
+	// 	});
+	// }
+
+	single(id: number) {
+		return this._http.get<Transaction>(this.baseUrl + 'transaction/' + id);
 	}
 
 	create(model: Transaction) {

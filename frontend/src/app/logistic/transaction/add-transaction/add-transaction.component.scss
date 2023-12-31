@@ -1,71 +1,73 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
-#content-body{
-    padding: 30px;
-    font-size: 16px;
+#content-body {
+	font-size: 16px;
 }
 
 p {
-    margin: 0;
+	margin: 0;
 }
 
-::ng-deep .information_panel{
-    border: 1px solid #23538f;
-    padding: 20px;
+::ng-deep .information_panel {
+	border: 1px solid #23538f;
+	padding: 20px;
 }
 
-::ng-deep .ant-table-thead > tr > th, .ant-table-tfoot > tr > th {
-    background-color: #23538f !important;
-    font-weight: bolder;
-    text-align: center;
-    color: #fff;
+::ng-deep .ant-table-thead > tr > th,
+.ant-table-tfoot > tr > th {
+	background-color: #23538f !important;
+	font-weight: bolder;
+	text-align: center;
+	color: #fff;
 }
 
-::ng-deep .table_price{
-    background-color: white;
+::ng-deep .table_price {
+	background-color: white;
 }
 
-::ng-deep.table_price thead > tr > th, .table_price tfoot > tr > th{
-    background-color: #23538f !important;
-    font-weight: bolder;
-    text-align: center;
-    padding : 10px;
-    color: #fff;
+::ng-deep.table_price thead > tr > th,
+.table_price tfoot > tr > th {
+	background-color: #23538f !important;
+	font-weight: bolder;
+	text-align: center;
+	padding: 10px;
+	color: #fff;
 }
 
-.note_input{
-    width: 100%;
+.note_input {
+	width: 100%;
 }
 
-.btn-success{
-    color : white;
+.btn-success {
+	color: white;
 }
 
-::ng-deep .information_panel{
-    .col-lg-4, .col-lg-8{
-        line-height: 40px;
-    }
+::ng-deep .information_panel {
+	.col-lg-4,
+	.col-lg-8 {
+		line-height: 40px;
+	}
 }
 
-input[type=number]{
-    text-align: right;
+input[type="number"] {
+	text-align: right;
 }
 
 .input-group {
-    position: relative;
+	position: relative;
 }
 
 .input-group .prefix {
-    position: absolute;
-    top: 50%;
-    left: 10px; 
-    transform: translateY(-50%);
-    color: #ccc;
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+	color: #ccc;
 }
 
-.breadcrumbs-container{
-    font-size: 22px;
+.breadcrumbs-container {
+	font-size: 22px;
 }
 
 .flex-item-last {
-    margin-left: auto;
+	margin-left: auto;
 }

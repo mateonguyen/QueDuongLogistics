@@ -103,15 +103,15 @@ public class WakDbContext : IdentityDbContext<AppUser, AppRole, int, IdentityUse
                 .IsRequired();
         });
 
-        builder.Entity<Location>()
-            .HasMany(x => x.Origins)
-            .WithOne(x => x.Origin)
-            .OnDelete(DeleteBehavior.Restrict);
+        // builder.Entity<Location>()
+        //     .HasMany(x => x.Origins)
+        //     .WithOne(x => x.Origin)
+        //     .OnDelete(DeleteBehavior.Restrict);
         
-        builder.Entity<Location>()
-            .HasMany(x => x.Destinations)
-            .WithOne(x => x.Destination)
-            .OnDelete(DeleteBehavior.Restrict);
+        // builder.Entity<Location>()
+        //     .HasMany(x => x.Destinations)
+        //     .WithOne(x => x.Destination)
+        //     .OnDelete(DeleteBehavior.Restrict);
     }
 
     private void ApplyAuditInformation()

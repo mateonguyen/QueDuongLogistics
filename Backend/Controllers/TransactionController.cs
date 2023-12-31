@@ -14,11 +14,13 @@ public class TransactionController : BaseApiController
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<TransactionDto>> Get(TransactionParams transactionParams)
+    public ActionResult<IEnumerable<TransactionDto>> Get([FromQuery]TransactionParams transactionParams)
     {
-        var list = _unitOfWork.TransactionRepository.ToList(transactionParams);
+        var result = _unitOfWork.TransactionRepository.ToList(transactionParams);
 
-        return Ok(list);
+        Response.AddPaginationHeader(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

@@ -6,14 +6,16 @@ public class TransactionDto
     public string TransactionNo { get; set; }
     public int CustomerId { get; set; }
     public string CustomerName { get; set; }
-    public int VehicleId { get; set; }
-    public string VehicleName { get; set; }
+    public CustomerDto Customer { get; set; }
+    public int VehicleId { get; set; }    
+    public VehicleDto Vehicle { get; set; }
     public int DriverId { get; set; }
-    public string DriverName { get; set; }
+    public DriverDto Driver { get; set; }
     public int ShippingRouteId { get; set; }
     public string RouteName { get; set; }
     public int VendorId { get; set; }
     public string VendorName { get; set; }
+    public ICollection<TransactionDetailDto> TransactionDetails { get; set; }
 }
 
 public class TransactionForCreationDto
