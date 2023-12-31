@@ -127,8 +127,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="demurrageFee" [(ngModel)]="transaction.demurrageFee"
-											(ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="demurrageFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'demurrageFee', 'demurrageFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -137,8 +138,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="transshipmentFee"
-											[(ngModel)]="transaction.transshipmentFee" (ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="transshipmentFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'transshipmentFee', 'transshipmentFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -147,8 +149,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="returnShippingFee"
-											[(ngModel)]="transaction.returnShippingFee" (ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="returnShippingFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'returnShippingFee', 'returnShippingFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -157,8 +160,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="customsFee" [(ngModel)]="transaction.customsFee"
-											(ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="customsFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'customsFee', 'customsFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -167,8 +171,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="handlingFee" [(ngModel)]="transaction.handlingFee"
-											(ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="handlingFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'handlingFee', 'handlingFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -177,8 +182,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="ticketFee" [(ngModel)]="transaction.ticketFee"
-											(ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="ticketFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'ticketFee', 'ticketFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -187,8 +193,9 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="number" class="form-input" name="otherFee" [(ngModel)]="transaction.otherFee"
-											(ngModelChange)="calculateTotal()">
+										<input type="text" class="form-input custom-fee" [(ngModel)]="otherFeeText"
+										[ngModelOptions]="{standalone: true}"
+										(blur)="formatCurrencyValue($event, 'otherFee', 'otherFeeText')">
 									</div>
 								</td>
 							</tr>

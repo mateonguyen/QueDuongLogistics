@@ -10,7 +10,7 @@ import { TransactionService } from 'src/app/__services/transaction.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetailsEditModalComponent } from '../add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe  } from '@angular/common';
 import { Vendor } from 'src/app/__models/vendor';
 import { ShippingRoute } from 'src/app/__models/shipping-route';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -37,6 +37,15 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		{ value: false, label: 'Không' },
 	];
 	public total_fee: string = '0';
+	public demurrageFeeText: string  = '0';
+	public transshipmentFeeText: string  = '0';
+	public returnShippingFeeText: string  = '0';
+	public customsFeeText: string  = '0';
+	public handlingFeeText: string  ='0';
+	public ticketFeeText: string  = '0';
+	public otherFeeText: string  = '0';
+
+
 
 	constructor(
 		private _dataService: TransactionService,
@@ -45,7 +54,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		private _viewContainerRef: ViewContainerRef,
 		private datePipe: DatePipe,
 		private _router: Router,
-		private _route: ActivatedRoute,
+		private _route: ActivatedRoute
 	) { }
 
 	ngOnInit(): void {
@@ -209,14 +218,22 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		return this.datePipe.transform(value, 'dd/MM/yyyy');
 	}
 
-	calculateTotal() {
-		this.total_fee = new Intl.NumberFormat('en-US').format(this.transaction.demurrageFee +
-			this.transaction.transshipmentFee +
-			this.transaction.returnShippingFee +
-			this.transaction.customsFee +
-			this.transaction.handlingFee +
-			this.transaction.ticketFee +
-			this.transaction.otherFee);
+	formatCurrencyValue(event: any, targetParam: string, textParam: string)
+	{
+		const inputValue = parseFloat(event.target.value);
+		this.transaction[targetParam] = inputValue;
+
+		var uy = new Intl.NumberFormat('en-US').format(event.target.value);
+		this[textParam] = uy;
+
+		this.total_fee = new Intl.NumberFormat('en-US').format(
+			parseFloat(this.transaction.demurrageFee.toString()) +
+			parseFloat(this.transaction.transshipmentFee.toString()) +
+			parseFloat(this.transaction.returnShippingFee.toString()) +
+			parseFloat(this.transaction.customsFee.toString()) +
+			parseFloat(this.transaction.handlingFee.toString()) +
+			parseFloat(this.transaction.ticketFee.toString()) +
+			parseFloat(this.transaction.otherFee.toString()));
 	}
 
 }
