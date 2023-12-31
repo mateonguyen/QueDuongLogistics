@@ -220,10 +220,11 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 
 	formatCurrencyValue(event: any, targetParam: string, textParam: string)
 	{
-		const inputValue = parseFloat(event.target.value);
-		this.transaction[targetParam] = inputValue;
+		let inputValue = parseFloat(event.target.value);
+		inputValue = isNaN(inputValue) ? 0 : inputValue;
 
-		var uy = new Intl.NumberFormat('en-US').format(event.target.value);
+		this.transaction[targetParam] = inputValue;
+		var uy = isNaN(event.target.value) ? 0 : new Intl.NumberFormat('en-US').format(event.target.value);
 		this[textParam] = uy;
 
 		this.total_fee = new Intl.NumberFormat('en-US').format(
