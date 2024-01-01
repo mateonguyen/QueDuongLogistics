@@ -12,7 +12,7 @@
 			</div>
 			<div class="customer_code_generate align-baseline">{{ transaction.transactionNo }}</div>
 			<div class="flex-item-last">
-				<button type="submit" class="btn btn-success" [disabled]="!editForm.valid" form="editForm">Tạo điều vận</button>
+				<button type="submit" class="btn btn-success" [disabled]="!editForm.valid" form="editForm">Lưu</button>
 			</div>
 		</div>
 	</nav>
@@ -67,7 +67,7 @@
 			</div>
 
 			<div class="row mt-2">
-				<nz-table #table [classList]="'border-spacing-y-[10px]'" [nzSize]="'small'"
+				<nz-table #table [classList]="'border-spacing-y-[10px]'" nzSize="small"
 					[nzData]="transaction.transactionDetails" nzTableResponsive>
 					<thead>
 						<tr role="row">
@@ -128,8 +128,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="demurrageFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'demurrageFee', 'demurrageFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'demurrageFee', 'demurrageFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -139,8 +139,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="transshipmentFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'transshipmentFee', 'transshipmentFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'transshipmentFee', 'transshipmentFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -150,8 +150,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="returnShippingFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'returnShippingFee', 'returnShippingFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'returnShippingFee', 'returnShippingFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -161,8 +161,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="customsFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'customsFee', 'customsFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'customsFee', 'customsFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -172,8 +172,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="handlingFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'handlingFee', 'handlingFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'handlingFee', 'handlingFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -183,8 +183,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="ticketFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'ticketFee', 'ticketFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'ticketFee', 'ticketFeeText')">
 									</div>
 								</td>
 							</tr>
@@ -194,8 +194,8 @@
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
 										<input type="text" class="form-input custom-fee" [(ngModel)]="otherFeeText"
-										[ngModelOptions]="{standalone: true}"
-										(blur)="formatCurrencyValue($event, 'otherFee', 'otherFeeText')">
+											[ngModelOptions]="{standalone: true}"
+											(blur)="formatCurrencyValue($event, 'otherFee', 'otherFeeText')">
 									</div>
 								</td>
 							</tr>

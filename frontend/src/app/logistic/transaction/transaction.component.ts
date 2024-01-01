@@ -53,7 +53,6 @@ export class TransactionComponent implements OnInit {
 	refreshList() {
 		this._transactionService.list(this.pageIndex, this.pageSize, this.sortField, this.sortOrder, 'aa').subscribe(res => {
 			this.list = res.result;
-			console.log(res.result);
 			this.total = res.pagination.totalItems;
 		});
 	}
