@@ -33,4 +33,8 @@ export class VehicleService {
 	delete(id: number) {
 		return this.http.delete(this.baseUrl + 'vehicle/' + id);
 	}
+
+	import(model: Vehicle[]) {
+		return this.http.post(this.baseUrl + 'vehicle/import', model);
+	}
 }

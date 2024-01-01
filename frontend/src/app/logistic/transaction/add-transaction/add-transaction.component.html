@@ -12,7 +12,7 @@
 			</div>
 			<div class="customer_code_generate align-baseline">{{ transaction.transactionNo }}</div>
 			<div class="flex-item-last">
-				<button type="submit" class="btn btn-success" [disabled]="!editForm.valid" form="editForm">Lưu</button>
+				<button type="submit" class="btn btn-success" [disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId || !transaction.transactionDetails" form="editForm">Lưu</button>
 			</div>
 		</div>
 	</nav>
@@ -28,8 +28,7 @@
 				</div>
 			</div>
 		</div>
-		<form #editForm="ngForm" id="editForm" (ngSubmit)="editForm.valid && onSubmit()" ngNativeValidate
-			autocomplete="off">
+		<form #editForm="ngForm" id="editForm" (ngSubmit)="onSubmit()" ngNativeValidate autocomplete="off">
 
 			<div class="row mt-2">
 				<div class="col-lg-4">

@@ -33,4 +33,8 @@ export class CustomerService {
 	delete(id: number) {
 		return this.http.delete(this.baseUrl + 'customer/' + id);
 	}
+
+	import(model: Customer[]) {
+		return this.http.post(this.baseUrl + 'customer/import', model);
+	}
 }

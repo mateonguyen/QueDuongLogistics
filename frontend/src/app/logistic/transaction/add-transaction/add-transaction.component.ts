@@ -83,27 +83,27 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 
 	onCustomerChange(customer: Customer) {
 		this.transaction.customer = customer;
-		this.transaction.customerId = customer.id;
+		this.transaction.customerId = customer ? customer.id : null;
 	}
 
 	onDriverChange(driver: Driver) {
 		this.transaction.driver = driver;
-		this.transaction.driverId = driver.id;
+		this.transaction.driverId = driver ? driver.id : null;
 	}
 
 	onVehicleChange(vehicle: Vehicle) {
 		this.transaction.vehicle = vehicle;
-		this.transaction.vehicleId = vehicle.id;
+		this.transaction.vehicleId = vehicle ? vehicle.id : null;
 	}
 
 	onShippingRouteChange(route: ShippingRoute) {
-		this.transaction.shippingRouteId = route.id;
+		this.transaction.shippingRouteId = route ? route.id : null;
 		this.transaction.shippingRoute = route;
 	}
 
 	onVendorChange(vendor: Vendor) {
 		this.transaction.vendor = vendor;
-		this.transaction.vendorId = vendor.id;
+		this.transaction.vendorId = vendor ? vendor.id : null;
 	}
 
 	openEditModal(model?: TransactionDetails) {

@@ -3,8 +3,4 @@ export interface Vendor {
 	vendorCode: string;
 	vendorName: string;
 	photo: any;
-	created: Date;
-	creator: string;
-	modified: Date;
-	modifier: string;
 }

@@ -5,8 +5,4 @@ export interface Vehicle {
 	cargoBoxSize: string;
 	payloadCapacity: number;
 	payloadCapacityUnit: string;
-	created: Date;
-	creator: string;
-	modified: Date;
-	modifier: string;
 }

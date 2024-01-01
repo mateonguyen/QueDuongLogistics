@@ -33,4 +33,8 @@ export class VendorService {
 	delete(id: number) {
 		return this.http.delete(this.baseUrl + 'vendor/' + id);
 	}
+
+	import(model: Vendor[]) {
+		return this.http.post(this.baseUrl + 'vendor/import', model);
+	}
 }
