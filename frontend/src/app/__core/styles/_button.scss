@@ -256,3 +256,17 @@ $jira-bg: rgb(222, 235, 255);
 .is-active {
 	@apply text-textLink bg-backgroundLightPrimary;
 }
+
+.btn-login{
+	color: white;
+    font-weight: 500;
+    background: #1f587d;
+
+	&:focus,
+	&:hover,
+	&:active {
+		background: #2893c8;
+		color: white;
+	}
+}
+

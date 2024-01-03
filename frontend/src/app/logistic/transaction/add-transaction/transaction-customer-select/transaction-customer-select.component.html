@@ -1,7 +1,7 @@
 <div class="w-full">
 	<div class="customer-logo mr-1" style="width: 130px;">
-		<img [src]="'data:image/png;base64,' + customer?.photo" style="width: 128px;" class="customer_logo">
-	</div>
+		<img [src]="customer ? 'data:image/png;base64,' + customer.photo : './../assets/images/no_image.png'" style="width: 128px;" class="customer_logo">
+	</div>.
 	<div class="flex-1">
 		<div class="d-flex">
 			<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="customer" [compareWith]="compareFn"

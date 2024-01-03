@@ -11,7 +11,7 @@
     </ng-template>
 </div>
 <div class="vendor_logo_div">
-    <img [src]="'data:image/png;base64,' + model?.photo" style="width: 128px;" class="vendor_logo">
+    <img [src]="model ? 'data:image/png;base64,' + model.photo : './../assets/images/no_image.png'" style="width: 128px;" class="vendor_logo">
 </div>
 <div class="vendor_information_div">
     <div class="vendor_title">{{ model?.vendorName }}</div>
