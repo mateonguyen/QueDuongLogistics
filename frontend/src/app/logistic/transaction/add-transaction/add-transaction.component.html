@@ -58,7 +58,7 @@
 							(change)="onVendorChange($event)"></app-transaction-vendor-select>
 						</div>
 
-						<div class="col-lg-8">
+						<div class="col-lg-6">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -148,13 +148,13 @@
 								<tfoot>
 									<tr role="row">
 										<th class="whitespace-nowrap">Tổng</th>
-										<th class="whitespace-nowrap">{{ total_fee }}</th>
+										<th class="whitespace-nowrap text-right">{{ total_fee }}</th>
 									</tr>
 								</tfoot>
 							</table>
 						</div>
 
-						<div class="col-lg-4">
+						<div class="col-lg-6">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -192,6 +192,9 @@
 									</tr>
 								</tbody>
 							</table>	
+							
+						</div>
+						<div class="col-lg-12">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -200,7 +203,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><textarea rows="5" class="form-input input-multiple" name="notes"
+										<td><textarea rows="2" class="form-input input-multiple" name="notes"
 												[(ngModel)]="transaction.notes"></textarea></td>
 									</tr>
 								</tbody>
