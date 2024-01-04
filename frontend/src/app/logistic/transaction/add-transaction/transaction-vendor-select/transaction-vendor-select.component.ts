@@ -13,7 +13,6 @@ import { DatePipe } from '@angular/common';
 export class TransactionVendorSelectComponent implements OnInit {
 	@Input() model: Vendor;
 	@Output() change = new EventEmitter();
-  	currentDate: Date = new Date();
   
 	constructor(
 		public vendorService: VendorService,

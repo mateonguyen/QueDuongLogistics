@@ -6,7 +6,7 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><b>Họ và tên </b></td>
+			<td width="30%"><b>Họ và tên </b></td>
 			<td>
 				<div class="w-full d-flex">
 					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onDriverChange()"
@@ -23,25 +23,25 @@
 			</td>
 		</tr>
 		<tr>
-			<td><b>Ngày Sinh </b></td>
+			<td width="30%"><b>Ngày Sinh </b></td>
 			<td>
 				<input type="text" class="form-input" value="{{ model? formatHumanDate(model.dateOfBirth) : '' }}" disabled>
 			</td>
 		</tr>
 		<tr>
-			<td><b>Số CCCD</b></td>
+			<td width="30%"><b>Số CCCD</b></td>
 			<td>
 				<input type="text" class="form-input" value="{{ model?.phoneNo }}" disabled>
 			</td>
 		</tr>
 		<tr>
-			<td><b>Số điện thoại </b></td>
+			<td width="30%"><b>Số điện thoại </b></td>
 			<td>
 				<input type="text" class="form-input" value="{{ model?.identityCardNo }}" disabled>
 			</td>
 		</tr>
 		<tr>
-			<td><b>Quê Quán </b></td>
+			<td width="30%"><b>Quê Quán </b></td>
 			<td>
 				<input type="text" class="form-input" value="{{ model?.homeTown }}" disabled>
 			</td>

@@ -45,6 +45,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	public ticketFeeText: string  = '0';
 	public otherFeeText: string  = '0';
 
+	currentDate: Date = new Date();
 
 
 	constructor(

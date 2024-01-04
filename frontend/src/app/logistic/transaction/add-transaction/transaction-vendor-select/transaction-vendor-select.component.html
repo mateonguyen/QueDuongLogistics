@@ -1,7 +1,7 @@
 <table class="table table_price table-bordered">
 	<thead>
 		<tr>
-			<th class="whitespace-nowrap" colspan="2">Thông tin nhà cung cấp</th>
+			<th class="whitespace-nowrap" colspan="2">Thông tin Đơn vị vận chuyển</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -26,10 +26,6 @@
                         </div>
                         <div class="vendor_information_div mt-2">
                             <div class="vendor_title">{{ model?.vendorName }}</div>
-                            <div class="vendor_date">
-                                <nz-date-picker class="form-input" [(ngModel)]="currentDate" id="transactionDate"
-                                [nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
-                            </div>
                         </div>        
                     </div>
                 </div>

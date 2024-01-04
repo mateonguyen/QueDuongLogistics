@@ -11,6 +11,10 @@
 				</a>
 			</div>
 			<div class="customer_code_generate align-baseline">{{ transaction.transactionNo }}</div>
+			<div style="width: 200px;">
+				<nz-date-picker class="form-input" [(ngModel)]="currentDate" id="transactionDate"
+                                [nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
+			</div>
 			<div class="flex-item-last">
 				<button type="submit" class="btn btn-success" [disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId || !transaction.transactionDetails" form="editForm">Lưu</button>
 			</div>
@@ -54,7 +58,7 @@
 							(change)="onVendorChange($event)"></app-transaction-vendor-select>
 						</div>
 
-						<div class="col-lg-12">
+						<div class="col-lg-8">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -150,7 +154,7 @@
 							</table>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-4">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -188,8 +192,6 @@
 									</tr>
 								</tbody>
 							</table>	
-						</div>
-						<div class="col-lg-6">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
