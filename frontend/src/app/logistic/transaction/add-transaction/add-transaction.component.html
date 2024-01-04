@@ -12,7 +12,9 @@
 			</div>
 			<div class="customer_code_generate align-baseline">{{ transaction.transactionNo }}</div>
 			<div class="flex-item-last">
-				<button type="submit" class="btn btn-success" [disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId || !transaction.transactionDetails" form="editForm">Lưu</button>
+				<button type="submit" class="btn btn-success"
+					[disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId || !transaction.transactionDetails"
+					form="editForm">Lưu</button>
 			</div>
 		</div>
 	</nav>
@@ -44,7 +46,6 @@
 					<app-transaction-vendor-select [(model)]="transaction.vendor"
 						(change)="onVendorChange($event)"></app-transaction-vendor-select>
 				</div>
-
 			</div>
 
 			<div class="row mt-2">
@@ -70,20 +71,29 @@
 					[nzData]="transaction.transactionDetails" nzTableResponsive>
 					<thead>
 						<tr role="row">
-							<th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
-							<th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
-							<th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện</th>
-							<th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện</th>
-							<th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
-							<th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
-							<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả
-								hàng hóa</th>
-							<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao
+							<th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">
+								Loại cont</th>
+							<th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">
+								Số cont</th>
+							<th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true"
+								style="width: 1%;">Số kiện</th>
+							<th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true"
+								style="width: 5%;">ĐVT Kiện</th>
+							<th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số
+								lượng</th>
+							<th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT
 							</th>
-							<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian
+							<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true"
+								style="width: 20%;">Mô tả
+								hàng hóa</th>
+							<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true"
+								style="width: 8%;">Nơi giao
+							</th>
+							<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true"
+								style="width: 8%;">Thời gian
 								giao</th>
-							<th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success"
-									(click)="openEditModal()">Thêm mới</button></th>
+							<th class="whitespace-nowrap" style="width: 1%;"><button type="button"
+									class="btn btn-success" (click)="openEditModal()">Thêm mới</button></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -137,8 +147,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="text" class="form-input custom-fee" [(ngModel)]="transshipmentFeeText"
-											[ngModelOptions]="{standalone: true}"
+										<input type="text" class="form-input custom-fee"
+											[(ngModel)]="transshipmentFeeText" [ngModelOptions]="{standalone: true}"
 											(blur)="formatCurrencyValue($event, 'transshipmentFee', 'transshipmentFeeText')">
 									</div>
 								</td>
@@ -148,8 +158,8 @@
 								<td>
 									<div class="input-group">
 										<span class="prefix">(đồng)</span>
-										<input type="text" class="form-input custom-fee" [(ngModel)]="returnShippingFeeText"
-											[ngModelOptions]="{standalone: true}"
+										<input type="text" class="form-input custom-fee"
+											[(ngModel)]="returnShippingFeeText" [ngModelOptions]="{standalone: true}"
 											(blur)="formatCurrencyValue($event, 'returnShippingFee', 'returnShippingFeeText')">
 									</div>
 								</td>
@@ -218,7 +228,8 @@
 							<tr>
 								<td>Lái xe nộp đủ về VP</td>
 								<td>
-									<input type="text" class="form-input" name="docManager" [(ngModel)]="transaction.docManager">
+									<input type="text" class="form-input" name="docManager"
+										[(ngModel)]="transaction.docManager">
 								</td>
 							</tr>
 							<tr>
@@ -236,8 +247,8 @@
 								<td>Trả khách hàng</td>
 								<td>
 									<span *ngFor="let option of optionRadioBox">
-										<input type="radio" name="isCustomerReturn" [(ngModel)]="transaction.isCustomerReturn"
-											[value]="option.value">
+										<input type="radio" name="isCustomerReturn"
+											[(ngModel)]="transaction.isCustomerReturn" [value]="option.value">
 										{{ option.label }}
 										&nbsp;&nbsp;&nbsp;
 									</span>
