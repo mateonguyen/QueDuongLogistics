@@ -1,21 +1,34 @@
-<div class="w-full">
-	<div class="customer-logo mr-1" style="width: 130px;">
-		<img [src]="customer ? 'data:image/png;base64,' + customer.photo : './../assets/images/no_image.png'" style="width: 128px;" class="customer_logo">
-	</div>.
-	<div class="flex-1">
-		<div class="d-flex">
-			<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="customer" [compareWith]="compareFn"
-				[nzCustomTemplate]="selectedTemplate" (ngModelChange)="onChange()">
-				<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer"
-					[nzLabel]="customer.customerName" [nzLabel]="customer.customerName">
-					{{ customer.customerName }}
-				</nz-option>
-			</nz-select>
-			<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
-				(click)="openEditModal()"></wk-button>
-			<ng-template #selectedTemplate let-selected>
-				<span class="font-semibold uppercase text-textMedium text-13">{{ selected.nzLabel }}</span>
-			</ng-template>
-		</div>
-	</div>
-</div>
+<table class="table table_price table-bordered">
+	<thead>
+		<tr>
+			<th class="whitespace-nowrap" colspan="2">Thông tin khách hàng</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<div class="w-full d-flex mb-2">
+					<div class="customer-logo mr-1" style="width: 130px;">
+						<img [src]="customer ? 'data:image/png;base64,' + customer.photo : './../assets/images/no_image.png'" style="width: 128px;" class="customer_logo">
+					</div>
+					<div class="flex-1">
+						<div class="d-flex">
+							<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="customer" [compareWith]="compareFn"
+								[nzCustomTemplate]="selectedTemplate" (ngModelChange)="onChange()">
+								<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer"
+									[nzLabel]="customer.customerName" [nzLabel]="customer.customerName">
+									{{ customer.customerName }}
+								</nz-option>
+							</nz-select>
+							<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+								(click)="openEditModal()"></wk-button>
+							<ng-template #selectedTemplate let-selected>
+								<span class="font-semibold uppercase text-textMedium text-13">{{ selected.nzLabel }}</span>
+							</ng-template>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

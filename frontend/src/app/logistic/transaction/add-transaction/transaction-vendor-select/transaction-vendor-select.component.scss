@@ -1,33 +1,9 @@
-.vendor_logo_div{
-    float: left;
-}
-.vendor_logo{
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
-    margin: auto; 
-}
-.vendor_logo_div{
-    width: 40%;
-}
 
-.vendor_information_div{
-    float : right;
-}
-
-.vendor_logo_div{
-    text-align: right;
-}
-
-.vendor_information_div{
-    margin-left : 20px;
-    border : 2px dotted #FFA629;
-    .vendor_title, .vendor_date{
-        font-size: 20px;
-        padding : 10px 30px;
-    }
-
-    .vendor_title{
-        border-bottom : 2px dotted #FFA629;
-    }
+.vendor-logo img {
+	padding: 5px;
+	width: 128px;
+	border-radius: 4px;
+	border: 1px solid #868686;
+	background-color: #fff;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

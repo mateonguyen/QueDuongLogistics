@@ -1,19 +1,39 @@
-<div class="w-full d-flex mb-2">
-    <nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onVendorChange()"
-        [nzCustomTemplate]="selectedTemplate">
-        <nz-option *ngFor="let vendor of vendorService.list" [nzValue]="vendor" [nzLabel]="vendor.vendorName">
-        </nz-option>
-    </nz-select>
-    <wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
-        (click)="openEditModal()"></wk-button>
-    <ng-template #selectedTemplate let-selected>
-        {{ selected.nzLabel }}
-    </ng-template>
-</div>
-<div class="vendor_logo_div">
-    <img [src]="model ? 'data:image/png;base64,' + model.photo : './../assets/images/no_image.png'" style="width: 128px;" class="vendor_logo">
-</div>
-<div class="vendor_information_div">
-    <div class="vendor_title">{{ model?.vendorName }}</div>
-    <div class="vendor_date">{{ currentDate | date:'dd/MM/yyyy' }}</div>
-</div>
+<table class="table table_price table-bordered">
+	<thead>
+		<tr>
+			<th class="whitespace-nowrap" colspan="2">Thông tin nhà cung cấp</th>
+		</tr>
+	</thead>
+	<tbody>
+        <tr>
+            <td>
+                <div class="w-full d-flex mb-2">
+                    <div class="vendor-logo mr-1" style="width: 130px;">
+                        <img [src]="model ? 'data:image/png;base64,' + model.photo : './../assets/images/no_image.png'" style="width: 128px;" class="vendor_logo">
+                    </div>
+                    <div class="flex-1">
+                        <div class="d-flex">
+                            <nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onVendorChange()"
+                                [nzCustomTemplate]="selectedTemplate">
+                                <nz-option *ngFor="let vendor of vendorService.list" [nzValue]="vendor" [nzLabel]="vendor.vendorCode">
+                                </nz-option>
+                            </nz-select>
+                            <wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+                                (click)="openEditModal()"></wk-button>
+                            <ng-template #selectedTemplate let-selected>
+                                {{ selected.nzLabel }}
+                            </ng-template>
+                        </div>
+                        <div class="vendor_information_div mt-2">
+                            <div class="vendor_title">{{ model?.vendorName }}</div>
+                            <div class="vendor_date">
+                                <nz-date-picker class="form-input" [(ngModel)]="currentDate" id="transactionDate"
+                                [nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
