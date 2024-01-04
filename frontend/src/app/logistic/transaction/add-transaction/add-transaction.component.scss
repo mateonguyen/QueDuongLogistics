@@ -3,65 +3,78 @@
 	font-size: 16px;
 }
 
-p {
-	margin: 0;
-}
-
-::ng-deep .information_panel {
-	border: 1px solid #fafafa;
-	padding: 20px;
-}
-
-::ng-deep .ant-table-thead > tr > th,
-.ant-table-tfoot > tr > th {
-	background-color: #fafafa !important;
-	font-weight: bolder;
-	text-align: center;
-}
-
-::ng-deep .table_price {
-	background-color: white;
-}
-
-::ng-deep.table_price thead > tr > th,
-.table_price tfoot > tr > th {
-	background-color: #fafafa !important;
-	font-weight: bolder;
-	text-align: center;
-	padding: 10px;
-}
-
-.note_input {
-	width: 100%;
-}
-
-::ng-deep .information_panel {
-	.col-lg-4,
-	.col-lg-8 {
-		line-height: 40px;
-	}
-}
-
-.custom-fee {
-	text-align: right;
-}
-
-.input-group {
-	position: relative;
-}
-
-.input-group .prefix {
-	position: absolute;
-	top: 50%;
-	left: 10px;
-	transform: translateY(-50%);
-	color: #ccc;
+.flex-item-last {
+	margin-left: auto;
 }
 
 .breadcrumbs-container {
 	font-size: 22px;
 }
 
-.flex-item-last {
-	margin-left: auto;
+p {
+	margin: 0;
+}
+
+
+.main-add-transaction{
+
+	
+	.note_input {
+		width: 100%;
+	}
+
+	::ng-deep .information_panel {
+		border: 1px solid #fafafa;
+		padding: 20px;
+
+		.col-lg-4,
+		.col-lg-8 {
+			line-height: 40px;
+		}
+	}
+	
+	::ng-deep .ant-table-thead > tr > th,
+	.ant-table-tfoot > tr > th {
+		background-color: #fafafa !important;
+		font-weight: bolder;
+		text-align: center;
+	}
+	
+	::ng-deep .table_price {
+		background-color: white;
+		td{
+			padding : 0.5rem 1rem;
+			vertical-align : baseline;
+		}
+
+		thead > tr > th,
+		tfoot > tr > th {
+			background-color: #fafafa !important;
+			font-weight: bolder;
+			text-align: center;
+			padding: 10px;
+		}
+	}
+	
+	.custom-fee {
+		text-align: right;
+	}
+	
+	.input-group {
+		position: relative;
+	}
+	
+	.input-group .prefix {
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		transform: translateY(-50%);
+		color: #ccc;
+	}
+	
+	.text-right{
+		text-align: right;
+		padding-right : 25px;
+	}
+	
 }

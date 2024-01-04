@@ -45,6 +45,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	public ticketFeeText: string  = '0';
 	public otherFeeText: string  = '0';
 
+	currentDate: Date = new Date();
 
 
 	constructor(
@@ -72,7 +73,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			this.transaction.handlingFee = 0;
 			this.transaction.ticketFee = 0;
 			this.transaction.otherFee = 0;
-			this.transaction.transactionNo = 'CUST' + this.datePipe.transform(new Date(), 'dd.MM.yyyy');
+			this.transaction.transactionNo = '';
 		} else {
 			this._dataService.single(Number(this.transactionId)).subscribe((res: Transaction) => {
 				this.transaction = res;
