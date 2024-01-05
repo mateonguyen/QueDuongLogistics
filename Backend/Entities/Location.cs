@@ -15,6 +15,6 @@ public class Location : Auditable
     [Column(Order = 3)]
     public string LocationName { get; set; }
 
-    // public virtual ICollection<ShippingRoute> Origins { get; set; }
-    // public virtual ICollection<ShippingRoute> Destinations { get; set; }
+    public virtual ICollection<ShippingRoute> Origins { get; set; }
+    public virtual ICollection<ShippingRoute> Destinations { get; set; }
 }

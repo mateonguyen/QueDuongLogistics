@@ -4,6 +4,7 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(WakDbContext))]
-    partial class WakDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240104085334_011_Update_TransactionEntity")]
+    partial class _011_Update_TransactionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -402,8 +405,8 @@ namespace Backend.Migrations
                         .HasColumnOrder(2);
 
                     b.Property<string>("HomeTown")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("IdentityCardNo")
                         .HasMaxLength(15)
@@ -430,6 +433,9 @@ namespace Backend.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)")
                         .HasColumnOrder(4);
+
+                    b.Property<byte[]>("Photo")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 

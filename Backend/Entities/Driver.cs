@@ -31,8 +31,6 @@ public class Driver : Auditable
     [MaxLength(100)]
     public string IssuePlace { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(500)]
     public string HomeTown { get; set; }
-
-    public byte[] Photo { get; set; }
 }

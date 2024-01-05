@@ -4,6 +4,7 @@ public class TransactionDto
 {
     public int Id { get; set; }
     public string TransactionNo { get; set; }
+    public DateTime TransactionDate { get; set; }
     public int CustomerId { get; set; }
     public string CustomerName { get; set; }
     public CustomerDto Customer { get; set; }

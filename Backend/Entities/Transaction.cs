@@ -11,6 +11,8 @@ public class Transaction : Auditable
     [MaxLength(20)]
     public string TransactionNo { get; set; }
 
+    public DateTime TransactionDate { get; set; }
+
     [Column(Order = 3)]
     [ForeignKey("Customer")]
     public int CustomerId { get; set; }

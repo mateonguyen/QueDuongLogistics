@@ -10,5 +10,4 @@ public class DriverDto
     public string IssueDate { get; set; }
     public string IssuePlace { get; set; }
     public string HomeTown { get; set; }
-    public byte[] Photo { get; set; }
 }
