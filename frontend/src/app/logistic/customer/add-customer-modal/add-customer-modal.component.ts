@@ -77,7 +77,9 @@ export class AddCustomerModalComponent implements OnInit {
 		var formData: any = new FormData();
 		formData.append('customerCode', this.editForm.value['customerCode']);
 		formData.append('customerName', this.editForm.value['customerName']);
-		formData.append('photoFile', base64ToFile(this.photo));
+		formData.append('photoFile', this.photo ? base64ToFile(this.photo) : null);
+		// formData.append('photoFile', base64ToFile(this.photo));
+
 
 		this._modalRef.close();
 		if (!this.model) {

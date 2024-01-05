@@ -39,21 +39,25 @@ public class CustomerController : BaseApiController
             return BadRequest("Mã khách hàng đã tồn tại");
 
         var file = customerDto.PhotoFile;
-
-        var image = new ImageInputDto
+        var image = new ImageInputDto();
+        if (file != null)
         {
-            Name = file.FileName,
-            Type = file.ContentType,
-            Content = file.OpenReadStream()
-        };
+            // var image = new ImageInputDto
+            // {
+                image.Name = file.FileName;
+                image.Type = file.ContentType;
+                image.Content = file.OpenReadStream();
+            // };  
+        }
+        
 
-        var photo = await _photoService.Process(image, 128);
+        var photo = image.Content != null ? await _photoService.Process(image, 128) : null;
         
         var customer = _mapper.Map<Customer>(customerDto);
 
         customer.Creator = User.GetUsername();
         customer.Created = DateTime.Now;
-        customer.CustomerCode = customerDto.CustomerCode.ToUpper();
+        customer.CustomerCode = customerDto.CustomerCode.ToUpper();        
         customer.Photo = photo;
 
         await _unitOfWork.CustomerRepository.CreateAsync(customer);
