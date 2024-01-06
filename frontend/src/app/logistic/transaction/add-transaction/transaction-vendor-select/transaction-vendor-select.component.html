@@ -15,7 +15,7 @@
                         <div class="d-flex">
                             <nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onVendorChange()"
                                 [nzCustomTemplate]="selectedTemplate">
-                                <nz-option *ngFor="let vendor of vendorService.list" [nzValue]="vendor" [nzLabel]="vendor.vendorCode">
+                                <nz-option *ngFor="let vendor of vendorService.list" [nzValue]="vendor" [nzLabel]="vendor.vendorName">
                                 </nz-option>
                             </nz-select>
                             <wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
@@ -23,10 +23,7 @@
                             <ng-template #selectedTemplate let-selected>
                                 {{ selected.nzLabel }}
                             </ng-template>
-                        </div>
-                        <div class="vendor_information_div mt-2">
-                            <div class="vendor_title">{{ model?.vendorName }}</div>
-                        </div>        
+                        </div> 
                     </div>
                 </div>
             </td>

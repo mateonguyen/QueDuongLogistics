@@ -1,4 +1,4 @@
-<div>
+<div class="header-transaction">
 	<nav aria-label="Breadcrumbs" class="breadcrumbs container-fluid">
 		<div class="breadcrumbs-container">
 			<div class="mr-2 ">
@@ -11,13 +11,13 @@
 				</a>
 			</div>
 			<div class="customer_code_generate align-baseline">{{ transaction.transactionNo }}</div>
-			<div style="width: 200px;">
-				<nz-date-picker class="form-input" [(ngModel)]="currentDate" id="transactionDate"
+			<div style="width: 300px;">
+				<nz-date-picker class="form-input custom-date-picker" [(ngModel)]="transaction.transactionDate" id="transactionDate"
 					[nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
 			</div>
 			<div class="flex-item-last">
 				<button type="submit" class="btn btn-success"
-					[disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId || !transaction.transactionDetails"
+					[disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId"
 					form="editForm">Lưu</button>
 			</div>
 		</div>
@@ -241,7 +241,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor="let row of transaction.transactionDetails">
+						<tr *ngFor="let row of transaction.transactionDetails; trackBy: trackByFunction">
 							<td>{{ row.contType }} </td>
 							<td>{{ row.contCount }} </td>
 							<td>{{ row.packageCount }} </td>
