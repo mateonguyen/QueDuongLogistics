@@ -18,7 +18,7 @@
             <div class="col col-md-6">
                 <div class="form-group mb-3">
                     <label for="packageCount" class="label-bold">Số cont</label>
-                    <input type="text" id="packageCount" class="form-input" [formControl]='editForm.controls["packageCount"]'
+                    <input type="number" id="packageCount" class="form-input" [formControl]='editForm.controls["packageCount"]'
                         [class.is-invalid]='editForm.get("packageCount").errors && editForm.get("packageCount").touched'>
                     <div class="invalid-feedback" *ngIf='editForm.controls["packageCount"].errors?.required'>Vui lòng
                         nhập Số cont</div>
@@ -30,7 +30,7 @@
             <div class="col col-md-6">
                 <div class="form-group mb-3">
                     <label for="contCount" class="label-bold">Số kiện</label>
-                    <input type="text" id="contCount" class="form-input" [formControl]='editForm.controls["contCount"]'
+                    <input type="number" id="contCount" class="form-input" [formControl]='editForm.controls["contCount"]'
                         [class.is-invalid]='editForm.get("contCount").errors && editForm.get("contCount").touched'>
                     <div class="invalid-feedback" *ngIf='editForm.controls["contCount"].errors?.required'>Vui lòng
                         nhập Số kiện</div>
@@ -51,7 +51,7 @@
             <div class="col col-md-6">
                 <div class="form-group mb-3">
                     <label for="quantity" class="label-bold">Số lượng</label>
-                    <input type="text" id="quantity" class="form-input" [formControl]='editForm.controls["quantity"]'
+                    <input type="number" id="quantity" class="form-input" [formControl]='editForm.controls["quantity"]'
                         [class.is-invalid]='editForm.get("quantity").errors && editForm.get("quantity").touched'>
                     <div class="invalid-feedback" *ngIf='editForm.controls["quantity"].errors?.required'>Vui lòng
                         nhập Số lượng</div>

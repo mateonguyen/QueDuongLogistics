@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewContainerRef, ChangeDetectorRef  } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CanComponentDeactivate } from '../../../__guards/prevent-unsaved-changes.guard';
 import { Transaction } from 'src/app/__models/transaction';
@@ -55,7 +55,8 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		private _viewContainerRef: ViewContainerRef,
 		private datePipe: DatePipe,
 		private _router: Router,
-		private _route: ActivatedRoute
+		private _route: ActivatedRoute,
+		private cdr: ChangeDetectorRef
 	) { }
 
 	ngOnInit(): void {
@@ -74,10 +75,10 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			this.transaction.ticketFee = 0;
 			this.transaction.otherFee = 0;
 			this.transaction.transactionNo = '';
+			this.transaction.transactionDate = new Date();
 		} else {
 			this._dataService.single(Number(this.transactionId)).subscribe((res: Transaction) => {
 				this.transaction = res;
-				console.log(res);
 			})
 		}
 	}
@@ -156,8 +157,14 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			nzOkDanger: true,
 			nzOnOk: () => {
 				this.transactionDetails = this.transactionDetails.filter(x => x !== model);
+				this.transaction.transactionDetails = this.transactionDetails;
+				this.cdr.detectChanges();
 			}
 		});
+	}
+
+	trackByFunction(index: number, item: TransactionDetails): any {
+		return item.id; // replace 'id' with your actual identifier property
 	}
 
 	onSubmit() {

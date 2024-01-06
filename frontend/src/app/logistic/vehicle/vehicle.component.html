@@ -54,7 +54,6 @@
 										<th class="whitespace-nowrap" style="width: 1%;">#</th>
 										<th nzColumnKey="typeOfVehicle" [nzSortFn]="true" style="width: 25%;">Loại phương tiện</th>
 										<th nzColumnKey="vehicleNumber" [nzSortFn]="true">Biển số xe</th>
-										<th nzColumnKey="cargoBoxSize" [nzSortFn]="true">Kích thước thùng hàng</th>
 										<th nzColumnKey="payloadCapacity" [nzSortFn]="true">Tải trọng</th>
 										<th class="whitespace-nowrap" style="width: 1%">Thao tác</th>
 									</tr>
@@ -64,7 +63,6 @@
 										<td></td>
 										<td>{{ item.typeOfVehicle }}</td>
 										<td>{{ item.vehicleNumber }}</td>
-										<td>{{ item.cargoBoxSize }}</td>
 										<td>{{ item.payloadCapacity }} ({{ item.payloadCapacityUnit }})</td>
 										<td class="whitespace-nowrap">
 											<wk-button icon="pencil" [iconSize]="13" (click)="openEditModal(item)"
