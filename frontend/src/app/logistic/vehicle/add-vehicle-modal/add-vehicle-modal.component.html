@@ -29,16 +29,8 @@
             
         </div>
         <div class="row">
-            <div class="col-sm-12 col-lg-4">
-                <div class="form-group mb-3">
-                    <label for="cargoBoxSize" class="label-bold">Kích thước thùng hàng</label>
-                    <input type="text" class="form-input" id="cargoBoxSize" [formControl]='editForm.controls["cargoBoxSize"]'
-                        [class.is-invalid]='editForm.get("cargoBoxSize").errors && editForm.get("cargoBoxSize").touched'>
-                    <div class="invalid-feedback" *ngIf='editForm.controls["cargoBoxSize"].errors?.required'>Vui lòng
-                        nhập Kích thước thùng hàng</div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-4">
+            
+            <div class="col-sm-12 col-lg-6">
                 <div class="form-group mb-3">
                     <label for="payloadCapacity" class="label-bold">Tải trọng</label>
                     <input type="number" class="form-input" id="payloadCapacity" [formControl]='editForm.controls["payloadCapacity"]'
@@ -47,7 +39,7 @@
                         nhập Tải trọng</div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-4">
+            <div class="col-sm-12 col-lg-6">
                 <div class="form-group mb-3">
                     <label for="payloadCapacityUnit" class="label-bold">Đơn vị công suất tải trọng</label>
                     <input type="text" class="form-input" id="payloadCapacityUnit" [formControl]='editForm.controls["payloadCapacityUnit"]'

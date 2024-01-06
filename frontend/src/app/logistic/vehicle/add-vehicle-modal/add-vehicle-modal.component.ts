@@ -33,7 +33,6 @@ export class AddVehicleModalComponent implements OnInit {
 			id: [this.model?.id ?? 0],
 			typeOfVehicle: [this.model?.typeOfVehicle, Validators.required],
 			vehicleNumber: [this.model?.vehicleNumber, Validators.required],
-			cargoBoxSize: [this.model?.cargoBoxSize, Validators.required],
 			payloadCapacity: [this.model?.payloadCapacity, Validators.required],
 			payloadCapacityUnit: [this.model?.payloadCapacityUnit, Validators.required],
 		});

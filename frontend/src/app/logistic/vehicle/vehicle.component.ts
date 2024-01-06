@@ -54,7 +54,6 @@ export class VehicleComponent implements OnInit {
 						id: 0,
 						typeOfVehicle: item.TypeOfVehicle,
 						vehicleNumber: item.VehicleNumber,
-						cargoBoxSize: item.CargoBoxSize,
 						payloadCapacity: item.PayloadCapacity,
 						payloadCapacityUnit: item.PayloadCapacityUnit
 					};

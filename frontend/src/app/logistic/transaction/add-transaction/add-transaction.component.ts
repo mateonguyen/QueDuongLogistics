@@ -79,7 +79,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		} else {
 			this._dataService.single(Number(this.transactionId)).subscribe((res: Transaction) => {
 				this.transaction = res;
-				console.log(res);
 			})
 		}
 	}
