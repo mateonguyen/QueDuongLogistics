@@ -57,4 +57,17 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
                         .Include(x => x.TransactionDetails)
                         .Where(x => x.Id == id).SingleOrDefaultAsync();
     }
+
+    public async Task<string> GenerateTransactioNo(DateTime transactionDate, string customerCode)
+    {
+        var crnNo = await _context.Transactions.Where(x => x.TransactionDate == transactionDate).MaxAsync(x => x.TransactionNo);
+        var today = DateTime.Today.ToString("dd.mm.yy");
+
+        var nextNo = "001";
+
+        if (today == crnNo.Substring(0, 8))
+            nextNo = (Convert.ToInt32(crnNo.Substring(crnNo.Length - 3)) + 1).ToString().PadLeft(3, '0');
+
+        return today + customerCode + nextNo;
+    }
 }

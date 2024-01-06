@@ -25,6 +25,7 @@ public class TransactionForCreationDto
     public string TransactionNo { get; set; }
     public DateTime TransactionDate { get; set; }
     public int CustomerId { get; set; }
+    public CustomerDto Customer { get; set; }
     public int VehicleId { get; set; }
     public int DriverId { get; set; }    
     public int ShippingRouteId { get; set; }    
@@ -37,6 +38,12 @@ public class TransactionForCreationDto
     public decimal HandlingFee { get; set; }
     public decimal TicketFee { get; set; }
     public decimal OtherFee { get; set; }
+
+    public bool IsSummitedDoc { get; set; }
+    public string DocManager { get; set; }
+    public bool IsCustomerReturn { get; set; }
+    public string Notes { get; set; }
+
     public ICollection<TransactionDetailDto> TransactionDetails { get; set; }
 }
 
