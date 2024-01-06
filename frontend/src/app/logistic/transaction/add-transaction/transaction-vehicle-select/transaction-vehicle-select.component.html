@@ -1,5 +1,3 @@
-
-
 <table class="table table_price table-bordered">
 	<thead>
 		<tr>
@@ -11,12 +9,17 @@
 			<td width="30%"><b>Chọn biển số </b></td>
 			<td>
 				<div class="w-full d-flex">
-					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onVehicleChange()" 
-					[nzCustomTemplate]="selectedTemplate">
-						<nz-option *ngFor="let vehicle of vehicleService.list" [nzValue]="vehicle" [nzLabel]="vehicle.vehicleNumber">
+					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn"
+						[nzOptionHeightPx]="54" (ngModelChange)="onVehicleChange()" [nzCustomTemplate]="selectedTemplate">
+						<nz-option nzCustomContent *ngFor="let vehicle of vehicleService.list" [nzValue]="vehicle"
+							[nzLabel]="vehicle.vehicleNumber">
+							<span class="font-semibold text-textMedium text-13">{{ vehicle.vehicleNumber }}</span><br />
+							<span class="text-textMedium text-13">{{ vehicle.typeOfVehicle + ' | ' + vehicle.payloadCapacity + ' ' +
+								vehicle.payloadCapacityUnit }}</span>
 						</nz-option>
 					</nz-select>
-					<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18" (click)="openEditModal()"></wk-button>
+					<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+						(click)="openEditModal()"></wk-button>
 					<ng-template #selectedTemplate let-selected>
 						{{ selected.nzLabel }}
 					</ng-template>
@@ -38,9 +41,10 @@
 		<tr>
 			<td width="30%"><b>Tải trọng</b></td>
 			<td>
-				<input type="text" class="form-input" value="{{ model ? (model.payloadCapacity +' '+ model?.payloadCapacityUnit) : ''}}" disabled>
+				<input type="text" class="form-input"
+					value="{{ model ? (model.payloadCapacity +' '+ model?.payloadCapacityUnit) : ''}}" disabled>
 			</td>
 		</tr>
-		
+
 	</tbody>
 </table>

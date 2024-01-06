@@ -41,11 +41,13 @@
 					<app-transaction-driver-select [(model)]="transaction.driver"
 						(change)="onDriverChange($event)"></app-transaction-driver-select>
 
+					<app-transaction-vehicle-select [(model)]="transaction.vehicle"
+						(change)="onVehicleChange($event)"></app-transaction-vehicle-select>
+
 					<app-transaction-shipping-route-select [(model)]="transaction.shippingRoute"
 						(change)="onShippingRouteChange($event)"></app-transaction-shipping-route-select>
 
-					<app-transaction-vehicle-select [(model)]="transaction.vehicle"
-						(change)="onVehicleChange($event)"></app-transaction-vehicle-select>
+
 				</div>
 
 				<div class="col-lg-8">
