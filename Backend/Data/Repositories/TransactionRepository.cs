@@ -61,13 +61,13 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
     public async Task<string> GenerateTransactioNo(DateTime transactionDate, string customerCode)
     {
         var crnNo = await _context.Transactions.Where(x => x.TransactionDate == transactionDate).MaxAsync(x => x.TransactionNo);
-        var today = DateTime.Today.ToString("dd.mm.yy");
+        var today = DateTime.Today.ToString("dd.MM.yy");
 
         var nextNo = "001";
 
-        if (today == crnNo.Substring(0, 8))
-            nextNo = (Convert.ToInt32(crnNo.Substring(crnNo.Length - 3)) + 1).ToString().PadLeft(3, '0');
+        if (crnNo != null)
+            nextNo = (Convert.ToInt32(crnNo[^3..]) + 1).ToString().PadLeft(3, '0');
 
-        return today + customerCode + nextNo;
+        return today + "." + customerCode + "." + nextNo;
     }
 }

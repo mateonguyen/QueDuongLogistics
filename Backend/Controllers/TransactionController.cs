@@ -35,7 +35,7 @@ public class TransactionController : BaseApiController
     public async Task<ActionResult> Create(TransactionForCreationDto transactionDto)
     {
         var transaction = _mapper.Map<Transaction>(transactionDto);
-        transaction.TransactionNo = await _unitOfWork.TransactionRepository.GenerateTransactioNo(transaction.TransactionDate, transactionDto.Customer.CustomerCode);
+        transaction.TransactionNo = await _unitOfWork.TransactionRepository.GenerateTransactioNo(transaction.TransactionDate, transactionDto.CustomerCode);
         transaction.Creator = User.GetUsername();
         transaction.Created = DateTime.Now;
 

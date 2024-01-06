@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild, ViewContainerRef, ChangeDetectorRef  } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CanComponentDeactivate } from '../../../__guards/prevent-unsaved-changes.guard';
 import { Transaction } from 'src/app/__models/transaction';
@@ -10,7 +10,7 @@ import { TransactionService } from 'src/app/__services/transaction.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { TransactionDetailsEditModalComponent } from '../add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
-import { DatePipe  } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Vendor } from 'src/app/__models/vendor';
 import { ShippingRoute } from 'src/app/__models/shipping-route';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -37,13 +37,13 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		{ value: false, label: 'Không' },
 	];
 	public total_fee: string = '0';
-	public demurrageFeeText: string  = '0';
-	public transshipmentFeeText: string  = '0';
-	public returnShippingFeeText: string  = '0';
-	public customsFeeText: string  = '0';
-	public handlingFeeText: string  ='0';
-	public ticketFeeText: string  = '0';
-	public otherFeeText: string  = '0';
+	public demurrageFeeText: string = '0';
+	public transshipmentFeeText: string = '0';
+	public returnShippingFeeText: string = '0';
+	public customsFeeText: string = '0';
+	public handlingFeeText: string = '0';
+	public ticketFeeText: string = '0';
+	public otherFeeText: string = '0';
 
 	currentDate: Date = new Date();
 
@@ -84,7 +84,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 
 	onCustomerChange(customer: Customer) {
-		this.transaction.customer = customer;
+		this.transaction.customerCode = customer.customerCode;
 		this.transaction.customerId = customer ? customer.id : null;
 	}
 
@@ -226,8 +226,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		return this.datePipe.transform(value, 'dd/MM/yyyy');
 	}
 
-	formatCurrencyValue(event: any, targetParam: string, textParam: string)
-	{
+	formatCurrencyValue(event: any, targetParam: string, textParam: string) {
 		let inputValue = parseFloat(event.target.value);
 		inputValue = isNaN(inputValue) ? 0 : inputValue;
 

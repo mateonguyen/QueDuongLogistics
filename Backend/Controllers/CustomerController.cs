@@ -48,8 +48,7 @@ public class CustomerController : BaseApiController
                 image.Type = file.ContentType;
                 image.Content = file.OpenReadStream();
             // };  
-        }
-        
+        }        
 
         var photo = image.Content != null ? await _photoService.Process(image, 128) : null;
         

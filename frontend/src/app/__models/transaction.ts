@@ -10,6 +10,7 @@ export class Transaction {
 	transactionNo: string;
 	customerId: number;
 	customerName: string;
+	customerCode: string;
 	customer: Customer;
 	driverId: number;
 	driver: Driver;

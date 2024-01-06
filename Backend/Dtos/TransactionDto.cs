@@ -25,7 +25,7 @@ public class TransactionForCreationDto
     public string TransactionNo { get; set; }
     public DateTime TransactionDate { get; set; }
     public int CustomerId { get; set; }
-    public CustomerDto Customer { get; set; }
+    public string CustomerCode { get; set; }
     public int VehicleId { get; set; }
     public int DriverId { get; set; }    
     public int ShippingRouteId { get; set; }    

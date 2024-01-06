@@ -5,9 +5,11 @@ public class VendorController : BaseApiController
 {
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IPhotoService _photoService;
 
-    public VendorController(IUnitOfWork unitOfWork, IMapper mapper)
+    public VendorController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoService photoService)
     {
+        _photoService = photoService;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
@@ -29,15 +31,27 @@ public class VendorController : BaseApiController
     }
 
     [HttpPost]
-    public async Task<ActionResult<IEnumerable<VendorDto>>> Create(VendorDto vendorDto)
+    public async Task<ActionResult<IEnumerable<VendorDto>>> Create([FromForm]VendorForUpdateDto vendorDto)
     {
         if (await _unitOfWork.VehicleRepository.Exists(vendorDto.VendorCode))
             return BadRequest("Nhà cung cấp đã tồn tại");
+
+        var file = vendorDto.PhotoFile;
+        var image = new ImageInputDto();
+        if (file != null)
+        {            
+            image.Name = file.FileName;
+            image.Type = file.ContentType;
+            image.Content = file.OpenReadStream();            
+        }
+
+        var photo = image.Content != null ? await _photoService.Process(image, 128) : null;
 
         var vendor = _mapper.Map<Vendor>(vendorDto);
 
         vendor.Creator = User.GetUsername();
         vendor.Created = DateTime.Now;
+        vendor.Photo = photo;
 
         await _unitOfWork.VendorRepository.CreateAsync(vendor);
 
@@ -49,10 +63,21 @@ public class VendorController : BaseApiController
     }
 
     [HttpPut]
-    public async Task<ActionResult<IEnumerable<VendorDto>>> Update(VendorDto vendorDto)
+    public async Task<ActionResult<IEnumerable<VendorDto>>> Update(VendorForUpdateDto vendorDto)
     {
         if (await _unitOfWork.VendorRepository.Exists(vendorDto.Id, vendorDto.VendorCode))
             return BadRequest("Nhà cung cấp đã tồn tại");
+
+        var file = vendorDto.PhotoFile;
+
+        var image = new ImageInputDto
+        {
+            Name = file.FileName,
+            Type = file.ContentType,
+            Content = file.OpenReadStream()
+        };
+
+        var photo = await _photoService.Process(image, 128);
 
         var vendor = await _unitOfWork.VendorRepository.SingleAsync(vendorDto.Id);
 
@@ -60,6 +85,7 @@ public class VendorController : BaseApiController
 
         vendor.Modified = DateTime.Now;
         vendor.Modifier = User.GetUsername();
+        vendor.Photo = photo;
 
         _unitOfWork.VendorRepository.Update(vendor);
 
