@@ -39,13 +39,14 @@
 							</div>
 							<div class="p-2 d-md-flex">
 								<div class="upload-btn-wrapper">
-									<wk-button icon="import" [iconSize]="13" [className]="'btn-success flex'" [title]="'Nhập dữ liệu từ file excel'" (click)="fileInput.click()">Nhập</wk-button>
-									<input #fileInput type="file" name="myfile" (change)="handleFileInput($event.target.files)" style="display: none" />
-								  </div>
+									<wk-button icon="import" [iconSize]="13" [className]="'btn-success flex'"
+										[title]="'Nhập dữ liệu từ file excel'" (click)="fileInput.click()">Nhập</wk-button>
+									<input #fileInput type="file" name="myfile" (change)="handleFileInput($event.target.files)"
+										style="display: none" />
+								</div>
 							</div>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-sm-12">
 							<nz-table #table [nzData]="this.dataService.list" nzSize="small" [classList]="'border-spacing-y-[10px]'">
