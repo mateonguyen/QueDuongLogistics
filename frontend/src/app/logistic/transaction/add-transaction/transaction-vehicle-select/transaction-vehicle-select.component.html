@@ -8,8 +8,9 @@
 		<tr>
 			<td width="30%"><b>Chọn biển số </b></td>
 			<td>
-				<div class="w-full d-flex">
+				<div class="d-flex w-full" style="flex-wrap: wrap;">
 					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn"
+						#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'
 						[nzOptionHeightPx]="54" (ngModelChange)="onVehicleChange()" [nzCustomTemplate]="selectedTemplate">
 						<nz-option nzCustomContent *ngFor="let vehicle of vehicleService.list" [nzValue]="vehicle"
 							[nzLabel]="vehicle.vehicleNumber">
@@ -23,6 +24,8 @@
 					<ng-template #selectedTemplate let-selected>
 						{{ selected.nzLabel }}
 					</ng-template>
+					<div class="invalid-feedback" style="flex-basis: 100%" *ngIf='control.errors?.required'>
+						Vui lòng chọn Phương tiện</div>
 				</div>
 			</td>
 		</tr>

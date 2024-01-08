@@ -12,8 +12,9 @@
 						<img [src]="customer ? 'data:image/png;base64,' + customer.photo : './../assets/images/no_image.png'" style="width: 128px;" class="customer_logo">
 					</div>
 					<div class="flex-1">
-						<div class="d-flex">
-							<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="customer" [compareWith]="compareFn"
+						<div class="d-flex w-full" style="flex-wrap: wrap;">
+							<nz-select nzShowSearch nzAllowClear class="h-8 mr-1 flex-1" [(ngModel)]="customer" [compareWith]="compareFn" 
+								#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'
 								[nzCustomTemplate]="selectedTemplate" (ngModelChange)="onChange()">
 								<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer"
 									[nzLabel]="customer.customerName" [nzLabel]="customer.customerName">
@@ -25,8 +26,12 @@
 							<ng-template #selectedTemplate let-selected>
 								<span class="font-semibold uppercase text-textMedium text-13">{{ selected.nzLabel }}</span>
 							</ng-template>
+							<div class="invalid-feedback" style="flex-basis: 100%" *ngIf='control.errors?.required'>
+								Vui lòng chọn Khách hàng</div>
 						</div>
+						
 					</div>
+					
 				</div>
 			</td>
 		</tr>

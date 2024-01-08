@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LocationService } from 'src/app/__services/location.service';
-
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { AddLocationModalComponent } from 'src/app/logistic/location/add-location-modal/add-location-modal.component';
 @Component({
 	selector: 'app-route-location-select',
 	templateUrl: './route-location-select.component.html',
@@ -12,7 +13,8 @@ export class RouteLocationSelectComponent implements OnInit {
 	@Output() change = new EventEmitter();
 
 	constructor(
-		public locationService: LocationService
+		public locationService: LocationService,
+		private _modalService: NzModalService,
 	) {
 		if (!this.locationService.list)
 			this.locationService.refreshList();
@@ -26,6 +28,19 @@ export class RouteLocationSelectComponent implements OnInit {
 
 	onChange(event) {
 		this.change.emit(event);
+	}
+
+	openEditModal() {
+		this._modalService.create({
+			nzContent: AddLocationModalComponent,
+			nzClosable: false,
+			nzFooter: null,
+			nzWidth: 700,
+			nzComponentParams: {
+				title: 'Thêm mới Địa điểm',
+				model: null
+			}
+		});
 	}
 
 }

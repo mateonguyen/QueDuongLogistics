@@ -12,9 +12,10 @@
                         <img [src]="model ? 'data:image/png;base64,' + model.photo : './../assets/images/no_image.png'" style="width: 128px;" class="vendor_logo">
                     </div>
                     <div class="flex-1">
-                        <div class="d-flex">
+                        <div class="d-flex w-full" style="flex-wrap: wrap;">
                             <nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn" (ngModelChange)="onVendorChange()"
-                                [nzCustomTemplate]="selectedTemplate">
+                            #control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'
+                            [nzCustomTemplate]="selectedTemplate">
                                 <nz-option *ngFor="let vendor of vendorService.list" [nzValue]="vendor" [nzLabel]="vendor.vendorName">
                                 </nz-option>
                             </nz-select>
@@ -23,6 +24,9 @@
                             <ng-template #selectedTemplate let-selected>
                                 {{ selected.nzLabel }}
                             </ng-template>
+
+                            <div class="invalid-feedback" style="flex-basis: 100%" *ngIf='control.errors?.required'>
+								Vui lòng chọn Đơn vị vận chuyển</div>
                         </div> 
                     </div>
                 </div>
