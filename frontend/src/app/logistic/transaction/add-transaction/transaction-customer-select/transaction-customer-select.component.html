@@ -9,14 +9,16 @@
 			<td>
 				<div class="w-full d-flex mb-2">
 					<div class="customer-logo mr-1" style="width: 130px;">
-						<img [src]="customer ? 'data:image/png;base64,' + customer.photo : './../assets/images/no_image.png'" style="width: 128px;" class="customer_logo">
+						<img [src]="customer ? 'data:image/png;base64,' + customer.photo : './../assets/images/no_image.png'"
+							style="width: 128px;" class="customer_logo">
 					</div>
 					<div class="flex-1">
 						<div class="d-flex w-full" style="flex-wrap: wrap;">
-							<nz-select nzShowSearch nzAllowClear class="h-8 mr-1 flex-1" [(ngModel)]="customer" [compareWith]="compareFn" 
-								#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'
-								[nzCustomTemplate]="selectedTemplate" (ngModelChange)="onChange()">
-								<nz-option nzCustomContent *ngFor="let customer of customerService.list" [nzValue]="customer"
+							<nz-select nzShowSearch nzAllowClear class="h-8 mr-1 flex-1" [(ngModel)]="customer"
+								[compareWith]="compareFn" #control="ngModel" [required]="true"
+								[class.is-invalid]='control.errors && control.touched' [nzCustomTemplate]="selectedTemplate"
+								(ngModelChange)="onChange()">
+								<nz-option nzCustomContent *ngFor="let customer of list$ | async" [nzValue]="customer"
 									[nzLabel]="customer.customerName" [nzLabel]="customer.customerName">
 									{{ customer.customerName }}
 								</nz-option>
@@ -29,9 +31,9 @@
 							<div class="invalid-feedback" style="flex-basis: 100%" *ngIf='control.errors?.required'>
 								Vui lòng chọn Khách hàng</div>
 						</div>
-						
+
 					</div>
-					
+
 				</div>
 			</td>
 		</tr>

@@ -49,7 +49,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<nz-table #table [nzData]="this.dataService.list" nzSize="small" [classList]="'border-spacing-y-[10px]'">
+							<nz-table #table [nzData]="list$ | async" nzSize="small" [classList]="'border-spacing-y-[10px]'">
 								<thead>
 									<tr role="row">
 										<th class="whitespace-nowrap" style="width: 1%;">#</th>

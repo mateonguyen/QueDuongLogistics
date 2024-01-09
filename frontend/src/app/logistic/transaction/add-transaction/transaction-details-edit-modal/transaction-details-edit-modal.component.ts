@@ -9,13 +9,13 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 
 
 @Component({
-  selector: 'app-transaction-details-edit-modal',
-  templateUrl: './transaction-details-edit-modal.component.html',
-  styleUrls: ['./transaction-details-edit-modal.component.scss']
+	selector: 'app-transaction-details-edit-modal',
+	templateUrl: './transaction-details-edit-modal.component.html',
+	styleUrls: ['./transaction-details-edit-modal.component.scss']
 })
 export class TransactionDetailsEditModalComponent implements OnInit {
 
-  public submit = new EventEmitter();
+	public submit = new EventEmitter();
 
 	title?: string;
 
@@ -23,9 +23,9 @@ export class TransactionDetailsEditModalComponent implements OnInit {
 
 	model: TransactionDetails;
 
-  optionContType: string[] = ['Cont12', 'Cont15', 'Cont20'];
-  optionPackageUnit: string[] = ['Cuộn', 'Carton', 'Pallet'];
-  optionUnit: string[] = ['Tấn', 'Tạ', 'Cân'];
+	optionContType: string[] = ['Cont12', 'Cont15', 'Cont20'];
+	optionPackageUnit: string[] = ['Cuộn', 'Carton', 'Pallet'];
+	optionUnit: string[] = ['Tấn', 'Tạ', 'Cân'];
 
 
 	constructor(
@@ -33,12 +33,12 @@ export class TransactionDetailsEditModalComponent implements OnInit {
 		private _fb: FormBuilder,
 		private _accountQuery: AccountQuery,
 		private _modalRef: NzModalRef,
-    public locationService: LocationService
-	) { 
-    if (!this.locationService.list)
-			this.locationService.refreshList();
-  
-  }
+		public locationService: LocationService
+	) {
+		// if (!this.locationService.list)
+		// 	this.locationService.refreshList();
+
+	}
 
 	ngOnInit(): void {
 		this.initForm();
@@ -59,7 +59,7 @@ export class TransactionDetailsEditModalComponent implements OnInit {
 		});
 	}
 
-  compareFn = (o1: any, o2: any): boolean => (o1 === o2);
+	compareFn = (o1: any, o2: any): boolean => (o1 === o2);
 
 
 	save() {

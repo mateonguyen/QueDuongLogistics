@@ -1,16 +1,15 @@
 <div class="d-flex w-full" style="flex-wrap: wrap;">
-<nz-select nzAllowClear nzShowSearch class="flex-1  h-8 mr-1" [formControl]="control" (ngModelChange)="onChange($event)"
-	[compareWith]="compareFn" [nzCustomTemplate]="selectedTemplate">
-	<nz-option *ngFor="let location of locationService.list" [nzValue]="location" [nzLabel]="location.locationName">
-		<!-- <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ location.locationName }}</span> -->
-		{{ location.locationName }}
-	</nz-option>
-</nz-select>
-<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
-						(click)="openEditModal()"></wk-button>
-<ng-template #selectedTemplate let-selected>
-	<!-- {{ selected.nzValue.locationName }} -->
-	<span class="font-semibold uppercase text-textMedium text-13">{{ control.value.locationName ?? selected.nzValue
-		}}</span>
-</ng-template>
+	<nz-select nzAllowClear nzShowSearch class="flex-1  h-8 mr-1" [formControl]="control"
+		(ngModelChange)="onChange($event)" [compareWith]="compareFn" [nzCustomTemplate]="selectedTemplate">
+		<nz-option *ngFor="let location of list$ | async" [nzValue]="location" [nzLabel]="location.locationName">
+			<!-- <span class="ml-3 font-semibold uppercase text-textMedium text-13">{{ location.locationName }}</span> -->
+			{{ location.locationName }}
+		</nz-option>
+	</nz-select>
+	<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18" (click)="openEditModal()"></wk-button>
+	<ng-template #selectedTemplate let-selected>
+		<!-- {{ selected.nzValue.locationName }} -->
+		<span class="font-semibold uppercase text-textMedium text-13">{{ control.value.locationName ?? selected.nzValue
+			}}</span>
+	</ng-template>
 </div>

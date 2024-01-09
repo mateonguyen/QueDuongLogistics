@@ -5,7 +5,7 @@ import { VendorService } from 'src/app/__services/vendor.service';
 import { removeVI } from 'jsrmvi';
 import { AddVendorModalComponent } from './add-vendor-modal/add-vendor-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -17,9 +17,10 @@ export class VendorComponent implements OnInit {
 	confirmModal?: NzModalRef;
 	term = '';
 	modelVendor: Vendor[] = [];
+	list$: Observable<Vendor[]> | undefined;
 
 	constructor(
-		public dataService: VendorService,
+		private _vendorService: VendorService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
 	) { }
@@ -62,11 +63,11 @@ export class VendorComponent implements OnInit {
 
 					this.modelVendor.push(vendor);
 				});
-				console.log(this.modelVendor);
 
-				this.dataService.import(this.modelVendor as Vendor[]).subscribe({
+				this._vendorService.import(this.modelVendor as Vendor[]).subscribe({
 					next: res => {
-						this.dataService.list = res as Vendor[];
+						// this.dataService.list = res as Vendor[];
+						this.refreshList();
 						this._notificationService.success(
 							'Chúc mừng!',
 							'Bạn vừa thêm mới thành công thông tin Lái xe.',
@@ -90,10 +91,18 @@ export class VendorComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.dataService.refreshList();
+		this.refreshList();
 	}
 
 	refreshList() {
+		this.list$ = this._vendorService.toList().pipe(
+			map((vendors) =>
+				vendors.filter(
+					(vendor) => removeVI(vendor.vendorCode.toLowerCase() + ' ' + vendor.vendorName.toLowerCase(), { replaceSpecialCharacters: false })
+						.includes(removeVI(this.term.toLowerCase(), { replaceSpecialCharacters: false }))
+				)
+			)
+		)
 	}
 
 	openEditModal(model?: Vendor) {
@@ -108,7 +117,7 @@ export class VendorComponent implements OnInit {
 			initialState.model = model;
 		}
 
-		this._modalService.create({
+		const modalRef = this._modalService.create({
 			nzContent: AddVendorModalComponent,
 			nzClosable: false,
 			nzFooter: null,
@@ -117,6 +126,10 @@ export class VendorComponent implements OnInit {
 				title: initialState.title,
 				model: initialState.model
 			}
+		});
+
+		modalRef.getContentComponent().submited.subscribe(() => {
+			this.refreshList();
 		});
 	}
 
@@ -132,9 +145,10 @@ export class VendorComponent implements OnInit {
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
-				this.dataService.delete(model.id).subscribe({
+				this._vendorService.delete(model.id).subscribe({
 					next: (res) => {
-						this.dataService.list = res as Vendor[];
+						// this.dataService.list = res as Vendor[];
+						this.refreshList();
 						this._notificationService.info(
 							'Thông báo!',
 							'Bạn vừa xóa thành công Nhà cung cấp <strong>' + model.vendorName + '</strong>',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from 'src/app/__models/location';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -11,6 +11,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 	styleUrls: ['add-location-modal.component.scss']
 })
 export class AddLocationModalComponent implements OnInit {
+	@Output() submited = new EventEmitter();
 	title?: string;
 	editForm: FormGroup;
 	model: Location;
@@ -18,7 +19,7 @@ export class AddLocationModalComponent implements OnInit {
 	constructor(
 		public _modalRef: NzModalRef,
 		private _fb: FormBuilder,
-		private _dataService: LocationService,
+		private _locationService: LocationService,
 		private _notificationService: NzNotificationService,
 	) { }
 
@@ -37,9 +38,10 @@ export class AddLocationModalComponent implements OnInit {
 	onSubmit() {
 		this._modalRef.close();
 		if (!this.model) {
-			this._dataService.create(this.editForm.value as Location).subscribe({
+			this._locationService.create(this.editForm.value as Location).subscribe({
 				next: res => {
-					this._dataService.list = res as Location[];
+					// this._dataService.list = res as Location[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa thêm mới thành công thông tin Địa điểm.',
@@ -57,9 +59,10 @@ export class AddLocationModalComponent implements OnInit {
 				}
 			});
 		} else {
-			this._dataService.update(this.editForm.value as Location).subscribe({
+			this._locationService.update(this.editForm.value as Location).subscribe({
 				next: res => {
-					this._dataService.list = res as Location[];
+					// this._dataService.list = res as Location[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa chỉnh sửa thành công thông tin Địa điểm.',

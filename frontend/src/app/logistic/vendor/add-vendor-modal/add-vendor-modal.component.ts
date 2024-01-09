@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Vendor } from 'src/app/__models/vendor';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -11,6 +11,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 	styleUrls: ['add-vendor-modal.component.scss']
 })
 export class AddVendorModalComponent implements OnInit {
+	@Output() submited = new EventEmitter();
 	title?: string;
 	editForm: FormGroup;
 	model: Vendor;
@@ -39,7 +40,8 @@ export class AddVendorModalComponent implements OnInit {
 		if (!this.model) {
 			this._dataService.create(this.editForm.value as Vendor).subscribe({
 				next: res => {
-					this._dataService.list = res as Vendor[];
+					// this._dataService.list = res as Vendor[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa thêm mới thành công thông tin Nhà cung cấp.',
@@ -59,7 +61,8 @@ export class AddVendorModalComponent implements OnInit {
 		} else {
 			this._dataService.update(this.editForm.value as Vendor).subscribe({
 				next: res => {
-					this._dataService.list = res as Vendor[];
+					// this._dataService.list = res as Vendor[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa chỉnh sửa thành công thông tin Nhà cung cấp.',

@@ -4,6 +4,7 @@ import { Vendor } from 'src/app/__models/vendor';
 import { VendorService } from 'src/app/__services/vendor.service';
 import { AddVendorModalComponent } from 'src/app/logistic/vendor/add-vendor-modal/add-vendor-modal.component';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-transaction-vendor-select',
@@ -13,20 +14,22 @@ import { DatePipe } from '@angular/common';
 export class TransactionVendorSelectComponent implements OnInit {
 	@Input() model: Vendor;
 	@Output() change = new EventEmitter();
-  
+	list$: Observable<Vendor[]> | undefined;
+
 	constructor(
-		public vendorService: VendorService,
+		private _vendorService: VendorService,
 		private _modalService: NzModalService,
 		private datePipe: DatePipe
 	) {
-		if (!vendorService.list)
-			vendorService.refreshList();
+		// if (!vendorService.list)
+		// 	vendorService.refreshList();
+		this.list$ = this._vendorService.toList();
 	}
 
 	ngOnInit(): void {
 	}
 
-	
+
 	onVendorChange() {
 		this.change.emit(this.model);
 	}

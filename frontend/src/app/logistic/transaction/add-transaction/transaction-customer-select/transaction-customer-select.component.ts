@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Observable } from 'rxjs';
 import { Customer } from 'src/app/__models/customer';
 import { CustomerService } from 'src/app/__services/customer.service';
 import { AddCustomerModalComponent } from 'src/app/logistic/customer/add-customer-modal/add-customer-modal.component';
@@ -13,13 +14,16 @@ export class TransactionCustomerSelectComponent implements OnInit {
 	@Input() customer: Customer;
 	@Input() transactionCode: string;
 	@Output() change = new EventEmitter();
+	list$: Observable<Customer[]> | undefined;
 
 	constructor(
-		public customerService: CustomerService,
+		private _customerService: CustomerService,
 		private _modalService: NzModalService,
 	) {
-		if (!customerService.list)
-			customerService.refreshList();
+		// if (!customerService.list)
+		// 	customerService.refreshList();
+
+		this.list$ = this._customerService.toList();
 	}
 
 	ngOnInit(): void {

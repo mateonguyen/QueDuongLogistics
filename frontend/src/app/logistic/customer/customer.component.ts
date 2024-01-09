@@ -5,7 +5,7 @@ import { CustomerService } from 'src/app/__services/customer.service';
 import { removeVI } from 'jsrmvi';
 import { AddCustomerModalComponent } from './add-customer-modal/add-customer-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -17,9 +17,10 @@ export class CustomerComponent implements OnInit {
 	confirmModal?: NzModalRef;
 	term = '';
 	modelCustomer: Customer[] = [];
+	list$: Observable<Customer[]> | undefined;
 
 	constructor(
-		public dataService: CustomerService,
+		private _customerService: CustomerService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
 	) { }
@@ -64,9 +65,10 @@ export class CustomerComponent implements OnInit {
 				});
 				console.log(this.modelCustomer);
 
-				this.dataService.import(this.modelCustomer as Customer[]).subscribe({
+				this._customerService.import(this.modelCustomer as Customer[]).subscribe({
 					next: res => {
-						this.dataService.list = res as Customer[];
+						// this.dataService.list = res as Customer[];
+						this.refreshList();
 						this._notificationService.success(
 							'Chúc mừng!',
 							'Bạn vừa thêm mới thành công thông tin Khách hàng.',
@@ -90,11 +92,18 @@ export class CustomerComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.dataService.refreshList();
+		this.refreshList();
 	}
 
 	refreshList() {
-
+		this.list$ = this._customerService.toList().pipe(
+			map((customers) =>
+				customers.filter(
+					(customer) => removeVI(customer.customerName.toLowerCase() + ' ' + customer.customerCode.toLowerCase(), { replaceSpecialCharacters: false })
+						.includes(removeVI(this.term.toLowerCase(), { replaceSpecialCharacters: false }))
+				)
+			)
+		)
 	}
 
 	openEditModal(model?: Customer) {
@@ -109,7 +118,7 @@ export class CustomerComponent implements OnInit {
 			initialState.model = model;
 		}
 
-		this._modalService.create({
+		const modalRef = this._modalService.create({
 			nzContent: AddCustomerModalComponent,
 			nzClosable: false,
 			nzFooter: null,
@@ -118,6 +127,10 @@ export class CustomerComponent implements OnInit {
 				title: initialState.title,
 				model: initialState.model
 			}
+		});
+
+		modalRef.getContentComponent().submited.subscribe(() => {
+			this.refreshList();
 		});
 	}
 
@@ -133,9 +146,10 @@ export class CustomerComponent implements OnInit {
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
-				this.dataService.delete(model.id).subscribe({
+				this._customerService.delete(model.id).subscribe({
 					next: (res) => {
-						this.dataService.list = res as Customer[];
+						// this.dataService.list = res as Customer[];
+						this.refreshList();
 						this._notificationService.info(
 							'Thông báo!',
 							'Bạn vừa xóa thành công Khách hàng <strong>' + model.customerName + '</strong>',

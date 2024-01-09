@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customer } from 'src/app/__models/customer';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
@@ -15,6 +15,7 @@ import { base64ToFile } from 'ngx-image-cropper';
 })
 export class AddCustomerModalComponent implements OnInit {
 	@ViewChild('fileInput') fileInput: ElementRef;
+	@Output() submited = new EventEmitter();
 	title?: string;
 	editForm: FormGroup;
 	model: Customer;
@@ -86,7 +87,8 @@ export class AddCustomerModalComponent implements OnInit {
 			formData.append("id", 0);
 			this._dataService.create(formData).subscribe({
 				next: res => {
-					this._dataService.list = res as Customer[];
+					// this._dataService.list = res as Customer[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa thêm mới thành công thông tin Khách hàng.',
@@ -107,7 +109,8 @@ export class AddCustomerModalComponent implements OnInit {
 			formData.append("id", this.model.id);
 			this._dataService.update(formData).subscribe({
 				next: res => {
-					this._dataService.list = res as Customer[];
+					// this._dataService.list = res as Customer[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa chỉnh sửa thành công thông tin Khách hàng.',

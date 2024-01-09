@@ -5,7 +5,7 @@ import { LocationService } from 'src/app/__services/location.service';
 import { removeVI } from 'jsrmvi';
 import { AddLocationModalComponent } from './add-location-modal/add-location-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Component({
 	selector: 'app-location',
@@ -15,18 +15,27 @@ import { Observable } from 'rxjs';
 export class LocationComponent implements OnInit {
 	confirmModal?: NzModalRef;
 	term = '';
+	list$: Observable<Location[]> | undefined;
 
 	constructor(
-		public dataService: LocationService,
+		private _locationService: LocationService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
 	) { }
 
 	ngOnInit(): void {
-		this.dataService.refreshList();
+		this.refreshList();
 	}
 
 	refreshList() {
+		this.list$ = this._locationService.toList().pipe(
+			map((locations) =>
+				locations.filter(
+					(location) => removeVI(location.locationCode.toLowerCase() + ' ' + location.locationName.toLowerCase(), { replaceSpecialCharacters: false })
+						.includes(removeVI(this.term.toLowerCase(), { replaceSpecialCharacters: false }))
+				)
+			)
+		)
 	}
 
 	openEditModal(model?: Location) {
@@ -65,9 +74,10 @@ export class LocationComponent implements OnInit {
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
-				this.dataService.delete(model.id).subscribe({
+				this._locationService.delete(model.id).subscribe({
 					next: (res) => {
-						this.dataService.list = res as Location[];
+						// this.dataService.list = res as Location[];
+						this.refreshList();
 						this._notificationService.info(
 							'Thông báo!',
 							'Bạn vừa xóa thành công Địa điểm <strong>' + model.locationName + '</strong>',
