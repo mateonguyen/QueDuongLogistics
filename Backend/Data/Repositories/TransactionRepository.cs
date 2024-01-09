@@ -52,6 +52,7 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
                         .Include(x => x.Customer)
                         .Include(x => x.Driver)
                         .Include(x => x.Vehicle)
+                        .Include(x => x.Vendor)
                         // .Include(x => x.ShippingRoute).ThenInclude(x => x.Origin)
                         // .Include(x => x.ShippingRoute).ThenInclude(x => x.Destination)
                         .Include(x => x.TransactionDetails)

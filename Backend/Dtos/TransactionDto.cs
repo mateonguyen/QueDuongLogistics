@@ -18,6 +18,7 @@ public class TransactionDto
     public string Origin { get; set; }    
     public string Destination { get; set; }
     public int VendorId { get; set; }
+    public VendorDto Vendor { get; set; }
     public string VendorName { get; set; }
     public ICollection<TransactionDetailDto> TransactionDetails { get; set; }
 }
