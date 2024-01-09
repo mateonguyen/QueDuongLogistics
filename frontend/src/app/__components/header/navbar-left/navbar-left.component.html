@@ -112,11 +112,11 @@
 						</a>
 					</li>
 					<li class="divider"></li>
-					<li routerLinkActive *appHasRole='["ADM_EMPLOYEE"]'>
+					<!-- <li routerLinkActive *appHasRole='["ADM_EMPLOYEE"]'>
 						<a [routerLink]="'/admin/employees'" [routerLinkActive]="'active'" class="d-flex">
 							<svg-icon [name]="'list-outdent'" [size]="16" class="pe-2"></svg-icon>Danh mục Cán bộ
 						</a>
-					</li>
+					</li> -->
 					<li routerLinkActive *appHasRole='["ADM_CODE"]'>
 						<a [routerLink]="'/admin/codes'" [routerLinkActive]="'active'" class="d-flex">
 							<svg-icon [name]="'list-outdent'" [size]="16" class="pe-2"></svg-icon>Danh mục
@@ -139,16 +139,16 @@
 			<div *dropdownMenu class="dropdown-menu" routerLinkActive="active">
 				<ul>
 					<li routerLinkActive>
+						<a [routerLink]="['/logistic/transaction/list']" [routerLinkActive]="'active'" class="d-flex">
+							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Danh sách điều vận
+						</a>
+					</li>
+					<li routerLinkActive>
 						<a [routerLink]="['/logistic/transaction/new']" [routerLinkActive]="'active'" class="d-flex">
 							<svg-icon [name]="'plus-square'" [size]="16" class="pe-2"></svg-icon>Tạo lệnh điều vận
 						</a>
 					</li>
 					<li class="divider"></li>
-					<li routerLinkActive>
-						<a [routerLink]="['/logistic/transaction/list']" [routerLinkActive]="'active'" class="d-flex">
-							<svg-icon [name]="'issues'" [size]="16" class="pe-2"></svg-icon>Danh sách điều vận
-						</a>
-					</li>
 					<li routerLinkActive>
 						<a [routerLink]="['/logistic/driver']" [routerLinkActive]="'active'" class="d-flex">
 							<svg-icon [name]="'user'" [size]="16" class="pe-2"></svg-icon>Danh sách lái xe

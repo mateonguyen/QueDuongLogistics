@@ -12,7 +12,7 @@
 					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn"
 						#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'
 						[nzOptionHeightPx]="54" (ngModelChange)="onDriverChange()" [nzCustomTemplate]="selectedTemplate">
-						<nz-option nzCustomContent *ngFor="let driver of driverService.list" [nzValue]="driver"
+						<nz-option nzCustomContent *ngFor="let driver of list$ | async" [nzValue]="driver"
 							[nzLabel]="driver.fullName">
 							<span class="font-semibold text-textMedium text-13">{{ driver.fullName }}</span><br />
 							<span class="text-textMedium text-13">{{ driver.dateOfBirth | date:'dd/MM/yyyy' + ' | ' +

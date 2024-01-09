@@ -4,6 +4,7 @@ import { Driver } from 'src/app/__models/driver';
 import { DriverService } from 'src/app/__services/driver.service';
 import { AddDriverModalComponent } from 'src/app/logistic/driver/add-driver-modal/add-driver-modal.component';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-transaction-driver-select',
@@ -13,20 +14,22 @@ import { DatePipe } from '@angular/common';
 export class TransactionDriverSelectComponent implements OnInit {
 	@Input() model: Driver;
 	@Output() change = new EventEmitter();
+	list$: Observable<Driver[]> | undefined;
 
 	constructor(
-		public driverService: DriverService,
+		private _driverService: DriverService,
 		private _modalService: NzModalService,
 		private datePipe: DatePipe
 	) {
-		if (!driverService.list)
-			driverService.refreshList();
+		// if (!driverService.list)
+		// 	driverService.refreshList();
+		this.list$ = this._driverService.toList();
 	}
 
 	ngOnInit(): void {
 	}
 
-	
+
 	onDriverChange() {
 		this.change.emit(this.model);
 	}

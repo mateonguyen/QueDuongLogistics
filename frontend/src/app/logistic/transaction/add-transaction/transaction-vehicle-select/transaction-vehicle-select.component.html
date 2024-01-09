@@ -12,7 +12,7 @@
 					<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 mr-1" [(ngModel)]="model" [compareWith]="compareFn"
 						#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'
 						[nzOptionHeightPx]="54" (ngModelChange)="onVehicleChange()" [nzCustomTemplate]="selectedTemplate">
-						<nz-option nzCustomContent *ngFor="let vehicle of vehicleService.list" [nzValue]="vehicle"
+						<nz-option nzCustomContent *ngFor="let vehicle of list$ | async" [nzValue]="vehicle"
 							[nzLabel]="vehicle.vehicleNumber">
 							<span class="font-semibold text-textMedium text-13">{{ vehicle.vehicleNumber }}</span><br />
 							<span class="text-textMedium text-13">{{ vehicle.typeOfVehicle + ' | ' + vehicle.payloadCapacity + ' ' +

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Vehicle } from 'src/app/__models/vehicle';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -12,6 +12,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 	styleUrls: ['add-vehicle-modal.component.scss']
 })
 export class AddVehicleModalComponent implements OnInit {
+	@Output() submited = new EventEmitter();
 	title?: string;
 	editForm: FormGroup;
 	model: Vehicle;
@@ -43,7 +44,8 @@ export class AddVehicleModalComponent implements OnInit {
 		if (!this.model) {
 			this._dataService.create(this.editForm.value as Vehicle).subscribe({
 				next: res => {
-					this._dataService.list = res as Vehicle[];
+					// this._dataService.list = res as Vehicle[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa thêm mới thành công thông tin Phương tiện.',
@@ -63,7 +65,8 @@ export class AddVehicleModalComponent implements OnInit {
 		} else {
 			this._dataService.update(this.editForm.value as Vehicle).subscribe({
 				next: res => {
-					this._dataService.list = res as Vehicle[];
+					// this._dataService.list = res as Vehicle[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa chỉnh sửa thành công thông tin Phương tiện.',

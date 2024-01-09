@@ -4,6 +4,7 @@ import { Vehicle } from 'src/app/__models/vehicle';
 import { VehicleService } from 'src/app/__services/vehicle.service';
 import { AddVehicleModalComponent } from 'src/app/logistic/vehicle/add-vehicle-modal/add-vehicle-modal.component';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-transaction-vehicle-select',
@@ -14,14 +15,16 @@ export class TransactionVehicleSelectComponent implements OnInit {
 	@Input() model: Vehicle;
 	@Output() change = new EventEmitter();
 	vehicles: Vehicle[];
+	list$: Observable<Vehicle[]> | undefined;
 
 	constructor(
-		public vehicleService: VehicleService,
+		private _vehicleService: VehicleService,
 		private _modalService: NzModalService,
-    	private datePipe: DatePipe
+		private datePipe: DatePipe
 	) {
-		if (!vehicleService.list)
-			vehicleService.refreshList();
+		// if (!vehicleService.list)
+		// 	vehicleService.refreshList();
+		this.list$ = _vehicleService.toList();
 	}
 
 	ngOnInit(): void {

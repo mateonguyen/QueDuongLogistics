@@ -5,7 +5,7 @@ import { VehicleService } from 'src/app/__services/vehicle.service';
 import { removeVI } from 'jsrmvi';
 import { AddVehicleModalComponent } from './add-vehicle-modal/add-vehicle-modal.component';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import * as XLSX from 'xlsx';
 @Component({
 	selector: 'app-vehicle',
@@ -13,17 +13,17 @@ import * as XLSX from 'xlsx';
 	styleUrls: ['./vehicle.component.scss']
 })
 export class VehicleComponent implements OnInit {
+	@ViewChild('fileInput') fileInput: any;
 	confirmModal?: NzModalRef;
 	term = '';
 	modelVehicle: Vehicle[] = [];
+	list$: Observable<Vehicle[]> | undefined;
 
 	constructor(
-		public dataService: VehicleService,
+		private _vehicleService: VehicleService,
 		private _modalService: NzModalService,
 		private _notificationService: NzNotificationService,
 	) { }
-
-	@ViewChild('fileInput') fileInput: any;
 
 	handleFileInput(files: FileList) {
 		const file = files.item(0);
@@ -62,9 +62,10 @@ export class VehicleComponent implements OnInit {
 				});
 				console.log(this.modelVehicle);
 
-				this.dataService.import(this.modelVehicle as Vehicle[]).subscribe({
+				this._vehicleService.import(this.modelVehicle as Vehicle[]).subscribe({
 					next: res => {
-						this.dataService.list = res as Vehicle[];
+						// this.dataService.list = res as Vehicle[];
+						this.refreshList();
 						this._notificationService.success(
 							'Chúc mừng!',
 							'Bạn vừa thêm mới thành công thông tin Phương tiện.',
@@ -88,10 +89,18 @@ export class VehicleComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.dataService.refreshList();
+		this.refreshList();
 	}
 
 	refreshList() {
+		this.list$ = this._vehicleService.toList().pipe(
+			map((vehicles) =>
+				vehicles.filter(
+					(vehicle) => removeVI(vehicle.vehicleNumber.toLowerCase() + ' ' + vehicle.typeOfVehicle.toLowerCase() + ' ' + vehicle.payloadCapacity.toString(), { replaceSpecialCharacters: false })
+						.includes(removeVI(this.term.toLowerCase(), { replaceSpecialCharacters: false }))
+				)
+			)
+		)
 	}
 
 	openEditModal(model?: Vehicle) {
@@ -106,7 +115,7 @@ export class VehicleComponent implements OnInit {
 			initialState.model = model;
 		}
 
-		this._modalService.create({
+		const modalRef = this._modalService.create({
 			nzContent: AddVehicleModalComponent,
 			nzClosable: false,
 			nzFooter: null,
@@ -115,6 +124,10 @@ export class VehicleComponent implements OnInit {
 				title: initialState.title,
 				model: initialState.model
 			}
+		});
+
+		modalRef.getContentComponent().submited.subscribe(() => {
+			this.refreshList();
 		});
 	}
 
@@ -130,9 +143,10 @@ export class VehicleComponent implements OnInit {
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
-				this.dataService.delete(model.id).subscribe({
+				this._vehicleService.delete(model.id).subscribe({
 					next: (res) => {
-						this.dataService.list = res as Vehicle[];
+						// this.dataService.list = res as Vehicle[];
+						this.refreshList();
 						this._notificationService.info(
 							'Thông báo!',
 							'Bạn vừa xóa thành công Phương tiện <strong>' + model.typeOfVehicle + '</strong>',

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Driver } from 'src/app/__models/driver';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 	styleUrls: ['add-driver-modal.component.scss']
 })
 export class AddDriverModalComponent implements OnInit {
+	@Output() submited = new EventEmitter();
 	title?: string;
 	editForm: FormGroup;
 	model: Driver;
@@ -33,10 +34,10 @@ export class AddDriverModalComponent implements OnInit {
 		this.editForm = this._fb.group({
 			id: [this.model?.id ?? 0],
 			fullName: [this.model?.fullName, Validators.required],
-			dateOfBirth: [this.model? new Date(this.model.dateOfBirth.replace(pattern, '$1-$2-$3')) : '', Validators.required],
+			dateOfBirth: [this.model ? new Date(this.model.dateOfBirth.replace(pattern, '$1-$2-$3')) : '', Validators.required],
 			phoneNo: [this.model?.phoneNo, Validators.required],
 			identityCardNo: [this.model?.identityCardNo, Validators.required],
-			issueDate: [this.model? new Date(this.model.issueDate.replace(pattern, '$1-$2-$3')) : '', Validators.required],
+			issueDate: [this.model ? new Date(this.model.issueDate.replace(pattern, '$1-$2-$3')) : '', Validators.required],
 			issuePlace: [this.model?.issuePlace, Validators.required],
 			homeTown: [this.model?.homeTown, Validators.required],
 		});
@@ -53,7 +54,8 @@ export class AddDriverModalComponent implements OnInit {
 		if (!this.model) {
 			this._dataService.create(formValue as Driver).subscribe({
 				next: res => {
-					this._dataService.list = res as Driver[];
+					// this._dataService.list = res as Driver[];
+					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa thêm mới thành công thông tin Lái xe.',
@@ -73,7 +75,9 @@ export class AddDriverModalComponent implements OnInit {
 		} else {
 			this._dataService.update(formValue as Driver).subscribe({
 				next: res => {
-					this._dataService.list = res as Driver[];
+					// this._dataService.list = res as Driver[];
+					this.submited.emit();
+
 					this._notificationService.success(
 						'Chúc mừng!',
 						'Bạn vừa chỉnh sửa thành công thông tin Lái xe.',

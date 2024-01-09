@@ -74,13 +74,13 @@ export const SIDEBAR_LINKS: SideBarLink[] = [
 		roles: [],
 		children: [],
 	},
-	{
-		name: 'Tuuyến đường',
-		icon: 'cloud-gear',
-		url: '/logistic/shipping-route',
-		isActive: false,
-		isOver: false,
-		roles: [],
-		children: [],
-	},
+	// {
+	// 	name: 'Tuuyến đường',
+	// 	icon: 'cloud-gear',
+	// 	url: '/logistic/shipping-route',
+	// 	isActive: false,
+	// 	isOver: false,
+	// 	roles: [],
+	// 	children: [],
+	// },
 ];
