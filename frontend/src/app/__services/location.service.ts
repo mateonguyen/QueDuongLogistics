@@ -14,14 +14,14 @@ export class LocationService {
 		this.baseUrl = environment.apiUrl;
 	}
 
-	// refreshList() {
-	// 	return this.http.get<Location[]>(this.baseUrl + 'location').subscribe({
-	// 		next: res => {
-	// 			this.list = res as Location[];
-	// 		},
-	// 		error: err => { console.log(err) }
-	// 	});
-	// }
+	refreshList() {
+		return this.http.get<Location[]>(this.baseUrl + 'location').subscribe({
+			next: res => {
+				this.list = res as Location[];
+			},
+			error: err => { console.log(err) }
+		});
+	}
 
 	toList() {
 		if (this.list.length > 0) return of(this.list);

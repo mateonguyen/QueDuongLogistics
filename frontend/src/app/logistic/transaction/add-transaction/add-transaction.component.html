@@ -17,7 +17,7 @@
 			</div>
 			<div class="flex-item-last">
 				<button type="submit" class="btn btn-success"
-					[disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.shippingRouteId || !transaction.vendorId"
+					[disabled]="!transaction.driverId || !transaction.customerId || !transaction.vehicleId || !transaction.vendorId"
 					form="editForm">Lưu</button>
 			</div>
 		</div>
@@ -44,8 +44,57 @@
 					<app-transaction-vehicle-select [(model)]="transaction.vehicle"
 						(change)="onVehicleChange($event)"></app-transaction-vehicle-select>
 
-					<app-transaction-shipping-route-select [(model)]="transaction.shippingRoute"
-						(change)="onShippingRouteChange($event)"></app-transaction-shipping-route-select>
+					<table class="table table_price table-bordered">
+						<thead>
+							<tr>
+								<th class="whitespace-nowrap" colspan="2">Thông tin vận chuyển</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td width="30%"><b>Điểm nhận hàng </b></td>
+								<td>
+									<div class="d-flex w-full" style="flex-wrap: wrap;">
+										<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 nz-select-main" [(ngModel)]="origin" [compareWith]="compareLocation" 
+										(ngModelChange)="onOriginChange($event)"
+										#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'	[ngModelOptions]="{standalone: true}"
+										[nzCustomTemplate]="selectedTemplate">
+											<nz-option *ngFor="let location of list$ | async" [nzValue]="location" [nzLabel]="location.locationName">
+											</nz-option>
+										</nz-select>
+										<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+											(click)="openEditLocationModal()"></wk-button>
+										<ng-template #selectedTemplate let-selected>
+											{{ selected.nzLabel }}
+										</ng-template>
+										<div class="invalid-feedback" style="flex-basis: 100%" *ngIf='control.errors?.required'>
+											Vui lòng chọn Điểm nhận hàng</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td width="30%"><b>Điểm giao hàng </b></td>
+								<td>
+									<div class="d-flex w-full" style="flex-wrap: wrap;">
+										<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 nz-select-main" [(ngModel)]="destination" [compareWith]="compareLocation" 
+										(ngModelChange)="onDestinationChange($event)"
+										#control1="ngModel" [required]="true" [class.is-invalid]='control1.errors && control1.touched'	[ngModelOptions]="{standalone: true}"
+										[nzCustomTemplate]="selectedTemplate">
+											<nz-option *ngFor="let location of list$ | async" [nzValue]="location" [nzLabel]="location.locationName">
+											</nz-option>
+										</nz-select>
+										<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
+											(click)="openEditLocationModal()"></wk-button>
+										<ng-template #selectedTemplate let-selected>
+											{{ selected.nzLabel }}
+										</ng-template>
+										<div class="invalid-feedback" style="flex-basis: 100%" *ngIf='control1.errors?.required'>
+											Vui lòng chọn Điểm giao hàng</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
 
 				</div>

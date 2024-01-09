@@ -14,6 +14,11 @@ import { DatePipe } from '@angular/common';
 import { Vendor } from 'src/app/__models/vendor';
 import { ShippingRoute } from 'src/app/__models/shipping-route';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LocationService } from 'src/app/__services/location.service';
+import { AddLocationModalComponent } from '../../location/add-location-modal/add-location-modal.component';
+import { Observable, map } from 'rxjs';
+import { Location } from 'src/app/__models/location';
+import { removeVI } from 'jsrmvi';
 @Component({
 	selector: 'app-add-transaction',
 	templateUrl: './add-transaction.component.html',
@@ -45,8 +50,12 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	public ticketFeeText: string = '0';
 	public otherFeeText: string = '0';
 
-	currentDate: Date = new Date();
+	public origin: Location = null;
+	public destination: Location = null;
 
+	currentDate: Date = new Date();
+	list$: Observable<Location[]> | undefined;
+	term = '';
 
 	constructor(
 		private _dataService: TransactionService,
@@ -56,13 +65,28 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		private datePipe: DatePipe,
 		private _router: Router,
 		private _route: ActivatedRoute,
+		private _locationService: LocationService,
 		private cdr: ChangeDetectorRef
-	) { }
+	) { 
+		this.list$ = this._locationService.toList();
+	}
 
 	ngOnInit(): void {
 		this.transactionId = this._route.snapshot.paramMap.get('id');
 
 		this.initForm();
+		this.refreshList();
+	}
+
+	refreshList() {
+		this.list$ = this._locationService.toList().pipe(
+			map((locations) =>
+			locations.filter(
+					(location) => removeVI(location.locationName.toLowerCase() + ' ' + location.locationCode.toLowerCase(), { replaceSpecialCharacters: false })
+						.includes(removeVI(this.term.toLowerCase(), { replaceSpecialCharacters: false }))
+				)
+			)
+		)
 	}
 
 	initForm() {
@@ -98,9 +122,29 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		this.transaction.vehicleId = vehicle ? vehicle.id : null;
 	}
 
-	onShippingRouteChange(route: ShippingRoute) {
-		this.transaction.shippingRouteId = route ? route.id : null;
-		this.transaction.shippingRoute = route;
+	onOriginChange(location: Location) {
+		this.transaction.origin = location ? location.locationName : null;
+	}
+
+	onDestinationChange(location: Location) {
+		this.transaction.destination = location ? location.locationName : null;
+	}
+
+	openEditLocationModal() {
+		const modalRef = this._modalService.create({
+			nzContent: AddLocationModalComponent,
+			nzClosable: false,
+			nzFooter: null,
+			nzWidth: 700,
+			nzComponentParams: {
+				title: 'Thêm mới Địa điểm',
+				model: null
+			}
+		});
+
+		modalRef.getContentComponent().submited.subscribe(() => {
+			this.refreshList();
+		});
 	}
 
 	onVendorChange(vendor: Vendor) {
@@ -173,7 +217,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 				{
 					next: () => this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa chỉnh sửa thành công thông tin Tài khoản ngân hàng.',
+						'Bạn vừa chỉnh sửa thành công Lệnh điều vận.',
 						{ nzDuration: 5000, nzAnimate: true }
 					),
 					error: (err) => {
@@ -195,7 +239,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 				{
 					next: () => this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa thêm mới thành công thông tin Tài khoản ngân hàng.',
+						'Bạn vừa thêm mới thành công Lệnh điều vận.',
 						{ nzDuration: 5000, nzAnimate: true }
 					),
 					error: (err) => {
@@ -243,5 +287,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			parseFloat(this.transaction.ticketFee.toString()) +
 			parseFloat(this.transaction.otherFee.toString()));
 	}
+
+	compareLocation = (o1: Location, o2: Location): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
 
 }
