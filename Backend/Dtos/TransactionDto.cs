@@ -12,8 +12,11 @@ public class TransactionDto
     public VehicleDto Vehicle { get; set; }
     public int DriverId { get; set; }
     public DriverDto Driver { get; set; }
-    public int ShippingRouteId { get; set; }
-    public string RouteName { get; set; }
+    // public int ShippingRouteId { get; set; }
+
+    // public string RouteName { get; set; }
+    public string Origin { get; set; }    
+    public string Destination { get; set; }
     public int VendorId { get; set; }
     public string VendorName { get; set; }
     public ICollection<TransactionDetailDto> TransactionDetails { get; set; }
@@ -28,7 +31,9 @@ public class TransactionForCreationDto
     public string CustomerCode { get; set; }
     public int VehicleId { get; set; }
     public int DriverId { get; set; }    
-    public int ShippingRouteId { get; set; }    
+    // public int ShippingRouteId { get; set; }    
+    public string Origin { get; set; }
+    public string Destination { get; set; }
     public int VendorId { get; set; }
 
     public decimal DemurrageFee { get; set; }
