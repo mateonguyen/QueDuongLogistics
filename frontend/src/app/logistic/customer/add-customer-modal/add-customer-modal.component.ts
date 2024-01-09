@@ -78,15 +78,16 @@ export class AddCustomerModalComponent implements OnInit {
 		var formData: any = new FormData();
 		formData.append('customerCode', this.editForm.value['customerCode']);
 		formData.append('customerName', this.editForm.value['customerName']);
-		formData.append('photoFile', this.photo ?? base64ToFile(this.photo));
-		// formData.append('photoFile', base64ToFile(this.photo));
+		// formData.append('photoFile', this.photo ?? base64ToFile(this.photo));
+		formData.append('photoFile', base64ToFile(this.photo));
 
 
 		this._modalRef.close();
 		if (!this.model) {
 			formData.append("id", 0);
+
 			this._dataService.create(formData).subscribe({
-				next: res => {
+				next: _ => {
 					// this._dataService.list = res as Customer[];
 					this.submited.emit();
 					this._notificationService.success(
@@ -107,6 +108,7 @@ export class AddCustomerModalComponent implements OnInit {
 			});
 		} else {
 			formData.append("id", this.model.id);
+
 			this._dataService.update(formData).subscribe({
 				next: res => {
 					// this._dataService.list = res as Customer[];

@@ -33,7 +33,7 @@ export class CustomerService {
 		)
 	}
 
-	create(model: Customer) {
+	create(model: any) {
 		return this.http.post(this.baseUrl + 'customer', model).pipe(
 			map((res: Customer[]) => {
 				this.list = res;
@@ -41,8 +41,7 @@ export class CustomerService {
 		);
 	}
 
-	update(model: Customer) {
-		debugger;
+	update(model: any) {
 		return this.http.put(this.baseUrl + 'customer', model).pipe(
 			map((res: Customer[]) => {
 				this.list = res;

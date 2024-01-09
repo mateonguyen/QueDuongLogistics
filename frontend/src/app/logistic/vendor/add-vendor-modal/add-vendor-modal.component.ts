@@ -78,15 +78,15 @@ export class AddVendorModalComponent implements OnInit {
 		var formData: any = new FormData();
 		formData.append('vendorCode', this.editForm.value['vendorCode']);
 		formData.append('vendorName', this.editForm.value['vendorName']);
-		formData.append('photoFile', this.photo ?? base64ToFile(this.photo));
-		// formData.append('photoFile', base64ToFile(this.photo));
+		// formData.append('photoFile', this.photo ?? base64ToFile(this.photo));
+		formData.append('photoFile', base64ToFile(this.photo));
 
 
 		this._modalRef.close();
 		if (!this.model) {
 			formData.append("id", 0);
 			this._dataService.create(formData).subscribe({
-				next: res => {
+				next: _ => {
 					// this._dataService.list = res as Vendor[];
 					this.submited.emit();
 					this._notificationService.success(
