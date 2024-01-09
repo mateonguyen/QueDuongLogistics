@@ -29,9 +29,15 @@ public class Transaction : Auditable
     [ForeignKey("Vendor")] 
     public int VendorId { get; set; }
 
-    [Column(Order = 7)]
-    [ForeignKey("ShippingRoute")] 
-    public int ShippingRouteId { get; set; }
+    // [Column(Order = 7)]
+    // [ForeignKey("ShippingRoute")] 
+    // public int ShippingRouteId { get; set; }
+
+    [MaxLength(150)]
+    public string Origin { get; set; }
+
+    [MaxLength(150)]
+    public string Destination { get; set; }
         
     [Column(Order = 18)]
     [Precision(18, 3)]  

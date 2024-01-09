@@ -58,11 +58,11 @@ public class AutoMapperProfiles : Profile
 
         CreateMap<LocationDto, Location>();
 
-        CreateMap<ShippingRoute, ShippingRouteDto>();
+        // CreateMap<ShippingRoute, ShippingRouteDto>();
 
-        CreateMap<ShippingRouteDto, ShippingRoute>();
+        // CreateMap<ShippingRouteDto, ShippingRoute>();
         
-        CreateMap<ShippingRouteForCreationDto, ShippingRoute>();
+        // CreateMap<ShippingRouteForCreationDto, ShippingRoute>();
         
         CreateMap<TransactionDetail, TransactionDetailDto>();
 

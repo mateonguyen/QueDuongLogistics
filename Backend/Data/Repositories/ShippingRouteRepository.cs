@@ -14,22 +14,26 @@ namespace Backend.Data.Repositories
 
         public async Task<bool> Exists(string routeCode)
         {
-            return await _context.ShippingRoutes.AnyAsync(x => x.RouteCode == routeCode.ToUpper());
+            // return await _context.ShippingRoutes.AnyAsync(x => x.RouteCode == routeCode.ToUpper());
+            throw new NotImplementedException();
         }
 
         public async Task<bool> Exists(int id, string routeCode)
         {
-            return await _context.ShippingRoutes.AnyAsync(x => x.Id != id && x.RouteCode == routeCode.ToUpper());
+            // return await _context.ShippingRoutes.AnyAsync(x => x.Id != id && x.RouteCode == routeCode.ToUpper());
+            throw new NotImplementedException();
         }
 
         public async Task<ShippingRoute> SingleAsync(int id)
         {
-            return await _context.ShippingRoutes.Where(x => x.Id == id).SingleOrDefaultAsync();
+            // return await _context.ShippingRoutes.Where(x => x.Id == id).SingleOrDefaultAsync();
+            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<ShippingRouteDto>> ToListAsync()
         {
-            return await _context.ShippingRoutes.Include(x => x.Origin).Include(x => x.Destination).ProjectTo<ShippingRouteDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
+            // return await _context.ShippingRoutes.Include(x => x.Origin).Include(x => x.Destination).ProjectTo<ShippingRouteDto>(_mapper.ConfigurationProvider).AsNoTracking().ToListAsync();
+            throw new NotImplementedException();
         }
     }
 }

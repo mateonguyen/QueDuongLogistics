@@ -59,9 +59,9 @@ public class AccountController : BaseApiController
     [HttpPost("logout")]
     public async Task<ActionResult> Logout()
     {
-        AuditLogout();
+        // AuditLogout();
 
-        await _signInManager.SignOutAsync();
+        // await _signInManager.SignOutAsync();
 
         return Ok();
     }

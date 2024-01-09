@@ -57,10 +57,11 @@ export class AccountService {
 	}
 
 	logout() {
-		this.http.get(this.baseUrl + 'account/logout');
-		this.store.reset();
-		this.router.navigateByUrl('/login');
-		storage.clearSession();
+		this.http.post(this.baseUrl + 'account/logout', {}).subscribe(() => {
+			this.store.reset();
+			storage.clearSession();
+			this.router.navigateByUrl('/login');
+		})
 	}
 
 	changePassword(model: any) {

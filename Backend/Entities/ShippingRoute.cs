@@ -19,8 +19,8 @@ public class ShippingRoute : Auditable
     [Column(Order = 4)]
     public int DestinationId { get; set; }
 
-    public virtual Location Origin { get; set; }
-    public virtual Location Destination { get; set; }
+    // public virtual Location Origin { get; set; }
+    // public virtual Location Destination { get; set; }
 
 
 }

@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
 			this.accountService.autoLogout(expirationDate - date);
 		} else {
-			this.accountService.logout();
+			// this.accountService.logout();
 			this.router.navigateByUrl('login');
 		}
 
