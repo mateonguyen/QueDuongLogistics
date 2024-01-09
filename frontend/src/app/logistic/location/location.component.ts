@@ -50,7 +50,7 @@ export class LocationComponent implements OnInit {
 			initialState.model = model;
 		}
 
-		this._modalService.create({
+		const modalRef = this._modalService.create({
 			nzContent: AddLocationModalComponent,
 			nzClosable: false,
 			nzFooter: null,
@@ -59,6 +59,10 @@ export class LocationComponent implements OnInit {
 				title: initialState.title,
 				model: initialState.model
 			}
+		});
+
+		modalRef.getContentComponent().submited.subscribe(() => {
+			this.refreshList();
 		});
 	}
 

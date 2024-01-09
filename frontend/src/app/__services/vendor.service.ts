@@ -34,6 +34,8 @@ export class VendorService {
 	}
 
 	create(model: Vendor) {
+		console.log(model);
+
 		return this.http.post(this.baseUrl + 'vendor', model).pipe(
 			map((res: Vendor[]) => {
 				this.list = res;

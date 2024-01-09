@@ -42,6 +42,7 @@ export class CustomerService {
 	}
 
 	update(model: Customer) {
+		debugger;
 		return this.http.put(this.baseUrl + 'customer', model).pipe(
 			map((res: Customer[]) => {
 				this.list = res;

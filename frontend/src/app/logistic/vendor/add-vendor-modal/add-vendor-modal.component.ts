@@ -91,7 +91,7 @@ export class AddVendorModalComponent implements OnInit {
 					this.submited.emit();
 					this._notificationService.success(
 						'Chúc mừng!',
-						'Bạn vừa thêm mới thành công thông tin Nhà cung cấp.',
+						'Bạn vừa thêm mới thành công thông tin Đơn vị vận chuyển.',
 						{ nzDuration: 5000, nzAnimate: true }
 					)
 				},
