@@ -19,9 +19,7 @@ export class Transaction {
 	vendorId: number;
 	vendorName: string;
 	vendor: Vendor;
-	shippingRouteId: number;
-	shippingRoute: ShippingRoute;
-	shippingRouteName: string;
+
 	transactionDetails: TransactionDetails[];
 	transactionDate: Date;
 
@@ -36,4 +34,7 @@ export class Transaction {
 	isCustomerReturn: boolean;
 	isSummitedDoc: boolean;
 	notes: string;
+
+	origin: string;
+	destination: string;
 }
