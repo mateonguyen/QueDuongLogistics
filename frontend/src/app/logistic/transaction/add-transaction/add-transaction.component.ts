@@ -50,9 +50,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	public ticketFeeText: string = '0';
 	public otherFeeText: string = '0';
 
-	public origin: Location = null;
-	public destination: Location = null;
-
 	currentDate: Date = new Date();
 	list$: Observable<Location[]> | undefined;
 	term = '';
@@ -103,6 +100,21 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		} else {
 			this._dataService.single(Number(this.transactionId)).subscribe((res: Transaction) => {
 				this.transaction = res;
+				this.demurrageFeeText = new Intl.NumberFormat('en-US').format(res.demurrageFee);
+				this.transshipmentFeeText = new Intl.NumberFormat('en-US').format(res.transshipmentFee);
+				this.returnShippingFeeText = new Intl.NumberFormat('en-US').format(res.returnShippingFee);
+				this.customsFeeText = new Intl.NumberFormat('en-US').format(res.customsFee);
+				this.handlingFeeText = new Intl.NumberFormat('en-US').format(res.handlingFee);
+				this.ticketFeeText = new Intl.NumberFormat('en-US').format(res.ticketFee); 
+				this.otherFeeText = new Intl.NumberFormat('en-US').format(res.otherFee);
+				this.total_fee = new Intl.NumberFormat('en-US').format(
+					parseFloat(this.transaction.demurrageFee.toString()) +
+					parseFloat(this.transaction.transshipmentFee.toString()) +
+					parseFloat(this.transaction.returnShippingFee.toString()) +
+					parseFloat(this.transaction.customsFee.toString()) +
+					parseFloat(this.transaction.handlingFee.toString()) +
+					parseFloat(this.transaction.ticketFee.toString()) +
+					parseFloat(this.transaction.otherFee.toString()));
 			})
 		}
 	}
@@ -122,12 +134,12 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		this.transaction.vehicleId = vehicle ? vehicle.id : null;
 	}
 
-	onOriginChange(location: Location) {
-		this.transaction.origin = location ? location.locationName : null;
+	onOriginChange(locationName: string) {
+		this.transaction.origin = locationName;
 	}
 
-	onDestinationChange(location: Location) {
-		this.transaction.destination = location ? location.locationName : null;
+	onDestinationChange(locationName: string) {
+		this.transaction.destination = locationName;
 	}
 
 	openEditLocationModal() {
@@ -212,6 +224,8 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 
 	onSubmit() {
+		console.log(this.transaction);
+		return;
 		if (this.transactionId) {
 			this._dataService.update(this.transaction).subscribe(
 				{
@@ -288,6 +302,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 			parseFloat(this.transaction.otherFee.toString()));
 	}
 
-	compareLocation = (o1: Location, o2: Location): boolean => (o1 && o2 ? o1.id === o2.id : o1 === o2);
+	compareLocation = (o1: any, o2: any): boolean => (o1 && o2 ? o1 === o2 : o1 === o2);
 
 }
