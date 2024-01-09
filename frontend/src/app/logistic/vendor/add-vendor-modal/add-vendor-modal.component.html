@@ -5,6 +5,20 @@
 </div>
 <div class="modal-body">
 	<form id="edit_form" [formGroup]="editForm" (ngSubmit)="editForm.valid && onSubmit()" autocomplete="off">
+		<div class="mb-4 mt-2">
+			<div class="avatar-image">
+				<img class="vendor-logo" [src]="photo ? photo : '../../../../assets/images/user.png'">
+			</div>
+			<h5 class="mt-0">Tải lên logo</h5>
+			<div class="my-2">
+				<wk-button [className]="'btn btn-default js-choose-user-avatar-button'" (click)="openFileInput()">Chọn
+					ảnh...</wk-button>
+				<span class="avatar-file-name ms-2 js-avatar-filename">No file chosen.</span>
+				<input #fileInput class="js-user-avatar-input hidden" accept="image/*" type="file"
+					(change)="fileChangeEvent($event)" name="user[avatar]-trigger" id="user_avatar-trigger">
+			</div>
+			<div style="color: #666;">Dung lượng ảnh tối đa tải lên là 200KB.</div>
+		</div>
 		<div class="form-group mb-3">
 			<label for="vendor_code" class="label-bold">Mã nhà cung cấp</label>
 			<input type="text" id="vendor_code" class="form-input" [formControl]='editForm.controls["vendorCode"]'

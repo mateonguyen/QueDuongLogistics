@@ -1,0 +1,25 @@
+.avatar-image {
+	margin-bottom: 0.5rem;
+	margin-right: 1rem;
+}
+
+.avatar-image .vendor-logo {
+	width: 128px;
+	padding: 5px;
+	border-radius: 4px;
+	border: 1px solid #868686;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.avatar-file-name {
+	position: relative;
+	top: 2px;
+	display: inline-block;
+}
+
+@media (min-width: 576px) {
+	.avatar-image {
+		float: left;
+		margin-bottom: 0;
+	}
+}
