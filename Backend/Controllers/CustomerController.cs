@@ -56,7 +56,7 @@ public class CustomerController : BaseApiController
 
         customer.Creator = User.GetUsername();
         customer.Created = DateTime.Now;
-        customer.CustomerCode = customerDto.CustomerCode.ToUpper();        
+        customer.CustomerCode = customerDto.CustomerCode.ToUpper();
         customer.Photo = photo;
 
         await _unitOfWork.CustomerRepository.CreateAsync(customer);

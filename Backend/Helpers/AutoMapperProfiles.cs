@@ -54,6 +54,8 @@ public class AutoMapperProfiles : Profile
 
         CreateMap<VendorDto, Vendor>();
 
+        CreateMap<VendorForUpdateDto, Vendor>();
+
         CreateMap<Location, LocationDto>();
 
         CreateMap<LocationDto, Location>();
