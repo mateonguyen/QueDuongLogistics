@@ -11,16 +11,20 @@
 								<div class="search-box-by-click d-md-flex p-2 flex-grow-1">
 									<nz-input-group [nzSuffix]="suffixIconSearch">
 										<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()"
-											placeholder="Mã điều vận, " />
+											placeholder="Mã điều vận, Tên lái xe, Tuyến đường, Biển số xe" />
 									</nz-input-group>
 									<ng-template #suffixIconSearch>
 										<span nz-icon nzType="search"></span>
 									</ng-template>
 									<nz-space class="ml-2">
-										<nz-date-picker *nzSpaceItem nzFormat="dd/MM/yyyy" nzPlaceHolder="Ngày vận tải - Từ ngày"
-											[(ngModel)]="transDateFrom" style="width: 250px;"></nz-date-picker>
-										<nz-date-picker *nzSpaceItem nzFormat="dd/MM/yyyy" nzPlaceHolder="Ngày vận tải - Đến ngày"
-											[(ngModel)]="transDateTo" style="width: 250px;"></nz-date-picker>
+										<label *nzSpaceItem class="mt-2 mr-2 ml-5 text-bold" style="white-space: nowrap;">Ngày vận
+											tải</label>
+										<nz-date-picker *nzSpaceItem nzFormat="dd/MM/yyyy" nzPlaceHolder="Từ ngày"
+											[nzDisabledDate]="disabledStartDate" [(ngModel)]="transDateFrom"
+											style="width: 220px;"></nz-date-picker>
+										<nz-date-picker *nzSpaceItem nzFormat="dd/MM/yyyy" nzPlaceHolder="Đến ngày"
+											[nzDisabledDate]="disabledEndDate" [(ngModel)]="transDateTo"
+											style="width: 220px;"></nz-date-picker>
 									</nz-space>
 								</div>
 								<div class="p-2 d-md-flex">
@@ -30,6 +34,24 @@
 								<div class="p-2 d-md-flex">
 									<wk-button icon="plus" [iconSize]="13" [className]="'btn-success flex'"
 										[routerLink]="['/logistic/transaction/new']">Thêm</wk-button>
+								</div>
+							</div>
+							<div class="row p-2 pt-0">
+								<div class="col-2">
+									Khách hàng
+									<nz-select nzShowSearch nzAllowClear class="mr-2 w-full" [(ngModel)]="customerFilter"
+										(ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
+										<nz-option *ngFor="let customer of customerList$ | async" [nzLabel]="customer.customerName"
+											[nzValue]="customer.id"></nz-option>
+									</nz-select>
+								</div>
+								<div class="col-2">
+									Đơn vị vận tải
+									<nz-select nzShowSearch nzAllowClear class="mr-2 w-full" [(ngModel)]="vendorFilter"
+										(ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
+										<nz-option *ngFor="let vendor of vendroList$ | async" [nzLabel]="vendor.vendorName"
+											[nzValue]="vendor.id"></nz-option>
+									</nz-select>
 								</div>
 							</div>
 						</div>

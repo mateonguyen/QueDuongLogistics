@@ -16,8 +16,9 @@ public class DocumentParams
     public string Term { get; set; }
     public string StartDate { get; set; }
     public string EndDate { get; set; }
+    
 
     // Sorting
-    public string SortField { get; set; } = "SoHieu";
+    public string SortField { get; set; } = "Id";
     public string SortOrder { get; set; } = "ascend";
 }

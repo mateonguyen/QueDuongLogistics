@@ -23,14 +23,18 @@ export class TransactionService {
 		sortOrder: string | 'descend',
 		transDateFrom: string | null,
 		transDateTo: string | null,
-		term: string
+		term: string,
+		customerFilter: number,
+		vendorFilter: number
 	): Observable<PaginatedResult<Transaction[]>> {
 		let params = getPaginationHeader(pageIndex, pageSize)
 			.append('term', term)
 			.append('sortField', `${sortField}`)
 			.append('sortOrder', `${sortOrder}`)
 			.append('transDateFrom', transDateFrom ?? '')
-			.append('transDateTo', transDateTo ?? '');
+			.append('transDateTo', transDateTo ?? '')
+			.append('customerId', customerFilter)
+			.append('vendorId', vendorFilter);
 
 		// filters.forEach(filter => {
 		// 	filter.value.forEach(value => {

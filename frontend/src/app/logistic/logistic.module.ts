@@ -39,6 +39,7 @@ import { RouteLocationSelectComponent } from './shipping-route/add-shipping-rout
 import { TransactionShippingRouteSelectComponent } from './transaction/add-transaction/transaction-shipping-route-select/transaction-shipping-route-select.component';
 import { TransactionDetailsEditModalComponent } from './transaction/add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
 import { ScheduleComponent } from './transaction/schedule/schedule.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 
 @NgModule({
@@ -65,8 +66,8 @@ import { ScheduleComponent } from './transaction/schedule/schedule.component';
 		LogoCropperComponent,
 		RouteLocationSelectComponent,
 		TransactionShippingRouteSelectComponent,
-  TransactionDetailsEditModalComponent,
-  ScheduleComponent,
+		TransactionDetailsEditModalComponent,
+		ScheduleComponent,
 	],
 	imports: [
 		CommonModule,
@@ -85,7 +86,8 @@ import { ScheduleComponent } from './transaction/schedule/schedule.component';
 		NzCardModule,
 		NzDatePickerModule,
 		ImageCropperModule,
-		NzSpaceModule
+		NzSpaceModule,
+		NzFormModule
 	],
 	providers: [DatePipe],
 })

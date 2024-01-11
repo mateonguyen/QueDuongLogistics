@@ -25,6 +25,16 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
                         .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).AsNoTracking();
 
         // Filtering
+        if (transactionParams.CustomerId != 0)
+        {
+            query = query.Where(x => x.CustomerId == transactionParams.CustomerId);
+        }
+
+        if (transactionParams.VendorId != 0)
+        {
+            query = query.Where(x => x.VendorId == transactionParams.VendorId);
+        }
+
         CultureInfo provider = CultureInfo.InvariantCulture;
         if(transactionParams.TransDateFrom != null)
         {
@@ -36,22 +46,21 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
         {
             DateTime endDate = DateTime.ParseExact(transactionParams.TransDateTo, "yyyyMMdd", provider);
             query = query.Where(x => DateTime.Compare(x.TransactionDate.Date, endDate) <= 0);
-
-            // query = query.Where(x => string.Compare(x.TransactionDate.ToString("yyyyMMdd"), transactionParams.TransDateTo, StringComparison.OrdinalIgnoreCase) <= 0);
         }
             
         if (!string.IsNullOrEmpty(transactionParams.Term))
+        {
+            query = query.Where(delegate (TransactionDto x)
             {
-                query = query.Where(delegate (TransactionDto x)
-                {
-                    if ((x.TransactionNo + " " + x.Destination + " " + x.Origin).ToUnSign()
-                            .IndexOf(transactionParams.Term.ToUnSign(), StringComparison.CurrentCultureIgnoreCase) >= 0)
-                        return true;
-                    else
-                        return false;
-                }).AsQueryable();
-            }
+                if ((x.TransactionNo + " " + x.Driver.FullName + " " + x.Vehicle.VehicleNumber + " " + x.Destination + " " + x.Origin).ToUnSign()
+                        .IndexOf(transactionParams.Term.ToUnSign(), StringComparison.CurrentCultureIgnoreCase) >= 0)
+                    return true;
+                else
+                    return false;
+            }).AsQueryable();
+        }
 
+        // Sorting
         if (!string.IsNullOrEmpty(transactionParams.SortField))
         {
             if (transactionParams.SortOrder == "ascend")

@@ -70,8 +70,7 @@ body,
 
 a {
 	color: #1068bf;
-	transition: background-color 100ms linear, color 100ms linear,
-		border 100ms linear;
+	transition: background-color 100ms linear, color 100ms linear, border 100ms linear;
 	text-decoration: none;
 	background-color: transparent;
 	cursor: pointer;
@@ -110,7 +109,7 @@ p {
 
 hr {
 	margin: 1.5rem 0;
-	border-top: 1px solid #eee;
+	border-top: 1px solid #ececef;
 	overflow: hidden;
 }
 
@@ -358,8 +357,7 @@ label {
 
 .btn.btn-confirm:focus,
 .btn.btn-info:focus {
-	box-shadow: inset 0 0 0 2px #064787, 0 0 0 1px rgb(255 255 255 / 40%),
-		0 0 0 4px rgb(31 117 203 / 48%);
+	box-shadow: inset 0 0 0 2px #064787, 0 0 0 1px rgb(255 255 255 / 40%), 0 0 0 4px rgb(31 117 203 / 48%);
 	outline: none;
 	background-color: #1068bf;
 }
@@ -413,8 +411,7 @@ input[type="file"] {
 }
 
 .form-control:not(.form-control-plaintext):focus {
-	box-shadow: inset 0 0 0 1px #303030, 0 0 0 1px rgb(255 255 255 / 40%),
-		0 0 0 4px rgb(31 117 203 / 48%);
+	box-shadow: inset 0 0 0 1px #303030, 0 0 0 1px rgb(255 255 255 / 40%), 0 0 0 4px rgb(31 117 203 / 48%);
 	outline: none;
 	color: #303030;
 }

@@ -14,6 +14,8 @@ public class TransactionParams
     public string Term { get; set; }
     public string TransDateFrom { get; set; }
     public string TransDateTo { get; set; }
+    public int? CustomerId { get; set; }
+    public int? VendorId { get; set; }
 
     // Sorting
     public string SortField { get; set; } = "Id";
