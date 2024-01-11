@@ -49,6 +49,7 @@ export class TransactionComponent implements OnInit {
 		this.sortField = 'Id';
 		this.sortOrder = 'ascend';
 		this.customerFilter = 0;
+		this.vendorFilter = 0;
 
 		this.customerList$ = this._customerService.toList();
 		this.vendroList$ = this._vendorService.toList();
