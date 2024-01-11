@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { Transaction } from 'src/app/__models/transaction';
@@ -16,8 +17,8 @@ export class TransactionComponent implements OnInit {
 	pageIndex = 1;
 	total = 0;
 
-	startDate: Date | null = null;
-	endDate: Date | null = null;
+	transDateFrom: Date | null = null;
+	transDateTo: Date | null = null;
 
 	roles: string[];
 	currentUser: string;
@@ -29,7 +30,8 @@ export class TransactionComponent implements OnInit {
 	confirmModal?: NzModalRef;
 
 	constructor(
-		private _transactionService: TransactionService
+		private _transactionService: TransactionService,
+		@Inject(LOCALE_ID) public locale: string,
 	) {
 		this.term = '';
 		this.sortField = 'Id';
@@ -51,7 +53,10 @@ export class TransactionComponent implements OnInit {
 	}
 
 	refreshList() {
-		this._transactionService.list(this.pageIndex, this.pageSize, this.sortField, this.sortOrder, 'aa').subscribe(res => {
+		let _transDateFrom = this.transDateFrom == null ? null : formatDate(this.transDateFrom, 'yyyyMMdd', this.locale);
+		let _transDateTo = this.transDateTo == null ? null : formatDate(this.transDateTo, 'yyyyMMdd', this.locale);
+
+		this._transactionService.list(this.pageIndex, this.pageSize, this.sortField, this.sortOrder, _transDateFrom, _transDateTo, this.term).subscribe(res => {
 			this.list = res.result;
 			this.total = res.pagination.totalItems;
 		});

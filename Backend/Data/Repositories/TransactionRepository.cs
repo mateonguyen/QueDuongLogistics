@@ -1,4 +1,5 @@
 
+using System.Globalization;
 using Backend.Helpers.Params;
 
 namespace Backend.Data.Repositories;
@@ -24,17 +25,32 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
                         .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).AsNoTracking();
 
         // Filtering
-        // if (!string.IsNullOrEmpty(transactionParams.Term))
-        //     {
-        //         query = query.Where(delegate (TransactionDto x)
-        //         {
-        //             if ((x.TransactionNo + " " + x.CapCho).ToUnSign()
-        //                     .IndexOf(transactionParams.Term.ToUnSign(), StringComparison.CurrentCultureIgnoreCase) >= 0)
-        //                 return true;
-        //             else
-        //                 return false;
-        //         }).AsQueryable();
-            // }
+        CultureInfo provider = CultureInfo.InvariantCulture;
+        if(transactionParams.TransDateFrom != null)
+        {
+            DateTime startDate = DateTime.ParseExact(transactionParams.TransDateFrom, "yyyyMMdd", provider);
+            query = query.Where(x => DateTime.Compare(x.TransactionDate.Date, startDate) >= 0);
+        }
+
+        if(transactionParams.TransDateTo != null)
+        {
+            DateTime endDate = DateTime.ParseExact(transactionParams.TransDateTo, "yyyyMMdd", provider);
+            query = query.Where(x => DateTime.Compare(x.TransactionDate.Date, endDate) <= 0);
+
+            // query = query.Where(x => string.Compare(x.TransactionDate.ToString("yyyyMMdd"), transactionParams.TransDateTo, StringComparison.OrdinalIgnoreCase) <= 0);
+        }
+            
+        if (!string.IsNullOrEmpty(transactionParams.Term))
+            {
+                query = query.Where(delegate (TransactionDto x)
+                {
+                    if ((x.TransactionNo + " " + x.Destination + " " + x.Origin).ToUnSign()
+                            .IndexOf(transactionParams.Term.ToUnSign(), StringComparison.CurrentCultureIgnoreCase) >= 0)
+                        return true;
+                    else
+                        return false;
+                }).AsQueryable();
+            }
 
         if (!string.IsNullOrEmpty(transactionParams.SortField))
         {

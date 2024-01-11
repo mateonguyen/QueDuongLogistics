@@ -21,17 +21,16 @@ export class TransactionService {
 		pageSize: number,
 		sortField: string | 'SoHieu',
 		sortOrder: string | 'descend',
-		// startDate: string | null,
-		// endDate: string | null,
-		//filters: Array<{ key: string; value: string[] }>
+		transDateFrom: string | null,
+		transDateTo: string | null,
 		term: string
 	): Observable<PaginatedResult<Transaction[]>> {
 		let params = getPaginationHeader(pageIndex, pageSize)
 			.append('term', term)
 			.append('sortField', `${sortField}`)
-			.append('sortOrder', `${sortOrder}`);
-		// .append('startDate', startDate == null ? '' : startDate)
-		// .append('endDate', endDate == null ? '' : endDate);
+			.append('sortOrder', `${sortOrder}`)
+			.append('transDateFrom', transDateFrom ?? '')
+			.append('transDateTo', transDateTo ?? '');
 
 		// filters.forEach(filter => {
 		// 	filter.value.forEach(value => {
