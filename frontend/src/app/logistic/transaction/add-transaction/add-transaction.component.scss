@@ -1,4 +1,4 @@
-@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+// @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 #content-body {
 	font-size: 16px;
 }
@@ -15,41 +15,40 @@ p {
 	margin: 0;
 }
 
-.header-transaction{
+.header-transaction {
 	.custom-date-picker {
 		width: 100%;
 		.ant-calendar {
 			background-color: #fff;
 			border: 1px solid #d9d9d9;
-		  }
-		  
+		}
+
 		.ant-calendar-header {
 			background-color: #1890ff;
 			color: #fff;
-		  }
-		  
+		}
+
 		.ant-calendar-footer {
 			background-color: #1890ff;
 			color: #fff;
-		  }
+		}
 
 		::ng-deep .ant-picker-input input {
 			font-weight: bold;
-			font-size : 18px;
+			font-size: 18px;
 		}
 	}
 
-	.btn-success:not([disabled]){
+	.btn-success:not([disabled]) {
 		color: #fff;
 	}
 }
 
-.main-add-transaction{
-
-	.nz-select-main{
+.main-add-transaction {
+	.nz-select-main {
 		margin-right: 0.25em;
 	}
-	
+
 	.note_input {
 		width: 100%;
 	}
@@ -63,19 +62,19 @@ p {
 			line-height: 40px;
 		}
 	}
-	
+
 	::ng-deep .ant-table-thead > tr > th,
 	.ant-table-tfoot > tr > th {
 		background-color: #fafafa !important;
 		font-weight: bolder;
 		text-align: center;
 	}
-	
+
 	::ng-deep .table_price {
 		background-color: white;
-		td{
-			padding : 0.5rem 1rem;
-			vertical-align : baseline;
+		td {
+			padding: 0.5rem 1rem;
+			vertical-align: baseline;
 		}
 
 		thead > tr > th,
@@ -86,15 +85,15 @@ p {
 			padding: 10px;
 		}
 	}
-	
+
 	.custom-fee {
 		text-align: right;
 	}
-	
+
 	.input-group {
 		position: relative;
 	}
-	
+
 	.input-group .prefix {
 		position: absolute;
 		top: 50%;
@@ -102,15 +101,13 @@ p {
 		transform: translateY(-50%);
 		color: #ccc;
 	}
-	
-	.text-right{
+
+	.text-right {
 		text-align: right;
-		padding-right : 25px;
+		padding-right: 25px;
 	}
 
-	.btn-success{
+	.btn-success {
 		color: #fff;
 	}
-	
-	
 }
