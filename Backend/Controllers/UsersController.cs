@@ -1,6 +1,6 @@
 namespace Backend.Controllers;
 
-[Authorize]
+
 public class UsersController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
