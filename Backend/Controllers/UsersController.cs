@@ -29,8 +29,16 @@ public class UsersController : BaseApiController
     {
         var users = await _unitOfWork.UserRepository.GetUsersAsync();
 
-        return Ok(users);
+        return Ok("Xin chào");
     }
+
+    // [HttpGet]
+    // public ActionResult GetUsers()
+    // {
+    //     // var users = await _unitOfWork.UserRepository.GetUsersAsync();
+
+    //     return Ok("Xin chào");
+    // }
 
     [HttpGet("{username}")]
     public async Task<ActionResult<UserDto>> GetUserByUsername(string username)

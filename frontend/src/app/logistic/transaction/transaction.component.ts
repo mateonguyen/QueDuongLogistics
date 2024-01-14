@@ -9,6 +9,8 @@ import { Vendor } from 'src/app/__models/vendor';
 import { CustomerService } from 'src/app/__services/customer.service';
 import { TransactionService } from 'src/app/__services/transaction.service';
 import { VendorService } from 'src/app/__services/vendor.service';
+import * as XLSX from 'xlsx';
+
 
 @Component({
 	selector: 'app-transaction',
@@ -90,6 +92,52 @@ export class TransactionComponent implements OnInit {
 		this._transactionService.list(this.pageIndex, this.pageSize, this.sortField, this.sortOrder, _transDateFrom, _transDateTo, this.term, this.customerFilter, this.vendorFilter).subscribe(res => {
 			this.list = res.result;
 			this.total = res.pagination.totalItems;
+		});
+	}
+
+	exportToExcel(): void {
+		let _transDateFrom = this.transDateFrom == null ? null : formatDate(this.transDateFrom, 'yyyyMMdd', this.locale);
+		let _transDateTo = this.transDateTo == null ? null : formatDate(this.transDateTo, 'yyyyMMdd', this.locale);
+
+		this._transactionService.list(this.pageIndex, this.pageSize, this.sortField, this.sortOrder, _transDateFrom, _transDateTo, this.term, this.customerFilter, this.vendorFilter).subscribe(res => {
+			const fileName = 'Xuất_excel_vận_đơn';
+			const data = res.result;
+
+			// Define a mapping between database column names and desired titles
+			const columnTitleMap = {
+				'id' : 'Id', 
+				'transactionNo' : 'Mã điều vận', 
+				'transactionDate' : 'Ngày điều vận',  
+				'customerId' : 'Mã khách hàng',  
+				'customerName' : 'Tên khách hàng',   
+				'customer' : 'Customer', 
+				'vehicleId' : 'Id phương tiện', 
+				'vehicle' : 'Phương tiện', 
+				'driverId' : 'Mã tài xế', 
+				'driver' : 'Driver', 
+				'origin' : 'Điểm giao', 
+				'destination' : 'Điểm nhận', 
+				'vendorId' : 'Mã đơn vị vận chuyển', 
+				'vendor' : 'Vendor', 
+				'vendorName' : 'Tên đơn vị vận chuyển', 
+				'transactionDetails' : 'TransactionDetails'
+			};
+
+			// Extract column headers from the first row of your data (assuming it's an array of objects)
+			const headers = Object.keys(data[0]);
+
+			// Map the original column names to the desired titles
+			const modifiedHeaders = headers.map((columnName) => columnTitleMap[columnName] || columnName);
+
+			// Create a worksheet with modified headers and data
+			const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([modifiedHeaders, ...data], { skipHeader: true });
+
+			// Create a workbook and append the worksheet
+			const wb: XLSX.WorkBook = XLSX.utils.book_new();
+			XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+			// Save the workbook as a file
+			XLSX.writeFile(wb, fileName + '.xlsx');
 		});
 	}
 }
