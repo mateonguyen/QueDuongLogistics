@@ -40,6 +40,10 @@ import { TransactionShippingRouteSelectComponent } from './transaction/add-trans
 import { TransactionDetailsEditModalComponent } from './transaction/add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
 import { ScheduleComponent } from './transaction/schedule/schedule.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { OrderComponent } from './order/order.component';
+import { OrderEditComponent } from './order/order-edit/order-edit.component';
+import { FinanceComponent } from './finance/finance.component';
+import { FinanceEditComponent } from './finance-edit/finance-edit.component';
 
 
 @NgModule({
@@ -68,6 +72,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 		TransactionShippingRouteSelectComponent,
 		TransactionDetailsEditModalComponent,
 		ScheduleComponent,
+		OrderComponent,
+  OrderEditComponent,
+  FinanceComponent,
+  FinanceEditComponent,
 	],
 	imports: [
 		CommonModule,
