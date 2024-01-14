@@ -73,9 +73,9 @@ import { FinanceEditComponent } from './finance-edit/finance-edit.component';
 		TransactionDetailsEditModalComponent,
 		ScheduleComponent,
 		OrderComponent,
-  OrderEditComponent,
-  FinanceComponent,
-  FinanceEditComponent,
+		OrderEditComponent,
+		FinanceComponent,
+		FinanceEditComponent,
 	],
 	imports: [
 		CommonModule,
