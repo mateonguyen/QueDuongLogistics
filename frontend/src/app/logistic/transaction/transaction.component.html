@@ -53,6 +53,12 @@
 											[nzValue]="vendor.id"></nz-option>
 									</nz-select>
 								</div>
+								<div class="col-2 ml-auto text-right">
+									<div class="upload-btn-wrapper">
+										<wk-button icon="export" [iconSize]="13" [className]="'btn-success flex'"
+											[title]="'Xuất dữ liệu ra file excel'" (click)="exportToExcel()">Xuất Excel</wk-button>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="row">
