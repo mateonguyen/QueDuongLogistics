@@ -17,6 +17,46 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
 
     public PagedList<TransactionDto> ToList(TransactionParams transactionParams)
     {
+        var source = ProcessToList(transactionParams);
+
+        return PagedList<TransactionDto>.Create(source, transactionParams.PageNumber, transactionParams.PageSize);
+    }
+
+    public async Task<Transaction> SingleAsync(int id)
+    {
+        return await _context.Transactions
+                        .Include(x => x.Customer)
+                        .Include(x => x.Driver)
+                        .Include(x => x.Vehicle)
+                        .Include(x => x.Vendor)
+                        // .Include(x => x.ShippingRoute).ThenInclude(x => x.Origin)
+                        // .Include(x => x.ShippingRoute).ThenInclude(x => x.Destination)
+                        .Include(x => x.TransactionDetails)
+                        .Where(x => x.Id == id).SingleOrDefaultAsync();
+    }
+
+    public async Task<string> GenerateTransactioNo(DateTime transactionDate, string customerCode)
+    {
+        var crnNo = await _context.Transactions.Where(x => x.TransactionDate == transactionDate).MaxAsync(x => x.TransactionNo);
+        var today = DateTime.Today.ToString("dd.MM.yy");
+
+        var nextNo = "001";
+
+        if (crnNo != null)
+            nextNo = (Convert.ToInt32(crnNo[^3..]) + 1).ToString().PadLeft(3, '0');
+
+        return today + "." + customerCode + "." + nextNo;
+    }
+
+    public IEnumerable<TransactionDto> Export(TransactionParams transactionParams)
+    {
+        var source = ProcessToList(transactionParams);
+
+        return source.ToList();
+    }
+
+    private IQueryable<TransactionDto> ProcessToList(TransactionParams transactionParams)
+    {
         var query = _context.Transactions
                         .Include(x => x.Customer)
                         .Include(x => x.Driver)
@@ -68,32 +108,7 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
             else
                 query = query.OrderByPropertyDescending(transactionParams.SortField);
         }
-        return PagedList<TransactionDto>.Create(query, transactionParams.PageNumber, transactionParams.PageSize);
-    }
 
-    public async Task<Transaction> SingleAsync(int id)
-    {
-        return await _context.Transactions
-                        .Include(x => x.Customer)
-                        .Include(x => x.Driver)
-                        .Include(x => x.Vehicle)
-                        .Include(x => x.Vendor)
-                        // .Include(x => x.ShippingRoute).ThenInclude(x => x.Origin)
-                        // .Include(x => x.ShippingRoute).ThenInclude(x => x.Destination)
-                        .Include(x => x.TransactionDetails)
-                        .Where(x => x.Id == id).SingleOrDefaultAsync();
-    }
-
-    public async Task<string> GenerateTransactioNo(DateTime transactionDate, string customerCode)
-    {
-        var crnNo = await _context.Transactions.Where(x => x.TransactionDate == transactionDate).MaxAsync(x => x.TransactionNo);
-        var today = DateTime.Today.ToString("dd.MM.yy");
-
-        var nextNo = "001";
-
-        if (crnNo != null)
-            nextNo = (Convert.ToInt32(crnNo[^3..]) + 1).ToString().PadLeft(3, '0');
-
-        return today + "." + customerCode + "." + nextNo;
+        return query;
     }
 }

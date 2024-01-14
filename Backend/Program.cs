@@ -1,6 +1,3 @@
-using DevExpress.AspNetCore;
-using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

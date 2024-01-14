@@ -23,6 +23,14 @@ public class TransactionController : BaseApiController
         return Ok(result);
     }
 
+    [HttpGet("export")]
+    public ActionResult<IEnumerable<TransactionDto>> GetToExport([FromQuery]TransactionParams transactionParams)
+    {
+        var result = _unitOfWork.TransactionRepository.Export(transactionParams);
+
+        return Ok(result);
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TransactionDto>> Get(int id)
     {

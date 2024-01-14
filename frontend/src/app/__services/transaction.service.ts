@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Transaction } from '../__models/transaction';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 import { PaginatedResult } from '../__models/pagination';
 import { getPaginatedResult, getPaginationHeader } from '../__helpers/paginationHelper';
 
@@ -43,6 +43,28 @@ export class TransactionService {
 		// });
 
 		return getPaginatedResult<Transaction[]>(this.baseUrl + 'transaction', params, this._http);
+	}
+
+	listForExport(
+		sortField: string | 'SoHieu',
+		sortOrder: string | 'descend',
+		transDateFrom: string | null,
+		transDateTo: string | null,
+		term: string,
+		customerFilter: number,
+		vendorFilter: number
+	): Observable<Transaction[]> {
+		let params = new HttpParams();
+
+		params = params.append('term', term)
+			.append('sortField', `${sortField}`)
+			.append('sortOrder', `${sortOrder}`)
+			.append('transDateFrom', transDateFrom ?? '')
+			.append('transDateTo', transDateTo ?? '')
+			.append('customerId', customerFilter)
+			.append('vendorId', vendorFilter);
+
+		return this._http.get<Transaction[]>(this.baseUrl + 'transaction/export', { params });
 	}
 
 	// refreshList() {
