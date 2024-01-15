@@ -1,11 +1,17 @@
-
-.customer-logo img {
-	padding: 5px;
-	width: 128px;
+.customer-logo {
+	width: 132px;
+	height: 132px;
+	padding: 2px;
 	border-radius: 4px;
 	border: 1px solid #868686;
 	background-color: #fff;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	display: flex;
+	align-items: center;
+}
+
+.customer-logo img {
+	width: 128px;
 }
 
 .customer_logo_div {

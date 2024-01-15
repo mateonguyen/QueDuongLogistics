@@ -78,8 +78,8 @@ import { FinanceTypeComponent } from './finance/finance-type/finance-type.compon
 		OrderEditComponent,
 		FinanceComponent,
 		FinanceEditComponent,
-  TransactionDetailsComponent,
-  FinanceTypeComponent,
+		TransactionDetailsComponent,
+		FinanceTypeComponent,
 	],
 	imports: [
 		CommonModule,

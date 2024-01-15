@@ -62,37 +62,3 @@ catch (Exception ex)
 }
 
 await app.RunAsync();
-
-// namespace Backend
-// {
-//     public class Program
-//     {
-//         public static async Task Main(string[] args)
-//         {
-//             var host = CreateHostBuilder(args).Build();
-//             using var scope = host.Services.CreateScope();
-//             varbuilder. services = scope.ServiceProvider;
-//             try
-//             {
-//                 var context =builder. services.GetRequiredService<WakDbContext>();
-//                 var userManager =builder. services.GetRequiredService<UserManager<AppUser>>();
-//                 await context.Database.MigrateAsync();
-//                 await Seed.SeedUsers(userManager);
-//             }
-//             catch (Exception ex)
-//             {
-//                 var logger =builder. services.GetRequiredService<ILogger<Program>>();
-//                 logger.LogError(ex, "An error occurred during migration.");
-//             }
-
-//             await host.RunAsync();
-//         }
-
-//         public static IHostBuilder CreateHostBuilder(string[] args) =>
-//             Host.CreateDefaultBuilder(args)
-//                 .ConfigureWebHostDefaults(webBuilder =>
-//                 {
-//                     webBuilder.UseStartup<Startup>();
-//                 });
-//     }
-// }
