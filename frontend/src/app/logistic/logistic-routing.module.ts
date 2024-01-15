@@ -10,9 +10,12 @@ import { VehicleComponent } from "./vehicle/vehicle.component";
 import { LocationComponent } from "./location/location.component";
 import { AddTransactionComponent } from "./transaction/add-transaction/add-transaction.component";
 import { PreventUnsavedChangesGuard } from "../__guards/prevent-unsaved-changes.guard";
-import { ShippingRouteComponent } from "./shipping-route/shipping-route.component";
 import { ScheduleComponent } from "./transaction/schedule/schedule.component";
 import { OrderComponent } from "./order/order.component";
+import { FinanceComponent } from "./finance/finance.component";
+import { OrderEditComponent } from "./order/order-edit/order-edit.component";
+import { FinanceEditComponent } from "./finance/finance-edit/finance-edit.component";
+import { FinanceTypeComponent } from "./finance/finance-type/finance-type.component";
 
 const routes: Routes = [
 	{
@@ -26,13 +29,19 @@ const routes: Routes = [
 			{ path: 'transaction/new', component: AddTransactionComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
 			{ path: 'transaction/edit/:id', component: AddTransactionComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
 			{ path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
-			{ path: 'transaction/list', component: TransactionComponent, canActivate: [AuthGuard] },
+			{ path: 'order/list', component: OrderComponent, canActivate: [AuthGuard] },
+			{ path: 'order/new', component: OrderEditComponent, canActivate: [AuthGuard] },
+			{ path: 'order/edit:id', component: OrderEditComponent, canActivate: [AuthGuard] },
+			{ path: 'finance', component: FinanceComponent, canActivate: [AuthGuard] },
+			{ path: 'finance/list', component: FinanceComponent, canActivate: [AuthGuard] },
+			{ path: 'finance/new', component: FinanceEditComponent, canActivate: [AuthGuard] },
+			{ path: 'finance/edit:id', component: FinanceEditComponent, canActivate: [AuthGuard] },
+			{ path: 'finance/type', component: FinanceTypeComponent, canActivate: [AuthGuard] },
 			{ path: 'driver', component: DriverComponent, canActivate: [AuthGuard] },
 			{ path: 'vehicle', component: VehicleComponent, canActivate: [AuthGuard] },
 			{ path: 'customer', component: CustomerComponent, canActivate: [AuthGuard] },
 			{ path: 'vendor', component: VendorComponent, canActivate: [AuthGuard] },
 			{ path: 'location', component: LocationComponent, canActivate: [AuthGuard] },
-			// { path: 'shipping-route', component: ShippingRouteComponent, canActivate: [AuthGuard] },
 		],
 	},
 ]

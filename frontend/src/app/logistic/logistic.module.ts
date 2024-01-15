@@ -43,7 +43,9 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { OrderComponent } from './order/order.component';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { FinanceComponent } from './finance/finance.component';
-import { FinanceEditComponent } from './finance-edit/finance-edit.component';
+import { FinanceEditComponent } from './finance/finance-edit/finance-edit.component';
+import { TransactionDetailsComponent } from './transaction/transaction-details/transaction-details.component';
+import { FinanceTypeComponent } from './finance/finance-type/finance-type.component';
 
 
 @NgModule({
@@ -76,6 +78,8 @@ import { FinanceEditComponent } from './finance-edit/finance-edit.component';
 		OrderEditComponent,
 		FinanceComponent,
 		FinanceEditComponent,
+  TransactionDetailsComponent,
+  FinanceTypeComponent,
 	],
 	imports: [
 		CommonModule,
