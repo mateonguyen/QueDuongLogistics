@@ -29,6 +29,7 @@
 						"assets": [
 							"src/favicon.ico",
 							"src/assets",
+							"src/assets/template_export.xlsx",
 							{
 								"glob": "**/*",
 								"input": "node_modules/@taiga-ui/icons/src",

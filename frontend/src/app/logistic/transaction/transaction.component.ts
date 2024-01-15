@@ -123,21 +123,44 @@ export class TransactionComponent implements OnInit {
 				'transactionDetails' : 'TransactionDetails'
 			};
 
-			// Extract column headers from the first row of your data (assuming it's an array of objects)
-			const headers = Object.keys(data[0]);
 
-			// Map the original column names to the desired titles
-			const modifiedHeaders = headers.map((columnName) => columnTitleMap[columnName] || columnName);
+			// Load the template file
+			this.loadTemplate().then((ws: XLSX.WorkSheet) => {
+				// Add data to worksheet starting from the second row
+				XLSX.utils.sheet_add_json(ws, data, { skipHeader: true, origin: 'A2' });
 
-			// Create a worksheet with modified headers and data
-			const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([modifiedHeaders, ...data], { skipHeader: true });
+				// Create a workbook and add the worksheet
+				const wb: XLSX.WorkBook = XLSX.utils.book_new();
+				XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-			// Create a workbook and append the worksheet
-			const wb: XLSX.WorkBook = XLSX.utils.book_new();
-			XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-
-			// Save the workbook as a file
-			XLSX.writeFile(wb, fileName + '.xlsx');
+				// Save the workbook as an XLSX file
+				XLSX.writeFile(wb, fileName + '.xlsx');
+			});
 		});
 	}
+
+	private loadTemplate(): Promise<XLSX.WorkSheet> {
+		return new Promise((resolve, reject) => {
+		  // Replace 'assets/template_export.xlsx' with the actual path to your template file
+		  const templateFilePath = 'assets/template_export.xlsx';
+	  
+		  try {
+			const workbook: XLSX.WorkBook = XLSX.readFile(templateFilePath, { cellDates: true, cellNF: false, cellText: false });
+	  
+			// Assuming there's only one sheet in the template workbook
+			const sheetName = workbook.SheetNames[0];
+			const worksheet: XLSX.WorkSheet | null = workbook.Sheets[sheetName] || null;
+	  
+			if (worksheet !== null) {
+			  resolve(worksheet);
+			} else {
+			  console.error('Error: The worksheet is null.');
+			  reject('The worksheet is null.');
+			}
+		  } catch (error) {
+			console.error('Error loading template:', error);
+			reject(error);
+		  }
+		});
+	  }
 }
