@@ -12,8 +12,8 @@
 			</div>
 			<div class="customer_code_generate align-baseline mr-2">{{ transaction.transactionNo }}</div>
 			<div style="width: 300px;">
-				<nz-date-picker class="form-input custom-date-picker" [(ngModel)]="transaction.transactionDate" id="transactionDate"
-					[nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
+				<nz-date-picker class="form-input custom-date-picker" [(ngModel)]="transaction.transactionDate"
+					id="transactionDate" [nzFormat]="'dd/MM/yyyy'"></nz-date-picker>
 			</div>
 			<div class="flex-item-last">
 				<button type="submit" class="btn btn-success"
@@ -55,11 +55,13 @@
 								<td width="30%"><b>Điểm nhận hàng </b></td>
 								<td>
 									<div class="d-flex w-full" style="flex-wrap: wrap;">
-										<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 nz-select-main" [(ngModel)]="transaction.origin" [compareWith]="compareLocation" 
-										(ngModelChange)="onOriginChange($event)"
-										#control="ngModel" [required]="true" [class.is-invalid]='control.errors && control.touched'	[ngModelOptions]="{standalone: true}"
-										[nzCustomTemplate]="selectedTemplate">
-											<nz-option *ngFor="let location of list$ | async" [nzValue]="location.locationName" [nzLabel]="location.locationName">
+										<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 nz-select-main"
+											[(ngModel)]="transaction.origin" [compareWith]="compareLocation"
+											(ngModelChange)="onOriginChange($event)" #control="ngModel" [required]="true"
+											[class.is-invalid]='control.errors && control.touched' [ngModelOptions]="{standalone: true}"
+											[nzCustomTemplate]="selectedTemplate">
+											<nz-option *ngFor="let location of list$ | async" [nzValue]="location.locationName"
+												[nzLabel]="location.locationName">
 											</nz-option>
 										</nz-select>
 										<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"
@@ -76,11 +78,13 @@
 								<td width="30%"><b>Điểm giao hàng </b></td>
 								<td>
 									<div class="d-flex w-full" style="flex-wrap: wrap;">
-										<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 nz-select-main" [(ngModel)]="transaction.destination" [compareWith]="compareLocation" 
-										(ngModelChange)="onDestinationChange($event)"
-										#control1="ngModel" [required]="true" [class.is-invalid]='control1.errors && control1.touched'	[ngModelOptions]="{standalone: true}"
-										[nzCustomTemplate]="selectedTemplate">
-											<nz-option *ngFor="let location of list$ | async" [nzValue]="location.locationName" [nzLabel]="location.locationName">
+										<nz-select nzShowSearch nzAllowClear class="flex-1 h-8 nz-select-main"
+											[(ngModel)]="transaction.destination" [compareWith]="compareLocation"
+											(ngModelChange)="onDestinationChange($event)" #control1="ngModel" [required]="true"
+											[class.is-invalid]='control1.errors && control1.touched' [ngModelOptions]="{standalone: true}"
+											[nzCustomTemplate]="selectedTemplate">
+											<nz-option *ngFor="let location of list$ | async" [nzValue]="location.locationName"
+												[nzLabel]="location.locationName">
 											</nz-option>
 										</nz-select>
 										<wk-button [className]="'btn btn-primary flex-1'" icon="plus" [iconSize]="18"

@@ -19,7 +19,7 @@ form {
 		color: #172b4d;
 		transition: background 0.1s;
 		font-size: 15px;
-		height: 34.88px;
+		height: 30px;
 
 		&.input-multiple {
 			height: auto;
@@ -96,5 +96,9 @@ form {
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
 	border: 1px solid #868686;
 	border-radius: 3px;
-	height: 34.88px;
+	// height: 34.88px;
+}
+
+.ant-input-affix-wrapper {
+	border: 1px solid #868686;
 }
