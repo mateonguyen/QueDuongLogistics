@@ -64,7 +64,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		private _route: ActivatedRoute,
 		private _locationService: LocationService,
 		private cdr: ChangeDetectorRef
-	) { 
+	) {
 		this.list$ = this._locationService.toList();
 	}
 
@@ -78,7 +78,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	refreshList() {
 		this.list$ = this._locationService.toList().pipe(
 			map((locations) =>
-			locations.filter(
+				locations.filter(
 					(location) => removeVI(location.locationName.toLowerCase() + ' ' + location.locationCode.toLowerCase(), { replaceSpecialCharacters: false })
 						.includes(removeVI(this.term.toLowerCase(), { replaceSpecialCharacters: false }))
 				)
@@ -105,7 +105,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 				this.returnShippingFeeText = new Intl.NumberFormat('en-US').format(res.returnShippingFee);
 				this.customsFeeText = new Intl.NumberFormat('en-US').format(res.customsFee);
 				this.handlingFeeText = new Intl.NumberFormat('en-US').format(res.handlingFee);
-				this.ticketFeeText = new Intl.NumberFormat('en-US').format(res.ticketFee); 
+				this.ticketFeeText = new Intl.NumberFormat('en-US').format(res.ticketFee);
 				this.otherFeeText = new Intl.NumberFormat('en-US').format(res.otherFee);
 				this.total_fee = new Intl.NumberFormat('en-US').format(
 					parseFloat(this.transaction.demurrageFee.toString()) +
@@ -224,8 +224,6 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	}
 
 	onSubmit() {
-		console.log(this.transaction);
-		return;
 		if (this.transactionId) {
 			this._dataService.update(this.transaction).subscribe(
 				{
