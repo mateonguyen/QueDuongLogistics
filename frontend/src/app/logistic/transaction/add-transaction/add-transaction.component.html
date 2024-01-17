@@ -35,22 +35,20 @@
 			</div>
 		</div>
 		<form #editForm="ngForm" id="editForm" (ngSubmit)="onSubmit()" ngNativeValidate autocomplete="off">
-
 			<div class="row mt-2">
 				<div class="col-lg-4">
 					<div class="row">
-
-						<div class="col-lg-12">
+						<div class="col-lg-12 pr-2">
 							<app-transaction-vehicle-select [(model)]="transaction.vehicle"
-							(change)="onVehicleChange($event)"></app-transaction-vehicle-select>
+								(change)="onVehicleChange($event)"></app-transaction-vehicle-select>
 						</div>
 
-						<div class="col-lg-12">
+						<div class="col-lg-12 pr-2">
 							<app-transaction-driver-select [(model)]="transaction.driver"
-							(change)="onDriverChange($event)"></app-transaction-driver-select>
+								(change)="onDriverChange($event)"></app-transaction-driver-select>
 						</div>
 
-						<div class="col-lg-12">
+						<div class="col-lg-12 pr-2">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -110,19 +108,19 @@
 					</div>
 				</div>
 
-				<div class="col-lg-8">
+				<div class="col-lg-8 pl-2">
 					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-lg-6 px-2">
 							<app-transaction-customer-select [(customer)]="transaction.customer"
 								[(transactionCode)]="transaction.transactionNo"
 								(change)="onCustomerChange($event)"></app-transaction-customer-select>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-6 pl-2">
 							<app-transaction-vendor-select [(model)]="transaction.vendor"
 								(change)="onVendorChange($event)"></app-transaction-vendor-select>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 px-2">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -218,7 +216,7 @@
 							</table>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 pl-2">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -256,9 +254,6 @@
 									</tr>
 								</tbody>
 							</table>
-
-						</div>
-						<div class="col-lg-12">
 							<table class="table table_price table-bordered">
 								<thead>
 									<tr>
@@ -267,7 +262,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td><textarea rows="2" class="form-input input-multiple" name="notes"
+										<td><textarea rows="8" class="form-input input-multiple" name="notes"
 												[(ngModel)]="transaction.notes"></textarea></td>
 									</tr>
 								</tbody>
@@ -276,56 +271,55 @@
 					</div>
 				</div>
 			</div>
-
-
-
-			<div class="row mt-2">
+			<div class="row">
 				<div class="col-lg-12">
 					<nz-table #table [classList]="'border-spacing-y-[10px]'" nzSize="small"
-					[nzData]="transaction.transactionDetails" nzTableResponsive>
-					<thead>
-						<tr role="row">
-							<th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
-							<th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
-							<th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện</th>
-							<th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện</th>
-							<th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
-							<th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
-							<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả
-								hàng hóa</th>
-							<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao
-							</th>
-							<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian
-								giao</th>
-							<th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success"
-									(click)="openEditModal()">Thêm mới</button></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr *ngFor="let row of transaction.transactionDetails; trackBy: trackByFunction">
-							<td>{{ row.contType }} </td>
-							<td>{{ row.contCount }} </td>
-							<td>{{ row.packageCount }} </td>
-							<td>{{ row.packageUnit }} </td>
-							<td>{{ row.quantity }} </td>
-							<td>{{ row.unit }} </td>
-							<td>{{ row.goodsDescription }} </td>
-							<td>{{ row.deliveredPlace }} </td>
-							<td>{{ parseHumanDate(row.deliveredTime) }} </td>
-							<td>
-								<button type="button" class="btn-link" (click)="openEditModal(row)">
-									<svg-icon [name]="'pencil'" [size]="14"></svg-icon>
-								</button>
-								<span class="px-2">&nbsp;</span>
-								<button type="button" class="btn-link text-danger" (click)="confirmDelete(row)">
-									<svg-icon [name]="'remove'" [size]="14"></svg-icon>
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</nz-table>
+						[nzData]="transaction.transactionDetails" nzTableResponsive>
+						<thead>
+							<tr role="row">
+								<th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
+								<th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
+								<th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện
+								</th>
+								<th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện
+								</th>
+								<th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
+								<th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
+								<th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả
+									hàng hóa</th>
+								<th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao
+								</th>
+								<th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian
+									giao</th>
+								<th class="whitespace-nowrap" style="width: 1%;"><button type="button" class="btn btn-success"
+										(click)="openEditModal()">Thêm mới</button></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let row of transaction.transactionDetails; trackBy: trackByFunction">
+								<td>{{ row.contType }} </td>
+								<td>{{ row.contCount }} </td>
+								<td>{{ row.packageCount }} </td>
+								<td>{{ row.packageUnit }} </td>
+								<td>{{ row.quantity }} </td>
+								<td>{{ row.unit }} </td>
+								<td>{{ row.goodsDescription }} </td>
+								<td>{{ row.deliveredPlace }} </td>
+								<td>{{ parseHumanDate(row.deliveredTime) }} </td>
+								<td>
+									<button type="button" class="btn-link" (click)="openEditModal(row)">
+										<svg-icon [name]="'pencil'" [size]="14"></svg-icon>
+									</button>
+									<span class="px-2">&nbsp;</span>
+									<button type="button" class="btn-link text-danger" (click)="confirmDelete(row)">
+										<svg-icon [name]="'remove'" [size]="14"></svg-icon>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</nz-table>
 				</div>
-				
+
 			</div>
 		</form>
 	</main>
