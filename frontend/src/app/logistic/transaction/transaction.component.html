@@ -8,8 +8,8 @@
 					</div>
 				</div>
 				<div>
-					<div class="d-md-flex flex-column order border-start-0 border-end-0 mb-1" style="background-color: #f6f6f6;">
-						<div class="d-flex flex-row p-2">
+					<div class="d-md-flex flex-column order border-start-0 border-end-0 mb-1">
+						<div class="d-flex flex-row p-2" style="background-color: #f6f6f6;">
 							<wk-button icon="plus" [iconSize]="13" [className]="'btn-success flex mr-2'"
 								[routerLink]="['/logistic/transaction/new']">Tạo lệnh điều vận</wk-button>
 							<wk-button icon="export" [iconSize]="13" [className]="'btn-default flex mr-2'"
@@ -27,12 +27,13 @@
 								<wk-button icon="search_" [iconSize]="13" (click)="refreshList()"
 									[className]="'btn-primary flex mr-2'">Tìm
 									kiếm</wk-button>
-								<wk-button icon="cancel" [iconSize]="13" (click)="refreshList()" [className]="'btn-default flex'">Khôi
+								<wk-button icon="cancel" [iconSize]="13" (click)="resetFilter()" [className]="'btn-default flex'">Khôi
 									phục</wk-button>
 							</div>
 						</div>
-						<div class="row p-2 pt-0">
-							<div class="col-2">
+						<hr class="m-0" style="border-top: 2px solid #fff;" />
+						<div class="flex flex-row p-2 pt-0" style="background-color: #f6f6f6;">
+							<div class="mr-2" style="width: 15%;">
 								Khách hàng
 								<nz-select nzShowSearch nzAllowClear class="mr-2 w-full form-input" [(ngModel)]="customerFilter"
 									(ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
@@ -40,7 +41,7 @@
 										[nzValue]="customer.id"></nz-option>
 								</nz-select>
 							</div>
-							<div class="col-2">
+							<div class="mr-2" style="width: 15%;">
 								Đơn vị vận tải
 								<nz-select nzShowSearch nzAllowClear class="mr-2 w-full form-input" [(ngModel)]="vendorFilter"
 									(ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
@@ -48,24 +49,25 @@
 										[nzValue]="vendor.id"></nz-option>
 								</nz-select>
 							</div>
-							<div class="col-4">
+							<div class="mr-2" style="width: 25%;">
 								Ngày vận tải
 								<nz-input-group nzCompact class="w-full">
 									<nz-date-picker nz-input nzFormat="dd/MM/yyyy" nzPlaceHolder="Từ ngày" style="width: 45%;"
 										[nzDisabledDate]="disabledStartDate" [(ngModel)]="transDateFrom"></nz-date-picker>
 									<input type="text" disabled nz-input placeholder="-"
-										style="width: 10%; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255);" />
+										style="width: 10%; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255); border-color: #868686;" />
 									<nz-date-picker nz-input nzFormat="dd/MM/yyyy" nzPlaceHolder="Đến ngày" class="border-l-0"
 										style="width: 45%;" [nzDisabledDate]="disabledEndDate" [(ngModel)]="transDateTo"></nz-date-picker>
 								</nz-input-group>
 							</div>
-							<div class="col-2 ml-auto text-right">
+							<!-- <div class="col-2 ml-auto text-right">
 								<div class="upload-btn-wrapper">
 									<wk-button icon="export" [iconSize]="13" [className]="'btn-success flex'"
 										[title]="'Xuất dữ liệu ra file excel'" (click)="exportToExcel()">Xuất Excel</wk-button>
 								</div>
-							</div>
+							</div> -->
 						</div>
+						<hr class="m-0" style="border-top: 2px solid #fff;" />
 						<div class="row">
 							<div class="col-sm-12">
 								<nz-table #basicTable [nzData]="list" nzSize="small" [nzFrontPagination]="false" [nzTotal]="total"

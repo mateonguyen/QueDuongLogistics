@@ -109,4 +109,15 @@ export class TransactionComponent implements OnInit {
 			this.exportService.exportData(dataToExport, templatePath, exportFileName);
 		});
 	}
+
+	resetFilter() {
+		this.pageIndex = 1;
+		this.term = '';
+		this.customerFilter = 0;
+		this.vendorFilter = 0;
+		this.transDateFrom = null;
+		this.transDateTo = null;
+
+		this.refreshList();
+	}
 }
