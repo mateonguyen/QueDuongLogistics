@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import * as XLSX from 'xlsx';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExportService {
+  private datePipe: DatePipe = new DatePipe('vi'); // Set the locale accordingly
+
   constructor(private http: HttpClient) {}
 
   exportData(data: any[], templatePath: string, exportFileName: string): void {
@@ -25,31 +28,33 @@ export class ExportService {
           // Start write data to work sheet
           data.forEach((item, index) => {
             const newIndex = index+3;
+            const formattedDate = this.datePipe.transform(item.transactionDate, 'dd/MM/yyyy');
 
-            worksheet[`A${newIndex}`] = { t: 's', v: item.transactionDate }; 
+
+            worksheet[`A${newIndex}`] = { t: 's', v: formattedDate }; 
             worksheet[`B${newIndex}`] = { t: 's', v: item.vehicle.vehicleNumber }; 
             worksheet[`C${newIndex}`] = { t: 's', v: item.driver.fullName }; 
             worksheet[`D${newIndex}`] = { t: 's', v: item.origin }; 
+            worksheet[`E${newIndex}`] = { t: 's', v: item.destination }; 
+            worksheet[`F${newIndex}`] = { t: 's', v: item.transactionNo }; 
+            worksheet[`G${newIndex}`] = { t: 's', v: item.sumGoods }; 
+            worksheet[`H${newIndex}`] = { t: 's', v: item.vehicle.typeOfVehicle }; 
+            worksheet[`I${newIndex}`] = { t: 's', v: item.vendor.vendorName }; 
+            worksheet[`J${newIndex}`] = { t: 's', v: item.customer.customerName }; 
 
-            worksheet[`H${newIndex}`] = { t: 's', v: item.destination }; 
-            worksheet[`L${newIndex}`] = { t: 's', v: item.transactionNo }; 
-
-            worksheet[`P${newIndex}`] = { t: 's', v: item.vehicle.typeOfVehicle }; 
-            worksheet[`Q${newIndex}`] = { t: 's', v: item.vendor.vendorName }; 
-            worksheet[`R${newIndex}`] = { t: 's', v: item.customer.customerName }; 
-            worksheet[`S${newIndex}`] = { t: 'n', v: item.demurrageFee }; 
-            worksheet[`T${newIndex}`] = { t: 'n', v: item.transshipmentFee }; 
-            worksheet[`U${newIndex}`] = { t: 'n', v: item.returnShippingFee }; 
-            worksheet[`V${newIndex}`] = { t: 'n', v: item.customsFee }; 
-            worksheet[`W${newIndex}`] = { t: 'n', v: item.handlingFee }; 
-            worksheet[`X${newIndex}`] = { t: 'n', v: item.ticketFee }; 
-            worksheet[`Y${newIndex}`] = { t: 'n', v: item.otherFee }; 
+            worksheet[`K${newIndex}`] = { t: 'n', v: item.demurrageFee }; 
+            worksheet[`L${newIndex}`] = { t: 'n', v: item.transshipmentFee }; 
+            worksheet[`M${newIndex}`] = { t: 'n', v: item.returnShippingFee }; 
+            worksheet[`N${newIndex}`] = { t: 'n', v: item.customsFee }; 
+            worksheet[`O${newIndex}`] = { t: 'n', v: item.handlingFee }; 
+            worksheet[`P${newIndex}`] = { t: 'n', v: item.ticketFee }; 
+            worksheet[`Q${newIndex}`] = { t: 'n', v: item.otherFee }; 
             
-            worksheet[`Z${newIndex}`] = { t: 'n', v: item.docManager }; 
-            worksheet[`AA${newIndex}`] = { t: 'b', v: item.isCustomerReturn }; 
-            worksheet[`AB${newIndex}`] = { t: 'b', v: item.isSummitedDoc }; 
+            worksheet[`R${newIndex}`] = { t: 'n', v: item.docManager }; 
+            worksheet[`S${newIndex}`] = { t: 'b', v: item.isCustomerReturn }; 
+            worksheet[`T${newIndex}`] = { t: 'b', v: item.isSummitedDoc }; 
 
-            worksheet[`AD${newIndex}`] = { t: 'z', v: item.notes }; 
+            worksheet[`U${newIndex}`] = { t: 's', v: item.notes }; 
           });
         } else {
           console.error('Worksheet is undefined.');
@@ -82,4 +87,6 @@ export class ExportService {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   }
+
+  
 }
