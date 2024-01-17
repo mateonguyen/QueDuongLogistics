@@ -104,6 +104,8 @@ export class TransactionComponent implements OnInit {
 			const templatePath = 'assets/template_export.xlsx';
 			const exportFileName = 'exported_data.xlsx';
 			const dataToExport = res;
+			//console.log(res);
+
 			this.exportService.exportData(dataToExport, templatePath, exportFileName);
 		});
 	}
