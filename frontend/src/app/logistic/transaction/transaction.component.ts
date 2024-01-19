@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NzTableQueryParams } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { Customer } from 'src/app/__models/customer';
@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/__services/customer.service';
 import { TransactionService } from 'src/app/__services/transaction.service';
 import { VendorService } from 'src/app/__services/vendor.service';
 import { ExportService } from 'src/app/__services/export.service';
+import { PreviewTransactionComponent } from './preview-transaction/preview-transaction.component';
 
 
 @Component({
@@ -46,7 +47,8 @@ export class TransactionComponent implements OnInit {
 		private _customerService: CustomerService,
 		private _vendorService: VendorService,
 		@Inject(LOCALE_ID) public locale: string,
-		private exportService: ExportService
+		private exportService: ExportService,
+		private _modalService: NzModalService,
 	) {
 		this.term = '';
 		this.sortField = 'Id';
@@ -119,5 +121,18 @@ export class TransactionComponent implements OnInit {
 		this.transDateTo = null;
 
 		this.refreshList();
+	}
+
+	previewTransaction(item: Transaction) {
+		this._modalService.create({
+			nzContent: PreviewTransactionComponent,
+			nzClosable: false,
+			nzFooter: null,
+			nzWidth: 1200,
+			nzComponentParams: {
+				title: 'Xem chi tiết Vận đơn',
+				transaction: item
+			}
+		});
 	}
 }

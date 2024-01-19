@@ -46,6 +46,7 @@ import { FinanceComponent } from './finance/finance.component';
 import { FinanceEditComponent } from './finance/finance-edit/finance-edit.component';
 import { TransactionDetailsComponent } from './transaction/transaction-details/transaction-details.component';
 import { FinanceTypeComponent } from './finance/finance-type/finance-type.component';
+import { PreviewTransactionComponent } from './transaction/preview-transaction/preview-transaction.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { FinanceTypeComponent } from './finance/finance-type/finance-type.compon
 		FinanceEditComponent,
 		TransactionDetailsComponent,
 		FinanceTypeComponent,
+  PreviewTransactionComponent,
 	],
 	imports: [
 		CommonModule,

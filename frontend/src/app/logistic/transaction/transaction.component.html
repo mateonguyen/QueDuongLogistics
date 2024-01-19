@@ -60,12 +60,6 @@
 										style="width: 45%;" [nzDisabledDate]="disabledEndDate" [(ngModel)]="transDateTo"></nz-date-picker>
 								</nz-input-group>
 							</div>
-							<!-- <div class="col-2 ml-auto text-right">
-								<div class="upload-btn-wrapper">
-									<wk-button icon="export" [iconSize]="13" [className]="'btn-success flex'"
-										[title]="'Xuất dữ liệu ra file excel'" (click)="exportToExcel()">Xuất Excel</wk-button>
-								</div>
-							</div> -->
 						</div>
 						<hr class="m-0" style="border-top: 2px solid #fff;" />
 						<div class="row">
@@ -96,6 +90,8 @@
 											</td>
 											<td>{{item.vendorName}}</td>
 											<td class="whitespace-nowrap">
+												<wk-button icon="eye" [iconSize]="13" [className]="'btn-default mr-2'"
+												(click)="previewTransaction(item)">In</wk-button>
 												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-default mr-2'"
 													[routerLink]="['/logistic/transaction/edit/' + item.id]">Sửa</wk-button>
 												<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
