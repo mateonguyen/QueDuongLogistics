@@ -38,7 +38,7 @@ export class PreviewTransactionComponent implements OnInit {
 		});
 	}
 
-  cancel() {
+  	cancel() {
 		this.closeModal();
 	}
 
@@ -46,25 +46,34 @@ export class PreviewTransactionComponent implements OnInit {
 		this._modalRef.close();
 	}
 
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent): void {
-    // Check if Ctrl + P is pressed
-    if (event.ctrlKey && event.key === 'p') {
-      this.print();
-    }
-  }
+	@HostListener('document:keydown', ['$event'])
+	handleKeyboardEvent(event: KeyboardEvent): void {
+		// Check if Ctrl + P is pressed
+		if (event.ctrlKey && event.key === 'p') {
+		this.print();
+		}
+	}
 
-  print(): void {
-    console.log('Printing...');
-    this.printing = true;
-    setTimeout(() => {
-      window.print();
-      this.printing = false;
-    }, 500);
-    
-  }
+	print(): void {
+		console.log('Printing...');
+		this.printing = true;
+		setTimeout(() => {
+		window.print();
+		this.printing = false;
+		}, 500);
+		
+	}
 
-  parseHumanDate(value: Date): string {
+  	parseHumanDate(value: Date): string {
 		return this.datePipe.transform(value, 'dd/MM/yyyy');
+	}
+
+	formatHumanDate(dateString): string {
+		var pattern = /(\d{4})(\d{2})(\d{2})/;
+		return this.datePipe.transform(new Date(dateString.replace(pattern, '$1-$2-$3')), 'dd/MM/yyyy');
+	}
+
+	formatMoney(stringMoney): string {
+		return new Intl.NumberFormat('en-US').format(stringMoney);
 	}
 }

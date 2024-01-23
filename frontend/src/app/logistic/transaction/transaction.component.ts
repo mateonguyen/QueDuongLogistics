@@ -128,11 +128,20 @@ export class TransactionComponent implements OnInit {
 			nzContent: PreviewTransactionComponent,
 			nzClosable: false,
 			nzFooter: null,
-			nzWidth: 1200,
+			nzWidth: 595,
 			nzComponentParams: {
 				title: 'Xem chi tiết Vận đơn',
 				transaction: item
 			}
 		});
+	}
+
+	exportTransaction(item: Transaction) {
+		const templatePath = 'assets/template_export.xlsx';
+		const exportFileName = 'exported_data_'+item.transactionNo+'.xlsx';
+		const dataToExport = [];
+		dataToExport.push(item);
+
+		this.exportService.exportData(dataToExport, templatePath, exportFileName);
 	}
 }

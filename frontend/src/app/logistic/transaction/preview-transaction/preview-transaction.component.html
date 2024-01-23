@@ -4,7 +4,7 @@
     <div class="col-lg-4">
         <div class="row">
             <div class="col-4">
-                <img [src]="transaction.customer ? 'data:image/png;base64,' + transaction.customer.photo : './../assets/images/no_image.png'"
+                <img width="40" [src]="transaction.customer ? 'data:image/png;base64,' + transaction.customer.photo : './../assets/images/no_image.png'"
 							class="customer_logo">
             </div>
             <div class="col-8">
@@ -20,12 +20,12 @@
     <div class="col-lg-4">
         <div class="row">
             <div class="col-4">
-                <img [src]="transaction.vendor ? 'data:image/png;base64,' + transaction.vendor.photo : './../assets/images/no_image.png'"
+                <img width="40" [src]="transaction.vendor ? 'data:image/png;base64,' + transaction.vendor.photo : './../assets/images/no_image.png'"
 							class="customer_logo">
             </div>
             <div class="col-8">
                 {{ transaction.vendor.vendorName }} <br/>
-                {{ transaction.transactionDate }} <br/>
+                {{ parseHumanDate(transaction.transactionDate) }} <br/>
                 
             </div>
         </div>
@@ -33,41 +33,185 @@
 
 </div>
 
+<div class="row mb-3">
+    <div class="col-lg-6">
+        <table class="table table_price table-bordered">
+            <thead>
+                <tr>
+                    <th class="whitespace-nowrap" colspan="2">Thông tin lái xe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="40%"><b>Họ và tên </b></td>
+                    <td>
+                        {{ transaction.driver.fullName }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Ngày Sinh </b></td>
+                    <td>
+                        {{ formatHumanDate(transaction.driver.dateOfBirth) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Số CCCD</b></td>
+                    <td>
+                        {{ transaction.driver.identityCardNo }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Điện thoại </b></td>
+                    <td>
+                        {{ transaction.driver.phoneNo }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Địa chỉ </b></td>
+                    <td>
+                        {{ transaction.driver.homeTown }}
+                    </td>
+                </tr>
+        
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table_price table-bordered">
+            <thead>
+                <tr>
+                    <th class="whitespace-nowrap" colspan="2">Thông tin phương tiện</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="40%"><b>Biển số </b></td>
+                    <td>
+                        {{ transaction.vehicle.vehicleNumber }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Loại xe </b></td>
+                    <td>
+                        {{ transaction.vehicle.typeOfVehicle }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Tải trọng</b></td>
+                    <td>
+                        {{ transaction.vehicle.payloadCapacity +' '+ transaction.vehicle.payloadCapacityUnit }}
+                    </td>
+                </tr>
+        
+            </tbody>
+        </table>
 
-<div class="row">
+        <table class="table table_price table-bordered">
+            <thead>
+                <tr>
+                    <th class="whitespace-nowrap" colspan="2">Thông tin vận chuyển</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="40%"><b>Điểm nhận </b></td>
+                    <td>
+                        {{ transaction.origin }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="40%"><b>Điểm giao </b></td>
+                    <td>
+                        {{ transaction.destination }}
+                    </td>
+                </tr>
+    
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+<div class="row mb-3">
     <div class="col-lg-12">
-        <nz-table #table [classList]="'border-spacing-y-[10px]'" nzSize="small" 
+        <nz-table #table [classList]="'border border-spacing-y-[5px]'" nzSize="small"  [nzFrontPagination]=false [nzShowPagination]="false"
             [nzData]="transaction.transactionDetails" nzTableResponsive>
             <thead>
                 <tr role="row">
-                    <th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Loại cont</th>
-                    <th class="whitespace-nowrap" nzColumnKey="contCount" [nzSortFn]="true" style="width: 1%;">Số cont</th>
-                    <th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện
-                    </th>
-                    <th class="whitespace-nowrap" nzColumnKey="packageUnit" [nzSortFn]="true" style="width: 5%;">ĐVT Kiện
-                    </th>
+                    <th class="whitespace-nowrap">Lưu ca</th>
+                    <th class="whitespace-nowrap">Ghép điểm</th>
+                    <th class="whitespace-nowrap">Hàng về</th>
+                    <th class="whitespace-nowrap">Hải quan</th>
+                    <th class="whitespace-nowrap">Bốc xếp</th>
+                    <th class="whitespace-nowrap">Vé</th>
+                    <th class="whitespace-nowrap">Khác</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ formatMoney(transaction.demurrageFee) }} </td>
+                    <td>{{ formatMoney(transaction.transshipmentFee) }} </td>
+                    <td>{{ formatMoney(transaction.returnShippingFee) }} </td>
+                    <td>{{ formatMoney(transaction.customsFee) }} </td>
+                    <td>{{ formatMoney(transaction.handlingFee) }} </td>
+                    <td>{{ formatMoney(transaction.ticketFee) }} </td>
+                    <td>{{ formatMoney(transaction.otherFee) }} </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+
+</div>
+
+<div class="row mb-3">
+    <div class="col-lg-12">
+        <nz-table #table [classList]="'border border-spacing-y-[5px]'" nzSize="small"  [nzFrontPagination]=false [nzShowPagination]="false"
+            [nzData]="transaction.transactionDetails" nzTableResponsive>
+            <thead>
+                <tr role="row">
+                    <th class="whitespace-nowrap">Lx nộp về VP</th>
+                    <th class="whitespace-nowrap">Trả QL giấy tờ</th>
+                    <th class="whitespace-nowrap">Trả khách hàng</th>
+                    <th class="whitespace-nowrap">Ghi chú</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ transaction.docManager }} </td>
+                    <td>{{ transaction.isSummitedDoc ? 'Có' : 'Không' }} </td>
+                    <td>{{ transaction.isCustomerReturn ? 'Có' : 'Không' }} </td>
+                    <td>{{ transaction.notes }} </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <nz-table #table [classList]="'border border-spacing-y-[5px]'" nzSize="small"  [nzFrontPagination]=false [nzShowPagination]="false"
+            [nzData]="transaction.transactionDetails" nzTableResponsive>
+            <thead>
+                <tr role="row">
+                    <th class="whitespace-nowrap" nzColumnKey="contType" [nzSortFn]="true" style="width: 3%;">Số cont</th>
+                    <th class="whitespace-nowrap" nzColumnKey="packageCount" [nzSortFn]="true" style="width: 1%;">Số kiện</th>
                     <th class="whitespace-nowrap" nzColumnKey="quantity" [nzSortFn]="true" style="width: 1%;">Số lượng</th>
-                    <th class="whitespace-nowrap" nzColumnKey="unit" [nzSortFn]="true" style="width: 5%;">ĐVT</th>
-                    <th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả
-                        hàng hóa</th>
-                    <th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao
-                    </th>
-                    <th class="whitespace-nowrap" nzColumnKey="deliveredTime" [nzSortFn]="true" style="width: 8%;">Thời gian
-                        giao</th>
+                    <th class="whitespace-nowrap" nzColumnKey="goodsDescription" [nzSortFn]="true" style="width: 20%;">Mô tả hàng hóa</th>
+                    <th class="whitespace-nowrap" nzColumnKey="deliveredPlace" [nzSortFn]="true" style="width: 8%;">Nơi giao</th>
                 
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let row of transaction.transactionDetails">
-                    <td>{{ row.contType }} </td>
-                    <td>{{ row.contCount }} </td>
-                    <td>{{ row.packageCount }} </td>
-                    <td>{{ row.packageUnit }} </td>
-                    <td>{{ row.quantity }} </td>
-                    <td>{{ row.unit }} </td>
+                    <td>{{ row.contCount }} {{ row.contType }} </td>
+                    <td>{{ row.packageCount }} {{ row.packageUnit }}</td>
+                    <td>{{ row.quantity }} {{ row.unit }}</td>
                     <td>{{ row.goodsDescription }} </td>
-                    <td>{{ row.deliveredPlace }} </td>
-                    <td>{{ parseHumanDate(row.deliveredTime) }} </td>
+                    <td>{{ row.deliveredPlace }} - {{ parseHumanDate(row.deliveredTime) }}</td>
                 </tr>
             </tbody>
         </nz-table>

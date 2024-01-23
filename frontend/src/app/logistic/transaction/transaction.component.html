@@ -91,11 +91,13 @@
 											<td>{{item.vendorName}}</td>
 											<td class="whitespace-nowrap">
 												<wk-button icon="eye" [iconSize]="13" [className]="'btn-default mr-2'"
-												(click)="previewTransaction(item)">In</wk-button>
-												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-default mr-2'"
-													[routerLink]="['/logistic/transaction/edit/' + item.id]">Sửa</wk-button>
+												(click)="previewTransaction(item)"></wk-button>
+												<wk-button icon="export" [iconSize]="13" [className]="'btn-success mr-2'"
+												(click)="exportTransaction(item)"></wk-button>
+												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-primary mr-2'"
+													[routerLink]="['/logistic/transaction/edit/' + item.id]"></wk-button>
 												<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"
-													(click)="confirmDelete(item)">Xóa</wk-button>
+													(click)="confirmDelete(item)"></wk-button>
 											</td>
 										</tr>
 									</tbody>
