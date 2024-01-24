@@ -208,7 +208,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	confirmDelete(model: TransactionDetails) {
 		this.confirmModal = this._modalService.confirm({
 			nzTitle: 'Bạn chắc chắn muốn xóa?',
-			nzContent: 'Sau khi chọn Xóa, lịch trình sẽ được xóa khỏi danh sách.',
+			nzContent: 'Sau khi chọn Xóa, Thông tin hàng hóa này sẽ được xóa khỏi danh sách.',
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
