@@ -287,7 +287,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		inputValue = isNaN(inputValue) ? 0 : inputValue;
 
 		this.transaction[targetParam] = inputValue;
-		var uy = isNaN(event.target.value) ? 0 : new Intl.NumberFormat('en-US').format(event.target.value);
+		let uy = isNaN(event.target.value) ? 0 : new Intl.NumberFormat('en-US').format(event.target.value);
 		this[textParam] = uy;
 
 		this.total_fee = new Intl.NumberFormat('en-US').format(
