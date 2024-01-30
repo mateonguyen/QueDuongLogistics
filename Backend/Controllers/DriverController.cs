@@ -84,11 +84,11 @@ public class DriverController : BaseApiController
 
         drivers.ForEach(x => x.Creator = User.GetUsername());
 
-         await _unitOfWork.DriverRepository.CreateRangeAsync(drivers);
+        await _unitOfWork.DriverRepository.CreateRangeAsync(drivers);
 
-         var result = await _unitOfWork.Complete();
+        var result = await _unitOfWork.Complete();
 
-         if (!result) return BadRequest("Nhập danh sách lái xe thất bại.");
+        if (!result) return BadRequest("Nhập danh sách lái xe thất bại.");
 
         return Ok(await _unitOfWork.DriverRepository.ToListAsync());
     }

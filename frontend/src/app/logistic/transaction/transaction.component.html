@@ -24,11 +24,10 @@
 								</ng-template>
 							</div>
 							<div class=" pr-0 d-md-flex">
-								<wk-button icon="search_" [iconSize]="13" (click)="refreshList()"
-									[className]="'btn-primary flex mr-2'">Tìm
-									kiếm</wk-button>
-								<wk-button icon="cancel" [iconSize]="13" (click)="resetFilter()" [className]="'btn-default flex'">Khôi
-									phục</wk-button>
+								<wk-button icon="search_" [iconSize]="13" (click)="refreshList()" [className]="'btn-primary flex mr-2'">
+									Tìm kiếm</wk-button>
+								<wk-button icon="rotate-right" [iconSize]="13" (click)="resetFilter()" [className]="'btn-default flex'">
+									Khôi phục</wk-button>
 							</div>
 						</div>
 						<hr class="m-0" style="border-top: 2px solid #fff;" />
@@ -91,9 +90,9 @@
 											<td>{{item.vendorName}}</td>
 											<td class="whitespace-nowrap">
 												<wk-button icon="eye" [iconSize]="13" [className]="'btn-default mr-2'"
-												(click)="previewTransaction(item)"></wk-button>
+													(click)="previewTransaction(item)"></wk-button>
 												<wk-button icon="export" [iconSize]="13" [className]="'btn-success mr-2'"
-												(click)="exportTransaction(item)"></wk-button>
+													(click)="exportTransaction(item)"></wk-button>
 												<wk-button icon="pencil" [iconSize]="13" [className]="'btn-primary mr-2'"
 													[routerLink]="['/logistic/transaction/edit/' + item.id]"></wk-button>
 												<wk-button icon="remove" [iconSize]="13" [className]="'btn-danger'"

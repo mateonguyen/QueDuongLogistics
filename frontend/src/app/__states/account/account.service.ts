@@ -26,10 +26,13 @@ export class AccountService {
 	}
 
 	login(model: any) {
+		debugger;
+		storage.clearSession();
 
 		return this.http.post(this.baseUrl + 'account/login', model).pipe(
 			map((account: Account) => {
 				if (account) {
+
 					this.store.update((state) => {
 
 						const myRoles = this.getDecoderToken(account.token).role;

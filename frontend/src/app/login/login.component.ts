@@ -32,11 +32,13 @@ export class LoginComponent implements OnInit {
 
 	login() {
 		this.accountService.login(this.loginForm.value).subscribe(
-			() => {
-				this.router.navigateByUrl('');
-			},
-			(error) => {
-				this.accountService.alert({ type: 'error', message: error.error });
+			{
+				next: () => {
+					this.router.navigateByUrl('');
+				},
+				error: (error) => {
+					this.accountService.alert({ type: 'error', message: error.error });
+				}
 			}
 		);
 	}
