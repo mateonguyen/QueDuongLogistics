@@ -208,7 +208,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 	confirmDelete(model: TransactionDetails) {
 		this.confirmModal = this._modalService.confirm({
 			nzTitle: 'Bạn chắc chắn muốn xóa?',
-			nzContent: 'Sau khi chọn Xóa, lịch trình sẽ được xóa khỏi danh sách.',
+			nzContent: 'Sau khi chọn Xóa, Thông tin hàng hóa này sẽ được xóa khỏi danh sách.',
 			nzOkText: 'Xóa',
 			nzOkDanger: true,
 			nzOnOk: () => {
@@ -287,7 +287,7 @@ export class AddTransactionComponent implements OnInit, CanComponentDeactivate {
 		inputValue = isNaN(inputValue) ? 0 : inputValue;
 
 		this.transaction[targetParam] = inputValue;
-		var uy = isNaN(event.target.value) ? 0 : new Intl.NumberFormat('en-US').format(event.target.value);
+		let uy = isNaN(event.target.value) ? 0 : new Intl.NumberFormat('en-US').format(event.target.value);
 		this[textParam] = uy;
 
 		this.total_fee = new Intl.NumberFormat('en-US').format(
