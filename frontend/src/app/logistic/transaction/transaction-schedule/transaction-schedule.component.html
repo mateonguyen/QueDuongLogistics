@@ -1,0 +1,37 @@
+<div class="container-fluid">
+	<main class="content">
+		<!-- <p class="text-bold text-Medium text-uppercase text-danger p-2">Chức năng đang trong quá trình phát triển</p> -->
+		<div class="row mt-2">
+			<div class="col-lg-12">
+				<div class="flex">
+					<h4 class="mt-2 px-2 text-uppercase">Lịch điều vận</h4>
+				</div>
+			</div>
+			<div>
+				<div class="d-md-flex flex-column order border-start-0 border-end-0 mb-1">
+					<div class="d-flex flex-row p-2" style="background-color: #f6f6f6;">
+						<wk-button icon="plus" [iconSize]="13" [className]="'btn-success flex mr-2'"
+							[routerLink]="['/logistic/transaction/new']">Tạo lệnh điều vận</wk-button>
+						<wk-button icon="export" [iconSize]="13" [className]="'btn-default flex mr-2'"
+							[title]="'Xuất dữ liệu ra file excel'" (click)="exportToExcel()">Xuất Excel</wk-button>
+						<div class="search-box-by-click d-md-flex flex-grow-1 mr-2">
+							<nz-input-group [nzSuffix]="suffixIconSearch">
+								<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()" class="form-input"
+									placeholder="Mã điều vận, Tên lái xe, Tuyến đường, Biển số xe" />
+							</nz-input-group>
+							<ng-template #suffixIconSearch>
+								<span nz-icon nzType="search"></span>
+							</ng-template>
+						</div>
+						<div class=" pr-0 d-md-flex">
+							<wk-button icon="search_" [iconSize]="13" (click)="refreshList()" [className]="'btn-primary flex mr-2'">
+								Tìm kiếm</wk-button>
+							<wk-button icon="rotate-right" [iconSize]="13" (click)="resetFilter()" [className]="'btn-default flex'">
+								Khôi phục</wk-button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>

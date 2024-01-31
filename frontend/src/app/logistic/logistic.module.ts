@@ -38,7 +38,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { RouteLocationSelectComponent } from './shipping-route/add-shipping-route-modal/route-location-select/route-location-select.component';
 import { TransactionShippingRouteSelectComponent } from './transaction/add-transaction/transaction-shipping-route-select/transaction-shipping-route-select.component';
 import { TransactionDetailsEditModalComponent } from './transaction/add-transaction/transaction-details-edit-modal/transaction-details-edit-modal.component';
-import { ScheduleComponent } from './transaction/schedule/schedule.component';
+import { TransactionScheduleComponent } from './transaction/transaction-schedule/transaction-schedule.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { OrderComponent } from './order/order.component';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
@@ -74,14 +74,14 @@ import { PreviewTransactionComponent } from './transaction/preview-transaction/p
 		RouteLocationSelectComponent,
 		TransactionShippingRouteSelectComponent,
 		TransactionDetailsEditModalComponent,
-		ScheduleComponent,
+		TransactionScheduleComponent,
 		OrderComponent,
 		OrderEditComponent,
 		FinanceComponent,
 		FinanceEditComponent,
 		TransactionDetailsComponent,
 		FinanceTypeComponent,
-  PreviewTransactionComponent,
+		PreviewTransactionComponent,
 	],
 	imports: [
 		CommonModule,

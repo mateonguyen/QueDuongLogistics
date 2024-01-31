@@ -10,7 +10,7 @@ import { VehicleComponent } from "./vehicle/vehicle.component";
 import { LocationComponent } from "./location/location.component";
 import { AddTransactionComponent } from "./transaction/add-transaction/add-transaction.component";
 import { PreventUnsavedChangesGuard } from "../__guards/prevent-unsaved-changes.guard";
-import { ScheduleComponent } from "./transaction/schedule/schedule.component";
+import { TransactionScheduleComponent } from "./transaction/transaction-schedule/transaction-schedule.component";
 import { OrderComponent } from "./order/order.component";
 import { FinanceComponent } from "./finance/finance.component";
 import { OrderEditComponent } from "./order/order-edit/order-edit.component";
@@ -25,7 +25,7 @@ const routes: Routes = [
 		children: [
 			{ path: 'transaction', component: TransactionComponent, canActivate: [AuthGuard] },
 			{ path: 'transaction/list', component: TransactionComponent, canActivate: [AuthGuard] },
-			{ path: 'transaction/schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
+			{ path: 'transaction/schedule', component: TransactionScheduleComponent, canActivate: [AuthGuard] },
 			{ path: 'transaction/new', component: AddTransactionComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
 			{ path: 'transaction/edit/:id', component: AddTransactionComponent, canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard] },
 			{ path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
