@@ -16,8 +16,8 @@
 								[title]="'Xuất dữ liệu ra file excel'" (click)="exportToExcel()">Xuất Excel</wk-button>
 							<div class="search-box-by-click d-md-flex flex-grow-1 mr-2">
 								<nz-input-group [nzSuffix]="suffixIconSearch">
-									<input type="text" nz-input [(ngModel)]="term" (keyup.enter)="refreshList()" class="form-input"
-										placeholder="Mã điều vận, Tên lái xe, Tuyến đường, Biển số xe" />
+									<input type="text" nz-input [(ngModel)]="transactionParams.term" (keyup.enter)="refreshList()"
+										class="form-input" placeholder="Mã điều vận, Tên lái xe, Tuyến đường, Biển số xe" />
 								</nz-input-group>
 								<ng-template #suffixIconSearch>
 									<span nz-icon nzType="search"></span>
@@ -34,16 +34,16 @@
 						<div class="flex flex-row p-2 pt-0" style="background-color: #f6f6f6;">
 							<div class="mr-2" style="width: 15%;">
 								Khách hàng
-								<nz-select nzShowSearch nzAllowClear class="mr-2 w-full form-input" [(ngModel)]="customerFilter"
-									(ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
+								<nz-select nzShowSearch nzAllowClear class="mr-2 w-full form-input"
+									[(ngModel)]="transactionParams.customerFilter" (ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
 									<nz-option *ngFor="let customer of customerList$ | async" [nzLabel]="customer.customerName"
 										[nzValue]="customer.id"></nz-option>
 								</nz-select>
 							</div>
 							<div class="mr-2" style="width: 15%;">
 								Đơn vị vận tải
-								<nz-select nzShowSearch nzAllowClear class="mr-2 w-full form-input" [(ngModel)]="vendorFilter"
-									(ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
+								<nz-select nzShowSearch nzAllowClear class="mr-2 w-full form-input"
+									[(ngModel)]="transactionParams.vendorFilter" (ngModelChange)="refreshList()" nzPlaceHolder="Tất cả">
 									<nz-option *ngFor="let vendor of vendroList$ | async" [nzLabel]="vendor.vendorName"
 										[nzValue]="vendor.id"></nz-option>
 								</nz-select>
@@ -52,11 +52,12 @@
 								Ngày vận tải
 								<nz-input-group nzCompact class="w-full">
 									<nz-date-picker nz-input nzFormat="dd/MM/yyyy" nzPlaceHolder="Từ ngày" style="width: 45%;"
-										[nzDisabledDate]="disabledStartDate" [(ngModel)]="transDateFrom"></nz-date-picker>
+										[nzDisabledDate]="disabledStartDate" [(ngModel)]="transactionParams.transDateFrom"></nz-date-picker>
 									<input type="text" disabled nz-input placeholder="-"
 										style="width: 10%; border-left: 0px; border-right: 0px; pointer-events: none; background-color: rgb(255, 255, 255); border-color: #868686;" />
 									<nz-date-picker nz-input nzFormat="dd/MM/yyyy" nzPlaceHolder="Đến ngày" class="border-l-0"
-										style="width: 45%;" [nzDisabledDate]="disabledEndDate" [(ngModel)]="transDateTo"></nz-date-picker>
+										style="width: 45%;" [nzDisabledDate]="disabledEndDate"
+										[(ngModel)]="transactionParams.transDateTo"></nz-date-picker>
 								</nz-input-group>
 							</div>
 						</div>
@@ -64,7 +65,8 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<nz-table #basicTable [nzData]="list" nzSize="small" [nzFrontPagination]="false" [nzTotal]="total"
-									[nzPageSize]="pageSize" [nzPageIndex]="pageIndex" (nzQueryParams)="onQueryParamsChange($event)">
+									[nzPageSize]="transactionParams.pageSize" [nzPageIndex]="transactionParams.pageNumber"
+									(nzQueryParams)="onQueryParamsChange($event)">
 									<thead>
 										<tr role="row">
 											<th style="width: 10%;" nzColumnKey="" [nzSortFn]="true">Mã điều vận</th>

@@ -61,7 +61,7 @@ public class TransactionRepository : BaseRepository<Transaction>, ITransactionRe
                         .Include(x => x.Customer)
                         .Include(x => x.Driver)
                         .Include(x => x.Vehicle)
-                        .Include(x => x.ShippingRoute)
+                        // .Include(x => x.ShippingRoute)
                         .ProjectTo<TransactionDto>(_mapper.ConfigurationProvider).AsNoTracking();
 
         // Filtering

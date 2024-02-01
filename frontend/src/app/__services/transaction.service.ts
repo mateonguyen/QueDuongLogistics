@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { Transaction } from '../__models/transaction';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PaginatedResult } from '../__models/pagination';
 import { getPaginatedResult, getPaginationHeader } from '../__helpers/paginationHelper';
+import { TransactionParams } from '../__models/transaction-params';
+import { formatDate } from '@angular/common';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,68 +15,42 @@ export class TransactionService {
 	baseUrl = environment.apiUrl;
 
 	constructor(
-		private _http: HttpClient
+		private _http: HttpClient,
+		@Inject(LOCALE_ID) public locale: string,
 	) { }
 
-	list(
-		pageIndex: number,
-		pageSize: number,
-		sortField: string | 'SoHieu',
-		sortOrder: string | 'descend',
-		transDateFrom: string | null,
-		transDateTo: string | null,
-		term: string,
-		customerFilter: number,
-		vendorFilter: number
-	): Observable<PaginatedResult<Transaction[]>> {
-		let params = getPaginationHeader(pageIndex, pageSize)
-			.append('term', term)
-			.append('sortField', `${sortField}`)
-			.append('sortOrder', `${sortOrder}`)
-			.append('transDateFrom', transDateFrom ?? '')
-			.append('transDateTo', transDateTo ?? '')
-			.append('customerId', customerFilter)
-			.append('vendorId', vendorFilter);
+	list(transactionParams: TransactionParams): Observable<PaginatedResult<Transaction[]>> {
+		let _transDateFrom = transactionParams.transDateFrom == null ? '' : formatDate(transactionParams.transDateFrom, 'yyyyMMdd', this.locale);
+		let _transDateTo = transactionParams.transDateTo == null ? '' : formatDate(transactionParams.transDateTo, 'yyyyMMdd', this.locale);
 
-		// filters.forEach(filter => {
-		// 	filter.value.forEach(value => {
-		// 		params = params.append(filter.key, value);
-		// 	});
-		// });
+		let params = getPaginationHeader(transactionParams.pageNumber, transactionParams.pageSize)
+			.append('term', transactionParams.term)
+			.append('sortField', `${transactionParams.sortField}`)
+			.append('sortOrder', `${transactionParams.sortOrder}`)
+			.append('transDateFrom', _transDateFrom)
+			.append('transDateTo', _transDateTo)
+			.append('customerId', transactionParams.customerFilter ?? 0)
+			.append('vendorId', transactionParams.vendorFilter ?? 0);
 
 		return getPaginatedResult<Transaction[]>(this.baseUrl + 'transaction', params, this._http);
 	}
 
-	listForExport(
-		sortField: string | 'SoHieu',
-		sortOrder: string | 'descend',
-		transDateFrom: string | null,
-		transDateTo: string | null,
-		term: string,
-		customerFilter: number,
-		vendorFilter: number
-	): Observable<Transaction[]> {
+	listForExport(transactionParams: TransactionParams): Observable<Transaction[]> {
+		let _transDateFrom = transactionParams.transDateFrom == null ? '' : formatDate(transactionParams.transDateFrom, 'yyyyMMdd', this.locale);
+		let _transDateTo = transactionParams.transDateTo == null ? '' : formatDate(transactionParams.transDateTo, 'yyyyMMdd', this.locale);
+
 		let params = new HttpParams();
 
-		params = params.append('term', term)
-			.append('sortField', `${sortField}`)
-			.append('sortOrder', `${sortOrder}`)
-			.append('transDateFrom', transDateFrom ?? '')
-			.append('transDateTo', transDateTo ?? '')
-			.append('customerId', customerFilter)
-			.append('vendorId', vendorFilter);
+		params = params.append('term', transactionParams.term)
+			.append('sortField', `${transactionParams.sortField}`)
+			.append('sortOrder', `${transactionParams.sortOrder}`)
+			.append('transDateFrom', _transDateFrom)
+			.append('transDateTo', _transDateTo)
+			.append('customerId', transactionParams.customerFilter ?? 0)
+			.append('vendorId', transactionParams.vendorFilter ?? 0);
 
 		return this._http.get<Transaction[]>(this.baseUrl + 'transaction/export', { params });
 	}
-
-	// refreshList() {
-	// 	return this._http.get<Transaction[]>(this.baseUrl + 'transaction').subscribe({
-	// 		next: res => {
-	// 			this.list = res as Transaction[];
-	// 		},
-	// 		error: err => { console.log(err) }
-	// 	});
-	// }
 
 	single(id: number) {
 		return this._http.get<Transaction>(this.baseUrl + 'transaction/' + id);
